@@ -1,0 +1,15 @@
+@layer base {
+  /* 
+    다크 모드 환경에서 적용할 전역 변수를 재정의하는 구간입니다.
+    prefers-color-scheme: dark 미디어 쿼리를 사용하여
+    사용자가 다크 모드를 설정했을 때만 이 안의 변수가 적용됩니다.
+    기존 :root에 선언한 변수 값을 덮어써서
+    전체 테마가 어두운 모드에 맞게 자연스럽게 전환되도록 합니다.
+  */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #17171b;
+      --foreground: #ffffff;
+    }
+  }
+}
