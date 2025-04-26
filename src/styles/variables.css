@@ -1,0 +1,15 @@
+/* 
+  전역 CSS 변수를 선언하는 구간입니다.
+  :root 블록 안에서는 모든 페이지와 컴포넌트에서 사용할 수 있는
+  색상, 폰트 등 CSS 변수를 정의합니다.
+  이 변수들은 var(--변수명) 형태로 참조하여 일관된 디자인을 유지할 수 있습니다.
+*/
+:root {
+  /* 색상 관련 변수 */
+  --background: #ffffff;
+  --foreground: #17171b;
+
+  /* 폰트 관련 변수 */
+  --font-geist-sans: Arial, Helvetica, sans-serif;
+  --font-geist-mono: monospace;
+}

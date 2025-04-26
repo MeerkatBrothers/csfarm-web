@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@import "./variables.css";
+@import "./theme.css";
+@import "./media.css";
+@import "./reset.css";
