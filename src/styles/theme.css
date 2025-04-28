@@ -7,12 +7,56 @@
     CSS 변수만 변경하여 전체 스타일을 쉽게 통제할 수 있습니다.
   */
   @theme inline {
-    /* 색상 관련 변수 */
+    /* 색상 */
     --color-background: var(--background);
     --color-foreground: var(--foreground);
 
-    /* 폰트 관련 변수 */
+    /* 폰트 패밀리 */
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
+
+    /* 폰트 크기 */
+    --text-display-lg: var(--text-display-lg);
+    --text-display-md: var(--text-display-md);
+    --text-display-sm: var(--text-display-sm);
+
+    --text-h1-lg: var(--text-h1-lg);
+    --text-h1-md: var(--text-h1-md);
+    --text-h1-sm: var(--text-h1-sm);
+
+    --text-h2-lg: var(--text-h2-lg);
+    --text-h2-md: var(--text-h2-md);
+    --text-h2-sm: var(--text-h2-sm);
+
+    --text-h3-lg: var(--text-h3-lg);
+    --text-h3-md: var(--text-h3-md);
+    --text-h3-sm: var(--text-h3-sm);
+
+    --text-body1: var(--text-body1);
+    --text-body2: var(--text-body2);
+    --text-caption: var(--text-caption);
+    --text-label: var(--text-label);
+
+    /* 라인 높이 */
+    --leading-display-lg: var(--leading-display-lg);
+    --leading-display-md: var(--leading-display-md);
+    --leading-display-sm: var(--leading-display-sm);
+
+    --leading-h1-lg: var(--leading-h1-lg);
+    --leading-h1-md: var(--leading-h1-md);
+    --leading-h1-sm: var(--leading-h1-sm);
+
+    --leading-h2-lg: var(--leading-h2-lg);
+    --leading-h2-md: var(--leading-h2-md);
+    --leading-h2-sm: var(--leading-h2-sm);
+
+    --leading-h3-lg: var(--leading-h3-lg);
+    --leading-h3-md: var(--leading-h3-md);
+    --leading-h3-sm: var(--leading-h3-sm);
+
+    --leading-body1: var(--leading-body1);
+    --leading-body2: var(--leading-body2);
+    --leading-caption: var(--leading-caption);
+    --leading-label: var(--leading-label);
   }
 }
