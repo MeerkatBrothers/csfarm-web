@@ -9,6 +9,20 @@
   --background: #ffffff;
   --foreground: #17171b;
 
+  --primary: #f4c542;
+  --secondary: #7ed957;
+  --primary-light: #fefaf5;
+  --secondary-light: #f5fbf3;
+
+  --success: #3b82f6;
+  --error: #ef4444;
+
+  --service-black: #18181b;
+
+  --service-gray: #aeaeae;
+  --service-gray-medium: #e2e2e2;
+  --service-gray-light: #f7f7f7;
+
   /* 폰트 관련 변수 */
   --font-geist-sans: Arial, Helvetica, sans-serif;
   --font-geist-mono: monospace;
