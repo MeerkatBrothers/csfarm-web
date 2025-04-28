@@ -3,9 +3,10 @@
   :root 블록 안에서는 모든 페이지와 컴포넌트에서 사용할 수 있는
   색상, 폰트 등 CSS 변수를 정의합니다.
   이 변수들은 var(--변수명) 형태로 참조하여 일관된 디자인을 유지할 수 있습니다.
+  1rem = 16px 기준입니다.
 */
 :root {
-  /* 색상 관련 변수 */
+  /* 색상 변수 */
   --background: #ffffff;
   --foreground: #17171b;
 
@@ -23,7 +24,65 @@
   --service-gray-medium: #e2e2e2;
   --service-gray-light: #f7f7f7;
 
-  /* 폰트 관련 변수 */
+  /* 폰트 패밀리 변수 */
   --font-geist-sans: Arial, Helvetica, sans-serif;
   --font-geist-mono: monospace;
+
+  /* 폰트 크기 변수 */
+  /* Display */
+  --text-display-lg: 2.5rem; /* 40px (Desktop) */
+  --text-display-md: 2.25rem; /* 36px (Tablet) */
+  --text-display-sm: 2rem; /* 32px (Mobile) */
+
+  /* H1 */
+  --text-h1-lg: 2rem; /* 32px (Desktop) */
+  --text-h1-md: 1.75rem; /* 28px (Tablet) */
+  --text-h1-sm: 1.5rem; /* 24px (Mobile) */
+
+  /* H2 */
+  --text-h2-lg: 1.5rem; /* 24px (Desktop) */
+  --text-h2-md: 1.375rem; /* 22px (Tablet) */
+  --text-h2-sm: 1.25rem; /* 20px (Mobile) */
+
+  /* H3 */
+  --text-h3-lg: 1.25rem; /* 20px (Desktop) */
+  --text-h3-md: 1.125rem; /* 18px (Tablet) */
+  --text-h3-sm: 1.125rem; /* 18px (Mobile) */
+
+  /* 본문 텍스트 */
+  --text-body1: 1rem; /* 16px */
+  --text-body2: 0.875rem; /* 14px */
+
+  /* 부가 텍스트 */
+  --text-caption: 0.75rem; /* 12px */
+  --text-label: 0.625rem; /* 10px */
+
+  /* 라인 높이 변수 */
+  /* Display */
+  --leading-display-lg: 3.5rem; /* 56px (Desktop) */
+  --leading-display-md: 3.25rem; /* 52px (Tablet) */
+  --leading-display-sm: 2.75rem; /* 44px (Mobile) */
+
+  /* H1 */
+  --leading-h1-lg: 3rem; /* 48px (Desktop) */
+  --leading-h1-md: 2.625rem; /* 42px (Tablet) */
+  --leading-h1-sm: 2.25rem; /* 36px (Mobile) */
+
+  /* H2 */
+  --leading-h2-lg: 2.25rem; /* 36px (Desktop) */
+  --leading-h2-md: 2rem; /* 32px (Tablet) */
+  --leading-h2-sm: 1.875rem; /* 30px (Mobile) */
+
+  /* H3 */
+  --leading-h3-lg: 1.875rem; /* 30px (Desktop) */
+  --leading-h3-md: 1.75rem; /* 28px (Tablet) */
+  --leading-h3-sm: 1.625rem; /* 26px (Mobile) */
+
+  /* 본문 텍스트 */
+  --leading-body1: 1.5rem; /* 24px */
+  --leading-body2: 1.25rem; /* 20px */
+
+  /* 부가 텍스트 */
+  --leading-caption: 1rem; /* 16px */
+  --leading-label: 0.875rem; /* 14px */
 }
