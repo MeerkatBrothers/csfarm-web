@@ -20,10 +20,9 @@
     --color-error: var(--error);
 
     --color-service-black: var(--service-black);
-
-    --color-gray: var(--gray);
-    --color-gray-medium: var(--gray-medium);
-    --color-gray-light: var(--gray-light);
+    --color-service-gray: var(--service-gray);
+    --color-service-gray-medium: var(--service-gray-medium);
+    --color-service-gray-light: var(--service-gray-light);
 
     /* 폰트 패밀리 */
     --font-sans: var(--font-geist-sans);
