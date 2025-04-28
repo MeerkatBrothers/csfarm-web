@@ -11,6 +11,20 @@
     --color-background: var(--background);
     --color-foreground: var(--foreground);
 
+    --color-primary: var(--primary);
+    --color-primary-light: var(--primary-light);
+    --color-secondary: var(--secondary);
+    --color-secondary-light: var(--secondary-light);
+
+    --color-success: var(--success);
+    --color-error: var(--error);
+
+    --color-service-black: var(--service-black);
+
+    --color-gray: var(--gray);
+    --color-gray-medium: var(--gray-medium);
+    --color-gray-light: var(--gray-light);
+
     /* 폰트 패밀리 */
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
