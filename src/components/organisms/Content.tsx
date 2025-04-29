@@ -18,7 +18,7 @@ const Content = ({ children }: Readonly<ConetentProps>) => {
         <SideNav />
       </nav>
 
-      <div className="flex-1 p-4">{children}</div>
+      <main className="flex-1 p-4">{children}</main>
     </div>
   );
 };
