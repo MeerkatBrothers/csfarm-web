@@ -6,7 +6,7 @@ const Body1 = ({ text, styles }: TypographyProps) => {
   return (
     <p
       className={clsx(
-        "text-body1 leading-body1",
+        "text-body1 leading-body1 font-normal",
         styles?.textColor ?? "text-service-black"
       )}
     >

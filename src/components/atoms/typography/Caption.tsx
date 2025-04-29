@@ -6,7 +6,7 @@ const Caption = ({ text, styles }: TypographyProps) => {
   return (
     <p
       className={clsx(
-        "text-caption leading-caption",
+        "text-caption leading-caption font-normal",
         styles?.textColor ?? "text-service-black"
       )}
     >
