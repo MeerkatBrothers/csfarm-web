@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 import Header from "@/components/organisms/Header";
 import Content from "@/components/organisms/Content";
 
@@ -8,13 +10,18 @@ interface ServiceLayoutProps {
 const ServiceLayout = ({ children }: Readonly<ServiceLayoutProps>) => {
   return (
     <div className="flex flex-col h-full">
-      <header className="flex justify-center px-4 border-b border-service-gray-medium">
+      <header
+        className={clsx(
+          "flex justify-center border-b border-service-gray-medium",
+          "px-4 md:px-6"
+        )}
+      >
         <Header />
       </header>
 
-      <main className="flex flex-1 justify-center">
+      <div className="flex flex-1 justify-center">
         <Content>{children}</Content>
-      </main>
+      </div>
     </div>
   );
 };
