@@ -1,14 +1,24 @@
-interface ConetentLayoutProps {
+import clsx from "clsx";
+
+import SideNav from "@/components/organisms/SideNav";
+
+interface ConetentProps {
   children: React.ReactNode;
 }
 
-const Content = ({ children }: Readonly<ConetentLayoutProps>) => {
+const Content = ({ children }: Readonly<ConetentProps>) => {
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-row max-w-7xl w-full">
-        <div>nav</div>
-        <div className="flex-1">{children}</div>
-      </div>
+    <div className="flex flex-row max-w-7xl w-full">
+      <nav
+        className={clsx(
+          "p-4 border-r border-service-gray-medium",
+          "hidden md:block"
+        )}
+      >
+        <SideNav />
+      </nav>
+
+      <div className="flex-1 p-4">{children}</div>
     </div>
   );
 };
