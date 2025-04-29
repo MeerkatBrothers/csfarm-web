@@ -6,7 +6,7 @@ const Label = ({ text, styles }: TypographyProps) => {
   return (
     <p
       className={clsx(
-        "text-label leading-label",
+        "text-label leading-label font-medium",
         styles?.textColor ?? "text-service-black"
       )}
     >
