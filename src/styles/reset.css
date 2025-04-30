@@ -31,6 +31,10 @@
     text-decoration: inherit;
   }
 
+  p {
+    white-space: pre-line;
+  }
+
   img,
   picture,
   video,
