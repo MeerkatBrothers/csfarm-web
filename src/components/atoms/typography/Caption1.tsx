@@ -2,16 +2,11 @@ import clsx from "clsx";
 
 import TypographyProps from "@/components/atoms/typography/props/typographyProps";
 
-interface Body2Props extends TypographyProps {
-  reading?: boolean;
-}
-
-const Body2 = ({ text, reading, styles }: Body2Props) => {
+const Caption1 = ({ text, styles }: TypographyProps) => {
   return (
     <p
       className={clsx(
-        "text-body2 font-body2",
-        reading ? "leading-body2-reading" : "leading-body2",
+        "text-caption1 leading-caption1 font-caption1",
         styles?.textColor ?? "text-service-black"
       )}
     >
@@ -20,4 +15,4 @@ const Body2 = ({ text, reading, styles }: Body2Props) => {
   );
 };
 
-export default Body2;
+export default Caption1;

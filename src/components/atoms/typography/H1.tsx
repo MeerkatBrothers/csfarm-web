@@ -2,6 +2,7 @@ import clsx from "clsx";
 
 import TypographyProps from "@/components/atoms/typography/props/typographyProps";
 
+/** @deprecated */
 const H1 = ({ text, styles }: TypographyProps) => {
   return (
     <p

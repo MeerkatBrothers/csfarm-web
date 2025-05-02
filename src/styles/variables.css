@@ -6,7 +6,7 @@
   1rem = 16px 기준입니다.
 */
 :root {
-  /* 색상 변수 */
+  /* ============ 색상 변수 ============ */
   --background: #ffffff;
   --foreground: #17171b;
 
@@ -23,65 +23,184 @@
   --service-gray-medium: #e2e2e2;
   --service-gray-light: #f7f7f7;
 
-  /* 폰트 패밀리 변수 */
+  /* ============ 폰트 패밀리 변수 ============ */
   --font-geist-sans: Arial, Helvetica, sans-serif;
   --font-geist-mono: monospace;
 
-  /* 폰트 크기 변수 */
-  /* Display */
-  --text-display-lg: 2.5rem; /* 40px (Desktop) */
-  --text-display-md: 2.25rem; /* 36px (Tablet) */
-  --text-display-sm: 2rem; /* 32px (Mobile) */
+  /* ============ 폰트 크기 변수 ============ */
+  /* Display 1 */
+  --text-display1-lg: 3.5rem; /* 56px (Desktop) */
+  --text-display1-md: 3rem; /* 48px (Tablet) */
+  --text-display1-sm: 2.5rem; /* 40px (Mobile) */
 
-  /* H1 */
-  --text-h1-lg: 2rem; /* 32px (Desktop) */
-  --text-h1-md: 1.75rem; /* 28px (Tablet) */
-  --text-h1-sm: 1.5rem; /* 24px (Mobile) */
+  /* Display 2 */
+  --text-display2-lg: 2.5rem; /* 40px (Desktop) */
+  --text-display2-md: 2.25rem; /* 36px (Tablet) */
+  --text-display2-sm: 2rem; /* 32px (Mobile) */
 
-  /* H2 */
-  --text-h2-lg: 1.5rem; /* 24px (Desktop) */
-  --text-h2-md: 1.375rem; /* 22px (Tablet) */
-  --text-h2-sm: 1.25rem; /* 20px (Mobile) */
+  /* Title 1 */
+  --text-title1-lg: 2.25rem; /* 36px (Desktop) */
+  --text-title1-md: 2rem; /* 32px (Tablet) */
+  --text-title1-sm: 1.75rem; /* 28px (Mobile) */
 
-  /* H3 */
-  --text-h3-lg: 1.25rem; /* 20px (Desktop) */
-  --text-h3-md: 1.125rem; /* 18px (Tablet) */
-  --text-h3-sm: 1.125rem; /* 18px (Mobile) */
+  /* Title 2 */
+  --text-title2-lg: 1.75rem; /* 28px (Desktop) */
+  --text-title2-md: 1.5rem; /* 24px (Tablet) */
+  --text-title2-sm: 1.25rem; /* 20px (Mobile) */
 
-  /* 본문 텍스트 */
+  /* Title 3 */
+  --text-title3-lg: 1.5rem; /* 24px (Desktop) */
+  --text-title3-md: 1.25rem; /* 20px (Tablet) */
+  --text-title3-sm: 1.125rem; /* 18px (Mobile) */
+
+  /* Heading 1 */
+  --text-heading1-lg: 1.375rem; /* 22px (Desktop) */
+  --text-heading1-md: 1.125rem; /* 18px (Tablet) */
+  --text-heading1-sm: 1rem; /* 16px (Mobile) */
+
+  /* Heading 2 */
+  --text-heading2-lg: 1.25rem; /* 20px (Desktop) */
+  --text-heading2-md: 1.125rem; /* 18px (Tablet) */
+  --text-heading2-sm: 1rem; /* 16px (Mobile) */
+
+  /* Headline 1 */
+  --text-headline1-lg: 1.125rem; /* 18px (Desktop) */
+  --text-headline1-md: 1rem; /* 16px (Tablet) */
+  --text-headline1-sm: 0.875rem; /* 14px (Mobile) */
+
+  /* Headline 2 */
+  --text-headline2-lg: 1.0625rem; /* 17px (Desktop) */
+  --text-headline2-md: 0.9375rem; /* 15px (Tablet) */
+  --text-headline2-sm: 0.8125rem; /* 13px (Mobile) */
+
+  /* Body 1 */
   --text-body1: 1rem; /* 16px */
-  --text-body2: 0.875rem; /* 14px */
 
-  /* 부가 텍스트 */
-  --text-caption: 0.75rem; /* 12px */
-  --text-label: 0.625rem; /* 10px */
+  /* Body 2 */
+  --text-body2: 0.9375rem; /* 15px */
 
-  /* 라인 높이 변수 */
-  /* Display */
-  --leading-display-lg: 3.5rem; /* 56px (Desktop) */
-  --leading-display-md: 3.25rem; /* 52px (Tablet) */
-  --leading-display-sm: 2.75rem; /* 44px (Mobile) */
+  /* Label 1 */
+  --text-label1: 0.875rem; /* 14px */
 
-  /* H1 */
-  --leading-h1-lg: 3rem; /* 48px (Desktop) */
-  --leading-h1-md: 2.625rem; /* 42px (Tablet) */
-  --leading-h1-sm: 2.25rem; /* 36px (Mobile) */
+  /* Label 2 */
+  --text-label2: 0.8125rem; /* 13px */
 
-  /* H2 */
-  --leading-h2-lg: 2.25rem; /* 36px (Desktop) */
-  --leading-h2-md: 2rem; /* 32px (Tablet) */
-  --leading-h2-sm: 1.875rem; /* 30px (Mobile) */
+  /* Caption1 */
+  --text-caption1: 0.75rem; /* 12px */
 
-  /* H3 */
-  --leading-h3-lg: 1.875rem; /* 30px (Desktop) */
-  --leading-h3-md: 1.75rem; /* 28px (Tablet) */
-  --leading-h3-sm: 1.625rem; /* 26px (Mobile) */
+  /* Caption2 */
+  --text-caption2: 0.6875rem; /* 11px */
 
-  /* 본문 텍스트 */
+  /* ============ 폰트 굵기 변수 ============ */
+  /* Display 1 */
+  --font-weight-display1: 700; /* bold */
+
+  /* Display 2 */
+  --font-weight-display2: 700; /* bold */
+
+  /* Title 1 */
+  --font-weight-title1: 700; /* bold */
+
+  /* Title 2 */
+  --font-weight-title2: 700; /* bold */
+
+  /* Title 3 */
+  --font-weight-title3: 700; /* bold */
+
+  /* Heading 1 */
+  --font-weight-heading1: 600; /* semibold */
+
+  /* Heading 2 */
+  --font-weight-heading2: 600; /* semibold */
+
+  /* Headline 1 */
+  --font-weight-headline1: 500; /* medium */
+
+  /* Headline 2 */
+  --font-weight-headline2: 500; /* medium */
+
+  /* Body 1 */
+  --font-weight-body1: 400; /* normal */
+
+  /* Body 2 */
+  --font-weight-body2: 400; /* normal */
+
+  /* Label 1 */
+  --font-weight-label1: 500; /* medium */
+
+  /* Label 2 */
+  --font-weight-label2: 500; /* medium */
+
+  /* Caption 1 */
+  --font-weight-caption1: 400; /* normal */
+
+  /* Caption 2 */
+  --font-weight-caption2: 400; /* normal */
+
+  /* ============ 라인 높이 변수 ============ */
+  /* Display 1 */
+  --leading-display1-lg: 4.5rem; /* 72px (Desktop) */
+  --leading-display1-md: 3.88rem; /* 62px (Tablet) */
+  --leading-display1-sm: 3.25rem; /* 52px (Mobile) */
+
+  /* Display 2 */
+  --leading-display2-lg: 3.25rem; /* 52px (Desktop) */
+  --leading-display2-md: 2.94rem; /* 47px (Tablet) */
+  --leading-display2-sm: 2.62rem; /* 42px (Mobile) */
+
+  /* Title 1 */
+  --leading-title1-lg: 3rem; /* 48px (Desktop) */
+  --leading-title1-md: 2.69rem; /* 43px (Tablet) */
+  --leading-title1-sm: 2.31rem; /* 37px (Mobile) */
+
+  /* Title 2 */
+  --leading-title2-lg: 2.38rem; /* 38px (Desktop) */
+  --leading-title2-md: 2.06rem; /* 33px (Tablet) */
+  --leading-title2-sm: 1.69rem; /* 27px (Mobile) */
+
+  /* Title 3 */
+  --leading-title3-lg: 2rem; /* 32px (Desktop) */
+  --leading-title3-md: 1.69rem; /* 27px (Tablet) */
+  --leading-title3-sm: 1.5rem; /* 24px (Mobile) */
+
+  /* Heading 1 */
+  --leading-heading1-lg: 1.875rem; /* 30px (Desktop) */
+  --leading-heading1-md: 1.56rem; /* 25px (Tablet) */
+  --leading-heading1-sm: 1.38rem; /* 22px (Mobile) */
+
+  /* Heading 2 */
+  --leading-heading2-lg: 1.75rem; /* 28px (Desktop) */
+  --leading-heading2-md: 1.56rem; /* 25px (Tablet) */
+  --leading-heading2-sm: 1.38rem; /* 22px (Mobile) */
+
+  /* Headline 1 */
+  --leading-headline1-lg: 1.625rem; /* 26px (Desktop) */
+  --leading-headline1-md: 1.44rem; /* 23px (Tablet) */
+  --leading-headline1-sm: 1.25rem; /* 20px (Mobile) */
+
+  /* Headline 2 */
+  --leading-headline2-lg: 1.5rem; /* 24px (Desktop) */
+  --leading-headline2-md: 1.31rem; /* 21px (Tablet) */
+  --leading-headline2-sm: 1.125rem; /* 18px (Mobile) */
+
+  /* Body 1 */
   --leading-body1: 1.5rem; /* 24px */
-  --leading-body2: 1.25rem; /* 20px */
+  --leading-body1-reading: 1.625rem; /* 26px */
 
-  /* 부가 텍스트 */
-  --leading-caption: 1rem; /* 16px */
-  --leading-label: 0.875rem; /* 14px */
+  /* Body 2 */
+  --leading-body2: 1.375rem; /* 22px */
+  --leading-body2-reading: 1.5rem; /* 24px */
+
+  /* Label 1 */
+  --leading-label1: 1.25rem; /* 20px */
+  --leading-label1-reading: 1.375rem; /* 22px */
+
+  /* Label 2 */
+  --leading-label2: 1.125rem; /* 18px */
+
+  /* Caption 1 */
+  --leading-caption1: 1rem; /* 16px */
+
+  /* Caption 2 */
+  --leading-caption1: 0.875rem; /* 14px */
 }
