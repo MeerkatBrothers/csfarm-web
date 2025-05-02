@@ -12,7 +12,7 @@ interface TertiaryButtonProps extends ButtonProps {
 const TertiaryButton = ({
   label,
   styles,
-  disbled = false,
+  disabled = false,
   onClick,
 }: TertiaryButtonProps) => {
   return (
@@ -21,13 +21,12 @@ const TertiaryButton = ({
         "w-full md:w-auto",
         "h-12",
         "md:px-4",
-        "text-md md:text-lg",
+        "text-base",
         "font-semibold",
         styles?.labelColor ?? "text-service-black",
-        "cursor-pointer",
-        "disabled:text-service-gray disabled:cursor-not-allowed"
+        "disabled:text-service-gray"
       )}
-      disabled={disbled}
+      disabled={disabled}
       onClick={onClick}
     >
       {label}

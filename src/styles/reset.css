@@ -35,6 +35,14 @@
     white-space: pre-line;
   }
 
+  button {
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
   img,
   picture,
   video,
