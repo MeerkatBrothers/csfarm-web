@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import H3 from "@/components/atoms/typography/H3";
+import Title3 from "@/components/atoms/typography/Title3";
 import Body2 from "@/components/atoms/typography/Body2";
 
 interface SubInsightGroupProps {
@@ -15,14 +15,11 @@ const SubInsightGroup = ({ subject, description }: SubInsightGroupProps) => {
 
   return (
     <div className="space-y-2">
-      <button
-        className="cursor-pointer"
-        onClick={() => setIsDescriptionOpen((prev) => !prev)}
-      >
-        <H3 text={`🙋 ${subject}`} />
+      <button onClick={() => setIsDescriptionOpen((prev) => !prev)}>
+        <Title3 text={`🙋 ${subject}`} />
       </button>
 
-      {isDescriptionOpen && <Body2 text={description} />}
+      {isDescriptionOpen && <Body2 text={description} reading />}
     </div>
   );
 };

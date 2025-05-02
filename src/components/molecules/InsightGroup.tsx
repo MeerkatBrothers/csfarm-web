@@ -1,4 +1,4 @@
-import H1 from "@/components/atoms/typography/H1";
+import Title2 from "@/components/atoms/typography/Title2";
 import Body1 from "@/components/atoms/typography/Body1";
 
 interface InsightGroupProps {
@@ -9,9 +9,9 @@ interface InsightGroupProps {
 const InsightGroup = ({ subject, description }: InsightGroupProps) => {
   return (
     <div className="space-y-2">
-      <H1 text={`🌾 ${subject}`} />
+      <Title2 text={`🌾 ${subject}`} />
 
-      <Body1 text={description} />
+      <Body1 text={description} reading />
     </div>
   );
 };
