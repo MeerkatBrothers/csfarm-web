@@ -2,9 +2,10 @@
 
 import clsx from "clsx";
 
+import Label1 from "@/components/atoms/typography/Label1";
 import ButtonProps from "@/components/atoms/button/props/buttonProps";
 
-const PrimaryButton = ({ label, disbled = false, onClick }: ButtonProps) => {
+const PrimaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
   return (
     <button
       className={clsx(
@@ -13,13 +14,12 @@ const PrimaryButton = ({ label, disbled = false, onClick }: ButtonProps) => {
         "md:px-4",
         "rounded-lg",
         "bg-primary",
-        "text-md md:text-lg",
+        "text-base",
         "font-semibold",
         "text-white",
-        "cursor-pointer",
-        "disabled:bg-service-gray-medium disabled:text-service-gray disabled:cursor-not-allowed"
+        "disabled:bg-service-gray-medium disabled:text-service-gray"
       )}
-      disabled={disbled}
+      disabled={disabled}
       onClick={onClick}
     >
       {label}

@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 import ButtonProps from "@/components/atoms/button/props/buttonProps";
 
-const SecondaryButton = ({ label, disbled = false, onClick }: ButtonProps) => {
+const SecondaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
   return (
     <button
       className={clsx(
@@ -13,13 +13,12 @@ const SecondaryButton = ({ label, disbled = false, onClick }: ButtonProps) => {
         "md:px-4",
         "rounded-lg",
         "bg-service-gray-medium",
-        "text-md md:text-lg",
+        "text-base",
         "font-semibold",
-        "text-service-black",
-        "cursor-pointer",
-        "disabled:bg-service-gray-medium disabled:text-service-gray disabled:cursor-not-allowed"
+        "text-white",
+        "disabled:bg-service-gray-medium disabled:text-service-gray"
       )}
-      disabled={disbled}
+      disabled={disabled}
       onClick={onClick}
     >
       {label}
