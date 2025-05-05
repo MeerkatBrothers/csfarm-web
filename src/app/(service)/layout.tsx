@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
-import Header from "@/components/organisms/Header";
-import Content from "@/components/organisms/Content";
+import Header from "@/components/organisms/layout/Header";
+import Content from "@/components/organisms/layout/Content";
 
 interface ServiceLayoutProps {
   children: React.ReactNode;

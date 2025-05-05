@@ -9,7 +9,7 @@ import {
 
 import Heading1 from "@/components/atoms/typography/Heading1";
 import ToggleChip from "@/components/atoms/chip/ToggleChip";
-import InsightPreviewCard from "@/components/molecules/InsightPreviewCard";
+import InsightPreviewList from "@/components/organisms/InsightPreviewList";
 
 const InsightStoragePage = () => {
   const [weekOption, setWeekOption] = useState<WeekOption>(
@@ -34,11 +34,7 @@ const InsightStoragePage = () => {
         ))}
       </div>
 
-      <div className="flex flex-col gap-10">
-        {Array.from({ length: 7 }).map((_, index) => (
-          <InsightPreviewCard key={index} />
-        ))}
-      </div>
+      <InsightPreviewList />
     </div>
   );
 };

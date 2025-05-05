@@ -10,11 +10,11 @@ const links: { label: string; to: string }[] = [
   { label: "수확물 창고", to: "/insight/storage" },
 ];
 
-interface NavLinkGroupProps {
+interface NavLinkSectionProps {
   onLinkClick?: () => void;
 }
 
-const NavLinkGroup = ({ onLinkClick }: NavLinkGroupProps) => {
+const NavLinkSection = ({ onLinkClick }: NavLinkSectionProps) => {
   const pathname: string = usePathname();
 
   return (
@@ -32,4 +32,4 @@ const NavLinkGroup = ({ onLinkClick }: NavLinkGroupProps) => {
   );
 };
 
-export default NavLinkGroup;
+export default NavLinkSection;

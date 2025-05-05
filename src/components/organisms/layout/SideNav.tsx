@@ -1,5 +1,6 @@
-import NavLinkGroup from "@/components/molecules/NavLinkGroup";
 import clsx from "clsx";
+
+import NavLinkSection from "@/components/organisms/NavLinkSection";
 
 const SideNav = () => {
   return (
@@ -9,7 +10,7 @@ const SideNav = () => {
         "w-36 lg:w-52"
       )}
     >
-      <NavLinkGroup />
+      <NavLinkSection />
     </div>
   );
 };
