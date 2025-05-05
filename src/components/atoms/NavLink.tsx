@@ -5,9 +5,10 @@ interface NavLinkProps {
   label: string;
   to: string;
   isActive: boolean;
+  onClick?: () => void;
 }
 
-const NavLink = ({ label, to, isActive }: NavLinkProps) => {
+const NavLink = ({ label, to, isActive, onClick }: NavLinkProps) => {
   return (
     <Link
       className={clsx(
@@ -15,6 +16,7 @@ const NavLink = ({ label, to, isActive }: NavLinkProps) => {
         isActive && "text-primary"
       )}
       href={to}
+      onClick={onClick}
     >
       {label}
     </Link>
