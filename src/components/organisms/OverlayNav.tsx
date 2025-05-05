@@ -1,5 +1,3 @@
-"use client";
-
 import { FiX } from "react-icons/fi";
 
 import { SVG_SIZE } from "@/lib/constants/ui";
@@ -17,7 +15,7 @@ const OverlayNav = ({ onClose }: OverlayNavProps) => {
         <FiX size={SVG_SIZE} onClick={() => onClose(false)} />
       </div>
 
-      <NavLinkGroup />
+      <NavLinkGroup onLinkClick={() => onClose(false)} />
     </div>
   );
 };
