@@ -1,12 +1,12 @@
 import Title2 from "@/components/atoms/typography/Title2";
 import Body1 from "@/components/atoms/typography/Body1";
 
-interface InsightGroupProps {
+interface InsightSectionProps {
   subject: string;
   description: string;
 }
 
-const InsightGroup = ({ subject, description }: InsightGroupProps) => {
+const InsightSection = ({ subject, description }: InsightSectionProps) => {
   return (
     <div className="space-y-2">
       <Title2 text={`🌾 ${subject}`} />
@@ -16,4 +16,4 @@ const InsightGroup = ({ subject, description }: InsightGroupProps) => {
   );
 };
 
-export default InsightGroup;
+export default InsightSection;

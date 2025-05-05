@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import SideNav from "@/components/organisms/SideNav";
+import SideNav from "@/components/organisms/layout/SideNav";
 
 interface ConetentProps {
   children: React.ReactNode;

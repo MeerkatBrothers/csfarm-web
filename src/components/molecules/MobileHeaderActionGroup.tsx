@@ -5,7 +5,7 @@ import { FiMenu } from "react-icons/fi";
 
 import { SVG_SIZE } from "@/lib/constants/ui";
 
-import OverlayNav from "@/components/organisms/OverlayNav";
+import OverlayNav from "@/components/organisms/layout/OverlayNav";
 
 const MobileHeaderActionGroup = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);

@@ -1,5 +1,5 @@
 import Title2 from "@/components/atoms/typography/Title2";
-import QuestionChoiceCard from "@/components/molecules/QuestionChoiceCard";
+import QuestionChoiceList from "@/components/organisms/QuestionChoiceList";
 
 interface QuestionSectionProps {
   question: string;
@@ -18,19 +18,11 @@ const QuestionSection = ({
     <div className="space-y-4">
       <Title2 text={`🚜 ${question}`} />
 
-      <div className="flex flex-col items-start space-y-2">
-        {choices.map((choice, index) => {
-          return (
-            <QuestionChoiceCard
-              key={index}
-              choiceId={index}
-              content={choice}
-              isChoiced={choiceId === index}
-              onChoice={onChoice}
-            />
-          );
-        })}
-      </div>
+      <QuestionChoiceList
+        choices={choices}
+        choiceId={choiceId}
+        onChoice={onChoice}
+      />
     </div>
   );
 };
