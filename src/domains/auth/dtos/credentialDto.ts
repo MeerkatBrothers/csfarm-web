@@ -1,6 +1,12 @@
-import { LoginPlatform } from "@/domains/auth/enums/loginPlatform";
+import { z } from "zod";
 
-export default interface CredentialDto {
-  readonly identifier: string;
-  readonly loginPlatform: LoginPlatform;
-}
+import { objectValuesToTuple } from "@/lib/utils/transformer/object";
+
+import { LOGIN_PLATFORM } from "@/domains/auth/enums/loginPlatform";
+
+export const credentialDtoSchema = z.object({
+  identifier: z.string(),
+  loginPlatform: z.enum(objectValuesToTuple(LOGIN_PLATFORM)),
+});
+
+export type CredentialDto = z.infer<typeof credentialDtoSchema>;

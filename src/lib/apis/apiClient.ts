@@ -34,6 +34,7 @@ const apiClient = async <T = unknown>({
 
       throw HttpErrorFactory.create(statusCode, message);
     }
+
     const json: T = (await response.json()) as T;
 
     return json;

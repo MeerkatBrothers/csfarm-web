@@ -1,5 +1,9 @@
-import TokenDto from "@/domains/auth/dtos/tokenDto";
+import { z } from "zod";
 
-export default interface SignInResDto {
-  readonly token: TokenDto;
-}
+import { tokenDtoSchema } from "@/domains/auth/dtos/tokenDto";
+
+export const signInResDtoSchema = z.object({
+  token: tokenDtoSchema,
+});
+
+export type SignInResDto = z.infer<typeof signInResDtoSchema>;

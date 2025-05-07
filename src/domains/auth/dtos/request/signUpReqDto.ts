@@ -1,5 +1,9 @@
-import CredentialDto from "@/domains/auth/dtos/credentialDto";
+import { z } from "zod";
 
-export default interface SignUpReqDto {
-  readonly credential: CredentialDto;
-}
+import { credentialDtoSchema } from "@/domains/auth/dtos/credentialDto";
+
+export const signUpReqDtoSchema = z.object({
+  credential: credentialDtoSchema,
+});
+
+export type SignUpReqDto = z.infer<typeof signUpReqDtoSchema>;
