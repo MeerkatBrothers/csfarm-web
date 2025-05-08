@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { insightPreviewSchema } from "@/domains/insight/models/insightPreview";
+import { insightPreviewSchema } from "@/domains/insight/models/fragments/insightPreview";
 
 export const storagedInsightSchema = z.object({
   insights: z.array(insightPreviewSchema),

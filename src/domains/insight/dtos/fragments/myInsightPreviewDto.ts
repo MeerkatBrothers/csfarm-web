@@ -8,4 +8,4 @@ export const myInsightPreviewDtoSchema = z.object({
   createdAt: z.coerce.date(),
 });
 
-export type myInsightPreviewDto = z.infer<typeof myInsightPreviewDtoSchema>;
+export type MyInsightPreviewDto = z.infer<typeof myInsightPreviewDtoSchema>;

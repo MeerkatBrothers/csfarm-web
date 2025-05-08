@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { insightSchema } from "@/domains/insight/models/insight";
+import { insightSchema } from "@/domains/insight/models/fragments/insight";
 
 export const todayInsightSchema = z.object({
   insight: insightSchema,

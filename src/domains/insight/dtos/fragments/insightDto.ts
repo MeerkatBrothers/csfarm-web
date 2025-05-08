@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { subInsightDtoSchema } from "@/domains/insight/dtos/subInsightDto";
+import { subInsightDtoSchema } from "@/domains/insight/dtos/fragments/subInsightDto";
 
 export const insightDtoSchema = z.object({
   id: z.number(),

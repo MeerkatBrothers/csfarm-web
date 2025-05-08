@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { myInsightPreviewDtoSchema } from "@/domains/insight/dtos/myInsightPreviewDto";
+import { myInsightPreviewDtoSchema } from "@/domains/insight/dtos/fragments/myInsightPreviewDto";
 
 export const harvestedInsightResDtoSchema = z.object({
   totalPage: z.number(),

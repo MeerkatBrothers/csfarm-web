@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { myInsightPreviewSchema } from "@/domains/insight/models/myInsightPreview";
+import { myInsightPreviewSchema } from "@/domains/insight/models/fragments/myInsightPreview";
 
 export const harvestedInsightSchema = z.object({
   totalPage: z.number(),

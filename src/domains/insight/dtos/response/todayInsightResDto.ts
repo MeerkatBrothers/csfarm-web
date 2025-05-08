@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { insightDtoSchema } from "@/domains/insight/dtos/insightDto";
+import { insightDtoSchema } from "@/domains/insight/dtos/fragments/insightDto";
 
 export const todayInsightResDtoSchema = z.object({
   insight: insightDtoSchema,
