@@ -12,6 +12,7 @@ const fetchReissueToken = async (
   refreshToken: string
 ): Promise<ReissueTokenResDto> => {
   const endpoint: string = "auth/reissue-token";
+
   const apiResponse: ApiResponse<ReissueTokenResDto> = await apiClient({
     url: getServerApiUrl(endpoint),
     options: {

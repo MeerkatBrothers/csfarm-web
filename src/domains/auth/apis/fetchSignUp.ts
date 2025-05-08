@@ -3,7 +3,10 @@ import { getServerApiUrl } from "@/lib/utils/api";
 import { validateOrThrow } from "@/lib/utils/zod";
 import ApiResponse from "@/lib/models/apiResponse";
 
-import { SignUpReqDto } from "@/domains/auth/dtos/request/signUpReqDto";
+import {
+  SignUpReqDto,
+  signUpReqDtoSchema,
+} from "@/domains/auth/dtos/request/signUpReqDto";
 import {
   SignUpResDto,
   signUpResDtoSchema,
@@ -11,11 +14,15 @@ import {
 
 const fetchSignUp = async (body: SignUpReqDto): Promise<SignUpResDto> => {
   const endpoint: string = "auth/sign-up";
-  const apiResponse: ApiResponse<SignUpResDto> = await apiClient({
+  const validatedBody: SignUpReqDto = validateOrThrow(signUpReqDtoSchema, body);
+
+  const apiResponse: ApiResponse<SignUpResDto> = await apiClient<
+    ApiResponse<SignUpResDto>
+  >({
     url: getServerApiUrl(endpoint),
     options: {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify(validatedBody),
     },
   });
 
