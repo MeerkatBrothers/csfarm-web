@@ -10,14 +10,7 @@ interface NavLinkProps {
 
 const NavLink = ({ label, to, isActive, onClick }: NavLinkProps) => {
   return (
-    <Link
-      className={clsx(
-        "flex justify-center py-4 text-base font-semibold",
-        isActive && "text-primary"
-      )}
-      href={to}
-      onClick={onClick}
-    >
+    <Link className={clsx("flex justify-center py-4 text-base font-semibold", isActive && "text-primary")} href={to} onClick={onClick}>
       {label}
     </Link>
   );

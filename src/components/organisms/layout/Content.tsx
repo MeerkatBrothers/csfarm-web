@@ -9,12 +9,7 @@ interface ConetentProps {
 const Content = ({ children }: Readonly<ConetentProps>) => {
   return (
     <div className="flex flex-row max-w-7xl w-full">
-      <nav
-        className={clsx(
-          "p-4 border-r border-service-gray-medium",
-          "hidden md:block"
-        )}
-      >
+      <nav className={clsx("p-4 border-r border-service-gray-medium", "hidden md:block")}>
         <SideNav />
       </nav>
 

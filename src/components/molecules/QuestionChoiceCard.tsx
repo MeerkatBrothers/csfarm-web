@@ -11,25 +11,10 @@ interface QuestionChoiceCardProps {
   onChoice: (choiceId: number) => void;
 }
 
-const QuestionChoiceCard = ({
-  choiceId,
-  content,
-  isChoiced,
-  onChoice,
-}: QuestionChoiceCardProps) => {
+const QuestionChoiceCard = ({ choiceId, content, isChoiced, onChoice }: QuestionChoiceCardProps) => {
   return (
-    <button
-      className={clsx(
-        "text-start p-4 rounded-lg",
-        isChoiced && "bg-primary-light"
-      )}
-      onClick={() => onChoice(choiceId)}
-    >
-      <Body1
-        text={`👉 ${content}`}
-        reading
-        styles={{ textColor: isChoiced ? "text-primary" : undefined }}
-      />
+    <button className={clsx("text-start p-4 rounded-lg", isChoiced && "bg-primary-light")} onClick={() => onChoice(choiceId)}>
+      <Body1 text={`👉 ${content}`} reading styles={{ textColor: isChoiced ? "text-primary" : undefined }} />
     </button>
   );
 };

@@ -10,10 +10,7 @@ interface SubInsightSectionProps {
   description: string;
 }
 
-const SubInsightSection = ({
-  subject,
-  description,
-}: SubInsightSectionProps) => {
+const SubInsightSection = ({ subject, description }: SubInsightSectionProps) => {
   const [isDescriptionOpen, setIsDescriptionOpen] = useState<boolean>(false);
 
   const toggleDescription = (): void => {

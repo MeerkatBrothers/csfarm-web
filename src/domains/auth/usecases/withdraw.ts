@@ -1,9 +1,6 @@
 "use server";
 
-import {
-  deleteAccessTokenFromCookie,
-  getAccessTokenFromCookie,
-} from "@/lib/cookie/accessToken";
+import { deleteAccessTokenFromCookie, getAccessTokenFromCookie } from "@/lib/cookie/accessToken";
 import { deleteRefreshTokenFromCookie } from "@/lib/cookie/refreshToken";
 import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 
@@ -17,10 +14,7 @@ const withdraw = async (): Promise<void> => {
 
   await fetchWithdraw(storedAccessToken);
 
-  await Promise.all([
-    deleteAccessTokenFromCookie(),
-    deleteRefreshTokenFromCookie(),
-  ]);
+  await Promise.all([deleteAccessTokenFromCookie(), deleteRefreshTokenFromCookie()]);
 };
 
 export default withdraw;

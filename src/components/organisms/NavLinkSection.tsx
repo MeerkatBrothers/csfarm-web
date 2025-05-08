@@ -20,13 +20,7 @@ const NavLinkSection = ({ onLinkClick }: NavLinkSectionProps) => {
   return (
     <div className="flex flex-col w-full">
       {links.map(({ label, to }, index) => (
-        <NavLink
-          key={index}
-          label={label}
-          to={to}
-          isActive={pathname === to}
-          onClick={onLinkClick}
-        />
+        <NavLink key={index} label={label} to={to} isActive={pathname === to} onClick={onLinkClick} />
       ))}
     </div>
   );

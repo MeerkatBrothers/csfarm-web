@@ -12,10 +12,7 @@ const signUp = async (credentialForm: CredentialForm): Promise<void> => {
 
   const { accessToken, refreshToken } = fetchedData;
 
-  await Promise.all([
-    setAccessTokenToCookie(accessToken),
-    setRefreshTokenToCookie(refreshToken),
-  ]);
+  await Promise.all([setAccessTokenToCookie(accessToken), setRefreshTokenToCookie(refreshToken)]);
 };
 
 export default signUp;

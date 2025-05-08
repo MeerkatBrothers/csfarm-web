@@ -4,14 +4,10 @@ import ApiResponse from "@/lib/models/apiResponse";
 
 import { ReissueTokenResDto } from "@/domains/auth/dtos/response/reissueTokenResDto";
 
-const reissueTokenApi = async (
-  refreshToken: string
-): Promise<ApiResponse<ReissueTokenResDto>> => {
+const reissueTokenApi = async (refreshToken: string): Promise<ApiResponse<ReissueTokenResDto>> => {
   const endpoint: string = "auth/reissue-token";
 
-  const apiResponse: ApiResponse<ReissueTokenResDto> = await apiClient<
-    ApiResponse<ReissueTokenResDto>
-  >({
+  const apiResponse: ApiResponse<ReissueTokenResDto> = await apiClient<ApiResponse<ReissueTokenResDto>>({
     url: getServerApiUrl(endpoint),
     options: {
       method: "POST",

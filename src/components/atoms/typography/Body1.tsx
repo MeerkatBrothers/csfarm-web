@@ -12,7 +12,7 @@ const Body1 = ({ text, reading, styles }: Body1Props) => {
       className={clsx(
         "text-body1 font-body1",
         reading ? "leading-body1-reading" : "leading-body1",
-        styles?.textColor ?? "text-service-black"
+        styles?.textColor ?? "text-service-black",
       )}
     >
       {text}

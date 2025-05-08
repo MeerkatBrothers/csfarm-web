@@ -9,12 +9,7 @@ interface TertiaryButtonProps extends ButtonProps {
   styles?: ButtonStyleOptions;
 }
 
-const TertiaryButton = ({
-  label,
-  styles,
-  disabled = false,
-  onClick,
-}: TertiaryButtonProps) => {
+const TertiaryButton = ({ label, styles, disabled = false, onClick }: TertiaryButtonProps) => {
   return (
     <button
       className={clsx(
@@ -24,7 +19,7 @@ const TertiaryButton = ({
         "text-base",
         "font-semibold",
         styles?.labelColor ?? "text-service-black",
-        "disabled:text-service-gray"
+        "disabled:text-service-gray",
       )}
       disabled={disabled}
       onClick={onClick}

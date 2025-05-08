@@ -9,7 +9,7 @@ const Headline1 = ({ text, styles }: TypographyProps) => {
         "text-headline1-sm leading-headline1-sm font-headline1",
         "md:text-headline1-md md:leading-headline1-md",
         "lg:text-headline1-lg lg:leading-headline1-lg",
-        styles?.textColor ?? "text-service-black"
+        styles?.textColor ?? "text-service-black",
       )}
     >
       {text}

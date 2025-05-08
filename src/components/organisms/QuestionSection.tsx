@@ -8,21 +8,12 @@ interface QuestionSectionProps {
   onChoice: (choiceId: number) => void;
 }
 
-const QuestionSection = ({
-  question,
-  choices,
-  choiceId,
-  onChoice,
-}: QuestionSectionProps) => {
+const QuestionSection = ({ question, choices, choiceId, onChoice }: QuestionSectionProps) => {
   return (
     <div className="space-y-4">
       <Title2 text={`🚜 ${question}`} />
 
-      <QuestionChoiceList
-        choices={choices}
-        choiceId={choiceId}
-        onChoice={onChoice}
-      />
+      <QuestionChoiceList choices={choices} choiceId={choiceId} onChoice={onChoice} />
     </div>
   );
 };
