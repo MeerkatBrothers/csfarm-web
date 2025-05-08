@@ -28,11 +28,7 @@ const TodayQuestionPage = () => {
         onChoice={setChoiceId}
       />
 
-      <PrimaryButton
-        label="타작하기"
-        disabled={choiceId === null}
-        onClick={() => {}}
-      />
+      <PrimaryButton label="타작하기" disabled={choiceId === null} onClick={() => {}} />
     </div>
   );
 };

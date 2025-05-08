@@ -6,10 +6,7 @@ const InsightPreviewCard = () => {
     <div className="flex flex-col gap-1">
       <Title3 text="http와 https의 차이가 뭔가요?" />
 
-      <Label1
-        text="2025-05-04"
-        styles={{ textColor: "text-service-gray-medium" }}
-      />
+      <Label1 text="2025-05-04" styles={{ textColor: "text-service-gray-medium" }} />
     </div>
   );
 };

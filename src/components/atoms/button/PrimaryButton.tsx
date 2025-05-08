@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 
-import Label1 from "@/components/atoms/typography/Label1";
 import ButtonProps from "@/components/atoms/button/props/buttonProps";
 
 const PrimaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
@@ -17,7 +16,7 @@ const PrimaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
         "text-base",
         "font-semibold",
         "text-white",
-        "disabled:bg-service-gray-medium disabled:text-service-gray"
+        "disabled:bg-service-gray-medium disabled:text-service-gray",
       )}
       disabled={disabled}
       onClick={onClick}

@@ -12,16 +12,10 @@ export interface ApiOptions {
   errorMessage?: ErrorMessage;
 }
 
-const apiClient = async <T = unknown>({
-  url,
-  options = {},
-  errorMessage,
-}: ApiOptions): Promise<T> => {
+const apiClient = async <T = unknown>({ url, options = {}, errorMessage }: ApiOptions): Promise<T> => {
   try {
     const isFormData: boolean = options.body instanceof FormData;
-    const headers = isFormData
-      ? options.headers ?? {}
-      : { "Content-Type": "application/json", ...(options.headers ?? {}) };
+    const headers = isFormData ? options.headers ?? {} : { "Content-Type": "application/json", ...(options.headers ?? {}) };
 
     const response: Response = await fetch(url, {
       ...options,

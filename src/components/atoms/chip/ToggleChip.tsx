@@ -12,17 +12,8 @@ interface ToggleChipProps {
 
 const ToggleChip = ({ label, isActive, onClick }: ToggleChipProps) => {
   return (
-    <button
-      className={clsx(
-        "px-4 py-2 rounded-full",
-        isActive ? "bg-primary-light" : "bg-service-gray-light"
-      )}
-      onClick={onClick}
-    >
-      <Label2
-        text={label}
-        styles={{ textColor: isActive ? "text-primary" : "text-service-gray" }}
-      />
+    <button className={clsx("px-4 py-2 rounded-full", isActive ? "bg-primary-light" : "bg-service-gray-light")} onClick={onClick}>
+      <Label2 text={label} styles={{ textColor: isActive ? "text-primary" : "text-service-gray" }} />
     </button>
   );
 };

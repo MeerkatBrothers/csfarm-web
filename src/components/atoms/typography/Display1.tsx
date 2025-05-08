@@ -9,7 +9,7 @@ const Display1 = ({ text, styles }: TypographyProps) => {
         "text-display1-sm leading-display1-sm font-display1",
         "md:text-display1-md md:leading-display1-md",
         "lg:text-display1-lg lg:leading-display1-lg",
-        styles?.textColor ?? "text-service-black"
+        styles?.textColor ?? "text-service-black",
       )}
     >
       {text}

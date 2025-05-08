@@ -16,7 +16,7 @@ const SecondaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
         "text-base",
         "font-semibold",
         "text-white",
-        "disabled:bg-service-gray-medium disabled:text-service-gray"
+        "disabled:bg-service-gray-medium disabled:text-service-gray",
       )}
       disabled={disabled}
       onClick={onClick}

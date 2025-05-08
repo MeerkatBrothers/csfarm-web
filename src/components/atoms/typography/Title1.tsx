@@ -9,7 +9,7 @@ const Title1 = ({ text, styles }: TypographyProps) => {
         "text-title1-sm leading-title1-sm font-title1",
         "md:text-title1-md md:leading-title1-md",
         "lg:text-title1-lg lg:leading-title1-lg",
-        styles?.textColor ?? "text-service-black"
+        styles?.textColor ?? "text-service-black",
       )}
     >
       {text}

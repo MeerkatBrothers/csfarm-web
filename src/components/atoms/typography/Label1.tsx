@@ -12,7 +12,7 @@ const Label1 = ({ text, reading, styles }: Label1Props) => {
       className={clsx(
         "text-label1 font-label1",
         reading ? "leading-label1-reading" : "leading-label1",
-        styles?.textColor ?? "text-service-black"
+        styles?.textColor ?? "text-service-black",
       )}
     >
       {text}

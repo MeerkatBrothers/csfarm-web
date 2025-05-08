@@ -1,10 +1,7 @@
 "use server";
 
 import { setAccessTokenToCookie } from "@/lib/cookie/accessToken";
-import {
-  setRefreshTokenToCookie,
-  getRefreshTokenFromCookie,
-} from "@/lib/cookie/refreshToken";
+import { setRefreshTokenToCookie, getRefreshTokenFromCookie } from "@/lib/cookie/refreshToken";
 import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 
 import fetchReissueToken from "@/domains/auth/repositories/fetchReissueToken";
@@ -20,10 +17,7 @@ const reissueToken = async (): Promise<void> => {
 
   const { accessToken, refreshToken } = fetchedData;
 
-  await Promise.all([
-    setAccessTokenToCookie(accessToken),
-    setRefreshTokenToCookie(refreshToken),
-  ]);
+  await Promise.all([setAccessTokenToCookie(accessToken), setRefreshTokenToCookie(refreshToken)]);
 };
 
 export default reissueToken;
