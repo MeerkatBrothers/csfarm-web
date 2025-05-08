@@ -1,7 +1,7 @@
 import apiClient from "@/lib/apis/apiClient";
 import { getServerApiUrl } from "@/lib/utils/api";
 
-const fetchSignOut = async (accessToken: string): Promise<void> => {
+const signOutApi = async (accessToken: string): Promise<void> => {
   const endpoint: string = "auth/sign-out";
 
   await apiClient({
@@ -15,4 +15,4 @@ const fetchSignOut = async (accessToken: string): Promise<void> => {
   });
 };
 
-export default fetchSignOut;
+export default signOutApi;

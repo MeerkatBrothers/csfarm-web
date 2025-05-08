@@ -7,10 +7,8 @@ import {
 } from "@/lib/cookie/refreshToken";
 import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 
-import fetchReissueToken from "@/domains/auth/apis/fetchReissueToken";
-import { mapTokenDtoToModel } from "@/domains/auth/mappers/tokenMapper";
+import fetchReissueToken from "@/domains/auth/repositories/fetchReissueToken";
 import Token from "@/domains/auth/models/token";
-import { ReissueTokenResDto } from "@/domains/auth/dtos/response/reissueTokenResDto";
 
 const reissueToken = async (): Promise<void> => {
   const storedRefreshToken: string | null = await getRefreshTokenFromCookie();
@@ -18,13 +16,9 @@ const reissueToken = async (): Promise<void> => {
     throw new UnauthorizedError();
   }
 
-  const responseData: ReissueTokenResDto = await fetchReissueToken(
-    storedRefreshToken
-  );
-  const { token: tokenDto } = responseData;
+  const fetchedData: Token = await fetchReissueToken(storedRefreshToken);
 
-  const token: Token = mapTokenDtoToModel(tokenDto);
-  const { accessToken, refreshToken } = token;
+  const { accessToken, refreshToken } = fetchedData;
 
   await Promise.all([
     setAccessTokenToCookie(accessToken),

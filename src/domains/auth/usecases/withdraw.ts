@@ -7,7 +7,7 @@ import {
 import { deleteRefreshTokenFromCookie } from "@/lib/cookie/refreshToken";
 import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 
-import fetchWithdraw from "@/domains/auth/apis/fetchWithdraw";
+import fetchWithdraw from "@/domains/auth/repositories/fetchWithdraw";
 
 const withdraw = async (): Promise<void> => {
   const storedAccessToken: string | null = await getAccessTokenFromCookie();
@@ -16,6 +16,7 @@ const withdraw = async (): Promise<void> => {
   }
 
   await fetchWithdraw(storedAccessToken);
+
   await Promise.all([
     deleteAccessTokenFromCookie(),
     deleteRefreshTokenFromCookie(),
