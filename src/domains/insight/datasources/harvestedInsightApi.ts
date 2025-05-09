@@ -4,8 +4,8 @@ import ApiResponse from "@/lib/models/apiResponse";
 
 import { HarvestedInsightResDto } from "@/domains/insight/dtos/response/harvestedInsightResDto";
 
-const harvestedInsightApi = async (accessToken: string): Promise<ApiResponse<HarvestedInsightResDto>> => {
-  const endpoint: string = "insight/harvested";
+const harvestedInsightApi = async (accessToken: string, page: number, size: number): Promise<ApiResponse<HarvestedInsightResDto>> => {
+  const endpoint: string = `insight/harvested?page=${page}&size=${size}`;
 
   const apiResponse: ApiResponse<HarvestedInsightResDto> = await apiClient<ApiResponse<HarvestedInsightResDto>>({
     url: getServerApiUrl(endpoint),
