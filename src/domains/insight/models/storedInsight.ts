@@ -2,8 +2,8 @@ import { z } from "zod";
 
 import { insightPreviewSchema } from "@/domains/insight/models/fragments/insightPreview";
 
-export const storagedInsightSchema = z.object({
+export const storedInsightSchema = z.object({
   insights: z.array(insightPreviewSchema),
 });
 
-export type StoragedInsight = z.infer<typeof storagedInsightSchema>;
+export type StoredInsight = z.infer<typeof storedInsightSchema>;
