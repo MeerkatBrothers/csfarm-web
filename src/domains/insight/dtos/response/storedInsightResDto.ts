@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-import { insightPreviewDtoSchema } from "@/domains/insight/dtos/fragments/insightPreviewDto";
+import { weeklyInsightDtoSchema } from "@/domains/insight/dtos/fragments/weeklyInsightDto";
 
 export const storedInsightResDtoSchema = z.object({
-  insights: z.array(insightPreviewDtoSchema),
+  weeklyInsights: z.array(weeklyInsightDtoSchema),
 });
 
 export type StoredInsightResDto = z.infer<typeof storedInsightResDtoSchema>;
