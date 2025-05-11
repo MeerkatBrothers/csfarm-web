@@ -20,7 +20,7 @@ const apiClient = async <T = unknown>({ url, options = {}, errorMessage }: ApiOp
     const response: Response = await fetch(url, {
       ...options,
       headers,
-      cache: "no-store",
+      cache: options.cache ?? "no-store",
     });
     if (!response.ok) {
       const statusCode: number = response.status;
