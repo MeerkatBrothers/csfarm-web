@@ -15,6 +15,9 @@ const harvestInsightApi = async (body: HarvestInsightReqDto, accessToken: string
       },
       body: JSON.stringify(body),
     },
+    errorMessage: {
+      409: "이미 수확한 지식이에요.",
+    },
   });
 };
 

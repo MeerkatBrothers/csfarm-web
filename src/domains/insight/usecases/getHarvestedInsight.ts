@@ -12,7 +12,7 @@ const getHarvestedInsight = async (page: number, size: number = 10): Promise<Har
     throw new UnauthorizedError();
   }
 
-  const fetchedData: HarvestedInsight = await fetchHarvestedInsight(storedAccessToken, page, size);
+  const fetchedData: HarvestedInsight = await fetchHarvestedInsight(page, size, storedAccessToken);
 
   return fetchedData;
 };

@@ -6,8 +6,8 @@ import { mapTodayInsightDtoToModel } from "@/domains/insight/mappers/todayInsigh
 import { TodayInsight } from "@/domains/insight/models/todayInsight";
 import { TodayInsightResDto, todayInsightResDtoSchema } from "@/domains/insight/dtos/response/todayInsightResDto";
 
-const fetchTodayInsight = async (accessToken: string | null): Promise<TodayInsight> => {
-  const apiResponse: ApiResponse<TodayInsightResDto> = await todayInsightApi(accessToken);
+const fetchTodayInsight = async (): Promise<TodayInsight> => {
+  const apiResponse: ApiResponse<TodayInsightResDto> = await todayInsightApi();
   const data: TodayInsightResDto = apiResponse.data;
 
   const validatedData: TodayInsightResDto = validateOrThrow(todayInsightResDtoSchema, data);

@@ -4,21 +4,21 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import INSIGHT_QUERY_KEYS from "@/domains/insight/constants/queryKey";
 import harvestInsight from "@/domains/insight/usecases/harvestInsight";
-import { TodayInsight } from "@/domains/insight/models/todayInsight";
+import { InsightStatus } from "@/domains/insight/models/insightStatus";
 
 interface UseHarvestInsightParams {
   onSuccess?: () => void;
-  onError?: (error: Error, variables: number) => void;
+  onError?: (error: Error, insightId: number) => void;
 }
 
 const useHarvestInsight = ({ onSuccess, onError }: UseHarvestInsightParams) => {
   const queryClient = useQueryClient();
 
-  const updateTodayInsightCache = (): void => {
-    queryClient.setQueryData<TodayInsight>(INSIGHT_QUERY_KEYS.TODAY, (prev) => (prev ? { ...prev, isHarvested: true } : prev));
+  const updateInsightStatusCache = (insightId: number): void => {
+    queryClient.setQueryData<InsightStatus>(INSIGHT_QUERY_KEYS.STATUS(insightId), (prev) => (prev ? { ...prev, isHarvested: true } : prev));
   };
 
-  const invalidateHarvestedInsight = (): void => {
+  const invalidateHarvestedInsightCache = (): void => {
     queryClient.invalidateQueries({ queryKey: INSIGHT_QUERY_KEYS.HARVESTED });
   };
 
@@ -26,14 +26,14 @@ const useHarvestInsight = ({ onSuccess, onError }: UseHarvestInsightParams) => {
     mutationFn: async (insightId: number) => {
       await harvestInsight(insightId);
     },
-    onSuccess: () => {
-      updateTodayInsightCache();
-      invalidateHarvestedInsight();
+    onSuccess: (_, insightId) => {
+      updateInsightStatusCache(insightId);
+      invalidateHarvestedInsightCache();
 
       onSuccess?.();
     },
-    onError: (error, variables) => {
-      onError?.(error, variables);
+    onError: (error, insightId) => {
+      onError?.(error, insightId);
     },
   });
 };
