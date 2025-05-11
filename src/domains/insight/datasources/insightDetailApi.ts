@@ -11,6 +11,10 @@ const insightDetailApi = async (insightId: number): Promise<ApiResponse<InsightD
     url: getServerApiUrl(endpoint),
     options: {
       method: "GET",
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
     },
   });
 

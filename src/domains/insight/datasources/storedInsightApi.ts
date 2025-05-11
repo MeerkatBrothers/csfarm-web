@@ -11,6 +11,10 @@ const storedInsightApi = async (): Promise<ApiResponse<StoredInsightResDto>> => 
     url: getServerApiUrl(endpoint),
     options: {
       method: "GET",
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
     },
   });
 
