@@ -12,6 +12,9 @@ export interface ApiOptions {
   errorMessage?: ErrorMessage;
 }
 
+/**
+ * @deprecated migrate to fetcher
+ */
 const apiClient = async <T = unknown>({ url, options = {}, errorMessage }: ApiOptions): Promise<T> => {
   try {
     const isFormData: boolean = options.body instanceof FormData;
