@@ -1,7 +1,7 @@
 import signOutApi from "@/domains/auth/datasources/signOutApi";
 
-const fetchSignOut = async (accessToken: string): Promise<void> => {
-  await signOutApi(accessToken);
+const fetchSignOut = async (): Promise<void> => {
+  await signOutApi();
 };
 
 export default fetchSignOut;

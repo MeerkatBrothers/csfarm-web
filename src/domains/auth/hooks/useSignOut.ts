@@ -6,19 +6,15 @@ import signOut from "@/domains/auth/usecases/signOut";
 
 interface UseSignOutParams {
   onSuccess?: () => void;
-  onError?: (error: Error) => void;
 }
 
-const useSignOut = ({ onSuccess, onError }: UseSignOutParams) => {
+const useSignOut = ({ onSuccess }: UseSignOutParams) => {
   return useMutation({
     mutationFn: async () => {
       await signOut();
     },
     onSuccess: () => {
       onSuccess?.();
-    },
-    onError: (error) => {
-      onError?.(error);
     },
   });
 };

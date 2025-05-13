@@ -1,7 +1,7 @@
 import withdrawApi from "@/domains/auth//datasources/withdrawApi";
 
-const fetchWithdraw = async (accessToken: string): Promise<void> => {
-  await withdrawApi(accessToken);
+const fetchWithdraw = async (): Promise<void> => {
+  await withdrawApi();
 };
 
 export default fetchWithdraw;

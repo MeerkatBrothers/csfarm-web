@@ -3,19 +3,19 @@ import { RequestConfig } from "@/lib/apis/types/config";
 import RequestInterceptor from "@/lib/apis/interceptors/request/requestInterceptor";
 
 const withRefreshTokenInterceptor: RequestInterceptor = async (config: RequestConfig) => {
-  const { url, init = {} } = config;
+  const { url, options = {} } = config;
   const refreshToken: string | null = await getRefreshTokenFromCookie();
   if (!refreshToken) {
     return config;
   }
 
-  const headers: Headers = new Headers(init.headers);
+  const headers: Headers = new Headers(options.headers);
   headers.set("Authorization", `Bearer ${refreshToken}`);
 
   const authorizedConfig: RequestConfig = {
     url,
-    init: {
-      ...init,
+    options: {
+      ...options,
       headers,
     },
   };

@@ -8,9 +8,9 @@ import { CredentialForm } from "@/domains/auth/models/form/credential";
 import Token from "@/domains/auth/models/token";
 
 const signUp = async (credentialForm: CredentialForm): Promise<void> => {
-  const fetchedData: Token = await fetchSignUp(credentialForm);
+  const token: Token = await fetchSignUp(credentialForm);
 
-  const { accessToken, refreshToken } = fetchedData;
+  const { accessToken, refreshToken } = token;
 
   await Promise.all([setAccessTokenToCookie(accessToken), setRefreshTokenToCookie(refreshToken)]);
 };
