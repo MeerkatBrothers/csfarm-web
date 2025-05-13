@@ -1,51 +1,46 @@
+import { RequestConfig } from "@/lib/apis/types/config";
+import RequestInterceptor from "@/lib/apis/interceptors/request/requestInterceptor";
+import ResponseInterceptor from "@/lib/apis/interceptors/response/responseInterceptor";
 import HttpErrorFactory from "@/lib/errors/http/httpErrorFactory";
 import HttpError from "@/lib/errors/http/httpError";
 import NetworkError from "@/lib/errors/networkError";
-import RequestInterceptor from "@/lib/apis/interceptors/request/requestInterceptor";
-import ResponseInterceptor from "@/lib/apis/interceptors/response/responseInterceptor";
 
 interface ErrorMessage {
   [statusCode: number]: string;
 }
 
 interface FetcherOptions {
-  url: string;
-  options?: RequestInit;
+  config: RequestConfig;
   requestInterceptors?: RequestInterceptor[];
   responseInterceptors?: ResponseInterceptor[];
   errorMessage?: ErrorMessage;
 }
 
 const fetcher = async <T = unknown>({
-  url,
-  options = {},
+  config,
   requestInterceptors = [],
   responseInterceptors = [],
   errorMessage,
 }: FetcherOptions): Promise<T> => {
-  const { headers, body, cache } = options;
-  const isFormData: boolean = body instanceof FormData;
+  const { url, init = {} } = config;
 
-  const requestHeaders: HeadersInit | undefined = body && !isFormData ? { "Content-Type": "application/json", ...headers } : headers;
-  const requestCache: RequestCache = cache ?? "no-store";
-  const requestOptions: RequestInit = {
-    ...options,
-    headers: requestHeaders,
-    cache: requestCache,
+  const requestInit: RequestInit = {
+    ...init,
+    cache: init.cache ?? "no-store",
   };
 
-  const request: Request = new Request(url, requestOptions);
-
-  const interceptedRequest: Request = await requestInterceptors.reduce<Promise<Request>>(
-    async (next, interceptor) => interceptor(await next),
-    Promise.resolve(request),
-  );
-
   try {
-    const response: Response = await fetch(interceptedRequest);
+    const interceptedConfig: RequestConfig = await requestInterceptors.reduce<Promise<RequestConfig>>(
+      async (next, curr) => curr(await next),
+      Promise.resolve<RequestConfig>({ url, init: requestInit }),
+    );
+
+    const request: Request = new Request(interceptedConfig.url, interceptedConfig.init);
+
+    const response: Response = await fetch(request);
 
     const interceptedResponse: Response = await responseInterceptors.reduce<Promise<Response>>(
-      async (next, interceptor) => interceptor(interceptedRequest, await next),
+      async (next, interceptor) => interceptor(interceptedConfig, await next),
       Promise.resolve(response),
     );
     if (!interceptedResponse.ok) {
