@@ -1,17 +1,18 @@
-import apiClient from "@/lib/apis/apiClient";
-import { getServerApiUrl } from "@/lib/utils/api";
+import { buildApiServerUrl } from "@/lib/utils/url";
+import fetcher from "@/lib/apis/fetcher";
+import withAccessTokenInterceptor from "@/lib/apis/interceptors/request/withAccessTokenInterceptor";
 
-const signOutApi = async (accessToken: string): Promise<void> => {
+const signOutApi = async (): Promise<void> => {
   const endpoint: string = "auth/sign-out";
 
-  await apiClient({
-    url: getServerApiUrl(endpoint),
-    options: {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
+  await fetcher({
+    config: {
+      url: buildApiServerUrl(endpoint),
+      options: {
+        method: "DELETE",
       },
     },
+    requestInterceptors: [withAccessTokenInterceptor],
   });
 };
 

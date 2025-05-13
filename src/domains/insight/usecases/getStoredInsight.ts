@@ -2,9 +2,9 @@ import fetchStoredInsight from "@/domains/insight/repositories/fetchStoredInsigh
 import { StoredInsight } from "@/domains/insight/models/storedInsight";
 
 const getStoredInsight = async (): Promise<StoredInsight> => {
-  const fetchedData: StoredInsight = await fetchStoredInsight();
+  const storedInsight: StoredInsight = await fetchStoredInsight();
 
-  return fetchedData;
+  return storedInsight;
 };
 
 export default getStoredInsight;

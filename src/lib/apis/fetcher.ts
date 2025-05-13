@@ -22,20 +22,20 @@ const fetcher = async <T = unknown>({
   responseInterceptors = [],
   errorMessage,
 }: FetcherOptions): Promise<T> => {
-  const { url, init = {} } = config;
+  const { url, options = {} } = config;
 
-  const requestInit: RequestInit = {
-    ...init,
-    cache: init.cache ?? "no-store",
+  const requestOptions: RequestInit = {
+    ...options,
+    cache: options.cache ?? "no-store",
   };
 
   try {
     const interceptedConfig: RequestConfig = await requestInterceptors.reduce<Promise<RequestConfig>>(
       async (next, curr) => curr(await next),
-      Promise.resolve<RequestConfig>({ url, init: requestInit }),
+      Promise.resolve<RequestConfig>({ url, options: requestOptions }),
     );
 
-    const request: Request = new Request(interceptedConfig.url, interceptedConfig.init);
+    const request: Request = new Request(interceptedConfig.url, interceptedConfig.options);
 
     const response: Response = await fetch(request);
 
