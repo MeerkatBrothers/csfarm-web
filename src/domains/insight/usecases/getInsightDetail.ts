@@ -2,9 +2,9 @@ import fetchInsightDetail from "@/domains/insight/repositories/fetchInsightDetai
 import { InsightDetail } from "@/domains/insight/models/insightDetail";
 
 const getInsightDetail = async (insightId: number): Promise<InsightDetail> => {
-  const fetchedData: InsightDetail = await fetchInsightDetail(insightId);
+  const insightDetail: InsightDetail = await fetchInsightDetail(insightId);
 
-  return fetchedData;
+  return insightDetail;
 };
 
 export default getInsightDetail;

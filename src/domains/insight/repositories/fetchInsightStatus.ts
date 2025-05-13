@@ -6,8 +6,8 @@ import { mapInsightStatusDtoToModel } from "@/domains/insight/mappers/insightSta
 import { InsightStatus } from "@/domains/insight/models/insightStatus";
 import { InsightStatusResDto, insightStatusResDtoSchema } from "@/domains/insight/dtos/response/insightStatusResDto";
 
-const fetchInsightStatus = async (insightId: number, accessToken: string | null): Promise<InsightStatus> => {
-  const apiResponse: ApiResponse<InsightStatusResDto> = await insightStatusApi(insightId, accessToken);
+const fetchInsightStatus = async (insightId: number): Promise<InsightStatus> => {
+  const apiResponse: ApiResponse<InsightStatusResDto> = await insightStatusApi(insightId);
   const data: InsightStatusResDto = apiResponse.data;
 
   const validatedData: InsightStatusResDto = validateOrThrow(insightStatusResDtoSchema, data);

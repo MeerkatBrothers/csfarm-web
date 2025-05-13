@@ -2,9 +2,9 @@ import fetchTodayInsight from "@/domains/insight/repositories/fetchTodayInsight"
 import { TodayInsight } from "@/domains/insight/models/todayInsight";
 
 const getTodayInsight = async (): Promise<TodayInsight> => {
-  const fetchedData: TodayInsight = await fetchTodayInsight();
+  const todayInsight: TodayInsight = await fetchTodayInsight();
 
-  return fetchedData;
+  return todayInsight;
 };
 
 export default getTodayInsight;

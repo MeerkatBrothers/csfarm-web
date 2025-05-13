@@ -1,20 +1,23 @@
-import apiClient from "@/lib/apis/apiClient";
-import { getServerApiUrl } from "@/lib/utils/api";
+import { buildApiServerUrl } from "@/lib/utils/url";
+import fetcher from "@/lib/apis/fetcher";
 import ApiResponse from "@/lib/models/apiResponse";
+import withAccessTokenInterceptor from "@/lib/apis/interceptors/request/withAccessTokenInterceptor";
+import reissueTokenInterceptor from "@/lib/apis/interceptors/response/reissueTokenInterceptor";
 
 import { HarvestedInsightResDto } from "@/domains/insight/dtos/response/harvestedInsightResDto";
 
-const harvestedInsightApi = async (page: number, size: number, accessToken: string): Promise<ApiResponse<HarvestedInsightResDto>> => {
+const harvestedInsightApi = async (page: number, size: number): Promise<ApiResponse<HarvestedInsightResDto>> => {
   const endpoint: string = `insight/harvested?page=${page}&size=${size}`;
 
-  const apiResponse: ApiResponse<HarvestedInsightResDto> = await apiClient<ApiResponse<HarvestedInsightResDto>>({
-    url: getServerApiUrl(endpoint),
-    options: {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
+  const apiResponse: ApiResponse<HarvestedInsightResDto> = await fetcher<ApiResponse<HarvestedInsightResDto>>({
+    config: {
+      url: buildApiServerUrl(endpoint),
+      options: {
+        method: "GET",
       },
     },
+    requestInterceptors: [withAccessTokenInterceptor],
+    responseInterceptors: [reissueTokenInterceptor],
   });
 
   return apiResponse;
