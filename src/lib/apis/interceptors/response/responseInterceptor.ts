@@ -1,3 +1,5 @@
+import { RequestConfig } from "@/lib/apis/types/config";
+
 export default interface ResponseInterceptor {
-  (request: Request, response: Response): Response | Promise<Response>;
+  (config: RequestConfig, response: Response): Response | Promise<Response>;
 }
