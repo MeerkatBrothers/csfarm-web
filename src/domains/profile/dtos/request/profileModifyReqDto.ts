@@ -6,4 +6,4 @@ export const profileModifyReqDtoSchema = z.object({
   profile: profileFormDtoSchema,
 });
 
-export type MyProfileResDto = z.infer<typeof profileModifyReqDtoSchema>;
+export type ProfileModifyReqDto = z.infer<typeof profileModifyReqDtoSchema>;
