@@ -1,19 +1,21 @@
 import { Result, success, failed } from "@/lib/types/result";
+import { validateOrThrow } from "@/lib/utils/zod";
 import { setAccessTokenToCookie } from "@/lib/cookie/accessToken";
 import { setRefreshTokenToCookie } from "@/lib/cookie/refreshToken";
 
 import fetchReissueToken from "@/domains/auth/repositories/fetchReissueToken";
-import Token from "@/domains/auth/models/token";
+import { Token, tokenSchema } from "@/domains/auth/models/fragments/token";
 
 const reissueToken = async (): Promise<Result<Token>> => {
   try {
     const token: Token = await fetchReissueToken();
 
-    const { accessToken, refreshToken } = token;
+    const validatedToken: Token = validateOrThrow(tokenSchema, token);
+    const { accessToken, refreshToken } = validatedToken;
 
     await Promise.all([setAccessTokenToCookie(accessToken), setRefreshTokenToCookie(refreshToken)]);
 
-    return success(token);
+    return success(validatedToken);
   } catch (e) {
     return failed(e);
   }

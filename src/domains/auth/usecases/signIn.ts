@@ -1,18 +1,22 @@
 "use server";
 
 import { Result, success, failed } from "@/lib/types/result";
+import { validateOrThrow } from "@/lib/utils/zod";
 import { setAccessTokenToCookie } from "@/lib/cookie/accessToken";
 import { setRefreshTokenToCookie } from "@/lib/cookie/refreshToken";
 
 import fetchSignIn from "@/domains/auth/repositories/fetchSignIn";
-import { CredentialForm } from "@/domains/auth/models/form/credential";
-import Token from "@/domains/auth/models/token";
+import { CredentialForm, credentialFormSchema } from "@/domains/auth/models/fragments/credentialForm";
+import { Token, tokenSchema } from "@/domains/auth/models/fragments/token";
 
 const signIn = async (credentialForm: CredentialForm): Promise<Result<null>> => {
   try {
-    const token: Token = await fetchSignIn(credentialForm);
+    const validatedCredentialForm: CredentialForm = validateOrThrow(credentialFormSchema, credentialForm);
 
-    const { accessToken, refreshToken } = token;
+    const token: Token = await fetchSignIn(validatedCredentialForm);
+
+    const validatedToken: Token = validateOrThrow(tokenSchema, token);
+    const { accessToken, refreshToken } = validatedToken;
 
     await Promise.all([setAccessTokenToCookie(accessToken), setRefreshTokenToCookie(refreshToken)]);
 

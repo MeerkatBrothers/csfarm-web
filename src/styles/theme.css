@@ -24,6 +24,8 @@
     --color-service-gray-medium: var(--service-gray-medium);
     --color-service-gray-light: var(--service-gray-light);
 
+    --color-kakao-primary: var(--kakao-primary);
+
     /* ============ 폰트 패밀리 테마 ============ */
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
