@@ -1,9 +1,18 @@
 "use client";
 
-import ProfileImage from "@/components/atoms/ProfileImage";
+import { useLoginModal } from "@/domains/auth/hooks/useLoginModal";
+
+import TertiaryButton from "@/components/atoms/button/TertiaryButton";
 
 const NonMobileHeaderActionGroup = () => {
-  return <ProfileImage imageUrl={null} size={36} />;
+  const { openLoginModal } = useLoginModal();
+
+  return (
+    <>
+      <TertiaryButton label="로그인" onClick={openLoginModal} />
+    </>
+  );
 };
 
 export default NonMobileHeaderActionGroup;
+// <ProfileImage imageUrl={null} size={36} />
