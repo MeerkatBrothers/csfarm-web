@@ -2,6 +2,9 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { Result } from "@/lib/types/result";
+import ResultError from "@/lib/errors/resultError";
+
 import PROFILE_QUERY_KEYS from "@/domains/profile/constants/queryKey";
 import modifyProfile from "@/domains/profile/usecases/modifyProfile";
 import { ProfileForm } from "@/domains/profile/models/fragments/profileForm";
@@ -20,7 +23,10 @@ const useModifyProfile = ({ onSuccess, onError }: UseModifyProfileParams) => {
 
   return useMutation({
     mutationFn: async (profileForm: ProfileForm) => {
-      await modifyProfile(profileForm);
+      const modifyProfileResult: Result<null> = await modifyProfile(profileForm);
+      if (!modifyProfileResult.ok) {
+        throw new ResultError(modifyProfileResult.message, modifyProfileResult.statusCode);
+      }
     },
     onSuccess: () => {
       invalidateMyProfileCache();

@@ -1,3 +1,4 @@
+import { Result } from "@/lib/types/result";
 import { RequestConfig } from "@/lib/apis/types/config";
 import ResponseInterceptor from "@/lib/apis/interceptors/response/responseInterceptor";
 
@@ -11,8 +12,11 @@ const reissueTokenInterceptor: ResponseInterceptor = async (config: RequestConfi
 
   const { url, options = {} } = config;
 
-  const token: Token = await reissueToken();
-  const accessToken: string = token.accessToken;
+  const tokenResult: Result<Token> = await reissueToken();
+  if (!tokenResult.ok) {
+    return response;
+  }
+  const accessToken: string = tokenResult.data.accessToken;
 
   const headers: Headers = new Headers(options.headers);
   headers.set("Authorization", `Bearer ${accessToken}`);

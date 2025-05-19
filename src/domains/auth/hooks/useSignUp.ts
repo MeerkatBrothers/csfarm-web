@@ -2,6 +2,9 @@
 
 import { useMutation } from "@tanstack/react-query";
 
+import { Result } from "@/lib/types/result";
+import ResultError from "@/lib/errors/resultError";
+
 import signUp from "@/domains/auth/usecases/signUp";
 import { CredentialForm } from "@/domains/auth/models/form/credential";
 
@@ -13,7 +16,10 @@ interface UseSignUpParams {
 const useSignUp = ({ onSuccess, onError }: UseSignUpParams) => {
   return useMutation({
     mutationFn: async (credentialForm: CredentialForm) => {
-      await signUp(credentialForm);
+      const signUpResult: Result<null> = await signUp(credentialForm);
+      if (!signUpResult.ok) {
+        throw new ResultError(signUpResult.message, signUpResult.statusCode);
+      }
     },
     onSuccess: () => {
       onSuccess?.();

@@ -25,7 +25,7 @@ export const failed = (error: unknown): Failed => {
 
     return {
       ok: false,
-      statusCode: 500,
+      statusCode: 400,
       message,
     };
   }
