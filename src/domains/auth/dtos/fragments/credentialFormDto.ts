@@ -4,9 +4,9 @@ import { objectValuesToTuple } from "@/lib/utils/transformer/object";
 
 import { LOGIN_PLATFORM } from "@/domains/auth/enums/loginPlatform";
 
-export const credentialDtoSchema = z.object({
+export const credentialFormDtoSchema = z.object({
   identifier: z.string(),
   loginPlatform: z.enum(objectValuesToTuple(LOGIN_PLATFORM)),
 });
 
-export type CredentialDto = z.infer<typeof credentialDtoSchema>;
+export type CredentialFormDto = z.infer<typeof credentialFormDtoSchema>;

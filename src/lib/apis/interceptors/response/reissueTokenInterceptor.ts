@@ -1,9 +1,10 @@
 import { Result } from "@/lib/types/result";
 import { RequestConfig } from "@/lib/apis/types/config";
 import ResponseInterceptor from "@/lib/apis/interceptors/response/responseInterceptor";
+import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 
 import reissueToken from "@/domains/auth/usecases/reissueToken";
-import Token from "@/domains/auth/models/token";
+import { Token } from "@/domains/auth/models/fragments/token";
 
 const reissueTokenInterceptor: ResponseInterceptor = async (config: RequestConfig, response: Response): Promise<Response> => {
   if (response.status !== 401) {
@@ -14,7 +15,7 @@ const reissueTokenInterceptor: ResponseInterceptor = async (config: RequestConfi
 
   const tokenResult: Result<Token> = await reissueToken();
   if (!tokenResult.ok) {
-    return response;
+    throw new UnauthorizedError(tokenResult.message);
   }
   const accessToken: string = tokenResult.data.accessToken;
 

@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-import { credentialDtoSchema } from "@/domains/auth/dtos/credentialDto";
+import { credentialFormDtoSchema } from "@/domains/auth/dtos/fragments/credentialFormDto";
 
 export const signInReqDtoSchema = z.object({
-  credential: credentialDtoSchema,
+  credential: credentialFormDtoSchema,
 });
 
 export type SignInReqDto = z.infer<typeof signInReqDtoSchema>;

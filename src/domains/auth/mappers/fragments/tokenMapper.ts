@@ -1,5 +1,5 @@
-import type { TokenDto } from "@/domains/auth/dtos/tokenDto";
-import type Token from "@/domains/auth/models/token";
+import { Token } from "@/domains/auth/models/fragments/token";
+import { TokenDto } from "@/domains/auth/dtos/fragments/tokenDto";
 
 export const mapTokenDtoToModel = (dto: TokenDto): Token => {
   const { accessToken, refreshToken } = dto;

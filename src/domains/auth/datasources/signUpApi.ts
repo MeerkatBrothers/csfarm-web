@@ -1,5 +1,5 @@
-import { CONTENT_TYPE_JSON } from "@/lib/apis/constants/contentType";
 import { buildApiServerUrl } from "@/lib/utils/url";
+import { CONTENT_TYPE_JSON } from "@/lib/apis/constants/contentType";
 import fetcher from "@/lib/apis/fetcher";
 import ApiResponse from "@/lib/models/apiResponse";
 
