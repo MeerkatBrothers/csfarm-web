@@ -2,6 +2,9 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { Result } from "@/lib/types/result";
+import ResultError from "@/lib/errors/resultError";
+
 import INSIGHT_QUERY_KEYS from "@/domains/insight/constants/queryKey";
 import harvestInsight from "@/domains/insight/usecases/harvestInsight";
 import { InsightStatus } from "@/domains/insight/models/insightStatus";
@@ -24,7 +27,10 @@ const useHarvestInsight = ({ onSuccess, onError }: UseHarvestInsightParams) => {
 
   return useMutation({
     mutationFn: async (insightId: number) => {
-      await harvestInsight(insightId);
+      const harvestInsightResult: Result<null> = await harvestInsight(insightId);
+      if (!harvestInsightResult.ok) {
+        throw new ResultError(harvestInsightResult.message, harvestInsightResult.statusCode);
+      }
     },
     onSuccess: (_, insightId) => {
       updateInsightStatusCache(insightId);

@@ -2,6 +2,9 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { Result } from "@/lib/types/result";
+import ResultError from "@/lib/errors/resultError";
+
 import QUIZ_QUERY_KEYS from "@/domains/quiz/constants/queryKey";
 import threshQuiz from "@/domains/quiz/usecases/threshQuiz";
 import { QuizStatus } from "@/domains/quiz/models/quizStatus";
@@ -25,7 +28,10 @@ const useHarvestInsight = ({ onSuccess, onError }: UseThreshQuizParams) => {
 
   return useMutation({
     mutationFn: async ({ quizId, choiceId }: ThreshQuizParams) => {
-      await threshQuiz(quizId, choiceId);
+      const threshQuizResult: Result<null> = await threshQuiz(quizId, choiceId);
+      if (!threshQuizResult.ok) {
+        throw new ResultError(threshQuizResult.message, threshQuizResult.statusCode);
+      }
     },
     onSuccess: (_, params) => {
       updateQuizStatusCache(params.quizId);

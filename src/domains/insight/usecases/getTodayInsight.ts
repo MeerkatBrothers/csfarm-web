@@ -1,10 +1,16 @@
+import { Result, success, failed } from "@/lib/types/result";
+
 import fetchTodayInsight from "@/domains/insight/repositories/fetchTodayInsight";
 import { TodayInsight } from "@/domains/insight/models/todayInsight";
 
-const getTodayInsight = async (): Promise<TodayInsight> => {
-  const todayInsight: TodayInsight = await fetchTodayInsight();
+const getTodayInsight = async (): Promise<Result<TodayInsight>> => {
+  try {
+    const todayInsight: TodayInsight = await fetchTodayInsight();
 
-  return todayInsight;
+    return success(todayInsight);
+  } catch (e) {
+    return failed(e);
+  }
 };
 
 export default getTodayInsight;
