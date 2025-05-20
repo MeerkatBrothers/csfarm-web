@@ -16,6 +16,9 @@ interface FetcherOptions {
   errorMessage?: ErrorMessage;
 }
 
+/**
+ * @deprecated
+ */
 const fetcher = async <T = unknown>({
   config,
   requestInterceptors = [],

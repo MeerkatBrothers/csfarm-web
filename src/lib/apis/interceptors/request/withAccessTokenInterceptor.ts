@@ -2,6 +2,9 @@ import { getAccessTokenFromCookie } from "@/lib/cookie/accessToken";
 import { RequestConfig } from "@/lib/apis/types/config";
 import RequestInterceptor from "@/lib/apis/interceptors/request/requestInterceptor";
 
+/**
+ * @deprecated
+ */
 const withAccessTokenInterceptor: RequestInterceptor = async (config: RequestConfig) => {
   const { url, options = {} } = config;
   const accessToken: string | null = await getAccessTokenFromCookie();

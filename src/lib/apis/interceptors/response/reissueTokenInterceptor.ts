@@ -6,6 +6,9 @@ import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 import reissueToken from "@/domains/auth/usecases/reissueToken";
 import { Token } from "@/domains/auth/models/fragments/token";
 
+/**
+ * @deprecated
+ */
 const reissueTokenInterceptor: ResponseInterceptor = async (config: RequestConfig, response: Response): Promise<Response> => {
   if (response.status !== 401) {
     return response;

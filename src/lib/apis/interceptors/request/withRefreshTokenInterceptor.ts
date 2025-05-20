@@ -2,6 +2,9 @@ import { getRefreshTokenFromCookie } from "@/lib/cookie/refreshToken";
 import { RequestConfig } from "@/lib/apis/types/config";
 import RequestInterceptor from "@/lib/apis/interceptors/request/requestInterceptor";
 
+/**
+ * @deprecated
+ */
 const withRefreshTokenInterceptor: RequestInterceptor = async (config: RequestConfig) => {
   const { url, options = {} } = config;
   const refreshToken: string | null = await getRefreshTokenFromCookie();
