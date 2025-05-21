@@ -5,10 +5,11 @@ import internalFetcher from "@/lib/apis/fetchers/internalFetcher";
 const signOutApi = async (): Promise<Result<null>> => {
   const endpoint: string = "/auth/sign-out";
 
-  const result: Result<null> = await internalFetcher({
+  const result: Result<null> = await internalFetcher<null>({
     url: buildProxyServerUrl(endpoint),
     options: {
       method: "DELETE",
+      credentials: "same-origin",
     },
   });
 

@@ -14,7 +14,7 @@ export const setAccessTokenToCookie = (response: NextResponse, token: string): v
   response.cookies.set({
     name: key,
     value: token,
-    path: "/",
+    path: "/api",
     maxAge: 1800,
     httpOnly: true,
     secure: true,

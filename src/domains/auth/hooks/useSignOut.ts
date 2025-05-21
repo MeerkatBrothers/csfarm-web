@@ -2,7 +2,10 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import signOut from "@/domains/auth/usecases/signOut";
+import { Result } from "@/lib/types/result";
+import ResultError from "@/lib/errors/resultError";
+
+import signOutApi from "@/domains/auth/apis/signOutApi";
 
 import PROFILE_QUERY_KEYS from "@/domains/profile/constants/queryKey";
 
@@ -12,14 +15,18 @@ import PROGRESS_QUERY_KEYS from "@/domains/progress/constants/queryKey";
 
 interface UseSignOutParams {
   onSuccess?: () => void;
+  onError?: (error: Error) => void;
 }
 
-const useSignOut = ({ onSuccess }: UseSignOutParams) => {
+const useSignOut = ({ onSuccess, onError }: UseSignOutParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async () => {
-      await signOut();
+      const signOutResult: Result<null> = await signOutApi();
+      if (!signOutResult.ok) {
+        throw new ResultError(signOutResult.message, signOutResult.statusCode);
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: PROFILE_QUERY_KEYS.MY });
@@ -28,6 +35,7 @@ const useSignOut = ({ onSuccess }: UseSignOutParams) => {
 
       onSuccess?.();
     },
+    onError,
   });
 };
 

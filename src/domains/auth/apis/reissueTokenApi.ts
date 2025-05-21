@@ -11,6 +11,7 @@ const reissueTokenApi = async (): Promise<Result<Token>> => {
     url: buildProxyServerUrl(endpoint),
     options: {
       method: "POST",
+      credentials: "same-origin",
     },
   });
 

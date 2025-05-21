@@ -7,11 +7,12 @@ import { CredentialForm } from "@/domains/auth/models/fragments/credentialForm";
 const signInApi = async (credentialForm: CredentialForm): Promise<Result<null>> => {
   const endpoint: string = "/auth/sign-in";
 
-  const result: Result<null> = await internalFetcher({
+  const result: Result<null> = await internalFetcher<null>({
     url: buildProxyServerUrl(endpoint),
     options: {
       method: "POST",
       body: JSON.stringify(credentialForm),
+      credentials: "same-origin",
     },
   });
 

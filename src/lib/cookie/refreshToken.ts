@@ -14,7 +14,7 @@ export const setRefreshTokenToCookie = (response: NextResponse, token: string): 
   response.cookies.set({
     name: key,
     value: token,
-    path: "/",
+    path: "/api",
     maxAge: 604800,
     httpOnly: true,
     secure: true,

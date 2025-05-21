@@ -36,9 +36,7 @@ const useSignUp = ({ onSuccess, onError }: UseSignUpParams) => {
 
       onSuccess?.();
     },
-    onError: (error, variables) => {
-      onError?.(error, variables);
-    },
+    onError,
   });
 };
 

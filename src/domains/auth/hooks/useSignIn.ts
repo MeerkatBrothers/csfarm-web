@@ -36,9 +36,7 @@ const useSignIn = ({ onSuccess, onError }: UseSignInParams) => {
 
       onSuccess?.();
     },
-    onError: (error, variables) => {
-      onError?.(error, variables);
-    },
+    onError,
   });
 };
 

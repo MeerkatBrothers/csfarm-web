@@ -1,15 +1,17 @@
 import { buildApiServerUrl } from "@/lib/utils/url";
-import externalAuthFetcher from "@/lib/apis/fetchers/externalAuthFetcher";
+import externalFetcher from "@/lib/apis/fetchers/externalFetcher";
 
 const withdrawSource = async (accessToken: string): Promise<void> => {
   const endpoint: string = "/auth/withdraw";
 
-  await externalAuthFetcher({
+  await externalFetcher({
     url: buildApiServerUrl(endpoint),
     options: {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
     },
-    accessToken,
   });
 };
 
