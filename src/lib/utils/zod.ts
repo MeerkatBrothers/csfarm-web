@@ -1,11 +1,9 @@
 import { ZodType, SafeParseReturnType } from "zod";
 
-import InvalidResponseError from "@/lib/errors/invalidResponseError";
-
-export const validateOrThrow = <T>(schema: ZodType<T>, data: T): T => {
-  const parsedSchema: SafeParseReturnType<T, T> = schema.safeParse(data);
+export const validateOrThrow = <T>(schema: ZodType<T>, data: unknown): T => {
+  const parsedSchema: SafeParseReturnType<unknown, T> = schema.safeParse(data);
   if (!parsedSchema.success) {
-    throw new InvalidResponseError();
+    throw parsedSchema.error;
   }
 
   return parsedSchema.data;
