@@ -2,26 +2,28 @@ import { NextResponse } from "next/server";
 
 import { Result, success, failed } from "@/lib/types/result";
 import { validateOrThrow } from "@/lib/utils/zod";
+import ApiResponse from "@/lib/models/apiResponse";
 import { setAccessTokenToCookie } from "@/lib/cookie/accessToken";
-import { getRefreshTokenFromCookie, setRefreshTokenToCookie } from "@/lib/cookie/refreshToken";
+import { setRefreshTokenToCookie, getRefreshTokenFromCookie } from "@/lib/cookie/refreshToken";
 import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 
-import reissueTokenRepo from "@/domains/auth/repositories/reissueTokenRepo";
-import { Token, tokenSchema } from "@/domains/auth/models/fragments/token";
+import reissueTokenSource from "@/domains/auth/datasources/reissueTokenSource";
+import { ReissueTokenResDto, reissueTokenResDtoSchema } from "@/domains/auth/dtos/response/reissueTokenResDto";
 
-export const POST = async (): Promise<NextResponse<Result<Token>>> => {
+export const POST = async (): Promise<NextResponse<Result<null>>> => {
   try {
     const storedRefreshToken: string | null = await getRefreshTokenFromCookie();
     if (!storedRefreshToken) {
       throw new UnauthorizedError();
     }
 
-    const token: Token = await reissueTokenRepo(storedRefreshToken);
+    const apiResponse: ApiResponse<ReissueTokenResDto> = await reissueTokenSource(storedRefreshToken);
 
-    const validatedToken: Token = validateOrThrow(tokenSchema, token);
-    const { accessToken, refreshToken } = validatedToken;
+    const data: ReissueTokenResDto = apiResponse.data;
+    const validatedData: ReissueTokenResDto = validateOrThrow(reissueTokenResDtoSchema, data);
+    const { accessToken, refreshToken } = validatedData.token;
 
-    const response: NextResponse<Result<Token>> = NextResponse.json(success(validatedToken));
+    const response: NextResponse<Result<null>> = NextResponse.json(success(null));
 
     setAccessTokenToCookie(response, accessToken);
     setRefreshTokenToCookie(response, refreshToken);

@@ -1,31 +1,22 @@
-import { validateOrThrow } from "@/lib/utils/zod";
-import ApiResponse from "@/lib/models/apiResponse";
+import { Result } from "@/lib/types/result";
+import { buildProxyServerUrl } from "@/lib/utils/url";
+import internalFetcher from "@/lib/apis/fetchers/internalFetcher";
 
-import signInSource from "@/domains/auth/datasources/signInSource";
-import { mapCredentialFormToDto } from "@/domains/auth/mappers/fragments/credentialFormMapper";
-import { mapTokenDtoToModel } from "@/domains/auth/mappers/fragments/tokenMapper";
-import { CredentialForm } from "@/domains/auth/models/fragments/credentialForm";
-import { Token } from "@/domains/auth/models/fragments/token";
-import { SignInReqDto, signInReqDtoSchema } from "@/domains/auth/dtos/request/signInReqDto";
-import { SignInResDto, signInResDtoSchema } from "@/domains/auth/dtos/response/signInResDto";
-import { CredentialFormDto } from "@/domains/auth/dtos/fragments/credentialFormDto";
-import { TokenDto } from "@/domains/auth/dtos/fragments/tokenDto";
+import { SignInReqDto } from "@/domains/auth/dtos/request/signInReqDto";
 
-const signInRepo = async (credentialForm: CredentialForm): Promise<Token> => {
-  const credentialFormDto: CredentialFormDto = mapCredentialFormToDto(credentialForm);
-  const requestBody: SignInReqDto = { credential: credentialFormDto };
+const signInRepo = async (body: SignInReqDto): Promise<Result<null>> => {
+  const endpoint: string = "/auth/sign-in";
 
-  const validatedBody: SignInReqDto = validateOrThrow(signInReqDtoSchema, requestBody);
+  const result: Result<null> = await internalFetcher<null>({
+    url: buildProxyServerUrl(endpoint),
+    options: {
+      method: "POST",
+      body: JSON.stringify(body),
+      credentials: "same-origin",
+    },
+  });
 
-  const apiResponse: ApiResponse<SignInResDto> = await signInSource(validatedBody);
-  const data: SignInResDto = apiResponse.data;
-
-  const validatedData: SignInResDto = validateOrThrow(signInResDtoSchema, data);
-
-  const tokenDto: TokenDto = validatedData.token;
-  const token: Token = mapTokenDtoToModel(tokenDto);
-
-  return token;
+  return result;
 };
 
 export default signInRepo;

@@ -1,16 +1,18 @@
-import { validateOrThrow } from "@/lib/utils/zod";
+import { Result } from "@/lib/types/result";
+import { buildProxyServerUrl } from "@/lib/utils/url";
+import internalFetcher from "@/lib/apis/fetchers/internalFetcher";
 
-import kakaoAccountSource from "@/domains/auth/datasources/kakaoAccountSource";
-import { KakaoAccountResDto, kakaoAccountResDtoSchema } from "@/domains/auth/dtos/response/kakaoAccountResDto";
+const kakaoEmailRepo = async (kakaoCode: string): Promise<Result<string>> => {
+  const endpoint: string = `/auth/kakao/email?code=${kakaoCode}`;
 
-const kakaoEmailRepo = async (kakaoToken: string): Promise<string> => {
-  const apiResponse: KakaoAccountResDto = await kakaoAccountSource(kakaoToken);
+  const result: Result<string> = await internalFetcher<string>({
+    url: buildProxyServerUrl(endpoint),
+    options: {
+      method: "GET",
+    },
+  });
 
-  const validatedData: KakaoAccountResDto = validateOrThrow(kakaoAccountResDtoSchema, apiResponse);
-
-  const kakaoEmail: string = validatedData.kakao_account.email;
-
-  return kakaoEmail;
+  return result;
 };
 
 export default kakaoEmailRepo;

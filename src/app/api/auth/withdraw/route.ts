@@ -5,7 +5,7 @@ import { getAccessTokenFromCookie, deleteAccessTokenFromCookie } from "@/lib/coo
 import { deleteRefreshTokenFromCookie } from "@/lib/cookie/refreshToken";
 import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 
-import withdrawRepo from "@/domains/auth/repositories/withdrawRepo";
+import withdrawSource from "@/domains/auth/datasources/withdrawSource";
 
 export const DELETE = async (): Promise<NextResponse<Result<null>>> => {
   try {
@@ -14,7 +14,7 @@ export const DELETE = async (): Promise<NextResponse<Result<null>>> => {
       throw new UnauthorizedError();
     }
 
-    await withdrawRepo(storedAccessToken);
+    await withdrawSource(storedAccessToken);
 
     const response: NextResponse<Result<null>> = NextResponse.json(success(null));
 

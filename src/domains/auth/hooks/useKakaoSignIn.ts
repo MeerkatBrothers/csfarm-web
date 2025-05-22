@@ -8,7 +8,7 @@ import ResultError from "@/lib/errors/resultError";
 import { LOGIN_PLATFORM } from "@/domains/auth/enums/loginPlatform";
 import useSignIn from "@/domains/auth/hooks/useSignIn";
 import useSignUp from "@/domains/auth/hooks/useSignUp";
-import kakaoEmailApi from "@/domains/auth/apis/kakaoEmailApi";
+import getKakaoEmail from "@/domains/auth/usecases/getKakaoEmail";
 import { CredentialForm } from "@/domains/auth/models/fragments/credentialForm";
 
 interface UseKakaoSignInParams {
@@ -35,7 +35,7 @@ const useKakaoSignIn = ({ onSuccess, onError }: UseKakaoSignInParams) => {
 
   return useMutation({
     mutationFn: async (kakaoCode: string) => {
-      const kakaoEmailResult: Result<string> = await kakaoEmailApi(kakaoCode);
+      const kakaoEmailResult: Result<string> = await getKakaoEmail(kakaoCode);
       if (!kakaoEmailResult.ok) {
         throw new ResultError(kakaoEmailResult.message, kakaoEmailResult.statusCode);
       }

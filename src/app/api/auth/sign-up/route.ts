@@ -2,22 +2,24 @@ import { NextResponse } from "next/server";
 
 import { Result, success, failed } from "@/lib/types/result";
 import { validateOrThrow } from "@/lib/utils/zod";
+import ApiResponse from "@/lib/models/apiResponse";
 import { setAccessTokenToCookie } from "@/lib/cookie/accessToken";
 import { setRefreshTokenToCookie } from "@/lib/cookie/refreshToken";
 
-import signUpRepo from "@/domains/auth/repositories/signUpRepo";
-import { CredentialForm, credentialFormSchema } from "@/domains/auth/models/fragments/credentialForm";
-import { Token, tokenSchema } from "@/domains/auth/models/fragments/token";
+import signUpSource from "@/domains/auth/datasources/signUpSource";
+import { SignUpReqDto, signUpReqDtoSchema } from "@/domains/auth/dtos/request/signUpReqDto";
+import { SignUpResDto, signUpResDtoSchema } from "@/domains/auth/dtos/response/signUpResDto";
 
 export const POST = async (request: Request): Promise<NextResponse<Result<null>>> => {
   try {
     const requestBody: unknown = await request.json();
-    const validatedCredentialForm: CredentialForm = validateOrThrow(credentialFormSchema, requestBody);
+    const validatedRequestBody: SignUpReqDto = validateOrThrow(signUpReqDtoSchema, requestBody);
 
-    const token: Token = await signUpRepo(validatedCredentialForm);
+    const apiResponse: ApiResponse<SignUpResDto> = await signUpSource(validatedRequestBody);
 
-    const validatedToken: Token = validateOrThrow(tokenSchema, token);
-    const { accessToken, refreshToken } = validatedToken;
+    const data: SignUpResDto = apiResponse.data;
+    const validatedData: SignUpResDto = validateOrThrow(signUpResDtoSchema, data);
+    const { accessToken, refreshToken } = validatedData.token;
 
     const response: NextResponse<Result<null>> = NextResponse.json(success(null));
 

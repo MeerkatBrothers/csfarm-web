@@ -1,0 +1,21 @@
+import { Result } from "@/lib/types/result";
+import { validateOrThrow } from "@/lib/utils/zod";
+
+import signInRepo from "@/domains/auth/repositories/signInRepo";
+import { mapCredentialFormToDto } from "@/domains/auth/mappers/fragments/credentialFormMapper";
+import { CredentialForm } from "@/domains/auth/models/fragments/credentialForm";
+import { SignInReqDto, signInReqDtoSchema } from "@/domains/auth/dtos/request/signInReqDto";
+import { CredentialFormDto } from "@/domains/auth/dtos/fragments/credentialFormDto";
+
+const signIn = async (credentialForm: CredentialForm): Promise<Result<null>> => {
+  const credentialFormDto: CredentialFormDto = mapCredentialFormToDto(credentialForm);
+
+  const requestBody: SignInReqDto = { credential: credentialFormDto };
+  const validatedRequestBody: SignInReqDto = validateOrThrow(signInReqDtoSchema, requestBody);
+
+  const result: Result<null> = await signInRepo(validatedRequestBody);
+
+  return result;
+};
+
+export default signIn;
