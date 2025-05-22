@@ -13,8 +13,9 @@ const internalAuthFetcher = async <T = unknown>({ url, options = {} }: FetcherOp
 
   const responseData: Result<T> = await internalFetcher({ url, options: requestOptions });
   if (!responseData.ok && responseData.statusCode === 401) {
-    const reissueTokenResult: Result<null> = await reissueToken();
-    if (!reissueTokenResult.ok) {
+    try {
+      await reissueToken();
+    } catch (e) {
       return responseData;
     }
 

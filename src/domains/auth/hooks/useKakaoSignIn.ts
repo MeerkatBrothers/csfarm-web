@@ -35,11 +35,7 @@ const useKakaoSignIn = ({ onSuccess, onError }: UseKakaoSignInParams) => {
 
   return useMutation({
     mutationFn: async (kakaoCode: string) => {
-      const kakaoEmailResult: Result<string> = await getKakaoEmail(kakaoCode);
-      if (!kakaoEmailResult.ok) {
-        throw new ResultError(kakaoEmailResult.message, kakaoEmailResult.statusCode);
-      }
-      const kakaoEmail: string = kakaoEmailResult.data;
+      const kakaoEmail: string = await getKakaoEmail(kakaoCode);
 
       return kakaoEmail;
     },

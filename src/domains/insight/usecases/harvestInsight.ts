@@ -1,16 +1,17 @@
-"use server";
+import { Result } from "@/lib/types/result";
+import { validateOrThrow } from "@/lib/utils/zod";
+import ResultError from "@/lib/errors/resultError";
 
-import { Result, success, failed } from "@/lib/types/result";
+import harvestInsightRepo from "@/domains/insight/repositories/harvestInsightRepo";
+import { HarvestInsightReqDto, harvestInsightReqDtoSchema } from "@/domains/insight/dtos/request/harvestInsightReqDto";
 
-import fetchHarvestInsight from "@/domains/insight/repositories/fetchHarvestInsight";
+const harvestInsight = async (insightId: number): Promise<void> => {
+  const requestBody: HarvestInsightReqDto = { insightId };
+  const validatedRequestBody: HarvestInsightReqDto = validateOrThrow(harvestInsightReqDtoSchema, requestBody);
 
-const harvestInsight = async (insightId: number): Promise<Result<null>> => {
-  try {
-    await fetchHarvestInsight(insightId);
-
-    return success(null);
-  } catch (e) {
-    return failed(e);
+  const result: Result<null> = await harvestInsightRepo(validatedRequestBody);
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
 };
 

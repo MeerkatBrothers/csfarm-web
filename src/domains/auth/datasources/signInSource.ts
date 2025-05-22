@@ -7,7 +7,7 @@ import { SignInReqDto } from "@/domains/auth/dtos/request/signInReqDto";
 import { SignInResDto } from "@/domains/auth/dtos/response/signInResDto";
 
 const signInSource = async (body: SignInReqDto): Promise<ApiResponse<SignInResDto>> => {
-  const endpoint: string = "/auth/sign-in";
+  const endpoint: string = "auth/sign-in";
 
   const apiResponse: ApiResponse<SignInResDto> = await externalFetcher<ApiResponse<SignInResDto>>({
     url: buildApiServerUrl(endpoint),

@@ -3,7 +3,7 @@ import { buildProxyServerUrl } from "@/lib/utils/url";
 import internalAuthFetcher from "@/lib/apis/fetchers/internalAuthFetcher";
 
 const withdrawRepo = async (): Promise<Result<null>> => {
-  const endpoint: string = "/auth/withdraw";
+  const endpoint: string = "auth/withdraw";
 
   const result: Result<null> = await internalAuthFetcher<null>({
     url: buildProxyServerUrl(endpoint),

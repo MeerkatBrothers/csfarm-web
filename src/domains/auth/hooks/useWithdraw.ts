@@ -2,9 +2,6 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Result } from "@/lib/types/result";
-import ResultError from "@/lib/errors/resultError";
-
 import withdraw from "@/domains/auth/usecases/withdraw";
 
 import PROFILE_QUERY_KEYS from "@/domains/profile/constants/queryKey";
@@ -23,10 +20,7 @@ const useWithdraw = ({ onSuccess, onError }: UseWithdrawParams) => {
 
   return useMutation({
     mutationFn: async () => {
-      const withdrawResult: Result<null> = await withdraw();
-      if (!withdrawResult.ok) {
-        throw new ResultError(withdrawResult.message, withdrawResult.statusCode);
-      }
+      await withdraw();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: PROFILE_QUERY_KEYS.MY });

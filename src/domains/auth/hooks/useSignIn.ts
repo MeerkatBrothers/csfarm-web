@@ -2,9 +2,6 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Result } from "@/lib/types/result";
-import ResultError from "@/lib/errors/resultError";
-
 import signIn from "@/domains/auth/usecases/signIn";
 import { CredentialForm } from "@/domains/auth/models/fragments/credentialForm";
 
@@ -24,10 +21,7 @@ const useSignIn = ({ onSuccess, onError }: UseSignInParams) => {
 
   return useMutation({
     mutationFn: async (credentialForm: CredentialForm) => {
-      const signInResult: Result<null> = await signIn(credentialForm);
-      if (!signInResult.ok) {
-        throw new ResultError(signInResult.message, signInResult.statusCode);
-      }
+      await signIn(credentialForm);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: PROFILE_QUERY_KEYS.MY });

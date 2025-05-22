@@ -5,7 +5,7 @@ import ApiResponse from "@/lib/models/apiResponse";
 import { ReissueTokenResDto } from "@/domains/auth/dtos/response/reissueTokenResDto";
 
 const reissueTokenSource = async (refreshToken: string): Promise<ApiResponse<ReissueTokenResDto>> => {
-  const endpoint: string = "/auth/reissue-token";
+  const endpoint: string = "auth/reissue-token";
 
   const apiResponse: ApiResponse<ReissueTokenResDto> = await externalFetcher<ApiResponse<ReissueTokenResDto>>({
     url: buildApiServerUrl(endpoint),

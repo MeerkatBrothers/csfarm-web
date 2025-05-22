@@ -5,7 +5,7 @@ import internalFetcher from "@/lib/apis/fetchers/internalFetcher";
 import { SignInReqDto } from "@/domains/auth/dtos/request/signInReqDto";
 
 const signInRepo = async (body: SignInReqDto): Promise<Result<null>> => {
-  const endpoint: string = "/auth/sign-in";
+  const endpoint: string = "auth/sign-in";
 
   const result: Result<null> = await internalFetcher<null>({
     url: buildProxyServerUrl(endpoint),
