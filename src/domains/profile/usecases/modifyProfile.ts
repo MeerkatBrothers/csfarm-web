@@ -1,20 +1,22 @@
-"use server";
-
-import { Result, success, failed } from "@/lib/types/result";
+import { Result } from "@/lib/types/result";
 import { validateOrThrow } from "@/lib/utils/zod";
+import ResultError from "@/lib/errors/resultError";
 
-import fetchModifyProfile from "@/domains/profile/repositories/fetchModifyProfile";
-import { ProfileForm, profileFormSchema } from "@/domains/profile/models/fragments/profileForm";
+import modifyProfileRepo from "@/domains/profile/repositories/modifyProfileRepo";
+import { mapProfileFormToDto } from "@/domains/profile/mappers/fragments/profileFormMapper";
+import { ProfileForm } from "@/domains/profile/models/fragments/profileForm";
+import { ModifyProfileReqDto, modifyProfileReqDtoSchema } from "@/domains/profile/dtos/request/modifyProfileReqDto";
+import { ProfileFormDto } from "@/domains/profile/dtos/fragments/profileFormDto";
 
-const modifyProfile = async (profileForm: ProfileForm): Promise<Result<null>> => {
-  try {
-    const validatedProfileForm: ProfileForm = validateOrThrow(profileFormSchema, profileForm);
+const modifyProfile = async (profileForm: ProfileForm): Promise<void> => {
+  const profileFormDto: ProfileFormDto = mapProfileFormToDto(profileForm);
 
-    await fetchModifyProfile(validatedProfileForm);
+  const requestBody: ModifyProfileReqDto = { profile: profileFormDto };
+  const validatedRequestBody: ModifyProfileReqDto = validateOrThrow(modifyProfileReqDtoSchema, requestBody);
 
-    return success(null);
-  } catch (e) {
-    return failed(e);
+  const result: Result<null> = await modifyProfileRepo(validatedRequestBody);
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
 };
 
