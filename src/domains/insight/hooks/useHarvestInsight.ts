@@ -2,9 +2,6 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Result } from "@/lib/types/result";
-import ResultError from "@/lib/errors/resultError";
-
 import INSIGHT_QUERY_KEYS from "@/domains/insight/constants/queryKey";
 import harvestInsight from "@/domains/insight/usecases/harvestInsight";
 import { InsightStatus } from "@/domains/insight/models/insightStatus";

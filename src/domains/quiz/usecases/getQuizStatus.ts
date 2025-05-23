@@ -1,18 +1,23 @@
-"use server";
+import { Result } from "@/lib/types/result";
+import { validateOrThrow } from "@/lib/utils/zod";
+import ResultError from "@/lib/errors/resultError";
 
-import { Result, success, failed } from "@/lib/types/result";
+import quizStatusRepo from "@/domains/quiz/repositories/quizStatusRepo";
+import { mapQuizStatusDtoToModel } from "@/domains/quiz/mappers/quizStatusMapper";
+import { QuizStatus, quizStatusSchema } from "@/domains/quiz/models/quizStatus";
+import { QuizStatusResDto } from "@/domains/quiz/dtos/response/quizStatusResDto";
 
-import fetchQuizStatus from "@/domains/quiz/repositories/fetchInsightStatus";
-import { QuizStatus } from "@/domains/quiz/models/quizStatus";
-
-const getQuizStatus = async (quizId: number): Promise<Result<QuizStatus>> => {
-  try {
-    const quizStatus: QuizStatus = await fetchQuizStatus(quizId);
-
-    return success(quizStatus);
-  } catch (e) {
-    return failed(e);
+const getQuizStatus = async (quizId: number): Promise<QuizStatus> => {
+  const result: Result<QuizStatusResDto> = await quizStatusRepo(quizId);
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
+
+  const quizStatus: QuizStatus = mapQuizStatusDtoToModel(result.data);
+
+  const validatedQuizStatus: QuizStatus = validateOrThrow(quizStatusSchema, quizStatus);
+
+  return validatedQuizStatus;
 };
 
 export default getQuizStatus;

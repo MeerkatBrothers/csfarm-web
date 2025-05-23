@@ -9,18 +9,18 @@ import { getAccessTokenFromCookie } from "@/lib/cookie/accessToken";
 import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 import NotFoundError from "@/lib/errors/http/notFoundError";
 
-import insightStatusSource from "@/domains/insight/datasources/insightStatusSource";
-import { InsightStatusResDto, insightStatusResDtoSchema } from "@/domains/insight/dtos/response/insightStatusResDto";
+import quizStatusSource from "@/domains/quiz/datasources/quizStatusSource";
+import { QuizStatusResDto, quizStatusResDtoSchema } from "@/domains/quiz/dtos/response/quizStatusResDto";
 
 interface Params {
-  params: { insightId: string | undefined };
+  params: { quizId: string | undefined };
 }
 
-export const GET = async ({ params }: Params): Promise<NextResponse<Result<InsightStatusResDto>>> => {
+export const GET = async ({ params }: Params): Promise<NextResponse<Result<QuizStatusResDto>>> => {
   try {
-    const insightId: number | null = stringToNumber(parsePathParam(params, "insightId"));
-    if (insightId === null) {
-      throw new NotFoundError("수확물을 찾을 수 없어요.");
+    const quizId: number | null = stringToNumber(parsePathParam(params, "quizId"));
+    if (quizId === null) {
+      throw new NotFoundError("타작물을 찾을 수 없어요.");
     }
 
     const storedAccessToken: string | null = await getAccessTokenFromCookie();
@@ -28,10 +28,10 @@ export const GET = async ({ params }: Params): Promise<NextResponse<Result<Insig
       throw new UnauthorizedError();
     }
 
-    const apiResponse: ApiResponse<InsightStatusResDto> = await insightStatusSource(insightId, storedAccessToken);
+    const apiResponse: ApiResponse<QuizStatusResDto> = await quizStatusSource(quizId, storedAccessToken);
 
-    const data: InsightStatusResDto = apiResponse.data;
-    const validatedData: InsightStatusResDto = validateOrThrow(insightStatusResDtoSchema, data);
+    const data: QuizStatusResDto = apiResponse.data;
+    const validatedData: QuizStatusResDto = validateOrThrow(quizStatusResDtoSchema, data);
 
     return NextResponse.json(success(validatedData));
   } catch (e) {
