@@ -2,6 +2,7 @@ import { buildApiServerUrl } from "@/lib/utils/url";
 import externalFetcher from "@/lib/apis/fetchers/externalFetcher";
 import ApiResponse from "@/lib/models/apiResponse";
 
+import { AUTH_EXPIRED_ERROR } from "@/domains/auth/constants/errorMessage";
 import { ReissueTokenResDto } from "@/domains/auth/dtos/response/reissueTokenResDto";
 
 const reissueTokenSource = async (refreshToken: string): Promise<ApiResponse<ReissueTokenResDto>> => {
@@ -16,7 +17,7 @@ const reissueTokenSource = async (refreshToken: string): Promise<ApiResponse<Rei
       },
     },
     errorMessage: {
-      401: "인증이 만료되었어요. 다시 로그인 해주세요.",
+      401: AUTH_EXPIRED_ERROR,
     },
   });
 
