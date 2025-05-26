@@ -1,16 +1,17 @@
-"use server";
+import { Result } from "@/lib/types/result";
+import { validateOrThrow } from "@/lib/utils/zod";
+import ResultError from "@/lib/errors/resultError";
 
-import { Result, success, failed } from "@/lib/types/result";
+import threshQuizRepo from "@/domains/quiz/repositories/threshQuizRepo";
+import { ThreshQuizReqDto, threshQuizReqDtoSchema } from "@/domains/quiz/dtos/request/threshQuizReqDto";
 
-import fetchThreshQuiz from "@/domains/quiz/repositories/fetchThreshQuiz";
+const threshQuiz = async (quizId: number, choiceId: number): Promise<void> => {
+  const requestBody: ThreshQuizReqDto = { quizId, choiceId };
+  const validatedRequestBody: ThreshQuizReqDto = validateOrThrow(threshQuizReqDtoSchema, requestBody);
 
-const threshQuiz = async (quizId: number, choiceId: number): Promise<Result<null>> => {
-  try {
-    await fetchThreshQuiz(quizId, choiceId);
-
-    return success(null);
-  } catch (e) {
-    return failed(e);
+  const result: Result<null> = await threshQuizRepo(validatedRequestBody);
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
 };
 

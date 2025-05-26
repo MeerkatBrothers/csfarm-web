@@ -1,21 +1,26 @@
-"use server";
-
-import { Result, success, failed } from "@/lib/types/result";
+import { Result } from "@/lib/types/result";
 import { validateOrThrow } from "@/lib/utils/zod";
+import ResultError from "@/lib/errors/resultError";
 
-import fetchUploadImage from "@/domains/image/repositories/fetchUploadImage";
-import { UploadImageForm, uploadImageFormSchema } from "@/domains/image/models/uploadImageForm";
+import uploadImageRepo from "@/domains/image/repositories/uploadImageRepo";
+import { UploadImageForm } from "@/domains/image/models/uploadImageForm";
+import { UploadImageReqDto, uploadImageReqDtoSchema } from "@/domains/image/dtos/request/uploadImageReqDto";
+import { UploadImageResDto } from "@/domains/image/dtos/response/uploadImageResDto";
 
-const uploadImage = async (uploadImageForm: UploadImageForm): Promise<Result<string>> => {
-  try {
-    const validatedUploadImageForm: UploadImageForm = validateOrThrow(uploadImageFormSchema, uploadImageForm);
+const uploadImage = async (uploadImageForm: UploadImageForm): Promise<string> => {
+  const { dir, image } = uploadImageForm;
 
-    const imageUrl: string = await fetchUploadImage(validatedUploadImageForm);
+  const requestBody: UploadImageReqDto = { dir, image };
+  const validatedRequestBody: UploadImageReqDto = validateOrThrow(uploadImageReqDtoSchema, requestBody);
 
-    return success(imageUrl);
-  } catch (e) {
-    return failed(e);
+  const result: Result<UploadImageResDto> = await uploadImageRepo(validatedRequestBody);
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
+
+  const imageUrl: string = result.data.imageUrl;
+
+  return imageUrl;
 };
 
 export default uploadImage;

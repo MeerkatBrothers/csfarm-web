@@ -1,20 +1,12 @@
-"use server";
+import { Result } from "@/lib/types/result";
+import ResultError from "@/lib/errors/resultError";
 
-import { Result, success, failed } from "@/lib/types/result";
-import { deleteAccessTokenFromCookie } from "@/lib/cookie/accessToken";
-import { deleteRefreshTokenFromCookie } from "@/lib/cookie/refreshToken";
+import withdrawRepo from "@/domains/auth/repositories/withdrawRepo";
 
-import fetchWithdraw from "@/domains/auth/repositories/fetchWithdraw";
-
-const withdraw = async (): Promise<Result<null>> => {
-  try {
-    await fetchWithdraw();
-
-    await Promise.all([deleteAccessTokenFromCookie(), deleteRefreshTokenFromCookie()]);
-
-    return success(null);
-  } catch (e) {
-    return failed(e);
+const withdraw = async (): Promise<void> => {
+  const result: Result<null> = await withdrawRepo();
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
 };
 

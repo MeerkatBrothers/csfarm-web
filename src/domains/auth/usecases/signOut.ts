@@ -1,20 +1,12 @@
-"use server";
+import { Result } from "@/lib/types/result";
+import ResultError from "@/lib/errors/resultError";
 
-import { Result, success, failed } from "@/lib/types/result";
-import { deleteAccessTokenFromCookie } from "@/lib/cookie/accessToken";
-import { deleteRefreshTokenFromCookie } from "@/lib/cookie/refreshToken";
+import signOutRepo from "@/domains/auth/repositories/signOutRepo";
 
-import fetchSignOut from "@/domains/auth/repositories/fetchSignOut";
-
-const signOut = async (): Promise<Result<null>> => {
-  try {
-    await Promise.all([deleteAccessTokenFromCookie(), deleteRefreshTokenFromCookie()]);
-
-    await fetchSignOut();
-
-    return success(null);
-  } catch (e) {
-    return failed(e);
+const signOut = async (): Promise<void> => {
+  const result: Result<null> = await signOutRepo();
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
 };
 

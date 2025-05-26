@@ -1,28 +1,22 @@
-"use server";
-
-import { Result, success, failed } from "@/lib/types/result";
+import { Result } from "@/lib/types/result";
 import { validateOrThrow } from "@/lib/utils/zod";
-import { setAccessTokenToCookie } from "@/lib/cookie/accessToken";
-import { setRefreshTokenToCookie } from "@/lib/cookie/refreshToken";
+import ResultError from "@/lib/errors/resultError";
 
-import fetchSignIn from "@/domains/auth/repositories/fetchSignIn";
-import { CredentialForm, credentialFormSchema } from "@/domains/auth/models/fragments/credentialForm";
-import { Token, tokenSchema } from "@/domains/auth/models/fragments/token";
+import signInRepo from "@/domains/auth/repositories/signInRepo";
+import { mapCredentialFormToDto } from "@/domains/auth/mappers/fragments/credentialFormMapper";
+import { CredentialForm } from "@/domains/auth/models/fragments/credentialForm";
+import { SignInReqDto, signInReqDtoSchema } from "@/domains/auth/dtos/request/signInReqDto";
+import { CredentialFormDto } from "@/domains/auth/dtos/fragments/credentialFormDto";
 
-const signIn = async (credentialForm: CredentialForm): Promise<Result<null>> => {
-  try {
-    const validatedCredentialForm: CredentialForm = validateOrThrow(credentialFormSchema, credentialForm);
+const signIn = async (credentialForm: CredentialForm): Promise<void> => {
+  const credentialFormDto: CredentialFormDto = mapCredentialFormToDto(credentialForm);
 
-    const token: Token = await fetchSignIn(validatedCredentialForm);
+  const requestBody: SignInReqDto = { credential: credentialFormDto };
+  const validatedRequestBody: SignInReqDto = validateOrThrow(signInReqDtoSchema, requestBody);
 
-    const validatedToken: Token = validateOrThrow(tokenSchema, token);
-    const { accessToken, refreshToken } = validatedToken;
-
-    await Promise.all([setAccessTokenToCookie(accessToken), setRefreshTokenToCookie(refreshToken)]);
-
-    return success(null);
-  } catch (e) {
-    return failed(e);
+  const result: Result<null> = await signInRepo(validatedRequestBody);
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
 };
 

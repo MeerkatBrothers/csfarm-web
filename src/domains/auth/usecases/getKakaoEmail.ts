@@ -1,17 +1,17 @@
-"use server";
+import { Result } from "@/lib/types/result";
+import ResultError from "@/lib/errors/resultError";
 
-import { Result, success, failed } from "@/lib/types/result";
+import kakaoEmailRepo from "@/domains/auth/repositories/kakaoEmailRepo";
 
-import fetchKakaoEmail from "@/domains/auth/repositories/fetchKakaoEmail";
-
-const getKakaoEmail = async (token: string): Promise<Result<string>> => {
-  try {
-    const kakaoEmail: string = await fetchKakaoEmail(token);
-
-    return success(kakaoEmail);
-  } catch (e) {
-    return failed(e);
+const getKakaoEmail = async (kakaoCode: string): Promise<string> => {
+  const result: Result<string> = await kakaoEmailRepo(kakaoCode);
+  if (!result.ok) {
+    throw new ResultError(result.message, result.statusCode);
   }
+
+  const kakaoEmail: string = result.data;
+
+  return kakaoEmail;
 };
 
 export default getKakaoEmail;

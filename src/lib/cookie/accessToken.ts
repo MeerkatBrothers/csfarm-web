@@ -1,19 +1,7 @@
+import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-const key: string = "accessToken";
-
-export const setAccessTokenToCookie = async (token: string): Promise<void> => {
-  const cookieStore = await cookies();
-  cookieStore.set({
-    name: key,
-    value: token,
-    path: "/",
-    maxAge: 1800,
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-  });
-};
+const key: string = "csfarm:access-token";
 
 export const getAccessTokenFromCookie = async (): Promise<string | null> => {
   const cookieStore = await cookies();
@@ -22,8 +10,18 @@ export const getAccessTokenFromCookie = async (): Promise<string | null> => {
   return token?.value ?? null;
 };
 
-export const deleteAccessTokenFromCookie = async (): Promise<void> => {
-  const cookieStore = await cookies();
+export const setAccessTokenToCookie = (response: NextResponse, token: string): void => {
+  response.cookies.set({
+    name: key,
+    value: token,
+    path: "/api",
+    maxAge: 1800,
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  });
+};
 
-  cookieStore.delete(key);
+export const deleteAccessTokenFromCookie = (response: NextResponse): void => {
+  response.cookies.delete(key);
 };

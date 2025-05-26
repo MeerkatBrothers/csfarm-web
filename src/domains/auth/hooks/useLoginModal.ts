@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext } from "react";
 
 import ProviderMissingError from "@/lib/errors/providerMissingError";
