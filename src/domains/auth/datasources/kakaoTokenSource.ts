@@ -1,6 +1,7 @@
 import externalFetcher from "@/lib/apis/fetchers/externalFetcher";
 
 import { KAKAO_TOKEN_URL } from "@/domains/auth/constants/url";
+import { KAKAO_LOGIN_ERROR, KAKAO_USER_NOT_FOUND_ERROR } from "@/domains/auth/constants/errorMessage";
 import { KakaoTokenResDto } from "@/domains/auth/dtos/response/kakaoTokenResDto";
 
 const kakaoTokenSource = async (kakaoCode: string): Promise<KakaoTokenResDto> => {
@@ -19,8 +20,8 @@ const kakaoTokenSource = async (kakaoCode: string): Promise<KakaoTokenResDto> =>
       }),
     },
     errorMessage: {
-      400: "카카오 로그인 중 오류가 발생했어요. 잠시 후 다시 시도해 주세요.",
-      401: "카카오 사용자 정보를 불러오는데 실패했어요. 잠시 후 다시 시도해 주세요.",
+      400: KAKAO_LOGIN_ERROR,
+      401: KAKAO_USER_NOT_FOUND_ERROR,
     },
   });
 
