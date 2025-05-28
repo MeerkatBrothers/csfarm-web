@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 
+import { SubInsight } from "@/domains/insight/models/fragments/subInsight";
+
 import Title3 from "@/components/atoms/typography/Title3";
 import Body2 from "@/components/atoms/typography/Body2";
 
 interface SubInsightSectionProps {
-  subject: string;
-  description: string;
+  subInsight: SubInsight;
 }
 
-const SubInsightSection = ({ subject, description }: SubInsightSectionProps) => {
+const SubInsightSection = ({ subInsight }: SubInsightSectionProps) => {
   const [isDescriptionOpen, setIsDescriptionOpen] = useState<boolean>(false);
 
   const toggleDescription = (): void => {
@@ -20,10 +21,10 @@ const SubInsightSection = ({ subject, description }: SubInsightSectionProps) => 
   return (
     <div className="space-y-2">
       <button onClick={toggleDescription}>
-        <Title3 text={`🙋 ${subject}`} />
+        <Title3 text={`🙋 ${subInsight.subject}`} />
       </button>
 
-      {isDescriptionOpen && <Body2 text={description} reading />}
+      {isDescriptionOpen && <Body2 text={subInsight.description} reading />}
     </div>
   );
 };

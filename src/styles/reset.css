@@ -33,6 +33,7 @@
 
   p {
     white-space: pre-line;
+    word-break: keep-all;
   }
 
   button {
