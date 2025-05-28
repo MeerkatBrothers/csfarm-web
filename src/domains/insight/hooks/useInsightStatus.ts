@@ -1,5 +1,3 @@
-"use client";
-
 import { useQuery } from "@tanstack/react-query";
 
 import INSIGHT_QUERY_KEYS from "@/domains/insight/constants/queryKey";
@@ -16,6 +14,7 @@ const useInsightStatus = (insightId: number) => {
     },
     staleTime: 1000 * 60 * 10,
     gcTime: 1000 * 60 * 30,
+    retry: false,
   });
 };
 

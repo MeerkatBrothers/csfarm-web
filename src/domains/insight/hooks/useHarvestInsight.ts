@@ -1,5 +1,3 @@
-"use client";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import INSIGHT_QUERY_KEYS from "@/domains/insight/constants/queryKey";
@@ -8,10 +6,9 @@ import { InsightStatus } from "@/domains/insight/models/insightStatus";
 
 interface UseHarvestInsightParams {
   onSuccess?: () => void;
-  onError?: (error: Error, variables: number) => void;
 }
 
-const useHarvestInsight = ({ onSuccess, onError }: UseHarvestInsightParams) => {
+const useHarvestInsight = ({ onSuccess }: UseHarvestInsightParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -26,7 +23,6 @@ const useHarvestInsight = ({ onSuccess, onError }: UseHarvestInsightParams) => {
 
       onSuccess?.();
     },
-    onError,
   });
 };
 

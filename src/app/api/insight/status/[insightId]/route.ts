@@ -13,11 +13,12 @@ import insightStatusSource from "@/domains/insight/datasources/insightStatusSour
 import { InsightStatusResDto, insightStatusResDtoSchema } from "@/domains/insight/dtos/response/insightStatusResDto";
 
 interface Params {
-  params: { insightId: string | undefined };
+  params: Promise<{ insightId: string | undefined }>;
 }
 
-export const GET = async ({ params }: Params): Promise<NextResponse<Result<InsightStatusResDto>>> => {
+export const GET = async (_: Request, context: Params): Promise<NextResponse<Result<InsightStatusResDto>>> => {
   try {
+    const params: { insightId: string | undefined } = await context.params;
     const insightId: number | null = stringToNumber(parsePathParam(params, "insightId"));
     if (insightId === null) {
       throw new NotFoundError("수확물을 찾을 수 없어요.");
