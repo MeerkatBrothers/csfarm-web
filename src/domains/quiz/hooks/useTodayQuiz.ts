@@ -1,5 +1,3 @@
-"use client";
-
 import { useQuery } from "@tanstack/react-query";
 
 import QUIZ_QUERY_KEYS from "@/domains/quiz/constants/queryKey";
@@ -14,8 +12,9 @@ const useTodayQuiz = () => {
 
       return todayQuiz;
     },
-    staleTime: 1000 * 60 * 10,
-    gcTime: 1000 * 60 * 30,
+    staleTime: 1000 * 60 * 30,
+    gcTime: 1000 * 60 * 60,
+    retry: false,
   });
 };
 

@@ -13,11 +13,12 @@ import quizStatusSource from "@/domains/quiz/datasources/quizStatusSource";
 import { QuizStatusResDto, quizStatusResDtoSchema } from "@/domains/quiz/dtos/response/quizStatusResDto";
 
 interface Params {
-  params: { quizId: string | undefined };
+  params: Promise<{ quizId: string | undefined }>;
 }
 
-export const GET = async ({ params }: Params): Promise<NextResponse<Result<QuizStatusResDto>>> => {
+export const GET = async (_: Request, context: Params): Promise<NextResponse<Result<QuizStatusResDto>>> => {
   try {
+    const params: { quizId: string | undefined } = await context.params;
     const quizId: number | null = stringToNumber(parsePathParam(params, "quizId"));
     if (quizId === null) {
       throw new NotFoundError("타작물을 찾을 수 없어요.");

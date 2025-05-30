@@ -2,7 +2,7 @@ import { FiX } from "react-icons/fi";
 
 import { SVG_SIZE } from "@/lib/constants/ui";
 
-import NavLinkSection from "@/components/organisms/NavLinkSection";
+import NavLinkerSection from "@/components/organisms/NavLinkerSection";
 
 interface OverlayNavProps {
   onClose: (isOpen: boolean) => void;
@@ -15,7 +15,7 @@ const OverlayNav = ({ onClose }: OverlayNavProps) => {
         <FiX size={SVG_SIZE} onClick={() => onClose(false)} />
       </div>
 
-      <NavLinkSection onLinkClick={() => onClose(false)} />
+      <NavLinkerSection onLinkerClick={() => onClose(false)} />
     </div>
   );
 };

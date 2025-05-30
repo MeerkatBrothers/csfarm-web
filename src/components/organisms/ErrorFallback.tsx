@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-
 import { FallbackProps } from "react-error-boundary";
 
 import Heading1 from "@/components/atoms/typography/Heading1";

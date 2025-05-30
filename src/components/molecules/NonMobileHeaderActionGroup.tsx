@@ -1,6 +1,6 @@
 "use client";
 
-import { useLoginModal } from "@/domains/auth/hooks/useLoginModal";
+import useLoginModal from "@/domains/auth/hooks/useLoginModal";
 
 import TertiaryButton from "@/components/atoms/button/TertiaryButton";
 
