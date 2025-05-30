@@ -1,11 +1,11 @@
 import clsx from "clsx";
 
-import NavLinkSection from "@/components/organisms/NavLinkSection";
+import NavLinkerSection from "@/components/organisms/NavLinkerSection";
 
 const SideNav = () => {
   return (
-    <div className={clsx("flex flex-col justify-between items-center h-full", "w-36 lg:w-52")}>
-      <NavLinkSection />
+    <div className={clsx("flex flex-col justify-between items-center w-36 h-full", "lg:w-52")}>
+      <NavLinkerSection />
     </div>
   );
 };

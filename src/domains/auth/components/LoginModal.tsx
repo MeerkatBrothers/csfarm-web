@@ -14,7 +14,9 @@ interface LoginModalProps {
 }
 
 const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div onClick={onClose} className="flex items-center justify-center fixed z-50 inset-0 backdrop-blur-xs bg-service-black/30">
