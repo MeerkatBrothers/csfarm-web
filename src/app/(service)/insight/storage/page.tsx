@@ -1,31 +1,19 @@
-"use client";
+import { ErrorBoundary } from "react-error-boundary";
 
-import { useState } from "react";
+import InsightStorageWelcomeMessage from "@/domains/insight/components/InsightStorageWelcomeMessage";
 
-import { WEEK_OPTION, WeekOption } from "@/app/(service)/insight/storage/(enum)/weekOption";
-
-import Heading1 from "@/components/atoms/typography/Heading1";
-import ToggleChip from "@/components/atoms/chip/ToggleChip";
-import InsightPreviewList from "@/components/organisms/InsightPreviewList";
+import ErrorFallback from "@/components/organisms/ErrorFallback";
+import StoredInsightSection from "@/domains/insight/components/StoredInsightSection";
 
 const InsightStoragePage = () => {
-  const [weekOption, setWeekOption] = useState<WeekOption>(WEEK_OPTION.THIS_WEEK);
-
   return (
-    <div className="space-y-10">
-      <Heading1
-        text={`홍길동 농부님,
-        그동안의 수확물을 확인해볼까요?`}
-      />
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <div className="space-y-10">
+        <InsightStorageWelcomeMessage />
 
-      <div className="flex gap-2">
-        {Object.entries(WEEK_OPTION).map(([_, value], index) => (
-          <ToggleChip key={index} label={value} isActive={value === weekOption} onClick={() => setWeekOption(value)} />
-        ))}
+        <StoredInsightSection />
       </div>
-
-      <InsightPreviewList />
-    </div>
+    </ErrorBoundary>
   );
 };
 
