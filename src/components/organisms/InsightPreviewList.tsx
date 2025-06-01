@@ -8,7 +8,7 @@ interface InsightPreviewProps {
 
 const InsightPreviewList = ({ insightPreviews }: InsightPreviewProps) => {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="space-y-10">
       {insightPreviews.map((insightPreview, index) => (
         <InsightPreviewCard key={index} insightPreview={insightPreview} />
       ))}

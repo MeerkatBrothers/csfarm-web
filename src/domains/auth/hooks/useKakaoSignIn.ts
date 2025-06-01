@@ -1,8 +1,5 @@
-"use client";
-
 import { useMutation } from "@tanstack/react-query";
 
-import { Result } from "@/lib/types/result";
 import ResultError from "@/lib/errors/resultError";
 
 import { LOGIN_PLATFORM } from "@/domains/auth/enums/loginPlatform";

@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 import useTodayQuiz from "@/domains/quiz/hooks/useTodayQuiz";
-import QuizSectionSkeleton from "@/domains/quiz/components/QuizSectionSkeleton";
 import ThreshQuizButton from "@/domains/quiz/components/ThreshQuizButton";
 
 import QuizSection from "@/components/organisms/QuizSection";
+import QuizSectionSkeleton from "@/components/organisms/skeleton/QuizSectionSkeleton";
 
 const TodayQuizSection = () => {
   const [choiceId, setChoiceId] = useState<number | null>(null);

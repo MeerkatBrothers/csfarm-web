@@ -10,7 +10,7 @@ interface InsightSectionProps {
 
 const InsightSection = ({ insight }: InsightSectionProps) => {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="space-y-20">
       <div className="space-y-2">
         <Title2 text={`🌾 ${insight.subject}`} />
 

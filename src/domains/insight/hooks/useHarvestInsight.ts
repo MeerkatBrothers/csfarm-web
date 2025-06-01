@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 import INSIGHT_QUERY_KEYS from "@/domains/insight/constants/queryKey";
 import harvestInsight from "@/domains/insight/usecases/harvestInsight";

@@ -1,10 +1,10 @@
 "use client";
 
 import useTodayInsight from "@/domains/insight/hooks/useTodayInsight";
-import InsightSectionSkeleton from "@/domains/insight/components/InsightSectionSkeleton";
 import HarvestInsightButton from "@/domains/insight/components/HarvestInsightButton";
 
 import InsightSection from "@/components/organisms/InsightSection";
+import InsightSectionSkeleton from "@/components/organisms/skeleton/InsightSectionSkeleton";
 
 const TodayInsightSection = () => {
   const { data: todayInsight, isLoading, isError, error } = useTodayInsight();
