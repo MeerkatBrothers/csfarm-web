@@ -11,14 +11,15 @@ import insightDetailSource from "@/domains/insight/datasources/insightDetailSour
 import { InsightDetailResDto, insightDetailResDtoSchema } from "@/domains/insight/dtos/response/insightDetailResDto";
 
 interface Params {
-  params: { insightId: string | undefined };
+  params: Promise<{ insightId: string | undefined }>;
 }
 
-export const GET = async ({ params }: Params): Promise<NextResponse<Result<InsightDetailResDto>>> => {
+export const GET = async (_: Request, context: Params): Promise<NextResponse<Result<InsightDetailResDto>>> => {
   try {
+    const params: { insightId: string | undefined } = await context.params;
     const insightId: number | null = stringToNumber(parsePathParam(params, "insightId"));
     if (insightId === null) {
-      throw new NotFoundError("지식을 찾을 수 없어요.");
+      throw new NotFoundError("수확물을 찾을 수 없어요.");
     }
 
     const apiResponse: ApiResponse<InsightDetailResDto> = await insightDetailSource(insightId);

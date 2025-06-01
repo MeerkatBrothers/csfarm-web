@@ -1,9 +1,9 @@
 import { ErrorBoundary } from "react-error-boundary";
 
 import InsightStorageWelcomeMessage from "@/domains/insight/components/InsightStorageWelcomeMessage";
+import StoredInsightSection from "@/domains/insight/components/StoredInsightSection";
 
 import ErrorFallback from "@/components/organisms/ErrorFallback";
-import StoredInsightSection from "@/domains/insight/components/StoredInsightSection";
 
 const InsightStoragePage = () => {
   return (
