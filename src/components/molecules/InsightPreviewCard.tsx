@@ -11,7 +11,7 @@ interface InsightPreviewCardProps {
 
 const InsightPreviewCard = ({ insightPreview }: InsightPreviewCardProps) => {
   return (
-    <div className="space-y-1">
+    <div className="flex flex-col items-start gap-1">
       <Title3 text={insightPreview.subject} />
 
       <Label1 text={formatDateToYMD(insightPreview.publishedAt)} styles={{ textColor: "text-service-gray-medium" }} />

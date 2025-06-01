@@ -5,7 +5,7 @@ import ApiResponse from "@/lib/models/apiResponse";
 import { InsightDetailResDto } from "@/domains/insight/dtos/response/insightDetailResDto";
 
 const insightDetailSource = async (insightId: number): Promise<ApiResponse<InsightDetailResDto>> => {
-  const endpoint: string = `insight/${insightId}`;
+  const endpoint: string = `insight/detail/${insightId}`;
 
   const apiResponse: ApiResponse<InsightDetailResDto> = await externalFetcher<ApiResponse<InsightDetailResDto>>({
     url: buildApiServerUrl(endpoint),

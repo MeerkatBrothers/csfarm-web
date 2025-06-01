@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import useStoredInsight from "@/domains/insight/hooks/useStoredInsight";
 
@@ -11,6 +12,8 @@ import InsightPreviewListSkeleton from "@/components/organisms/skeleton/InsightP
 const weekOptions: string[] = ["이번주", "1주전", "2주전", "3주전"];
 
 const StoredInsightSection = () => {
+  const router = useRouter();
+
   const [weekOffset, setWeekOffset] = useState<number>(0);
 
   const { data: storedInsight, isLoading, isError, error } = useStoredInsight();
@@ -35,7 +38,10 @@ const StoredInsightSection = () => {
         ))}
       </div>
 
-      <InsightPreviewList insightPreviews={storedInsight.get(weekOffset) ?? []} />
+      <InsightPreviewList
+        insightPreviews={storedInsight.get(weekOffset) ?? []}
+        onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
+      />
     </div>
   );
 };

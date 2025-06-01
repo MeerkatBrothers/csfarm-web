@@ -4,14 +4,19 @@ import InsightPreviewCard from "@/components/molecules/InsightPreviewCard";
 
 interface InsightPreviewProps {
   insightPreviews: InsightPreview[];
+  onClick: (insightId: number) => void;
 }
 
-const InsightPreviewList = ({ insightPreviews }: InsightPreviewProps) => {
+const InsightPreviewList = ({ insightPreviews, onClick }: InsightPreviewProps) => {
   return (
-    <div className="space-y-10">
-      {insightPreviews.map((insightPreview, index) => (
-        <InsightPreviewCard key={index} insightPreview={insightPreview} />
-      ))}
+    <div className="flex flex-col gap-10">
+      {insightPreviews.map((insightPreview, index) => {
+        return (
+          <button key={index} onClick={() => onClick(insightPreview.id)}>
+            <InsightPreviewCard insightPreview={insightPreview} />
+          </button>
+        );
+      })}
     </div>
   );
 };
