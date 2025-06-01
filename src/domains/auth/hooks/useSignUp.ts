@@ -1,6 +1,4 @@
-"use client";
-
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 import signUp from "@/domains/auth/usecases/signUp";
 import { CredentialForm } from "@/domains/auth/models/fragments/credentialForm";

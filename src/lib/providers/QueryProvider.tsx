@@ -3,7 +3,7 @@
 import { useMemo, ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { getErrorMessage } from "@/lib/utils/error";
+import { alertError } from "@/lib/utils/ui";
 
 interface Props {
   children: ReactNode;
@@ -15,11 +15,7 @@ const QueryProvider = ({ children }: Props) => {
       new QueryClient({
         defaultOptions: {
           mutations: {
-            onError: (error) => {
-              const errorMessage: string = getErrorMessage(error);
-
-              alert(errorMessage);
-            },
+            onError: (error) => alertError(error),
           },
         },
       }),

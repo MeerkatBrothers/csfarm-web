@@ -15,7 +15,7 @@ interface QuizChoiceCardProps {
 const QuizChoiceCard = ({ quizChoice, isChoiced, onChoice }: QuizChoiceCardProps) => {
   return (
     <button className={clsx("text-start p-4 rounded-lg", isChoiced && "bg-primary-light")} onClick={() => onChoice(quizChoice.id)}>
-      <Body1 text={`👉 ${quizChoice.content}`} reading styles={{ textColor: isChoiced ? "text-primary" : undefined }} />
+      <Body1 text={`👉 ${quizChoice.content}`} styles={{ textColor: isChoiced ? "text-primary" : undefined }} reading />
     </button>
   );
 };

@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 import useStoredInsight from "@/domains/insight/hooks/useStoredInsight";
-import InsightPreviewListSkeleton from "@/domains/insight/components/InsightPreviewListSkeleton";
 
 import ToggleChip from "@/components/atoms/chip/ToggleChip";
 import InsightPreviewList from "@/components/organisms/InsightPreviewList";
+import InsightPreviewListSkeleton from "@/components/organisms/skeleton/InsightPreviewListSkeleton";
 
 const weekOptions: string[] = ["이번주", "1주전", "2주전", "3주전"];
 

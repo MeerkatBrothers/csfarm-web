@@ -10,7 +10,7 @@ interface QuizChoiceListProps {
 
 const QuizChoiceList = ({ quizChoices, choiceId, onChoice }: QuizChoiceListProps) => {
   return (
-    <div className="flex flex-col items-start gap-2">
+    <div className="space-y-2">
       {quizChoices.map((quizChoice, index) => {
         return <QuizChoiceCard key={index} quizChoice={quizChoice} isChoiced={choiceId === index} onChoice={onChoice} />;
       })}

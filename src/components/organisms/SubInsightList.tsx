@@ -8,7 +8,7 @@ interface SubInsightListProps {
 
 const SubInsightList = ({ subInsights }: SubInsightListProps) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="space-y-6">
       {subInsights.map((subInsight, index) => (
         <SubInsightSection key={index} subInsight={subInsight} />
       ))}
