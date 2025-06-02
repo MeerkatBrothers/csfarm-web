@@ -31,48 +31,48 @@
 
   /* ============ 폰트 크기 변수 ============ */
   /* Display 1 */
-  --text-display1-lg: 3.5rem; /* 56px (Desktop) */
-  --text-display1-md: 3rem; /* 48px (Tablet) */
-  --text-display1-sm: 2.5rem; /* 40px (Mobile) */
+  --text-display1-lg: 3rem; /* 48px (Desktop) */
+  --text-display1-md: 2.5rem; /* 40px (Tablet) */
+  --text-display1-sm: 2.25rem; /* 36px (Mobile) */
 
   /* Display 2 */
-  --text-display2-lg: 2.5rem; /* 40px (Desktop) */
-  --text-display2-md: 2.25rem; /* 36px (Tablet) */
-  --text-display2-sm: 2rem; /* 32px (Mobile) */
+  --text-display2-lg: 2.25rem; /* 36px (Desktop) */
+  --text-display2-md: 2rem; /* 32px (Tablet) */
+  --text-display2-sm: 1.75rem; /* 28px (Mobile) */
 
   /* Title 1 */
-  --text-title1-lg: 2.25rem; /* 36px (Desktop) */
-  --text-title1-md: 2rem; /* 32px (Tablet) */
-  --text-title1-sm: 1.75rem; /* 28px (Mobile) */
+  --text-title1-lg: 2rem; /* 32px (Desktop) */
+  --text-title1-md: 1.75rem; /* 28px (Tablet) */
+  --text-title1-sm: 1.5rem; /* 24px (Mobile) */
 
   /* Title 2 */
-  --text-title2-lg: 1.75rem; /* 28px (Desktop) */
+  --text-title2-lg: 1.625rem; /* 26px (Desktop) */
   --text-title2-md: 1.5rem; /* 24px (Tablet) */
-  --text-title2-sm: 1.25rem; /* 20px (Mobile) */
+  --text-title2-sm: 1.375rem; /* 22px (Mobile) */
 
   /* Title 3 */
   --text-title3-lg: 1.5rem; /* 24px (Desktop) */
-  --text-title3-md: 1.25rem; /* 20px (Tablet) */
-  --text-title3-sm: 1.125rem; /* 18px (Mobile) */
+  --text-title3-md: 1.375rem; /* 22px (Tablet) */
+  --text-title3-sm: 1.25rem; /* 20px (Mobile) */
 
   /* Heading 1 */
-  --text-heading1-lg: 1.375rem; /* 22px (Desktop) */
+  --text-heading1-lg: 1.25rem; /* 20px (Desktop) */
   --text-heading1-md: 1.125rem; /* 18px (Tablet) */
   --text-heading1-sm: 1rem; /* 16px (Mobile) */
 
   /* Heading 2 */
-  --text-heading2-lg: 1.25rem; /* 20px (Desktop) */
-  --text-heading2-md: 1.125rem; /* 18px (Tablet) */
-  --text-heading2-sm: 1rem; /* 16px (Mobile) */
+  --text-heading2-lg: 1.125rem; /* 18px (Desktop) */
+  --text-heading2-md: 1rem; /* 16px (Tablet) */
+  --text-heading2-sm: 0.9375rem; /* 15px (Mobile) */
 
   /* Headline 1 */
-  --text-headline1-lg: 1.125rem; /* 18px (Desktop) */
-  --text-headline1-md: 1rem; /* 16px (Tablet) */
+  --text-headline1-lg: 1rem; /* 16px (Desktop) */
+  --text-headline1-md: 0.9375rem; /* 15px (Tablet) */
   --text-headline1-sm: 0.875rem; /* 14px (Mobile) */
 
   /* Headline 2 */
-  --text-headline2-lg: 1.0625rem; /* 17px (Desktop) */
-  --text-headline2-md: 0.9375rem; /* 15px (Tablet) */
+  --text-headline2-lg: 0.9375rem; /* 15px (Desktop) */
+  --text-headline2-md: 0.875rem; /* 14px (Tablet) */
   --text-headline2-sm: 0.8125rem; /* 13px (Mobile) */
 
   /* Body 1 */
@@ -141,49 +141,49 @@
 
   /* ============ 라인 높이 변수 ============ */
   /* Display 1 */
-  --leading-display1-lg: 4.5rem; /* 72px (Desktop) */
-  --leading-display1-md: 3.88rem; /* 62px (Tablet) */
-  --leading-display1-sm: 3.25rem; /* 52px (Mobile) */
+  --leading-display1-lg: 3.75rem; /* 60px (Desktop) */
+  --leading-display1-md: 3.125rem; /* 50px (Tablet) */
+  --leading-display1-sm: 2.75rem; /* 44px (Mobile) */
 
   /* Display 2 */
-  --leading-display2-lg: 3.25rem; /* 52px (Desktop) */
-  --leading-display2-md: 2.94rem; /* 47px (Tablet) */
-  --leading-display2-sm: 2.62rem; /* 42px (Mobile) */
+  --leading-display2-lg: 3rem; /* 48px (Desktop) */
+  --leading-display2-md: 2.625rem; /* 42px (Tablet) */
+  --leading-display2-sm: 2.25rem; /* 36px (Mobile) */
 
   /* Title 1 */
-  --leading-title1-lg: 3rem; /* 48px (Desktop) */
-  --leading-title1-md: 2.69rem; /* 43px (Tablet) */
-  --leading-title1-sm: 2.31rem; /* 37px (Mobile) */
+  --leading-title1-lg: 2.75rem; /* 44px (Desktop) */
+  --leading-title1-md: 2.375rem; /* 38px (Tablet) */
+  --leading-title1-sm: 2.125rem; /* 34px (Mobile) */
 
   /* Title 2 */
-  --leading-title2-lg: 2.38rem; /* 38px (Desktop) */
-  --leading-title2-md: 2.06rem; /* 33px (Tablet) */
-  --leading-title2-sm: 1.69rem; /* 27px (Mobile) */
+  --leading-title2-lg: 2.125rem; /* 34px (Desktop) */
+  --leading-title2-md: 1.875rem; /* 30px (Tablet) */
+  --leading-title2-sm: 1.625rem; /* 26px (Mobile) */
 
   /* Title 3 */
-  --leading-title3-lg: 2rem; /* 32px (Desktop) */
-  --leading-title3-md: 1.69rem; /* 27px (Tablet) */
+  --leading-title3-lg: 2.875rem; /* 30px (Desktop) */
+  --leading-title3-md: 1.625rem; /* 26px (Tablet) */
   --leading-title3-sm: 1.5rem; /* 24px (Mobile) */
 
   /* Heading 1 */
-  --leading-heading1-lg: 1.875rem; /* 30px (Desktop) */
-  --leading-heading1-md: 1.56rem; /* 25px (Tablet) */
-  --leading-heading1-sm: 1.38rem; /* 22px (Mobile) */
+  --leading-heading1-lg: 1.75rem; /* 28px (Desktop) */
+  --leading-heading1-md: 1.5rem; /* 24px (Tablet) */
+  --leading-heading1-sm: 1.375rem; /* 22px (Mobile) */
 
   /* Heading 2 */
-  --leading-heading2-lg: 1.75rem; /* 28px (Desktop) */
-  --leading-heading2-md: 1.56rem; /* 25px (Tablet) */
-  --leading-heading2-sm: 1.38rem; /* 22px (Mobile) */
+  --leading-heading2-lg: 1.5rem; /* 24px (Desktop) */
+  --leading-heading2-md: 1.375rem; /* 22px (Tablet) */
+  --leading-heading2-sm: 1.25rem; /* 20px (Mobile) */
 
   /* Headline 1 */
-  --leading-headline1-lg: 1.625rem; /* 26px (Desktop) */
-  --leading-headline1-md: 1.44rem; /* 23px (Tablet) */
-  --leading-headline1-sm: 1.25rem; /* 20px (Mobile) */
+  --leading-headline1-lg: 1.375rem; /* 22px (Desktop) */
+  --leading-headline1-md: 1.25rem; /* 20px (Tablet) */
+  --leading-headline1-sm: 1.125rem; /* 18px (Mobile) */
 
   /* Headline 2 */
-  --leading-headline2-lg: 1.5rem; /* 24px (Desktop) */
-  --leading-headline2-md: 1.31rem; /* 21px (Tablet) */
-  --leading-headline2-sm: 1.125rem; /* 18px (Mobile) */
+  --leading-headline2-lg: 1.25rem; /* 20px (Desktop) */
+  --leading-headline2-md: 1.125rem; /* 18px (Tablet) */
+  --leading-headline2-sm: 1rem; /* 16px (Mobile) */
 
   /* Body 1 */
   --leading-body1: 1.5rem; /* 24px */
