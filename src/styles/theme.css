@@ -8,23 +8,36 @@
   */
   @theme inline {
     /* ============ 색상 테마 ============ */
+
     --color-background: var(--background);
     --color-foreground: var(--foreground);
 
-    --color-primary: var(--primary);
-    --color-primary-light: var(--primary-light);
-    --color-secondary: var(--secondary);
-    --color-secondary-light: var(--secondary-light);
+    --color-primary-900: var(--primary-900);
+    --color-primary-800: var(--primary-800);
+    --color-primary-700: var(--primary-700);
+    --color-primary-600: var(--primary-600);
+    --color-primary-500: var(--primary-500);
+    --color-primary-400: var(--primary-400);
+    --color-primary-300: var(--primary-300);
+    --color-primary-200: var(--primary-200);
+    --color-primary-100: var(--primary-100);
+
+    --color-secondary-900: var(--secondary-900);
+    --color-secondary-800: var(--secondary-800);
+    --color-secondary-700: var(--secondary-700);
+    --color-secondary-600: var(--secondary-600);
+    --color-secondary-500: var(--secondary-500);
+    --color-secondary-400: var(--secondary-400);
+    --color-secondary-300: var(--secondary-300);
+    --color-secondary-200: var(--secondary-200);
+    --color-secondary-100: var(--secondary-100);
 
     --color-success: var(--success);
     --color-error: var(--error);
 
-    --color-service-black: var(--service-black);
-    --color-service-gray: var(--service-gray);
-    --color-service-gray-medium: var(--service-gray-medium);
-    --color-service-gray-light: var(--service-gray-light);
-
     --color-kakao-primary: var(--kakao-primary);
+
+    --color-black: var(--black);
 
     /* ============ 폰트 패밀리 테마 ============ */
     --font-sans: var(--font-geist-sans);

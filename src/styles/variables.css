@@ -10,20 +10,32 @@
   --background: #ffffff;
   --foreground: #17171b;
 
-  --primary: #f4c542;
-  --secondary: #7ed957;
-  --primary-light: #fefaf5;
-  --secondary-light: #f5fbf3;
+  --primary-900: #a28200;
+  --primary-800: #b8950f;
+  --primary-700: #cfae20;
+  --primary-600: #e4c12e;
+  --primary-500: #f4c542;
+  --primary-400: #f7d463;
+  --primary-300: #f9e28c;
+  --primary-200: #fcf0b7;
+  --primary-100: #fefbe4;
+
+  --secondary-900: #348d1f;
+  --secondary-800: #4aa735;
+  --secondary-700: #5fc447;
+  --secondary-600: #73e159;
+  --secondary-500: #7ed957;
+  --secondary-400: #98e67c;
+  --secondary-300: #b2f1a1;
+  --secondary-200: #d1f8c9;
+  --secondary-100: #f0fdea;
 
   --success: #3b82f6;
   --error: #ef4444;
 
-  --service-black: #18181b;
-  --service-gray: #aeaeae;
-  --service-gray-medium: #e2e2e2;
-  --service-gray-light: #f7f7f7;
-
   --kakao-primary: #fee500;
+
+  --black: #18181b;
 
   /* ============ 폰트 패밀리 변수 ============ */
   --font-geist-sans: Arial, Helvetica, sans-serif;
