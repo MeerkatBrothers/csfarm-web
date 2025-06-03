@@ -1,7 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import Body1 from "../typography/Body1";
+
+import Body1 from "@/components/atoms/typography/Body1";
 
 interface Props {
   platform: string;

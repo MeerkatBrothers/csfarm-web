@@ -10,9 +10,10 @@ const Label1 = ({ text, reading, styles }: Label1Props) => {
   return (
     <p
       className={clsx(
-        "text-label1 font-label1",
+        "text-label1",
         reading ? "leading-label1-reading" : "leading-label1",
-        styles?.textColor ?? "text-service-black",
+        styles?.color ?? "text-service-black",
+        styles?.weight ?? "font-normal",
       )}
     >
       {text}

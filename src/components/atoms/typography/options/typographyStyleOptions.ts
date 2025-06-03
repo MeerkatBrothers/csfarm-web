@@ -1,3 +1,4 @@
 export default interface TypographyStyleOptions {
-  textColor?: string;
+  color?: string;
+  weight?: "font-bold" | "font-medium" | "font-normal";
 }
