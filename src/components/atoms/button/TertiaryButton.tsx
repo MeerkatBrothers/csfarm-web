@@ -12,8 +12,8 @@ interface TertiaryButtonProps extends ButtonProps {
 
 const TertiaryButton = ({ label, styles, disabled = false, onClick }: TertiaryButtonProps) => {
   return (
-    <button className={clsx("w-full h-12", "md:w-auto md:px-4", "disabled:text-service-gray")} disabled={disabled} onClick={onClick}>
-      <Body1 text={label} styles={{ color: styles?.labelColor ?? "text-black", weight: "font-bold" }} />
+    <button className={clsx("w-full h-12", "md:w-auto md:px-4")} disabled={disabled} onClick={onClick}>
+      <Body1 text={label} styles={{ color: disabled ? "text-gray-400" : styles?.labelColor ?? "text-black", weight: "font-medium" }} />
     </button>
   );
 };
