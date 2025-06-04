@@ -11,13 +11,11 @@ interface ServiceLayoutProps {
 const ServiceLayout = ({ children }: Readonly<ServiceLayoutProps>) => {
   return (
     <div className="flex flex-col h-full">
-      <header className={clsx("flex justify-center px-4 border-b border-service-gray-medium", "md:px-6")}>
+      <header className={clsx("flex justify-center px-4 border-b border-gray-200", "md:px-6")}>
         <Header />
       </header>
 
-      <div className="flex flex-1 justify-center">
-        <Content>{children}</Content>
-      </div>
+      <Content>{children}</Content>
     </div>
   );
 };

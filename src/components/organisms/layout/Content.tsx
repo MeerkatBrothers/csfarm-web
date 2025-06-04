@@ -1,21 +1,11 @@
-import clsx from "clsx";
-
-import SideNav from "@/components/organisms/layout/SideNav";
+import { ReactNode } from "react";
 
 interface ConetentProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const Content = ({ children }: Readonly<ConetentProps>) => {
-  return (
-    <div className="flex flex-row max-w-7xl w-full">
-      <nav className={clsx("p-4 border-r border-service-gray-medium", "hidden md:block")}>
-        <SideNav />
-      </nav>
-
-      <main className="flex-1 p-6">{children}</main>
-    </div>
-  );
+  return <main className="flex justify-center w-full p-6">{children}</main>;
 };
 
 export default Content;

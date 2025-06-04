@@ -9,14 +9,14 @@ const SecondaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
   return (
     <button
       className={clsx(
-        "w-full h-12 text-base rounded-lg bg-service-gray-medium",
+        "w-full h-12 rounded-lg bg-gray-200",
         "md:w-auto md:px-4",
         "disabled:bg-service-gray-medium disabled:text-service-gray",
       )}
       disabled={disabled}
       onClick={onClick}
     >
-      <Body1 text={label} styles={{ color: "font-white", weight: "font-bold" }} />
+      <Body1 text={label} styles={{ color: "text-black", weight: "font-bold" }} />
     </button>
   );
 };

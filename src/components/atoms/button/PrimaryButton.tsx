@@ -9,14 +9,14 @@ const PrimaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
   return (
     <button
       className={clsx(
-        "w-full h-12 text-base rounded-lg bg-primary",
+        "w-full h-12 rounded-lg bg-primary-500",
         "md:w-auto md:px-4",
         "disabled:bg-service-gray-medium disabled:text-service-gray",
       )}
       disabled={disabled}
       onClick={onClick}
     >
-      <Body1 text={label} styles={{ color: "font-white", weight: "font-bold" }} />
+      <Body1 text={label} styles={{ color: "text-white", weight: "font-bold" }} />
     </button>
   );
 };

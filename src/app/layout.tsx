@@ -7,6 +7,7 @@ import "@/styles/global.css";
 import QueryProvider from "@/lib/providers/QueryProvider";
 
 import { LoginModalProvider } from "@/domains/auth/providers/LoginModalProvider";
+import clsx from "clsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,8 +30,8 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en">
-      <body className={`min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="ko">
+      <body className={clsx("min-h-screen antialiased", geistSans.variable, geistMono.variable)}>
         <QueryProvider>
           <LoginModalProvider>{children}</LoginModalProvider>
         </QueryProvider>
