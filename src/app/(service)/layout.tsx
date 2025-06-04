@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import clsx from "clsx";
 
 import Header from "@/components/organisms/layout/Header";
-import Content from "@/components/organisms/layout/Content";
+import Main from "@/components/organisms/layout/Main";
 
 interface ServiceLayoutProps {
   children: ReactNode;
@@ -15,7 +15,9 @@ const ServiceLayout = ({ children }: Readonly<ServiceLayoutProps>) => {
         <Header />
       </header>
 
-      <Content>{children}</Content>
+      <main className="flex flex-1 justify-center">
+        <Main>{children}</Main>
+      </main>
     </div>
   );
 };

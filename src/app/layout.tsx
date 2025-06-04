@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import clsx from "clsx";
 
 import "@/styles/global.css";
 
 import QueryProvider from "@/lib/providers/QueryProvider";
 
 import { LoginModalProvider } from "@/domains/auth/providers/LoginModalProvider";
-import clsx from "clsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
