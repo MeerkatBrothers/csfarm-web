@@ -5,7 +5,7 @@ interface SkeletonItemProps {
 }
 
 const SkeletonItem = ({ styles }: SkeletonItemProps) => {
-  return <div className={clsx("rounded bg-service-gray-medium animate-pulse", styles)} />;
+  return <div className={clsx("rounded-lg bg-gray-100 animate-pulse", styles)} />;
 };
 
 export default SkeletonItem;

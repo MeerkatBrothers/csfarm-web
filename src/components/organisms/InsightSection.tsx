@@ -1,6 +1,6 @@
 import { Insight } from "@/domains/insight/models/fragments/insight";
 
-import Title2 from "@/components/atoms/typography/Title2";
+import Heading1 from "@/components/atoms/typography/Heading1";
 import Body1 from "@/components/atoms/typography/Body1";
 import SubInsightList from "@/components/organisms/SubInsightList";
 
@@ -10,9 +10,9 @@ interface InsightSectionProps {
 
 const InsightSection = ({ insight }: InsightSectionProps) => {
   return (
-    <div className="space-y-20">
-      <div className="space-y-2">
-        <Title2 text={`🌾 ${insight.subject}`} />
+    <div className="flex flex-col gap-20">
+      <div className="flex flex-col px-4 py-5 gap-4 rounded-lg bg-gray-100">
+        <Heading1 text={insight.subject} />
 
         <Body1 text={insight.description} reading />
       </div>
