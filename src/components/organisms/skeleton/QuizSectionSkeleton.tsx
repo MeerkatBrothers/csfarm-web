@@ -4,13 +4,17 @@ import SkeletonItem from "@/components/atoms/SkeletonItem";
 
 const QuizSectionSkeleton = () => {
   return (
-    <div className="space-y-8">
-      <SkeletonItem styles={clsx("w-full max-w-2xl h-8", "lg:h-10")} />
+    <div className="flex flex-col gap-4">
+      <SkeletonItem styles={clsx("w-full max-w-xs h-7", "md:h-8", "lg:h-9")} />
 
-      <div className={clsx("space-y-10", "lg:space-y-8")}>
-        {Array.from({ length: 4 }).map((_, index) => {
-          return <SkeletonItem key={index} styles={clsx("w-full max-w-2xl h-6", "lg:h-8")} />;
-        })}
+      <div className="flex flex-col gap-8">
+        <SkeletonItem styles={clsx("w-full h-16", "md:h-17", "lg:h-18")} />
+
+        <div className="flex flex-col gap-14">
+          {Array.from({ length: 4 }).map((_, index) => {
+            return <SkeletonItem key={index} styles={clsx("w-full h-5")} />;
+          })}
+        </div>
       </div>
     </div>
   );

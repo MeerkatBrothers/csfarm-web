@@ -25,7 +25,7 @@ const TodayInsightSection = () => {
   return (
     <div className="flex flex-col gap-24">
       <div className="flex flex-col gap-4">
-        <Title3 text="오늘의 지식 🌾" />
+        <Title3 text="오늘의 수확물 🌾" />
 
         <InsightSection insight={todayInsight.insight} />
       </div>
