@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 
 interface NavLinkerProps {
@@ -8,7 +10,10 @@ interface NavLinkerProps {
 
 const NavLinker = ({ label, isActive, onClick }: NavLinkerProps) => {
   return (
-    <button className={clsx("flex justify-center py-4 text-base font-semibold", isActive && "text-primary")} onClick={onClick}>
+    <button
+      className={clsx("text-body1 font-medium", "hover:text-black", "md:text-label1", isActive ? "text-black" : "text-gray-400")}
+      onClick={onClick}
+    >
       {label}
     </button>
   );

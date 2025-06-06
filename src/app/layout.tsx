@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import clsx from "clsx";
 
 import "@/styles/global.css";
 
@@ -29,8 +30,8 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en">
-      <body className={`min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="ko">
+      <body className={clsx("min-h-screen antialiased", geistSans.variable, geistMono.variable)}>
         <QueryProvider>
           <LoginModalProvider>{children}</LoginModalProvider>
         </QueryProvider>

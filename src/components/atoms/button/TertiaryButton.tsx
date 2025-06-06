@@ -4,6 +4,7 @@ import clsx from "clsx";
 
 import ButtonProps from "@/components/atoms/button/props/buttonProps";
 import ButtonStyleOptions from "@/components/atoms/button/options/buttonStyleOptions";
+import Body1 from "@/components/atoms/typography/Body1";
 
 interface TertiaryButtonProps extends ButtonProps {
   styles?: ButtonStyleOptions;
@@ -11,20 +12,8 @@ interface TertiaryButtonProps extends ButtonProps {
 
 const TertiaryButton = ({ label, styles, disabled = false, onClick }: TertiaryButtonProps) => {
   return (
-    <button
-      className={clsx(
-        "w-full md:w-auto",
-        "h-12",
-        "md:px-4",
-        "text-base",
-        "font-semibold",
-        styles?.labelColor ?? "text-service-black",
-        "disabled:text-service-gray",
-      )}
-      disabled={disabled}
-      onClick={onClick}
-    >
-      {label}
+    <button className={clsx("w-full h-12", "md:w-auto md:px-4")} disabled={disabled} onClick={onClick}>
+      <Body1 text={label} styles={{ color: disabled ? "text-gray-400" : styles?.labelColor ?? "text-black", weight: "font-medium" }} />
     </button>
   );
 };

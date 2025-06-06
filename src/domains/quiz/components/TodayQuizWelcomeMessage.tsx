@@ -2,7 +2,7 @@
 
 import useMyProfile from "@/domains/profile/hooks/useMyProfile";
 
-import Heading1 from "@/components/atoms/typography/Heading1";
+import Title2 from "@/components/atoms/typography/Title2";
 import WelcomeMessageSkeleton from "@/components/atoms/skeleton/WelcomeMessageSkeleton";
 
 const TodayQuizWelcomeMessage = () => {
@@ -12,7 +12,7 @@ const TodayQuizWelcomeMessage = () => {
     return <WelcomeMessageSkeleton />;
   }
 
-  return <Heading1 text={`${myProfile?.profile.nickname ?? "익명의"} 농부님,\n오늘의 수확물을 타작해볼까요?`} />;
+  return <Title2 text={`${myProfile?.profile.nickname ?? "익명의"} 농부님! 오늘의 수확물을 타작해볼까요?`} />;
 };
 
 export default TodayQuizWelcomeMessage;

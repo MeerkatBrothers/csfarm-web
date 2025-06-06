@@ -6,10 +6,11 @@ const Headline2 = ({ text, styles }: TypographyProps) => {
   return (
     <p
       className={clsx(
-        "text-headline2-sm leading-headline2-sm font-headline2",
+        "text-headline2-sm leading-headline2-sm",
         "md:text-headline2-md md:leading-headline2-md",
         "lg:text-headline2-lg lg:leading-headline2-lg",
-        styles?.textColor ?? "text-service-black",
+        styles?.color ?? "text-service-black",
+        styles?.weight ?? "font-bold",
       )}
     >
       {text}

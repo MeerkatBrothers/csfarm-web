@@ -10,9 +10,10 @@ const Body1 = ({ text, reading, styles }: Body1Props) => {
   return (
     <p
       className={clsx(
-        "text-body1 font-body1",
+        "text-body1",
         reading ? "leading-body1-reading" : "leading-body1",
-        styles?.textColor ?? "text-service-black",
+        styles?.color ?? "text-service-black",
+        styles?.weight ?? "font-normal",
       )}
     >
       {text}

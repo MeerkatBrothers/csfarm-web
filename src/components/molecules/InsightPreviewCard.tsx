@@ -2,7 +2,7 @@ import { formatDateToYMD } from "@/lib/utils/formatter/date";
 
 import { InsightPreview } from "@/domains/insight/models/fragments/insightPreview";
 
-import Title3 from "@/components/atoms/typography/Title3";
+import Heading1 from "@/components/atoms/typography/Heading1";
 import Label1 from "@/components/atoms/typography/Label1";
 
 interface InsightPreviewCardProps {
@@ -12,9 +12,9 @@ interface InsightPreviewCardProps {
 const InsightPreviewCard = ({ insightPreview }: InsightPreviewCardProps) => {
   return (
     <div className="flex flex-col items-start gap-1">
-      <Title3 text={insightPreview.subject} />
+      <Heading1 text={insightPreview.subject} />
 
-      <Label1 text={formatDateToYMD(insightPreview.publishedAt)} styles={{ textColor: "text-service-gray-medium" }} />
+      <Label1 text={formatDateToYMD(insightPreview.publishedAt)} styles={{ color: "text-gray-300" }} />
     </div>
   );
 };

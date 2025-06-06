@@ -1,29 +1,28 @@
 "use client";
 
+import { ReactNode } from "react";
 import clsx from "clsx";
-import Body1 from "../typography/Body1";
 
-interface Props {
+interface LoginButtonProps {
   platform: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   backgroundColor: string;
   foregroundColor: string;
   onClick: () => void;
 }
 
-const LoginButton = ({ platform, icon, backgroundColor, foregroundColor, onClick }: Props) => {
+const LoginButton = ({ platform, icon, backgroundColor, foregroundColor, onClick }: LoginButtonProps) => {
   return (
     <button
       className={clsx(
-        "flex w-full justify-center items-center py-3 space-x-2 rounded-lg text-lg font-bold",
+        "flex w-full justify-center items-center gap-2 py-3 rounded-lg text-body1 font-medium",
         backgroundColor,
         foregroundColor,
       )}
       onClick={onClick}
     >
       {icon}
-
-      <Body1 text={`${platform}로 계속하기`} />
+      {platform}로 계속하기
     </button>
   );
 };

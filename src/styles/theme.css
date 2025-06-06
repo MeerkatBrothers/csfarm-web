@@ -8,23 +8,36 @@
   */
   @theme inline {
     /* ============ 색상 테마 ============ */
+
     --color-background: var(--background);
     --color-foreground: var(--foreground);
 
-    --color-primary: var(--primary);
-    --color-primary-light: var(--primary-light);
-    --color-secondary: var(--secondary);
-    --color-secondary-light: var(--secondary-light);
+    --color-primary-900: var(--primary-900);
+    --color-primary-800: var(--primary-800);
+    --color-primary-700: var(--primary-700);
+    --color-primary-600: var(--primary-600);
+    --color-primary-500: var(--primary-500);
+    --color-primary-400: var(--primary-400);
+    --color-primary-300: var(--primary-300);
+    --color-primary-200: var(--primary-200);
+    --color-primary-100: var(--primary-100);
+
+    --color-secondary-900: var(--secondary-900);
+    --color-secondary-800: var(--secondary-800);
+    --color-secondary-700: var(--secondary-700);
+    --color-secondary-600: var(--secondary-600);
+    --color-secondary-500: var(--secondary-500);
+    --color-secondary-400: var(--secondary-400);
+    --color-secondary-300: var(--secondary-300);
+    --color-secondary-200: var(--secondary-200);
+    --color-secondary-100: var(--secondary-100);
 
     --color-success: var(--success);
     --color-error: var(--error);
 
-    --color-service-black: var(--service-black);
-    --color-service-gray: var(--service-gray);
-    --color-service-gray-medium: var(--service-gray-medium);
-    --color-service-gray-light: var(--service-gray-light);
-
     --color-kakao-primary: var(--kakao-primary);
+
+    --color-black: var(--black);
 
     /* ============ 폰트 패밀리 테마 ============ */
     --font-sans: var(--font-geist-sans);
@@ -93,52 +106,6 @@
 
     /* Caption 2 */
     --text-caption2: var(--text-caption2);
-
-    /* ============ 폰트 굵기 변수 ============ */
-    /* Display 1 */
-    --font-weight-display1: var(--font-weight-display1);
-
-    /* Display 2 */
-    --font-weight-display2: var(--font-weight-display2);
-
-    /* Title 1 */
-    --font-weight-title1: var(--font-weight-title1);
-
-    /* Title 2 */
-    --font-weight-title2: var(--font-weight-title2);
-
-    /* Title 3 */
-    --font-weight-title3: var(--font-weight-title3);
-
-    /* Heading 1 */
-    --font-weight-heading1: var(--font-weight-heading1);
-
-    /* Heading 2 */
-    --font-weight-heading2: var(--font-weight-heading2);
-
-    /* Headline 1 */
-    --font-weight-headline1: var(--font-weight-headline1);
-
-    /* Headline 2 */
-    --font-weight-headline2: var(--font-weight-headline2);
-
-    /* Body 1 */
-    --font-weight-body1: var(--font-weight-body1);
-
-    /* Body 2 */
-    --font-weight-body2: var(--font-weight-body2);
-
-    /* Label 1 */
-    --font-weight-label1: var(--font-weight-label1);
-
-    /* Label 2 */
-    --font-weight-label2: var(--font-weight-label2);
-
-    /* Caption 1 */
-    --font-weight-caption1: var(--font-weight-caption1);
-
-    /* Caption 2 */
-    --font-weight-caption2: var(--font-weight-caption2);
 
     /* ============ 라인 높이 테마 ============ */
     /* Display 1 */
