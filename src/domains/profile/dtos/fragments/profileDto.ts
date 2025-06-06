@@ -4,7 +4,7 @@ export const profileDtoSchema = z.object({
   id: z.number(),
   memberId: z.number(),
   nickname: z.string(),
-  profileImageUrl: z.string(),
+  profileImageUrl: z.string().nullable(),
   createdAt: z.coerce.date(),
 });
 

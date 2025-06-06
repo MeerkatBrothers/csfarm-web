@@ -1,13 +1,21 @@
-import Logo from "@/../public/svgs/logo.svg";
+import clsx from "clsx";
 
-import HeaderActionGroup from "@/components/molecules/HeaderActionGroup";
+import ServiceLogo from "@/components/atoms/ServiceLogo";
+import NonMobileHeader from "@/components/organisms/layout/NonMobileHeader";
+import MobileHeader from "@/components/organisms/layout/MobileHeader";
 
 const Header = () => {
   return (
     <div className="flex flex-row justify-between items-center w-full max-w-7xl h-14">
-      <Logo width={128} />
+      <ServiceLogo />
 
-      <HeaderActionGroup />
+      <div className={clsx("hidden", "md:block")}>
+        <NonMobileHeader />
+      </div>
+
+      <div className={clsx("md:hidden")}>
+        <MobileHeader />
+      </div>
     </div>
   );
 };

@@ -23,5 +23,14 @@ export const setRefreshTokenToCookie = (response: NextResponse, token: string): 
 };
 
 export const deleteRefreshTokenFromCookie = (response: NextResponse): void => {
-  response.cookies.delete(key);
+  response.cookies.set({
+    name: key,
+    value: "",
+    path: "/api",
+    maxAge: 0,
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+    expires: new Date(0),
+  });
 };
