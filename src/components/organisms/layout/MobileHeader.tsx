@@ -7,7 +7,7 @@ import { SVG_SIZE } from "@/lib/constants/ui";
 
 import OverlayNav from "@/components/organisms/layout/OverlayNav";
 
-const MobileHeaderActionGroup = () => {
+const MobileHeader = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
   return (
@@ -19,4 +19,4 @@ const MobileHeaderActionGroup = () => {
   );
 };
 
-export default MobileHeaderActionGroup;
+export default MobileHeader;
