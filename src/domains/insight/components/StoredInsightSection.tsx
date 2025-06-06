@@ -31,8 +31,8 @@ const StoredInsightSection = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="space-x-2">
+    <div className="flex flex-col gap-6">
+      <div className="flex gap-2">
         {weekOptions.map((weekOption, index) => (
           <ToggleChip key={index} label={weekOption} isActive={index === weekOffset} onClick={() => setWeekOffset(index)} />
         ))}

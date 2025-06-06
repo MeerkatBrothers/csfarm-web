@@ -4,7 +4,7 @@ import SkeletonItem from "@/components/atoms/SkeletonItem";
 
 const QuizSectionSkeleton = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <SkeletonItem styles={clsx("w-full max-w-xs h-7", "md:h-8", "lg:h-9")} />
 
       <div className="flex flex-col gap-8">

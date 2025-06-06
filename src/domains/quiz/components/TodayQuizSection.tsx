@@ -28,7 +28,7 @@ const TodayQuizSection = () => {
 
   return (
     <div className="flex flex-col gap-24">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <Title3 text="오늘의 타작물 🚜" />
 
         <QuizSection quiz={todayQuiz.quiz} choiceId={choiceId} onChoice={setChoiceId} />
