@@ -9,7 +9,7 @@ const ServiceLogo = () => {
 
   return (
     <button onClick={() => router.replace("/")}>
-      <Logo width={128} />
+      <Logo width={80} />
     </button>
   );
 };
