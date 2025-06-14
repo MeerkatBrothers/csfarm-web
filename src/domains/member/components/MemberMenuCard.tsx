@@ -16,7 +16,7 @@ const MemberMenuCard = () => {
 
   return (
     <div className="flex flex-col items-center w-32 p-6 gap-6 rounded-2xl border-2 border-gray-100 bg-white">
-      <button>
+      <button onClick={() => router.push("/profile/my")}>
         <Label1 text="마이페이지" styles={{ weight: "font-medium" }} />
       </button>
 
