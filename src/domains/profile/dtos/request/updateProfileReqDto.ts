@@ -2,8 +2,8 @@ import { z } from "zod";
 
 import { profileFormDtoSchema } from "@/domains/profile/dtos/fragments/profileFormDto";
 
-export const modifyProfileReqDtoSchema = z.object({
+export const updateProfileReqDtoSchema = z.object({
   profile: profileFormDtoSchema,
 });
 
-export type ModifyProfileReqDto = z.infer<typeof modifyProfileReqDtoSchema>;
+export type UpdateProfileReqDto = z.infer<typeof updateProfileReqDtoSchema>;
