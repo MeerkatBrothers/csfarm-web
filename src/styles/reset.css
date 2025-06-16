@@ -24,6 +24,8 @@
   select {
     font: inherit;
     color: inherit;
+    border: none;
+    outline: none;
   }
 
   a {

@@ -3,9 +3,9 @@ import { buildProxyServerUrl } from "@/lib/utils/url";
 import { CONTENT_TYPE_JSON } from "@/lib/apis/constants/contentType";
 import internalAuthFetcher from "@/lib/apis/fetchers/internalAuthFetcher";
 
-import { ModifyProfileReqDto } from "@/domains/profile/dtos/request/modifyProfileReqDto";
+import { UpdateProfileReqDto } from "@/domains/profile/dtos/request/updateProfileReqDto";
 
-const modifyProfileRepo = async (body: ModifyProfileReqDto): Promise<Result<null>> => {
+const updateProfileRepo = async (body: UpdateProfileReqDto): Promise<Result<null>> => {
   const endpoint: string = "profile";
 
   const result: Result<null> = await internalAuthFetcher<null>({
@@ -22,4 +22,4 @@ const modifyProfileRepo = async (body: ModifyProfileReqDto): Promise<Result<null
   return result;
 };
 
-export default modifyProfileRepo;
+export default updateProfileRepo;

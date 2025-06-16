@@ -5,20 +5,20 @@ import { validateOrThrow } from "@/lib/utils/zod";
 import { getAccessTokenFromCookie } from "@/lib/cookie/accessToken";
 import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 
-import modifyProfileSource from "@/domains/profile/datasources/modifyProfileSource";
-import { ModifyProfileReqDto, modifyProfileReqDtoSchema } from "@/domains/profile/dtos/request/modifyProfileReqDto";
+import updateProfileSource from "@/domains/profile/datasources/updateProfileSource";
+import { UpdateProfileReqDto, updateProfileReqDtoSchema } from "@/domains/profile/dtos/request/updateProfileReqDto";
 
 export const PATCH = async (request: Request): Promise<NextResponse<Result<null>>> => {
   try {
     const requestBody: unknown = await request.json();
-    const validatedRequestBody: ModifyProfileReqDto = validateOrThrow(modifyProfileReqDtoSchema, requestBody);
+    const validatedRequestBody: UpdateProfileReqDto = validateOrThrow(updateProfileReqDtoSchema, requestBody);
 
     const storedAccessToken: string | null = await getAccessTokenFromCookie();
     if (!storedAccessToken) {
       throw new UnauthorizedError();
     }
 
-    await modifyProfileSource(validatedRequestBody, storedAccessToken);
+    await updateProfileSource(validatedRequestBody, storedAccessToken);
 
     return NextResponse.json(success(null));
   } catch (e) {

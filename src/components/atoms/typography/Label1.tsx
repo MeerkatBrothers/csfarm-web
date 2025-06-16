@@ -13,7 +13,7 @@ const Label1 = ({ text, reading, styles }: Label1Props) => {
         "text-label1",
         reading ? "leading-label1-reading" : "leading-label1",
         styles?.color ?? "text-service-black",
-        styles?.weight ?? "font-normal",
+        styles?.weight ?? "font-bold",
       )}
     >
       {text}
