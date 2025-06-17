@@ -12,9 +12,7 @@ const useHarvestInsight = ({ onSuccess }: UseHarvestInsightParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (insightId: number) => {
-      await harvestInsight(insightId);
-    },
+    mutationFn: async (insightId: number) => harvestInsight(insightId),
     onSuccess: (_, variables) => {
       queryClient.setQueryData<InsightStatus>(INSIGHT_QUERY_KEYS.STATUS(variables), (prev) =>
         prev ? { ...prev, isHarvested: true } : prev,

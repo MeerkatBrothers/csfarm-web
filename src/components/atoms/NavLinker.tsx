@@ -11,7 +11,7 @@ interface NavLinkerProps {
 const NavLinker = ({ label, isActive, onClick }: NavLinkerProps) => {
   return (
     <button
-      className={clsx("text-body1 font-medium", "hover:text-black", "md:text-label1", isActive ? "text-black" : "text-gray-400")}
+      className={clsx("text-body1 font-medium hover:text-black", "md:text-label1", isActive ? "text-black" : "text-gray-400")}
       onClick={onClick}
     >
       {label}

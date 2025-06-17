@@ -9,7 +9,6 @@ const uploadImageRepo = async (body: UploadImageReqDto): Promise<Result<UploadIm
   const endpoint: string = "image/upload";
 
   const formData: FormData = new FormData();
-  formData.append("dir", body.dir);
   formData.append("image", body.image);
 
   const result: Result<UploadImageResDto> = await internalFetcher({

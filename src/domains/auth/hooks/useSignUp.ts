@@ -12,9 +12,7 @@ const useSignUp = ({ onSuccess, onError }: UseSignUpParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (credentialForm: CredentialForm) => {
-      await signUp(credentialForm);
-    },
+    mutationFn: async (credentialForm: CredentialForm) => await signUp(credentialForm),
     onSuccess: () => {
       queryClient.clear();
 

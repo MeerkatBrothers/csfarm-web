@@ -11,7 +11,9 @@ const useProfileForm = (initialProfileForm: ProfileForm) => {
     setProfileForm({ ...profileForm, nickname });
   };
 
-  const { mutate: uploadProfileImage } = useUploadImage({ onSuccess: (url) => setProfileForm({ ...profileForm, profileImageUrl: url }) });
+  const { mutate: uploadProfileImage } = useUploadImage({
+    onSuccess: (profileImageUrl) => setProfileForm({ ...profileForm, profileImageUrl }),
+  });
 
   useEffect(() => {
     setProfileForm(initialProfileForm);

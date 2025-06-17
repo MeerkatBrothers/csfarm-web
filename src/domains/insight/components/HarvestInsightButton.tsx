@@ -1,8 +1,9 @@
 "use client";
 
+import useAuthAction from "@/domains/auth/hooks/useAuthAction";
+
 import useInsightStatus from "@/domains/insight/hooks/useInsightStatus";
 import useHarvestInsight from "@/domains/insight/hooks/useHarvestInsight";
-import useAuthAction from "@/domains/auth/hooks/useAuthAction";
 
 import PrimaryButton from "@/components/atoms/button/PrimaryButton";
 import DotLoader from "@/components/atoms/DotLoader";

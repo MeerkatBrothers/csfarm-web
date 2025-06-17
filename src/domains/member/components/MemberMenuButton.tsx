@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
-import { SVG_SIZE } from "@/lib/constants/ui";
+import { ICON_SIZE } from "@/lib/constants/ui";
 
 import useMyProfile from "@/domains/profile/hooks/useMyProfile";
-import ProfileMenuCard from "@/domains/member/components/MemberMenuCard";
+import MemberMenuCard from "@/domains/member/components/MemberMenuCard";
 
 import Body2 from "@/components/atoms/typography/Body2";
 import ProfileImage from "@/components/atoms/ProfileImage";
@@ -17,9 +17,7 @@ const MemberMenuButton = () => {
 
   const { data: myProfile, isLoading } = useMyProfile();
 
-  const toggleMenu = (): void => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = (): void => setIsMenuOpen(!isMenuOpen);
 
   if (isLoading) {
     return <DotLoader />;
@@ -36,12 +34,12 @@ const MemberMenuButton = () => {
 
         <Body2 text={`${myProfile.profile.nickname} 님`} styles={{ weight: "font-bold" }} />
 
-        <FiChevronDown size={SVG_SIZE} />
+        <FiChevronDown size={ICON_SIZE} />
       </button>
 
       {isMenuOpen && (
         <div className="absolute right-0">
-          <ProfileMenuCard />
+          <MemberMenuCard />
         </div>
       )}
     </div>

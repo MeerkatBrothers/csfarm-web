@@ -7,11 +7,7 @@ import { TodayQuiz } from "@/domains/quiz/models/todayQuiz";
 const useTodayQuiz = () => {
   return useQuery<TodayQuiz>({
     queryKey: QUIZ_QUERY_KEYS.TODAY(),
-    queryFn: async () => {
-      const todayQuiz: TodayQuiz = await getTodayQuiz();
-
-      return todayQuiz;
-    },
+    queryFn: getTodayQuiz,
     staleTime: 1000 * 60 * 30,
     gcTime: 1000 * 60 * 60,
     retry: false,

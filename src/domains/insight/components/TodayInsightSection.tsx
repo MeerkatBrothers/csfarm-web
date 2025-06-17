@@ -2,16 +2,16 @@
 
 import useTodayInsight from "@/domains/insight/hooks/useTodayInsight";
 import HarvestInsightButton from "@/domains/insight/components/HarvestInsightButton";
+import TodayInsightSectionSkeleton from "@/domains/insight/components/skeleton/TodayInsightSectionSkeleton";
 
 import Title3 from "@/components/atoms/typography/Title3";
 import InsightSection from "@/components/organisms/InsightSection";
-import InsightSectionSkeleton from "@/components/organisms/skeleton/InsightSectionSkeleton";
 
 const TodayInsightSection = () => {
   const { data: todayInsight, isLoading, isError, error } = useTodayInsight();
 
   if (isLoading) {
-    return <InsightSectionSkeleton />;
+    return <TodayInsightSectionSkeleton />;
   }
 
   if (isError) {

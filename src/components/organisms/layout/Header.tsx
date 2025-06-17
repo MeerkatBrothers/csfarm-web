@@ -6,7 +6,7 @@ import MobileHeader from "@/components/organisms/layout/MobileHeader";
 
 const Header = () => {
   return (
-    <div className="flex flex-row justify-between items-center w-full max-w-7xl h-14">
+    <div className="flex flex-row items-center justify-between w-full max-w-7xl h-14">
       <ServiceLogo />
 
       <div className={clsx("hidden", "md:block")}>

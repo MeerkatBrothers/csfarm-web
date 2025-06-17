@@ -14,9 +14,7 @@ const useHarvestedInsight = () => {
       return harvestedInsight.insights;
     },
     initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length > 0 ? allPages.length + 1 : undefined;
-    },
+    getNextPageParam: (lastPage, allPages) => (lastPage.length > 0 ? allPages.length + 1 : undefined),
     staleTime: 1000 * 60 * 10,
     gcTime: 1000 * 60 * 30,
   });

@@ -11,9 +11,7 @@ const useWithdraw = ({ onSuccess, onError }: UseWithdrawParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async () => {
-      await withdraw();
-    },
+    mutationFn: withdraw,
     onSuccess: () => {
       queryClient.clear();
 

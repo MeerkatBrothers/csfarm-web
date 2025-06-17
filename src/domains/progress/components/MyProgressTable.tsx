@@ -3,12 +3,13 @@
 import { useMemo } from "react";
 
 import useMyProfile from "@/domains/profile/hooks/useMyProfile";
+
 import useMyProgress from "@/domains/progress/hooks/useMyProgress";
+import MyProgressTableSkeleton from "@/domains/progress/components/skeleton/MyProgressTableSkeleton";
 
 import Heading1 from "@/components/atoms/typography/Heading1";
 import HarvestCounter from "@/components/atoms/HarvestCounter";
 import ProgressTable from "@/components/organisms/ProgressTable";
-import MyProgressTableSkeleton from "@/components/organisms/skeleton/MyProgressTableSkeleton";
 
 const MyProgressTable = () => {
   const { data: myProfile } = useMyProfile();

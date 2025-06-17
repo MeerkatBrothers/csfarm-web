@@ -11,13 +11,12 @@ import { UploadImageResDto, uploadImageResDtoSchema } from "@/domains/image/dtos
 export const POST = async (request: Request): Promise<NextResponse<Result<UploadImageResDto>>> => {
   try {
     const formData: FormData = await request.formData();
-    const dir: string | null = formData.get("dir") as string | null;
     const image: File | null = formData.get("image") as File | null;
-    if (!dir || !image) {
-      throw new BadRequestError("이미지가 잘 도착하지 않았어요. 다시 시도해 주세요.");
+    if (!image) {
+      throw new BadRequestError("이미지가 도착하지 않았어요. 다시 시도해 주세요.");
     }
 
-    const apiResponse: ApiResponse<UploadImageResDto> = await uploadImageSource(dir, image);
+    const apiResponse: ApiResponse<UploadImageResDto> = await uploadImageSource(image);
 
     const data: UploadImageResDto = apiResponse.data;
     const validatedData: UploadImageResDto = validateOrThrow(uploadImageResDtoSchema, data);

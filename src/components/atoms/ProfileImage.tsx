@@ -1,14 +1,14 @@
 import Image from "next/image";
 
-interface Props {
+interface ProfileImageProps {
   imageUrl: string | null;
-  size: number;
+  size?: number;
 }
 
-const ProfileImage = ({ imageUrl, size }: Props) => {
+const ProfileImage = ({ imageUrl, size = 120 }: ProfileImageProps) => {
   return (
     <Image
-      className="border border-service-gray-light rounded-full object-cover"
+      className="rounded-full object-cover border border-service-gray-light"
       src={imageUrl ?? "/images/profile_mock_image.png"}
       width={size}
       height={size}

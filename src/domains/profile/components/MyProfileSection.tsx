@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 
 import useMyProfile from "@/domains/profile/hooks/useMyProfile";
+import MyProfileSectionSkeleton from "@/domains/profile/components/skeleton/MyProfileSectionSkeleton";
 
-import ProfileSection from "@/components/organisms/ProfileSection";
 import SecondaryButton from "@/components/atoms/button/SecondaryButton";
-import MyProfileSectionSkeleton from "@/components/organisms/skeleton/MyProfileSectionSkeleton";
+import ProfileSection from "@/components/organisms/ProfileSection";
 
 const MyProfileSection = () => {
   const router = useRouter();

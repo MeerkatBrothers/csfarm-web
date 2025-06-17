@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
 import uploadImage from "@/domains/image/usecases/uploadImage";
-import { UploadImageForm } from "@/domains/image/models/uploadImageForm";
 
 interface UseUploadImageParams {
   onSuccess?: (data: string) => void;
@@ -9,11 +8,7 @@ interface UseUploadImageParams {
 
 const useUploadImage = ({ onSuccess }: UseUploadImageParams) => {
   return useMutation({
-    mutationFn: async (uploadImageForm: UploadImageForm) => {
-      const imageUrl: string = await uploadImage(uploadImageForm);
-
-      return imageUrl;
-    },
+    mutationFn: async (image: File) => await uploadImage(image),
     onSuccess,
   });
 };

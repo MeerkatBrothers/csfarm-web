@@ -7,15 +7,16 @@ import Label1 from "@/components/atoms/typography/Label1";
 
 interface InsightPreviewCardProps {
   insightPreview: InsightPreview;
+  onClick: (insightId: number) => void;
 }
 
-const InsightPreviewCard = ({ insightPreview }: InsightPreviewCardProps) => {
+const InsightPreviewCard = ({ insightPreview, onClick }: InsightPreviewCardProps) => {
   return (
-    <div className="flex flex-col items-start gap-1">
+    <button className="flex flex-col items-start gap-1" onClick={() => onClick(insightPreview.id)}>
       <Heading1 text={insightPreview.subject} />
 
       <Label1 text={formatDateToYMD(insightPreview.publishedAt)} styles={{ color: "text-gray-300" }} />
-    </div>
+    </button>
   );
 };
 

@@ -15,7 +15,8 @@ const LoginButton = ({ platform, icon, backgroundColor, foregroundColor, onClick
   return (
     <button
       className={clsx(
-        "flex w-full justify-center items-center gap-2 py-3 rounded-lg text-body1 font-medium",
+        "flex w-full justify-center items-center gap-2 py-3 rounded-lg",
+        "text-body1 font-medium",
         backgroundColor,
         foregroundColor,
       )}
