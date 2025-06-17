@@ -3,14 +3,11 @@ import { validateOrThrow } from "@/lib/utils/zod";
 import ResultError from "@/lib/errors/resultError";
 
 import uploadImageRepo from "@/domains/image/repositories/uploadImageRepo";
-import { UploadImageForm } from "@/domains/image/models/uploadImageForm";
 import { UploadImageReqDto, uploadImageReqDtoSchema } from "@/domains/image/dtos/request/uploadImageReqDto";
 import { UploadImageResDto } from "@/domains/image/dtos/response/uploadImageResDto";
 
-const uploadImage = async (uploadImageForm: UploadImageForm): Promise<string> => {
-  const { dir, image } = uploadImageForm;
-
-  const requestBody: UploadImageReqDto = { dir, image };
+const uploadImage = async (image: File): Promise<string> => {
+  const requestBody: UploadImageReqDto = { image };
   const validatedRequestBody: UploadImageReqDto = validateOrThrow(uploadImageReqDtoSchema, requestBody);
 
   const result: Result<UploadImageResDto> = await uploadImageRepo(validatedRequestBody);

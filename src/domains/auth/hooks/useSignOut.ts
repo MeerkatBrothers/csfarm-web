@@ -11,9 +11,7 @@ const useSignOut = ({ onSuccess, onError }: UseSignOutParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async () => {
-      await signOut();
-    },
+    mutationFn: signOut,
     onSuccess: () => {
       queryClient.clear();
 

@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import useStoredInsight from "@/domains/insight/hooks/useStoredInsight";
+import StoredInsightSectionSkeleton from "@/domains/insight/components/skeleton/StoredInsightSectionSkeleton";
 
 import ToggleChip from "@/components/atoms/chip/ToggleChip";
 import InsightPreviewList from "@/components/organisms/InsightPreviewList";
-import InsightPreviewListSkeleton from "@/components/organisms/skeleton/InsightPreviewListSkeleton";
 
 const weekOptions: string[] = ["이번주", "1주전", "2주전", "3주전"];
 
@@ -19,7 +19,7 @@ const StoredInsightSection = () => {
   const { data: storedInsight, isLoading, isError, error } = useStoredInsight();
 
   if (isLoading) {
-    return <InsightPreviewListSkeleton />;
+    return <StoredInsightSectionSkeleton />;
   }
 
   if (isError) {

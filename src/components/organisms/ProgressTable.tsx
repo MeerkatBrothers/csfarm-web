@@ -14,7 +14,7 @@ interface ProgressTableProps {
   year?: number;
 }
 
-const ProgressTable = ({ progresses, year }: ProgressTableProps) => {
+const ProgressTable = ({ progresses, year = 2025 }: ProgressTableProps) => {
   const dateRow: (Date | undefined)[][] = useMemo(() => {
     const datesOfYear: Date[] = getAllDatesOfYear(year);
     const colCount: number = Math.ceil(datesOfYear.length / 7);

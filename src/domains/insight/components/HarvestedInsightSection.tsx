@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { useInView } from "react-intersection-observer";
 
 import useHarvestedInsight from "@/domains/insight/hooks/useHarvestedInsight";
+import HarvestedInsightSectionSkeleton from "@/domains/insight/components/skeleton/HarvestedInsightSectionSkeleton";
 
 import Heading1 from "@/components/atoms/typography/Heading1";
 import DotLoader from "@/components/atoms/DotLoader";
-import InsightPreviewListSkeleton from "@/components/organisms/skeleton/InsightPreviewListSkeleton";
 import MyInsightPreviewList from "@/components/organisms/MyInsightPreviewList";
 
 const HarvestedInsightSection = () => {
@@ -25,7 +25,7 @@ const HarvestedInsightSection = () => {
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   if (isLoading) {
-    return <InsightPreviewListSkeleton />;
+    return <HarvestedInsightSectionSkeleton />;
   }
 
   if (isError) {

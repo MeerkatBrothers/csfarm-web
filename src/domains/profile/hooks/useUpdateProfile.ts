@@ -12,9 +12,7 @@ const useUpdateProfile = ({ onSuccess }: UseModifyProfileParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (profileForm: ProfileForm) => {
-      await updateProfile(profileForm);
-    },
+    mutationFn: async (profileForm: ProfileForm) => await updateProfile(profileForm),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: PROFILE_QUERY_KEYS.MY });
 

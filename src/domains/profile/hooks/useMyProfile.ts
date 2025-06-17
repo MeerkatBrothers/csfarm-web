@@ -9,9 +9,7 @@ const useMyProfile = () => {
     queryKey: PROFILE_QUERY_KEYS.MY,
     queryFn: async () => {
       try {
-        const myProfile: MyProfile = await getMyProfile();
-
-        return myProfile;
+        return await getMyProfile();
       } catch (e) {
         return null;
       }

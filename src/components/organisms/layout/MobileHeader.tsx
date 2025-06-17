@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 
-import { SVG_SIZE } from "@/lib/constants/ui";
+import { ICON_SIZE } from "@/lib/constants/ui";
 
 import OverlayNav from "@/components/organisms/layout/OverlayNav";
 
@@ -12,7 +12,7 @@ const MobileHeader = () => {
 
   return (
     <>
-      <FiMenu size={SVG_SIZE} onClick={() => setIsNavOpen(true)} />
+      <FiMenu size={ICON_SIZE} onClick={() => setIsNavOpen(true)} />
 
       {isNavOpen && <OverlayNav onClose={setIsNavOpen} />}
     </>

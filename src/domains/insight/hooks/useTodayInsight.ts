@@ -7,11 +7,7 @@ import { TodayInsight } from "@/domains/insight/models/todayInsight";
 const useTodayInsight = () => {
   return useQuery<TodayInsight>({
     queryKey: INSIGHT_QUERY_KEYS.TODAY(),
-    queryFn: async () => {
-      const todayInsight: TodayInsight = await getTodayInsight();
-
-      return todayInsight;
-    },
+    queryFn: getTodayInsight,
     staleTime: 1000 * 60 * 30,
     gcTime: 1000 * 60 * 60,
     retry: false,

@@ -4,11 +4,10 @@ import ApiResponse from "@/lib/models/apiResponse";
 
 import { UploadImageResDto } from "@/domains/image/dtos/response/uploadImageResDto";
 
-const uploadImageSource = async (dir: string, image: File): Promise<ApiResponse<UploadImageResDto>> => {
+const uploadImageSource = async (image: File): Promise<ApiResponse<UploadImageResDto>> => {
   const endpoint: string = "image/upload";
 
   const formData: FormData = new FormData();
-  formData.append("dir", dir);
   formData.append("image", image);
 
   const apiResponse: ApiResponse<UploadImageResDto> = await externalFetcher({

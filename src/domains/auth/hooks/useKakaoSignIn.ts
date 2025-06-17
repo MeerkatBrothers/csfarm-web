@@ -31,11 +31,7 @@ const useKakaoSignIn = ({ onSuccess, onError }: UseKakaoSignInParams) => {
   });
 
   return useMutation({
-    mutationFn: async (kakaoCode: string) => {
-      const kakaoEmail: string = await getKakaoEmail(kakaoCode);
-
-      return kakaoEmail;
-    },
+    mutationFn: async (kakaoCode: string) => await getKakaoEmail(kakaoCode),
     onSuccess: (_, variables) => {
       const credentialForm: CredentialForm = { identifier: variables, loginPlatform: LOGIN_PLATFORM.KAKAO };
 

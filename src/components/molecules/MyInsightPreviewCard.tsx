@@ -9,11 +9,12 @@ import Label1 from "@/components/atoms/typography/Label1";
 
 interface MyInsightPreviewCardProps {
   myInsightPreview: MyInsightPreview;
+  onClick: (insightId: number) => void;
 }
 
-const MyInsightPreviewCard = ({ myInsightPreview }: MyInsightPreviewCardProps) => {
+const MyInsightPreviewCard = ({ myInsightPreview, onClick }: MyInsightPreviewCardProps) => {
   return (
-    <div className="flex flex-col items-start gap-1">
+    <button className="flex flex-col items-start gap-1" onClick={() => onClick(myInsightPreview.id)}>
       <div className="flex gap-1">
         <Heading1 text={myInsightPreview.subject} />
 
@@ -21,7 +22,7 @@ const MyInsightPreviewCard = ({ myInsightPreview }: MyInsightPreviewCardProps) =
       </div>
 
       <Label1 text={formatDateToYMD(myInsightPreview.publishedAt)} styles={{ color: "text-gray-300" }} />
-    </div>
+    </button>
   );
 };
 

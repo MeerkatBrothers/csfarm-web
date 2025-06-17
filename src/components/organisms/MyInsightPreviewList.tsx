@@ -11,11 +11,7 @@ const MyInsightPreviewList = ({ myInsightPreviews, onClick }: MyInsightPreviewPr
   return (
     <div className="flex flex-col gap-10">
       {myInsightPreviews.map((myInsightPreview, index) => {
-        return (
-          <button key={index} onClick={() => onClick(myInsightPreview.id)}>
-            <MyInsightPreviewCard myInsightPreview={myInsightPreview} />
-          </button>
-        );
+        return <MyInsightPreviewCard key={index} myInsightPreview={myInsightPreview} onClick={onClick} />;
       })}
     </div>
   );

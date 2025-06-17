@@ -7,9 +7,7 @@ import ErrorFallback from "@/components/organisms/ErrorFallback";
 const UpdateProfilePage = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div className="flex flex-col gap-20">
-        <UpdateProfileSection />
-      </div>
+      <UpdateProfileSection />
     </ErrorBoundary>
   );
 };

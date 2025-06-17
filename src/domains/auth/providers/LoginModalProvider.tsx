@@ -22,13 +22,9 @@ export const LoginModalProvider = ({ children }: LoginModalProviderProps) => {
     return () => document.body.classList.remove("overflow-hidden");
   }, [isOpen]);
 
-  const open = (): void => {
-    setIsOpen(true);
-  };
+  const open = (): void => setIsOpen(true);
 
-  const close = (): void => {
-    setIsOpen(false);
-  };
+  const close = (): void => setIsOpen(false);
 
   return (
     <LoginModalContext.Provider value={{ openLoginModal: open }}>

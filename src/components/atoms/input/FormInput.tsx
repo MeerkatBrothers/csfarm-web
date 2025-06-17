@@ -1,5 +1,7 @@
 "use client";
 
+import clsx from "clsx";
+
 import Label1 from "@/components/atoms/typography/Label1";
 
 interface FormInputProps {
@@ -15,7 +17,7 @@ const FormInput = ({ label, value, placeholder, onChange }: FormInputProps) => {
       {label && <Label1 text={label} />}
 
       <input
-        className="rounded-lg px-3 py-4 bg-gray-100 text-body1 font-normal text-black placeholder:text-gray-400"
+        className={clsx("rounded-lg px-3 py-4 bg-gray-100", "text-body1 font-normal text-black placeholder:text-gray-400")}
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange?.(e.target.value)}

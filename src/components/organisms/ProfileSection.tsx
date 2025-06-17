@@ -10,7 +10,7 @@ interface ProfileSectionProps {
 const ProfileSection = ({ profile }: ProfileSectionProps) => {
   return (
     <div className="flex flex-col items-center gap-4">
-      <ProfileImage imageUrl={profile.profileImageUrl} size={120} />
+      <ProfileImage imageUrl={profile.profileImageUrl} />
 
       <Heading1 text={`${profile.nickname} 농부님 👨‍🌾`} />
     </div>

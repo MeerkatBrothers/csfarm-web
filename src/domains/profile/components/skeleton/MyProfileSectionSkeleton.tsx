@@ -7,7 +7,7 @@ const MyProfileSectionSkeleton = () => {
     <div className="flex flex-col items-center gap-4">
       <SkeletonItem styles="w-[120px] h-[120px] !rounded-full" />
 
-      <SkeletonItem styles={clsx("w-full max-w-md h-6", "md:h-7", "lg:h-8")} />
+      <SkeletonItem styles={clsx("w-xs h-6", "md:h-7", "lg:h-8")} />
     </div>
   );
 };
