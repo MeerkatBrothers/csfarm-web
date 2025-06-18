@@ -30,7 +30,7 @@ const TodayInsightSection = () => {
         <InsightSection insight={todayInsight.insight} />
       </div>
 
-      <div className="flex justify-end">
+      <div className="md:self-end">
         <HarvestInsightButton insightId={todayInsight.insight.id} />
       </div>
     </div>

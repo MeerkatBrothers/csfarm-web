@@ -4,10 +4,9 @@ import withdraw from "@/domains/auth/usecases/withdraw";
 
 interface UseWithdrawParams {
   onSuccess?: () => void;
-  onError?: (error: Error) => void;
 }
 
-const useWithdraw = ({ onSuccess, onError }: UseWithdrawParams) => {
+const useWithdraw = ({ onSuccess }: UseWithdrawParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -17,7 +16,6 @@ const useWithdraw = ({ onSuccess, onError }: UseWithdrawParams) => {
 
       onSuccess?.();
     },
-    onError,
   });
 };
 
