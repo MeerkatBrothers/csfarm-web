@@ -27,12 +27,16 @@ const NavLinkerSection = ({ onLinkerClick }: NavLinkerSectionProps) => {
   };
 
   return (
-    <div className={clsx("flex flex-col gap-8", "md:flex-row")}>
+    <div className={clsx("flex flex-col items-center gap-8", "md:flex-row")}>
       <NavLinker label="오늘의 수확" isActive={pathname === "/insight/today"} onClick={() => navigateTo("/insight/today")} />
 
       <NavLinker label="오늘의 타작" isActive={pathname === "/quiz/today"} onClick={toTodayQuiz} />
 
       <NavLinker label="수확물 창고" isActive={pathname === "/insight/storage"} onClick={() => navigateTo("/insight/storage")} />
+
+      <div className={clsx("md:hidden")}>
+        <NavLinker label="마이페이지" isActive={pathname === "/profile/my"} onClick={() => navigateTo("/profile/my")} />
+      </div>
     </div>
   );
 };
