@@ -34,7 +34,7 @@ const TodayQuizSection = () => {
         <QuizSection quiz={todayQuiz.quiz} choiceId={choiceId} onChoice={setChoiceId} />
       </div>
 
-      <div className="flex justify-end">
+      <div className="md:self-end">
         <ThreshQuizButton quizId={todayQuiz.quiz.id} choiceId={choiceId} />
       </div>
     </div>

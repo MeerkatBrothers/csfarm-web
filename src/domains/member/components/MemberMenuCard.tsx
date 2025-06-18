@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import useSignOut from "@/domains/auth/hooks/useSignOut";
 
 import Label1 from "@/components/atoms/typography/Label1";
-import Caption1 from "@/components/atoms/typography/Caption1";
 
 const MemberMenuCard = () => {
   const router = useRouter();
@@ -22,10 +21,6 @@ const MemberMenuCard = () => {
 
       <button onClick={() => signOut()}>
         <Label1 text="로그아웃" styles={{ weight: "font-medium" }} />
-      </button>
-
-      <button>
-        <Caption1 text="회원탈퇴" styles={{ color: "text-gray-400" }} />
       </button>
     </div>
   );

@@ -4,10 +4,9 @@ import signOut from "@/domains/auth/usecases/signOut";
 
 interface UseSignOutParams {
   onSuccess?: () => void;
-  onError?: (error: Error) => void;
 }
 
-const useSignOut = ({ onSuccess, onError }: UseSignOutParams) => {
+const useSignOut = ({ onSuccess }: UseSignOutParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -17,7 +16,6 @@ const useSignOut = ({ onSuccess, onError }: UseSignOutParams) => {
 
       onSuccess?.();
     },
-    onError,
   });
 };
 
