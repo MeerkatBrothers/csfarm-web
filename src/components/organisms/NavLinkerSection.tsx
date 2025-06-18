@@ -16,15 +16,19 @@ const NavLinkerSection = ({ onLinkerClick }: NavLinkerSectionProps) => {
 
   const pathname: string = usePathname();
 
-  const toTodayQuiz = useAuthAction({
-    action: () => navigateTo("/quiz/today"),
-  });
-
   const navigateTo = (to: string): void => {
     onLinkerClick?.();
 
     router.push(to);
   };
+
+  const toTodayQuiz = useAuthAction({
+    action: () => navigateTo("/quiz/today"),
+  });
+
+  const toMyProfile = useAuthAction({
+    action: () => navigateTo("/profile/my"),
+  });
 
   return (
     <div className={clsx("flex flex-col items-center gap-8", "md:flex-row")}>
@@ -35,7 +39,7 @@ const NavLinkerSection = ({ onLinkerClick }: NavLinkerSectionProps) => {
       <NavLinker label="수확물 창고" isActive={pathname === "/insight/storage"} onClick={() => navigateTo("/insight/storage")} />
 
       <div className={clsx("md:hidden")}>
-        <NavLinker label="마이페이지" isActive={pathname === "/profile/my"} onClick={() => navigateTo("/profile/my")} />
+        <NavLinker label="마이페이지" isActive={pathname === "/profile/my"} onClick={toMyProfile} />
       </div>
     </div>
   );

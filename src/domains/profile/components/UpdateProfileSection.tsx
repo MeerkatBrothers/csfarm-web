@@ -5,13 +5,13 @@ import clsx from "clsx";
 
 import useMyProfile from "@/domains/profile/hooks/useMyProfile";
 import useProfileForm from "@/domains/profile/hooks/useProfileForm";
+import useWithdraw from "@/domains/auth/hooks/useWithdraw";
 import UpdateProfileButton from "@/domains/profile/components/UpdateProfileButton";
 import ProfileImageEditor from "@/domains/profile/components/ProfileImageEditor";
 import UpdateProfileSectionSkeleton from "@/domains/profile/components/skeleton/UpdateProfileSectionSkeleton";
 
 import Caption1 from "@/components/atoms/typography/Caption1";
 import FormInput from "@/components/atoms/input/FormInput";
-import useWithdraw from "@/domains/auth/hooks/useWithdraw";
 
 const UpdateProfileSection = () => {
   const router = useRouter();
