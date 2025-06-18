@@ -3,9 +3,10 @@
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
 
+import useWithdraw from "@/domains/auth/hooks/useWithdraw";
+
 import useMyProfile from "@/domains/profile/hooks/useMyProfile";
 import useProfileForm from "@/domains/profile/hooks/useProfileForm";
-import useWithdraw from "@/domains/auth/hooks/useWithdraw";
 import UpdateProfileButton from "@/domains/profile/components/UpdateProfileButton";
 import ProfileImageEditor from "@/domains/profile/components/ProfileImageEditor";
 import UpdateProfileSectionSkeleton from "@/domains/profile/components/skeleton/UpdateProfileSectionSkeleton";
