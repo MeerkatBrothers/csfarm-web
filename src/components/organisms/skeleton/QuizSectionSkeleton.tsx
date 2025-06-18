@@ -9,7 +9,7 @@ const QuizSectionSkeleton = () => {
 
       <div className="flex flex-col gap-14">
         {Array.from({ length: 4 }).map((_, index) => {
-          return <SkeletonItem key={index} styles={clsx("w-full h-5")} />;
+          return <SkeletonItem key={index} styles="w-full h-5" />;
         })}
       </div>
     </div>

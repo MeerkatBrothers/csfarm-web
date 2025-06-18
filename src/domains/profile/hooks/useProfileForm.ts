@@ -7,9 +7,7 @@ import useUploadImage from "@/domains/image/hooks/useUploadImage";
 const useProfileForm = (initialProfileForm: ProfileForm) => {
   const [profileForm, setProfileForm] = useState<ProfileForm>(initialProfileForm);
 
-  const setNickname = (nickname: string) => {
-    setProfileForm({ ...profileForm, nickname });
-  };
+  const setNickname = (nickname: string) => setProfileForm({ ...profileForm, nickname });
 
   const { mutate: uploadProfileImage } = useUploadImage({
     onSuccess: (profileImageUrl) => setProfileForm({ ...profileForm, profileImageUrl }),
