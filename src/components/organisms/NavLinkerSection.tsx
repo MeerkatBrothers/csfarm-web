@@ -37,7 +37,11 @@ const NavLinkerSection = ({ onLinkerClick }: NavLinkerSectionProps) => {
 
       <NavLinker label="수확물 창고" isActive={pathname === "/insight/storage"} onClick={() => navigateTo("/insight/storage")} />
 
-      {isLogin && <NavLinker label="마이페이지" isActive={pathname === "/profile/my"} onClick={() => navigateTo("/profile/my")} />}
+      {isLogin && (
+        <div className="md:hidden">
+          <NavLinker label="마이페이지" isActive={pathname === "/profile/my"} onClick={() => navigateTo("/profile/my")} />
+        </div>
+      )}
     </div>
   );
 };
