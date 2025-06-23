@@ -24,15 +24,13 @@ const NavAuthSection = () => {
   }
 
   return (
-    <div className="flex flex-col items-center gap-8">
-      {isLogin && <NavLinker label="마이페이지" isActive={false} onClick={() => router.push("/profile/my")} />}
-
+    <>
       {isLogin ? (
         <NavLinker label="로그아웃" isActive={false} onClick={signOut} />
       ) : (
         <NavLinker label="로그인" isActive={false} onClick={openLoginModal} />
       )}
-    </div>
+    </>
   );
 };
 
