@@ -6,7 +6,6 @@ import { parsePathParam } from "@/lib/utils/parser/api";
 import { stringToNumber } from "@/lib/utils/transformer/number";
 import ApiResponse from "@/lib/models/apiResponse";
 import { getAccessTokenFromCookie } from "@/lib/cookie/accessToken";
-import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 import NotFoundError from "@/lib/errors/http/notFoundError";
 
 import quizStatusSource from "@/domains/quiz/datasources/quizStatusSource";
@@ -26,7 +25,7 @@ export const GET = async (_: Request, context: Params): Promise<NextResponse<Res
 
     const storedAccessToken: string | null = await getAccessTokenFromCookie();
     if (!storedAccessToken) {
-      throw new UnauthorizedError();
+      return NextResponse.json(success({ quizId, isThreshed: false }));
     }
 
     const apiResponse: ApiResponse<QuizStatusResDto> = await quizStatusSource(quizId, storedAccessToken);

@@ -13,6 +13,7 @@ import UpdateProfileSectionSkeleton from "@/domains/profile/components/skeleton/
 
 import Caption1 from "@/components/atoms/typography/Caption1";
 import FormInput from "@/components/atoms/input/FormInput";
+import useAuthAction from "@/domains/auth/hooks/useAuthAction";
 
 const UpdateProfileSection = () => {
   const router = useRouter();
@@ -28,12 +29,14 @@ const UpdateProfileSection = () => {
     onSuccess: () => router.replace("/"),
   });
 
-  const handleWithdraw = (): void => {
-    const confirm: boolean = window.confirm("회원 탈퇴 시 농장 정보가 사라집니다.\n정말 탈퇴하시겠어요?");
-    if (confirm) {
-      withdraw();
-    }
-  };
+  const handleWithdraw = useAuthAction({
+    action: () => {
+      const confirm: boolean = window.confirm("회원 탈퇴 시 농장 정보가 사라집니다.\n정말 탈퇴하시겠어요?");
+      if (confirm) {
+        withdraw();
+      }
+    },
+  });
 
   if (isLoading) {
     return <UpdateProfileSectionSkeleton />;

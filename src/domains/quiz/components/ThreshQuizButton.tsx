@@ -1,8 +1,9 @@
 "use client";
 
+import useAuthAction from "@/domains/auth/hooks/useAuthAction";
+
 import useQuizStatus from "@/domains/quiz/hooks/useQuizStatus";
 import useThreshQuiz from "@/domains/quiz/hooks/useThreshQuiz";
-import useAuthAction from "@/domains/auth/hooks/useAuthAction";
 
 import PrimaryButton from "@/components/atoms/button/PrimaryButton";
 import DotLoader from "@/components/atoms/DotLoader";

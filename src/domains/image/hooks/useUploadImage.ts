@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import uploadImage from "@/domains/image/usecases/uploadImage";
 
 interface UseUploadImageParams {
-  onSuccess?: (data: string) => void;
+  onSuccess?: (imageUrl: string) => void;
 }
 
 const useUploadImage = ({ onSuccess }: UseUploadImageParams) => {

@@ -20,7 +20,7 @@ const ServiceLayout = ({ children }: Readonly<ServiceLayoutProps>) => {
         <Main>{children}</Main>
       </main>
 
-      <footer>
+      <footer className="flex items-center justify-center h-40 bg-gray-100">
         <Footer />
       </footer>
     </div>

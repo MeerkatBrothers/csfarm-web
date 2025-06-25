@@ -14,7 +14,7 @@ interface ProfileImageEditorProps {
 }
 
 const ProfileImageEditor = ({ initialProfileImageUrl, onSelect }: ProfileImageEditorProps) => {
-  const imageUploaderRef = useRef<HTMLInputElement>(null);
+  const imageUploaderRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <div>
