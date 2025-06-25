@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { motion, AnimatePresence, easeOut } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { ICON_SIZE } from "@/lib/constants/ui";
 

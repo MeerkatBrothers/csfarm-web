@@ -5,7 +5,7 @@ import { CredentialForm } from "@/domains/auth/models/fragments/credentialForm";
 
 interface UseSignUpParams {
   onSuccess?: () => void;
-  onError?: (error: Error, variables: CredentialForm) => void;
+  onError?: (error: Error, credentialForm: CredentialForm) => void;
 }
 
 const useSignUp = ({ onSuccess, onError }: UseSignUpParams) => {

@@ -21,9 +21,9 @@ const useKakaoSignIn = ({ onSuccess, onError }: UseKakaoSignInParams) => {
 
   const { mutate: signIn } = useSignIn({
     onSuccess,
-    onError: (error, variables) => {
+    onError: (error, credentialForm) => {
       if (error instanceof ResultError && error.statusCode === 404) {
-        signUp(variables);
+        signUp(credentialForm);
       } else {
         onError?.(error);
       }
@@ -32,8 +32,8 @@ const useKakaoSignIn = ({ onSuccess, onError }: UseKakaoSignInParams) => {
 
   return useMutation({
     mutationFn: async (kakaoCode: string) => await getKakaoEmail(kakaoCode),
-    onSuccess: (_, variables) => {
-      const credentialForm: CredentialForm = { identifier: variables, loginPlatform: LOGIN_PLATFORM.KAKAO };
+    onSuccess: (_, kakaoCode) => {
+      const credentialForm: CredentialForm = { identifier: kakaoCode, loginPlatform: LOGIN_PLATFORM.KAKAO };
 
       signIn(credentialForm);
     },

@@ -1,8 +1,9 @@
 import { Result } from "@/lib/types/result";
 import FetcherOptions from "@/lib/apis/types/fetcherOptions";
 import internalFetcher from "@/lib/apis/fetchers/internalFetcher";
-
 import reissueToken from "@/domains/auth/usecases/reissueToken";
+
+let reissueTokenPromise: Promise<void> | null = null;
 
 const internalAuthFetcher = async <T = unknown>({ url, options = {} }: FetcherOptions): Promise<Result<T>> => {
   const requestOptions: RequestInit = {
@@ -11,17 +12,27 @@ const internalAuthFetcher = async <T = unknown>({ url, options = {} }: FetcherOp
     credentials: "same-origin",
   };
 
-  const responseData: Result<T> = await internalFetcher({ url, options: requestOptions });
+  let responseData: Result<T> = await internalFetcher({ url, options: requestOptions });
+
   if (!responseData.ok && responseData.statusCode === 401) {
     try {
-      await reissueToken();
+      if (!reissueTokenPromise) {
+        reissueTokenPromise = reissueToken()
+          .then(() => {
+            reissueTokenPromise = null;
+          })
+          .catch((e) => {
+            reissueTokenPromise = null;
+
+            throw e;
+          });
+      }
+      await reissueTokenPromise;
     } catch (e) {
       return responseData;
     }
 
-    const tokenReissuedResponseData: Result<T> = await internalFetcher({ url, options: requestOptions });
-
-    return tokenReissuedResponseData;
+    responseData = await internalFetcher({ url, options: requestOptions });
   }
 
   return responseData;

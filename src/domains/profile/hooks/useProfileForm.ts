@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-
-import { ProfileForm } from "@/domains/profile/models/fragments/profileForm";
+import { useState, useEffect } from "react";
 
 import useUploadImage from "@/domains/image/hooks/useUploadImage";
+
+import { ProfileForm } from "@/domains/profile/models/fragments/profileForm";
 
 const useProfileForm = (initialProfileForm: ProfileForm) => {
   const [profileForm, setProfileForm] = useState<ProfileForm>(initialProfileForm);
 
-  const setNickname = (nickname: string) => setProfileForm({ ...profileForm, nickname });
+  const setNickname = (nickname: string): void => setProfileForm({ ...profileForm, nickname });
 
   const { mutate: uploadProfileImage } = useUploadImage({
     onSuccess: (profileImageUrl) => setProfileForm({ ...profileForm, profileImageUrl }),
