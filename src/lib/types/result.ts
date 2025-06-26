@@ -21,7 +21,7 @@ export const success = <T>(data: T): Success<T> => {
 
 export const failed = (error: unknown): Failed => {
   if (error instanceof ZodError) {
-    const message: string = error.errors[0]?.message ?? "입력값이 유효하지 않아요.";
+    const message: string = error.errors[0]?.message ?? "데이터가 유효하지 않아요.";
 
     return {
       ok: false,

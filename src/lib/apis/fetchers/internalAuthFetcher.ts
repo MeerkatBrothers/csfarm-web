@@ -27,6 +27,7 @@ const internalAuthFetcher = async <T = unknown>({ url, options = {} }: FetcherOp
             throw e;
           });
       }
+
       await reissueTokenPromise;
     } catch (e) {
       return responseData;
