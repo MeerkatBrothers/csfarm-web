@@ -4,7 +4,5 @@ export const getAllDatesOfYear = (year: number = 2025): Date[] => {
   const start: Date = startOfYear(new Date(year, 0, 1));
   const end: Date = endOfYear(start);
 
-  const days: Date[] = eachDayOfInterval({ start, end });
-
-  return days;
+  return eachDayOfInterval({ start, end });
 };

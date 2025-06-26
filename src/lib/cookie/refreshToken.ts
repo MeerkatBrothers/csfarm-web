@@ -31,6 +31,5 @@ export const deleteRefreshTokenFromCookie = (response: NextResponse): void => {
     httpOnly: true,
     secure: true,
     sameSite: "strict",
-    expires: new Date(0),
   });
 };

@@ -10,26 +10,26 @@ interface LoginModalProviderProps {
 }
 
 export const LoginModalProvider = ({ children }: LoginModalProviderProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isModalOpen) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
 
     return () => document.body.classList.remove("overflow-hidden");
-  }, [isOpen]);
+  }, [isModalOpen]);
 
-  const open = (): void => setIsOpen(true);
+  const open = (): void => setIsModalOpen(true);
 
-  const close = (): void => setIsOpen(false);
+  const close = (): void => setIsModalOpen(false);
 
   return (
     <LoginModalContext.Provider value={{ openLoginModal: open }}>
       {children}
-      <LoginModal isOpen={isOpen} onClose={close} />
+      <LoginModal isOpen={isModalOpen} onClose={close} />
     </LoginModalContext.Provider>
   );
 };
