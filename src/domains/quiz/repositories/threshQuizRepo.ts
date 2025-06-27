@@ -11,7 +11,7 @@ const threshQuizRepo = async (body: ThreshQuizReqDto): Promise<Result<null>> => 
   const result: Result<null> = await internalAuthFetcher<null>({
     url: buildProxyServerUrl(endpoint),
     options: {
-      method: "PATCH",
+      method: "POST",
       headers: {
         "Content-type": CONTENT_TYPE_JSON,
       },

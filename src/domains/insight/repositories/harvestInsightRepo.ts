@@ -11,7 +11,7 @@ const harvestInsightRepo = async (body: HarvestInsightReqDto): Promise<Result<nu
   const result: Result<null> = await internalAuthFetcher<null>({
     url: buildProxyServerUrl(endpoint),
     options: {
-      method: "PATCH",
+      method: "POST",
       headers: {
         "Content-type": CONTENT_TYPE_JSON,
       },

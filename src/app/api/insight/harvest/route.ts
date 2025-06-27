@@ -8,7 +8,7 @@ import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 import harvestInsightSource from "@/domains/insight/datasources/harvestInsightSource";
 import { HarvestInsightReqDto, harvestInsightReqDtoSchema } from "@/domains/insight/dtos/request/harvestInsightReqDto";
 
-export const PATCH = async (request: Request): Promise<NextResponse<Result<null>>> => {
+export const POST = async (request: Request): Promise<NextResponse<Result<null>>> => {
   try {
     const requestBody: unknown = await request.json();
     const validatedRequestBody: HarvestInsightReqDto = validateOrThrow(harvestInsightReqDtoSchema, requestBody);

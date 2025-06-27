@@ -11,7 +11,7 @@ const threshQuizSource = async (body: ThreshQuizReqDto, accessToken: string): Pr
   await externalFetcher({
     url: buildApiServerUrl(endpoint),
     options: {
-      method: "PATCH",
+      method: "POST",
       headers: {
         "Content-type": CONTENT_TYPE_JSON,
         Authorization: `Bearer ${accessToken}`,

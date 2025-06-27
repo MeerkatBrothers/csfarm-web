@@ -8,7 +8,7 @@ import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
 import threshQuizSource from "@/domains/quiz/datasources/threshQuizSource";
 import { ThreshQuizReqDto, threshQuizReqDtoSchema } from "@/domains/quiz/dtos/request/threshQuizReqDto";
 
-export const PATCH = async (request: Request): Promise<NextResponse<Result<null>>> => {
+export const POST = async (request: Request): Promise<NextResponse<Result<null>>> => {
   try {
     const requestBody: unknown = await request.json();
     const validatedRequestBody: ThreshQuizReqDto = validateOrThrow(threshQuizReqDtoSchema, requestBody);
