@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 import useWithdraw from "@/domains/auth/hooks/useWithdraw";
 
+import { MAX_NICKNAME_LENGHT } from "@/domains/profile/constants/constraint";
 import useMyProfile from "@/domains/profile/hooks/useMyProfile";
 import useProfileForm from "@/domains/profile/hooks/useProfileForm";
 import UpdateProfileButton from "@/domains/profile/components/UpdateProfileButton";
@@ -55,7 +56,13 @@ const UpdateProfileSection = () => {
       <div className="flex flex-col items-center gap-2">
         <ProfileImageEditor initialProfileImageUrl={profileForm.profileImageUrl} onSelect={uploadProfileImage} />
 
-        <FormInput label="농부명" value={profileForm.nickname} placeholder="농부명을 입력해주세요." onChange={setNickname} />
+        <FormInput
+          label="농부명"
+          value={profileForm.nickname}
+          maxLength={MAX_NICKNAME_LENGHT}
+          placeholder="농부명을 입력해주세요."
+          onChange={setNickname}
+        />
       </div>
 
       <div className={clsx("flex flex-col gap-6", "md:w-fit md:self-end")}>
