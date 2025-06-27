@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
+import { HARVESTED_INSIGHT_PAGE_SIZE } from "@/domains/insight/constants/constraint";
 import INSIGHT_QUERY_KEYS from "@/domains/insight/constants/queryKey";
 import getHarvestedInsight from "@/domains/insight/usecases/getHarvestedInsight";
 import { HarvestedInsight } from "@/domains/insight/models/harvestedInsight";
@@ -14,7 +15,9 @@ const useHarvestedInsight = () => {
       return harvestedInsight.insights;
     },
     initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages) => (lastPage.length > 0 ? allPages.length + 1 : undefined),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.length === HARVESTED_INSIGHT_PAGE_SIZE ? allPages.length + 1 : undefined;
+    },
     staleTime: 1000 * 60 * 10,
     gcTime: 1000 * 60 * 30,
   });
