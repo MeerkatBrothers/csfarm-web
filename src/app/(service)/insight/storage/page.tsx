@@ -9,7 +9,7 @@ const InsightStoragePage = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <div className="flex flex-col gap-10">
-        <Title2 text="그동안의 수확물을 확인해볼까요?" />
+        <Title2 text="지난 수확물을 확인해볼까요?" />
 
         <StoredInsightSection />
       </div>
