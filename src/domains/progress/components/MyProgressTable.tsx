@@ -10,6 +10,7 @@ import MyProgressTableSkeleton from "@/domains/progress/components/skeleton/MyPr
 import Heading1 from "@/components/atoms/typography/Heading1";
 import HarvestCounter from "@/components/atoms/HarvestCounter";
 import ProgressTable from "@/components/organisms/ProgressTable";
+import ProgressDescription from "@/components/ProgressDescription";
 
 const MyProgressTable = () => {
   const { data: myProfile } = useMyProfile();
@@ -42,6 +43,12 @@ const MyProgressTable = () => {
 
       <div className="overflow-x-scroll">
         <ProgressTable progresses={myProgress} />
+      </div>
+
+      <div className="flex self-end gap-3">
+        <ProgressDescription description="수확" color="bg-secondary-500" />
+
+        <ProgressDescription description="타작" color="bg-primary-500" />
       </div>
     </div>
   );
