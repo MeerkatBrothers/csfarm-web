@@ -7,6 +7,7 @@ import useThreshQuiz from "@/domains/quiz/hooks/useThreshQuiz";
 
 import PrimaryButton from "@/components/atoms/button/PrimaryButton";
 import DotLoader from "@/components/atoms/DotLoader";
+import RewardIncreaseLabel from "@/components/atoms/RewardIncreaseLabel";
 
 interface ThreshQuizButtonProps {
   quizId: number;
@@ -27,7 +28,9 @@ const ThreshQuizButton = ({ quizId, choiceId }: ThreshQuizButtonProps) => {
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col items-center gap-1">
+      <RewardIncreaseLabel />
+
       <PrimaryButton
         label={quizStatus?.isThreshed ? "이미 타작했어요!" : "타작하기"}
         disabled={quizStatus?.isThreshed}
