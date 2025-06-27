@@ -38,7 +38,7 @@ const HarvestedInsightSection = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Heading1 text="수확물 목록 🌾" />
+      <Heading1 text="나의 수확물 목록 🌾" />
 
       <MyInsightPreviewList
         myInsightPreviews={harvestedInsight.pages.flat() ?? []}

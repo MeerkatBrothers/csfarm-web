@@ -2,8 +2,6 @@
 
 import { useMemo } from "react";
 
-import useMyProfile from "@/domains/profile/hooks/useMyProfile";
-
 import useMyProgress from "@/domains/progress/hooks/useMyProgress";
 import MyProgressTableSkeleton from "@/domains/progress/components/skeleton/MyProgressTableSkeleton";
 
@@ -13,8 +11,6 @@ import ProgressDescription from "@/components/atoms/ProgressDescription";
 import ProgressTable from "@/components/organisms/ProgressTable";
 
 const MyProgressTable = () => {
-  const { data: myProfile } = useMyProfile();
-
   const { data: myProgress, isLoading, isError, error } = useMyProgress();
 
   const harvestedCount: number = useMemo(() => {
@@ -36,7 +32,7 @@ const MyProgressTable = () => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between items-end">
-        <Heading1 text={`${myProfile?.profile.nickname ?? "익명"} 님의 논밭 🌾`} />
+        <Heading1 text="나의 논밭 🌾" />
 
         <HarvestCounter harvestCount={harvestedCount} />
       </div>
