@@ -10,7 +10,7 @@ interface ProgressDescriptionProps {
 const ProgressDescription = ({ description, color }: ProgressDescriptionProps) => {
   return (
     <div className="flex gap-1">
-      <td className={clsx("w-4 h-4", color)}></td>
+      <div className={clsx("w-4 h-4", color)} />
 
       <Caption1 text={description} />
     </div>

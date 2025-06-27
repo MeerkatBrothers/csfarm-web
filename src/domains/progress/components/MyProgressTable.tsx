@@ -9,8 +9,8 @@ import MyProgressTableSkeleton from "@/domains/progress/components/skeleton/MyPr
 
 import Heading1 from "@/components/atoms/typography/Heading1";
 import HarvestCounter from "@/components/atoms/HarvestCounter";
+import ProgressDescription from "@/components/atoms/ProgressDescription";
 import ProgressTable from "@/components/organisms/ProgressTable";
-import ProgressDescription from "@/components/ProgressDescription";
 
 const MyProgressTable = () => {
   const { data: myProfile } = useMyProfile();

@@ -27,11 +27,13 @@ const ThreshQuizButton = ({ quizId, choiceId }: ThreshQuizButtonProps) => {
   }
 
   return (
-    <PrimaryButton
-      label={quizStatus?.isThreshed ? "이미 타작했어요!" : "타작하기"}
-      disabled={quizStatus?.isThreshed}
-      onClick={handleThreshQuiz}
-    />
+    <div className="flex flex-col gap-2">
+      <PrimaryButton
+        label={quizStatus?.isThreshed ? "이미 타작했어요!" : "타작하기"}
+        disabled={quizStatus?.isThreshed}
+        onClick={handleThreshQuiz}
+      />
+    </div>
   );
 };
 
