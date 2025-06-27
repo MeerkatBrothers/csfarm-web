@@ -16,7 +16,6 @@ interface ThreshQuizButtonProps {
 
 const ThreshQuizButton = ({ quizId, choiceId }: ThreshQuizButtonProps) => {
   const { data: quizStatus, isLoading } = useQuizStatus(quizId);
-  console.log(quizStatus);
 
   const { mutate: threshQuiz, isPending } = useThreshQuiz({
     onSuccess: () => alert("오늘의 퀴즈를 타작했어요!"),
@@ -30,7 +29,7 @@ const ThreshQuizButton = ({ quizId, choiceId }: ThreshQuizButtonProps) => {
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <RewardIncreaseLabel />
+      {!quizStatus?.isThreshed && <RewardIncreaseLabel />}
 
       <PrimaryButton
         label={quizStatus?.isThreshed ? "이미 타작했어요!" : "타작하기"}

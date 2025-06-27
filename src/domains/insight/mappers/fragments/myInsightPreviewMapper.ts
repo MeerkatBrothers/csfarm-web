@@ -2,10 +2,10 @@ import { MyInsightPreview } from "@/domains/insight/models/fragments/myInsightPr
 import { MyInsightPreviewDto } from "@/domains/insight/dtos/fragments/myInsightPreviewDto";
 
 export const mapMyInsightPreviewDtoToModel = (dto: MyInsightPreviewDto): MyInsightPreview => {
-  const { id, subject, isThreshed, publishedAt, createdAt } = dto;
+  const { insightId, subject, isThreshed, publishedAt, createdAt } = dto;
 
   return {
-    id,
+    insightId,
     subject,
     isThreshed,
     publishedAt,

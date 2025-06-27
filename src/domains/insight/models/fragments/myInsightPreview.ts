@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const myInsightPreviewSchema = z.object({
-  id: z.number(),
+  insightId: z.number(),
   subject: z.string(),
   isThreshed: z.boolean(),
   publishedAt: z.coerce.date(),
