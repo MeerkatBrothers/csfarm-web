@@ -16,6 +16,7 @@ interface ThreshQuizButtonProps {
 
 const ThreshQuizButton = ({ quizId, choiceId }: ThreshQuizButtonProps) => {
   const { data: quizStatus, isLoading } = useQuizStatus(quizId);
+  console.log(quizStatus);
 
   const { mutate: threshQuiz, isPending } = useThreshQuiz({
     onSuccess: () => alert("오늘의 퀴즈를 타작했어요!"),

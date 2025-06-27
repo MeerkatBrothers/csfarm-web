@@ -12,7 +12,7 @@ const QuizChoiceList = ({ quizChoices, choiceId, onChoice }: QuizChoiceListProps
   return (
     <div className="flex flex-col gap-12">
       {quizChoices.map((quizChoice, index) => {
-        return <QuizChoiceCard key={index} quizChoice={quizChoice} isChoiced={choiceId === index} onChoice={onChoice} />;
+        return <QuizChoiceCard key={index} quizChoice={quizChoice} isChoiced={quizChoice.id === choiceId} onChoice={onChoice} />;
       })}
     </div>
   );
