@@ -1,0 +1,177 @@
+@layer base {
+  /* 
+    TailwindCSS 테마 값을 CSS 변수로 매핑합니다.
+    @theme inline 블록 안에서는 Tailwind의 theme() 값을 참조하여 
+    --변수 형태로 선언할 수 있습니다.
+    이렇게 매핑해두면 다크모드나 테마 전환 시 
+    CSS 변수만 변경하여 전체 스타일을 쉽게 통제할 수 있습니다.
+  */
+  @theme inline {
+    /* ============ 색상 테마 ============ */
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-primary-900: var(--primary-900);
+    --color-primary-800: var(--primary-800);
+    --color-primary-700: var(--primary-700);
+    --color-primary-600: var(--primary-600);
+    --color-primary-500: var(--primary-500);
+    --color-primary-400: var(--primary-400);
+    --color-primary-300: var(--primary-300);
+    --color-primary-200: var(--primary-200);
+    --color-primary-100: var(--primary-100);
+
+    --color-secondary-900: var(--secondary-900);
+    --color-secondary-800: var(--secondary-800);
+    --color-secondary-700: var(--secondary-700);
+    --color-secondary-600: var(--secondary-600);
+    --color-secondary-500: var(--secondary-500);
+    --color-secondary-400: var(--secondary-400);
+    --color-secondary-300: var(--secondary-300);
+    --color-secondary-200: var(--secondary-200);
+    --color-secondary-100: var(--secondary-100);
+
+    --color-success: var(--success);
+    --color-error: var(--error);
+
+    --color-kakao-primary: var(--kakao-primary);
+
+    --color-black: var(--black);
+
+    /* ============ 폰트 패밀리 테마 ============ */
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+
+    /* ============ 폰트 크기 테마 ============ */
+    /* Display 1 */
+    --text-display1-lg: var(--text-display1-lg);
+    --text-display1-md: var(--text-display1-md);
+    --text-display1-sm: var(--text-display1-sm);
+
+    /* Display 2 */
+    --text-display2-lg: var(--text-display2-lg);
+    --text-display2-md: var(--text-display2-md);
+    --text-display2-sm: var(--text-display2-sm);
+
+    /* Title 1 */
+    --text-title1-lg: var(--text-title1-lg);
+    --text-title1-md: var(--text-title1-md);
+    --text-title1-sm: var(--text-title1-sm);
+
+    /* Title 2 */
+    --text-title2-lg: var(--text-title2-lg);
+    --text-title2-md: var(--text-title2-md);
+    --text-title2-sm: var(--text-title2-sm);
+
+    /* Title 3 */
+    --text-title3-lg: var(--text-title3-lg);
+    --text-title3-md: var(--text-title3-md);
+    --text-title3-sm: var(--text-title3-sm);
+
+    /* Heading 1 */
+    --text-heading1-lg: var(--text-heading1-lg);
+    --text-heading1-md: var(--text-heading1-md);
+    --text-heading1-sm: var(--text-heading1-sm);
+
+    /* Heading 2 */
+    --text-heading2-lg: var(--text-heading2-lg);
+    --text-heading2-md: var(--text-heading2-md);
+    --text-heading2-sm: var(--text-heading2-sm);
+
+    /* Headline 1 */
+    --text-headline1-lg: var(--text-headline1-lg);
+    --text-headline1-md: var(--text-headline1-md);
+    --text-headline1-sm: var(--text-headline1-sm);
+
+    /* Headline 2 */
+    --text-headline2-lg: var(--text-headline2-lg);
+    --text-headline2-md: var(--text-headline2-md);
+    --text-headline2-sm: var(--text-headline2-sm);
+
+    /* Body 1 */
+    --text-body1: var(--text-body1);
+
+    /* Body 2 */
+    --text-body2: var(--text-body2);
+
+    /* Label 1 */
+    --text-label1: var(--text-label1);
+
+    /* Label 2 */
+    --text-label2: var(--text-label2);
+
+    /* Caption 1 */
+    --text-caption1: var(--text-caption1);
+
+    /* Caption 2 */
+    --text-caption2: var(--text-caption2);
+
+    /* ============ 라인 높이 테마 ============ */
+    /* Display 1 */
+    --leading-display1-lg: var(--leading-display1-lg);
+    --leading-display1-md: var(--leading-display1-md);
+    --leading-display1-sm: var(--leading-display1-sm);
+
+    /* Display 2 */
+    --leading-display2-lg: var(--leading-display2-lg);
+    --leading-display2-md: var(--leading-display2-md);
+    --leading-display2-sm: var(--leading-display2-sm);
+
+    /* Title 1 */
+    --leading-title1-lg: var(--leading-title1-lg);
+    --leading-title1-md: var(--leading-title1-md);
+    --leading-title1-sm: var(--leading-title1-sm);
+
+    /* Title 2 */
+    --leading-title2-lg: var(--leading-title2-lg);
+    --leading-title2-md: var(--leading-title2-md);
+    --leading-title2-sm: var(--leading-title2-sm);
+
+    /* Title 3 */
+    --leading-title3-lg: var(--leading-title3-lg);
+    --leading-title3-md: var(--leading-title3-md);
+    --leading-title3-sm: var(--leading-title3-sm);
+
+    /* Heading 1 */
+    --leading-heading1-lg: var(--leading-heading1-lg);
+    --leading-heading1-md: var(--leading-heading1-md);
+    --leading-heading1-sm: var(--leading-heading1-sm);
+
+    /* Heading 2 */
+    --leading-heading2-lg: var(--leading-heading2-lg);
+    --leading-heading2-md: var(--leading-heading2-md);
+    --leading-heading2-sm: var(--leading-heading2-sm);
+
+    /* Headline 1 */
+    --leading-headline1-lg: var(--leading-headline1-lg);
+    --leading-headline1-md: var(--leading-headline1-md);
+    --leading-headline1-sm: var(--leading-headline1-sm);
+
+    /* Headline 2 */
+    --leading-headline2-lg: var(--leading-headline2-lg);
+    --leading-headline2-md: var(--leading-headline2-md);
+    --leading-headline2-sm: var(--leading-headline2-sm);
+
+    /* Body 1 */
+    --leading-body1: var(--leading-body1);
+    --leading-body1-reading: var(--leading-body1-reading);
+
+    /* Body 2 */
+    --leading-body2: var(--leading-body2);
+    --leading-body2-reading: var(--leading-body2-reading);
+
+    /* Label 1 */
+    --leading-label1: var(--leading-label1);
+    --leading-label1-reading: var(--leading-label1-reading);
+
+    /* Label 2 */
+    --leading-label2: var(--leading-label2);
+
+    /* Caption 1 */
+    --leading-caption1: var(--leading-caption1);
+
+    /* Caption 2 */
+    --leading-caption2: var(--leading-caption2);
+  }
+}
