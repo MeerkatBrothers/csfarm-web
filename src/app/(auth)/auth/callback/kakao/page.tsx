@@ -26,7 +26,7 @@ const KakaoCallbackPage = () => {
     if (kakaoCode) {
       kakaoSignIn(kakaoCode);
     }
-  }, [searchParams]);
+  }, [searchParams, kakaoSignIn]);
 
   return <div></div>;
 };

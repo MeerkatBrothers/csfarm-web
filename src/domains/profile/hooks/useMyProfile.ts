@@ -10,7 +10,7 @@ const useMyProfile = () => {
     queryFn: async () => {
       try {
         return await getMyProfile();
-      } catch (e) {
+      } catch {
         return null;
       }
     },
