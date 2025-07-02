@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 
 import useWithdraw from "@/domains/auth/hooks/useWithdraw";
+import useAuthAction from "@/domains/auth/hooks/useAuthAction";
 
 import { MAX_NICKNAME_LENGHT } from "@/domains/profile/constants/constraint";
 import useMyProfile from "@/domains/profile/hooks/useMyProfile";
@@ -14,14 +15,14 @@ import UpdateProfileSectionSkeleton from "@/domains/profile/components/skeleton/
 
 import Caption1 from "@/components/atoms/typography/Caption1";
 import FormInput from "@/components/atoms/input/FormInput";
-import useAuthAction from "@/domains/auth/hooks/useAuthAction";
+import DotLoader from "@/components/atoms/DotLoader";
 
 const UpdateProfileSection = () => {
   const router = useRouter();
 
   const { data: myProfile, isLoading, isError, error } = useMyProfile();
 
-  const { profileForm, setNickname, uploadProfileImage } = useProfileForm({
+  const { profileForm, isUploadImagePending, setNickname, uploadProfileImage } = useProfileForm({
     nickname: myProfile?.profile.nickname ?? "",
     profileImageUrl: myProfile?.profile.profileImageUrl ?? null,
   });
@@ -54,7 +55,11 @@ const UpdateProfileSection = () => {
   return (
     <div className="flex flex-col gap-24">
       <div className="flex flex-col items-center gap-2">
-        <ProfileImageEditor initialProfileImageUrl={profileForm.profileImageUrl} onSelect={uploadProfileImage} />
+        {isUploadImagePending ? (
+          <DotLoader />
+        ) : (
+          <ProfileImageEditor initialProfileImageUrl={profileForm.profileImageUrl} onSelect={uploadProfileImage} />
+        )}
 
         <FormInput
           label="농부명"
