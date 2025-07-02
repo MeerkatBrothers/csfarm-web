@@ -9,7 +9,7 @@ const useProfileForm = (initialProfileForm: ProfileForm) => {
 
   const setNickname = (nickname: string): void => setProfileForm({ ...profileForm, nickname });
 
-  const { mutate: uploadProfileImage } = useUploadImage({
+  const { mutate: uploadProfileImage, isPending: isUploadImagePending } = useUploadImage({
     onSuccess: (profileImageUrl) => setProfileForm({ ...profileForm, profileImageUrl }),
   });
 
@@ -17,7 +17,7 @@ const useProfileForm = (initialProfileForm: ProfileForm) => {
     setProfileForm(initialProfileForm);
   }, [initialProfileForm.nickname, initialProfileForm.profileImageUrl]);
 
-  return { profileForm, setNickname, uploadProfileImage };
+  return { profileForm, isUploadImagePending, setNickname, uploadProfileImage };
 };
 
 export default useProfileForm;
