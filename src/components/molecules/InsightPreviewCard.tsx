@@ -12,7 +12,7 @@ interface InsightPreviewCardProps {
 
 const InsightPreviewCard = ({ insightPreview, onClick }: InsightPreviewCardProps) => {
   return (
-    <button className="flex flex-col items-start gap-1" onClick={() => onClick(insightPreview.id)}>
+    <button className="flex flex-col items-start text-start gap-1" onClick={() => onClick(insightPreview.id)}>
       <Heading1 text={insightPreview.subject} />
 
       <Label1 text={formatDateToYMD(insightPreview.publishedAt)} styles={{ color: "text-gray-300" }} />
