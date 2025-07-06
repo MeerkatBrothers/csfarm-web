@@ -14,7 +14,7 @@ interface MyInsightPreviewCardProps {
 
 const MyInsightPreviewCard = ({ myInsightPreview, onClick }: MyInsightPreviewCardProps) => {
   return (
-    <button className="flex flex-col items-start gap-1" onClick={() => onClick(myInsightPreview.insightId)}>
+    <button className="flex flex-col items-start text-start gap-1" onClick={() => onClick(myInsightPreview.insightId)}>
       <div className="flex gap-1">
         <Heading1 text={myInsightPreview.subject} />
 
