@@ -1,50 +1,38 @@
-import type { NextConfig } from "next";
+import { type NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  webpack(config) {
-    const fileLoaderRule = config.module.rules.find((rule: any) => rule.test?.test?.(".svg"));
-
-    config.module.rules.push(
+  images: {
+    remotePatterns: [
       {
-        ...fileLoaderRule,
-        test: /\.svg$/i,
-        resourceQuery: /url/,
+        protocol: 'https',
+        hostname: 'd3glsafu5ku8f9.cloudfront.net',
+        pathname: '/**',
       },
       {
-        test: /\.svg$/i,
-        issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] },
-        use: ["@svgr/webpack"],
+        protocol: 'https',
+        hostname: 'd1y6wetsznyjbv.cloudfront.net',
+        pathname: '/**',
       },
-    );
+    ],
+  },
 
-    fileLoaderRule.exclude = /\.svg$/i;
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
 
     return config;
   },
 
   turbopack: {
     rules: {
-      "*.svg": {
-        loaders: ["@svgr/webpack"],
-        as: "*.js",
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
-  },
-
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "d3glsafu5ku8f9.cloudfront.net",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "d1y6wetsznyjbv.cloudfront.net",
-        pathname: "/**",
-      },
-    ],
   },
 };
 
