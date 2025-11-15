@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useRef, ReactNode } from "react";
-import { useRouter } from "next/navigation";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useRef, ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { alertError } from "@/lib/utils/ui";
-import ResultError from "@/lib/errors/resultError";
+import { alertError } from '@/lib/utils/ui';
+import ResultError from '@/lib/errors/resultError';
 
 interface QueryProviderProps {
   children: ReactNode;
@@ -22,11 +22,10 @@ const QueryProvider = ({ children }: QueryProviderProps) => {
       mutations: {
         onError: (error) => {
           if (error instanceof ResultError && error.statusCode === 401) {
-            alert("인증이 만료되었어요. 다시 로그인 해주세요.");
+            alert('인증이 만료되었어요. 다시 로그인 해주세요.');
 
             queryClientRef.current?.clear();
-
-            router.replace("/");
+            router.replace('/');
 
             return;
           }

@@ -1,7 +1,7 @@
-import { ZodType, SafeParseReturnType } from "zod";
+import { ZodType } from 'zod';
 
 export const validateOrThrow = <T>(schema: ZodType<T>, data: unknown): T => {
-  const parsedSchema: SafeParseReturnType<unknown, T> = schema.safeParse(data);
+  const parsedSchema = schema.safeParse(data);
   if (!parsedSchema.success) {
     throw parsedSchema.error;
   }

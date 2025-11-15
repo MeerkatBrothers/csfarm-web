@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
-const key: string = "csfarm:refresh-token";
+const key = 'csfarm:refresh-token';
 
 export const getRefreshTokenFromCookie = async (): Promise<string | null> => {
   const cookieStore = await cookies();
@@ -14,22 +14,22 @@ export const setRefreshTokenToCookie = (response: NextResponse, token: string): 
   response.cookies.set({
     name: key,
     value: token,
-    path: "/api",
+    path: '/api',
     maxAge: 604800,
     httpOnly: true,
     secure: true,
-    sameSite: "strict",
+    sameSite: 'strict',
   });
 };
 
 export const deleteRefreshTokenFromCookie = (response: NextResponse): void => {
   response.cookies.set({
     name: key,
-    value: "",
-    path: "/api",
+    value: '',
+    path: '/api',
     maxAge: 0,
     httpOnly: true,
     secure: true,
-    sameSite: "strict",
+    sameSite: 'strict',
   });
 };
