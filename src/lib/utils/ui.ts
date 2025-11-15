@@ -1,7 +1,7 @@
-import { getErrorMessage } from "@/lib/utils/error";
+import { getErrorMessage } from '@/lib/utils/error';
 
 export const alertError = (error: Error): void => {
-  const message: string = getErrorMessage(error);
+  const message = getErrorMessage(error);
 
   alert(message);
 };

@@ -3,7 +3,7 @@ export const stringToNumber = (value: string | null): number | null => {
     return null;
   }
 
-  const parsed: number = Number(value);
+  const parsed = Number(value);
 
   return !isNaN(parsed) ? parsed : null;
 };

@@ -5,3 +5,7 @@ export const buildApiServerUrl = (endpoint: string): string => {
 export const buildProxyServerUrl = (endpoint: string): string => {
   return `/api/${endpoint}`;
 };
+
+export const normalizeEndpoint = (endpoint: string): string => {
+  return endpoint.replace(/^\/+/, '');
+};

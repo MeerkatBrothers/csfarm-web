@@ -1,1 +1,1 @@
-export const CONTENT_TYPE_JSON: string = "application/json";
+export const CONTENT_TYPE_JSON = 'application/json';

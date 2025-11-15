@@ -1,10 +1,10 @@
-import { ZodError } from "zod";
+import { ZodError } from 'zod';
 
-import HttpError from "@/lib/errors/http/httpError";
+import HttpError from '@/lib/errors/http/httpError';
 
 export interface Success<T> {
   ok: true;
-  data: T;
+  data: T | null;
 }
 
 export interface Failed {
@@ -15,13 +15,13 @@ export interface Failed {
 
 export type Result<T> = Success<T> | Failed;
 
-export const success = <T>(data: T): Success<T> => {
+export const success = <T>(data: T | null): Success<T> => {
   return { ok: true, data };
 };
 
 export const failed = (error: unknown): Failed => {
   if (error instanceof ZodError) {
-    const message: string = error.errors[0]?.message ?? "데이터가 유효하지 않아요.";
+    const message: string = error.errors[0]?.message ?? '데이터가 유효하지 않아요.';
 
     return {
       ok: false,
@@ -49,6 +49,6 @@ export const failed = (error: unknown): Failed => {
   return {
     ok: false,
     statusCode: 500,
-    message: "알 수 없는 에러가 발생했어요.",
+    message: '알 수 없는 에러가 발생했어요.',
   };
 };
