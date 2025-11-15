@@ -1,9 +1,9 @@
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from 'react-error-boundary';
 
-import TodayInsightWelcomeMessage from "@/domains/insight/components/TodayInsightWelcomeMessage";
-import TodayInsightSection from "@/domains/insight/components/TodayInsightSection";
+import TodayInsightWelcomeMessage from '@/features/insight/components/TodayInsightWelcomeMessage';
+import TodayInsightSection from '@/features/insight/components/TodayInsightSection';
 
-import ErrorFallback from "@/components/organisms/ErrorFallback";
+import ErrorFallback from '@/components/organisms/ErrorFallback';
 
 const TodayInsightPage = () => {
   return (

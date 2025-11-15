@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import useIsLogin from "@/domains/auth/hooks/useIsLogin";
-import useLoginModal from "@/domains/auth/hooks/useLoginModal";
-import useSignOut from "@/domains/auth/hooks/useSignOut";
+import useIsLogin from '@/features/auth/hooks/useIsLogin';
+import useLoginModal from '@/features/auth/hooks/useLoginModal';
+import useSignOut from '@/features/auth/hooks/useSignOut';
 
-import NavLinker from "@/components/atoms/NavLinker";
+import NavLinker from '@/components/atoms/NavLinker';
 
 const NavAuthSection = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const NavAuthSection = () => {
   const { openLoginModal } = useLoginModal();
 
   const { mutate: signOut } = useSignOut({
-    onSuccess: () => router.replace("/"),
+    onSuccess: () => router.replace('/'),
   });
 
   if (isLoading) {

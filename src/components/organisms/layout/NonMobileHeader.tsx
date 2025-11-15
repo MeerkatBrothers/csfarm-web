@@ -1,6 +1,6 @@
-import AuthButton from "@/domains/auth/components/AuthButton";
+import AuthButton from '@/features/auth/components/AuthButton';
 
-import NavLinkerSection from "@/components/organisms/NavLinkerSection";
+import NavLinkerSection from '@/components/organisms/NavLinkerSection';
 
 const NonMobileHeader = () => {
   return (

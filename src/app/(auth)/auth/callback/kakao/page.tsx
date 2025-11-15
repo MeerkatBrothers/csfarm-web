@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 
-import { alertError } from "@/lib/utils/ui";
+import { alertError } from '@/lib/utils/ui';
 
-import useKakaoSignIn from "@/domains/auth/hooks/useKakaoSignIn";
+import useKakaoSignIn from '@/features/auth/hooks/useKakaoSignIn';
 
 const KakaoCallbackPage = () => {
   const searchParams = useSearchParams();
@@ -13,16 +13,16 @@ const KakaoCallbackPage = () => {
   const router = useRouter();
 
   const { mutate: kakaoSignIn } = useKakaoSignIn({
-    onSuccess: () => router.replace("/"),
+    onSuccess: () => router.replace('/'),
     onError: (error) => {
       alertError(error);
 
-      router.replace("/");
+      router.replace('/');
     },
   });
 
   useEffect(() => {
-    const kakaoCode: string | null = searchParams.get("code");
+    const kakaoCode: string | null = searchParams.get('code');
     if (kakaoCode) {
       kakaoSignIn(kakaoCode);
     }

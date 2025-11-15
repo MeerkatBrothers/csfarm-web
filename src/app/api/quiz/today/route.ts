@@ -1,13 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from "@/lib/types/result";
-import { validateOrThrow } from "@/lib/utils/zod";
-import ApiResponse from "@/lib/models/apiResponse";
-import { getAccessTokenFromCookie } from "@/lib/cookie/accessToken";
-import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
+import { Result, success, failed } from '@/lib/types/result';
+import { validateOrThrow } from '@/lib/utils/zod';
+import ApiResponse from '@/lib/models/apiResponse';
+import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
+import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
 
-import todayQuizSource from "@/domains/quiz/datasources/todayQuizSource";
-import { TodayQuizResDto, todayQuizResDtoSchema } from "@/domains/quiz/dtos/response/todayQuizResDto";
+import todayQuizSource from '@/features/quiz/datasources/todayQuizSource';
+import {
+  TodayQuizResDto,
+  todayQuizResDtoSchema,
+} from '@/features/quiz/dtos/response/todayQuizResDto';
 
 export const GET = async (): Promise<NextResponse<Result<TodayQuizResDto>>> => {
   try {

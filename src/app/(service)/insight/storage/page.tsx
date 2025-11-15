@@ -1,9 +1,9 @@
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from 'react-error-boundary';
 
-import StoredInsightSection from "@/domains/insight/components/StoredInsightSection";
+import StoredInsightSection from '@/features/insight/components/StoredInsightSection';
 
-import Title2 from "@/components/atoms/typography/Title2";
-import ErrorFallback from "@/components/organisms/ErrorFallback";
+import Title2 from '@/components/atoms/typography/Title2';
+import ErrorFallback from '@/components/organisms/ErrorFallback';
 
 const InsightStoragePage = () => {
   return (

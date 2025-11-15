@@ -1,7 +1,7 @@
-import { Profile } from "@/domains/profile/models/fragments/profile";
+import { Profile } from '@/features/profile/models/fragments/profile';
 
-import Heading1 from "@/components/atoms/typography/Heading1";
-import ProfileImage from "@/components/atoms/ProfileImage";
+import Heading1 from '@/components/atoms/typography/Heading1';
+import ProfileImage from '@/components/atoms/ProfileImage';
 
 interface ProfileSectionProps {
   profile: Profile;

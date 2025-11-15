@@ -1,6 +1,6 @@
-import { SubInsight } from "@/domains/insight/models/fragments/subInsight";
+import { SubInsight } from '@/features/insight/models/fragments/subInsight';
 
-import SubInsightSection from "@/components/organisms/SubInsightSection";
+import SubInsightSection from '@/components/organisms/SubInsightSection';
 
 interface SubInsightListProps {
   subInsights: SubInsight[];

@@ -1,13 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from "@/lib/types/result";
-import { validateOrThrow } from "@/lib/utils/zod";
-import ApiResponse from "@/lib/models/apiResponse";
-import { getAccessTokenFromCookie } from "@/lib/cookie/accessToken";
-import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
+import { Result, success, failed } from '@/lib/types/result';
+import { validateOrThrow } from '@/lib/utils/zod';
+import ApiResponse from '@/lib/models/apiResponse';
+import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
+import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
 
-import myProfileSource from "@/domains/profile/datasources/myProfileSource";
-import { MyProfileResDto, myProfileResDtoSchema } from "@/domains/profile/dtos/response/myProfileResDto";
+import myProfileSource from '@/features/profile/datasources/myProfileSource';
+import {
+  MyProfileResDto,
+  myProfileResDtoSchema,
+} from '@/features/profile/dtos/response/myProfileResDto';
 
 export const GET = async (): Promise<NextResponse<Result<MyProfileResDto>>> => {
   try {

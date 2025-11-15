@@ -1,8 +1,8 @@
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from 'react-error-boundary';
 
-import UpdateProfileSection from "@/domains/profile/components/UpdateProfileSection";
+import UpdateProfileSection from '@/features/profile/components/UpdateProfileSection';
 
-import ErrorFallback from "@/components/organisms/ErrorFallback";
+import ErrorFallback from '@/components/organisms/ErrorFallback';
 
 const UpdateProfilePage = () => {
   return (

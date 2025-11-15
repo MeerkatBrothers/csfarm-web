@@ -2,7 +2,7 @@ import { type Result } from '@/lib/types/result';
 import { type HttpClientOptions } from '@/lib/apis/interfaces/httpClientOptions';
 import bffHttpClient from '@/lib/apis/clients/bffHttpClient';
 
-import reissueToken from '@/domains/auth/usecases/reissueToken';
+import reissueToken from '@/features/auth/usecases/reissueToken';
 
 let reissueTokenPromise: Promise<void> | null = null;
 

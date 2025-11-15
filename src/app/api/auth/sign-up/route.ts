@@ -1,14 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from "@/lib/types/result";
-import { validateOrThrow } from "@/lib/utils/zod";
-import ApiResponse from "@/lib/models/apiResponse";
-import { setAccessTokenToCookie } from "@/lib/cookie/accessToken";
-import { setRefreshTokenToCookie } from "@/lib/cookie/refreshToken";
+import { Result, success, failed } from '@/lib/types/result';
+import { validateOrThrow } from '@/lib/utils/zod';
+import ApiResponse from '@/lib/models/apiResponse';
+import { setAccessTokenToCookie } from '@/lib/cookie/accessToken';
+import { setRefreshTokenToCookie } from '@/lib/cookie/refreshToken';
 
-import signUpSource from "@/domains/auth/datasources/signUpSource";
-import { SignUpReqDto, signUpReqDtoSchema } from "@/domains/auth/dtos/request/signUpReqDto";
-import { SignUpResDto, signUpResDtoSchema } from "@/domains/auth/dtos/response/signUpResDto";
+import signUpSource from '@/features/auth/datasources/signUpSource';
+import { SignUpReqDto, signUpReqDtoSchema } from '@/features/auth/dtos/request/signUpReqDto';
+import { SignUpResDto, signUpResDtoSchema } from '@/features/auth/dtos/response/signUpResDto';
 
 export const POST = async (request: Request): Promise<NextResponse<Result<null>>> => {
   try {

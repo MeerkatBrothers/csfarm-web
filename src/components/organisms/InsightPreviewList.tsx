@@ -1,6 +1,6 @@
-import { InsightPreview } from "@/domains/insight/models/fragments/insightPreview";
+import { InsightPreview } from '@/features/insight/models/fragments/insightPreview';
 
-import InsightPreviewCard from "@/components/molecules/InsightPreviewCard";
+import InsightPreviewCard from '@/components/molecules/InsightPreviewCard';
 
 interface InsightPreviewProps {
   insightPreviews: InsightPreview[];

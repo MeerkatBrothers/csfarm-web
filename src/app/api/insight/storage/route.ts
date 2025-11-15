@@ -1,11 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from "@/lib/types/result";
-import { validateOrThrow } from "@/lib/utils/zod";
-import ApiResponse from "@/lib/models/apiResponse";
+import { Result, success, failed } from '@/lib/types/result';
+import { validateOrThrow } from '@/lib/utils/zod';
+import ApiResponse from '@/lib/models/apiResponse';
 
-import storedInsightSource from "@/domains/insight/datasources/storedInsightSource";
-import { StoredInsightResDto, storedInsightResDtoSchema } from "@/domains/insight/dtos/response/storedInsightResDto";
+import storedInsightSource from '@/features/insight/datasources/storedInsightSource';
+import {
+  StoredInsightResDto,
+  storedInsightResDtoSchema,
+} from '@/features/insight/dtos/response/storedInsightResDto';
 
 export const GET = async (): Promise<NextResponse<Result<StoredInsightResDto>>> => {
   try {

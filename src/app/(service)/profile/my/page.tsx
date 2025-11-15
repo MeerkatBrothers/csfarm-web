@@ -1,12 +1,12 @@
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from 'react-error-boundary';
 
-import MyProfileSection from "@/domains/profile/components/MyProfileSection";
+import MyProfileSection from '@/features/profile/components/MyProfileSection';
 
-import MyProgressTable from "@/domains/progress/components/MyProgressTable";
+import MyProgressTable from '@/features/progress/components/MyProgressTable';
 
-import HarvestedInsightSection from "@/domains/insight/components/HarvestedInsightSection";
+import HarvestedInsightSection from '@/features/insight/components/HarvestedInsightSection';
 
-import ErrorFallback from "@/components/organisms/ErrorFallback";
+import ErrorFallback from '@/components/organisms/ErrorFallback';
 
 const MyProfilePage = () => {
   return (

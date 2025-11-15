@@ -1,13 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from "@/lib/types/result";
-import { validateOrThrow } from "@/lib/utils/zod";
-import ApiResponse from "@/lib/models/apiResponse";
-import { getAccessTokenFromCookie } from "@/lib/cookie/accessToken";
-import UnauthorizedError from "@/lib/errors/http/unauthorizedError";
+import { Result, success, failed } from '@/lib/types/result';
+import { validateOrThrow } from '@/lib/utils/zod';
+import ApiResponse from '@/lib/models/apiResponse';
+import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
+import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
 
-import myProgressSource from "@/domains/progress/datasources/myProgressSource";
-import { MyProgressResDto, myProgressResDtoSchema } from "@/domains/progress/dtos/request/myProgressResDto";
+import myProgressSource from '@/features/progress/datasources/myProgressSource';
+import {
+  MyProgressResDto,
+  myProgressResDtoSchema,
+} from '@/features/progress/dtos/request/myProgressResDto';
 
 export const GET = async (): Promise<NextResponse<Result<MyProgressResDto>>> => {
   try {

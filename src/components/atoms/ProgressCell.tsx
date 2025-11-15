@@ -1,8 +1,8 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 
-import { formatDateToYMD } from "@/lib/utils/formatter/date";
+import { formatDateToYMD } from '@/lib/utils/formatter/date';
 
-import { Progress } from "@/domains/progress/models/fragments/progress";
+import { Progress } from '@/features/progress/models/fragments/progress';
 
 interface ProgressCellProps {
   date: Date;
@@ -10,9 +10,13 @@ interface ProgressCellProps {
 }
 
 const ProgressCell = ({ date, progress }: ProgressCellProps) => {
-  const color: string = progress?.isThreshed ? "bg-primary-500" : progress?.isHarvested ? "bg-secondary-500" : "bg-gray-100";
+  const color: string = progress?.isThreshed
+    ? 'bg-primary-500'
+    : progress?.isHarvested
+      ? 'bg-secondary-500'
+      : 'bg-gray-100';
 
-  return <td className={clsx("w-4 h-4", color)} title={formatDateToYMD(date)}></td>;
+  return <td className={clsx('h-4 w-4', color)} title={formatDateToYMD(date)}></td>;
 };
 
 export default ProgressCell;

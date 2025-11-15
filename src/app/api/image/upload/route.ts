@@ -1,19 +1,22 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from "@/lib/types/result";
-import { validateOrThrow } from "@/lib/utils/zod";
-import ApiResponse from "@/lib/models/apiResponse";
-import BadRequestError from "@/lib/errors/http/badRequestError";
+import { Result, success, failed } from '@/lib/types/result';
+import { validateOrThrow } from '@/lib/utils/zod';
+import ApiResponse from '@/lib/models/apiResponse';
+import BadRequestError from '@/lib/errors/http/badRequestError';
 
-import uploadImageSource from "@/domains/image/datasources/uploadImageSource";
-import { UploadImageResDto, uploadImageResDtoSchema } from "@/domains/image/dtos/response/uploadImageResDto";
+import uploadImageSource from '@/features/image/datasources/uploadImageSource';
+import {
+  UploadImageResDto,
+  uploadImageResDtoSchema,
+} from '@/features/image/dtos/response/uploadImageResDto';
 
 export const POST = async (request: Request): Promise<NextResponse<Result<UploadImageResDto>>> => {
   try {
     const formData: FormData = await request.formData();
-    const image: File | null = formData.get("image") as File | null;
+    const image: File | null = formData.get('image') as File | null;
     if (!image) {
-      throw new BadRequestError("이미지가 도착하지 않았어요. 다시 시도해 주세요.");
+      throw new BadRequestError('이미지가 도착하지 않았어요. 다시 시도해 주세요.');
     }
 
     const apiResponse: ApiResponse<UploadImageResDto> = await uploadImageSource(image);

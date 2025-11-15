@@ -1,25 +1,31 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from "@/lib/types/result";
-import { validateOrThrow } from "@/lib/utils/zod";
-import { parsePathParam } from "@/lib/utils/parser/api";
-import { stringToNumber } from "@/lib/utils/transformer/number";
-import ApiResponse from "@/lib/models/apiResponse";
-import NotFoundError from "@/lib/errors/http/notFoundError";
+import { Result, success, failed } from '@/lib/types/result';
+import { validateOrThrow } from '@/lib/utils/zod';
+import { parsePathParam } from '@/lib/utils/parser/api';
+import { stringToNumber } from '@/lib/utils/transformer/number';
+import ApiResponse from '@/lib/models/apiResponse';
+import NotFoundError from '@/lib/errors/http/notFoundError';
 
-import insightDetailSource from "@/domains/insight/datasources/insightDetailSource";
-import { InsightDetailResDto, insightDetailResDtoSchema } from "@/domains/insight/dtos/response/insightDetailResDto";
+import insightDetailSource from '@/features/insight/datasources/insightDetailSource';
+import {
+  InsightDetailResDto,
+  insightDetailResDtoSchema,
+} from '@/features/insight/dtos/response/insightDetailResDto';
 
 interface Params {
   params: Promise<{ insightId: string | undefined }>;
 }
 
-export const GET = async (_: Request, context: Params): Promise<NextResponse<Result<InsightDetailResDto>>> => {
+export const GET = async (
+  _: Request,
+  context: Params,
+): Promise<NextResponse<Result<InsightDetailResDto>>> => {
   try {
     const params: { insightId: string | undefined } = await context.params;
-    const insightId: number | null = stringToNumber(parsePathParam(params, "insightId"));
+    const insightId: number | null = stringToNumber(parsePathParam(params, 'insightId'));
     if (insightId === null) {
-      throw new NotFoundError("수확물을 찾을 수 없어요.");
+      throw new NotFoundError('수확물을 찾을 수 없어요.');
     }
 
     const apiResponse: ApiResponse<InsightDetailResDto> = await insightDetailSource(insightId);
