@@ -1,30 +1,23 @@
-/* 
-  전역 CSS 변수를 선언하는 구간입니다.
-  :root 블록 안에서는 모든 페이지와 컴포넌트에서 사용할 수 있는
-  색상, 폰트 등 CSS 변수를 정의합니다.
-  이 변수들은 var(--변수명) 형태로 참조하여 일관된 디자인을 유지할 수 있습니다.
-  1rem = 16px 기준입니다.
-*/
 :root {
   /* ============ 색상 변수 ============ */
   --background: #ffffff;
   --foreground: #17171b;
 
-  --primary-900: #a28200;
-  --primary-800: #b8950f;
-  --primary-700: #cfae20;
-  --primary-600: #e4c12e;
-  --primary-500: #f4c542;
-  --primary-400: #f7d463;
-  --primary-300: #f9e28c;
-  --primary-200: #fcf0b7;
-  --primary-100: #fefbe4;
+  --primary-900: #8a5400;
+  --primary-800: #a96300;
+  --primary-700: #c87200;
+  --primary-600: #e68100;
+  --primary-500: #ff9b00; /* 기준값 */
+  --primary-400: #ffb23d;
+  --primary-300: #ffc76e;
+  --primary-200: #ffdfa5;
+  --primary-100: #fff3d6;
 
   --secondary-900: #348d1f;
   --secondary-800: #4aa735;
   --secondary-700: #5fc447;
   --secondary-600: #73e159;
-  --secondary-500: #7ed957;
+  --secondary-500: #7ed957; /* 기준값 */
   --secondary-400: #98e67c;
   --secondary-300: #b2f1a1;
   --secondary-200: #d1f8c9;
@@ -104,71 +97,4 @@
 
   /* Caption2 */
   --text-caption2: 0.6875rem; /* 11px */
-
-  /* ============ 라인 높이 변수 ============ */
-  /* Display 1 */
-  --leading-display1-lg: 4.25rem; /* 68px */
-  --leading-display1-md: 3.75rem; /* 60px */
-  --leading-display1-sm: 2.75rem; /* 44px */
-
-  /* Display 2 */
-  --leading-display2-lg: 3.125rem; /* 50px */
-  --leading-display2-md: 2.875rem; /* 46px */
-  --leading-display2-sm: 2.375rem; /* 38px */
-
-  /* Title 1 */
-  --leading-title1-lg: 3rem; /* 48px */
-  --leading-title1-md: 2.625rem; /* 42px */
-  --leading-title1-sm: 2.375rem; /* 38px */
-
-  /* Title 2 */
-  --leading-title2-lg: 2.375rem; /* 38px */
-  --leading-title2-md: 2.25rem; /* 36px */
-  --leading-title2-sm: 2.0625rem; /* 33px */
-
-  /* Title 3 */
-  --leading-title3-lg: 2.125rem; /* 34px */
-  --leading-title3-md: 1.9375rem; /* 31px */
-  --leading-title3-sm: 1.75rem; /* 28px */
-
-  /* Heading 1 */
-  --leading-heading1-lg: 2rem; /* 32px */
-  --leading-heading1-md: 1.875rem; /* 30px */
-  --leading-heading1-sm: 1.625rem; /* 26px */
-
-  /* Heading 2 */
-  --leading-heading2-lg: 1.875rem; /* 30px */
-  --leading-heading2-md: 1.6875rem; /* 27px */
-  --leading-heading2-sm: 1.5625rem; /* 25px */
-
-  /* Headline 1 */
-  --leading-headline1-lg: 1.6875rem; /* 27px */
-  --leading-headline1-md: 1.625rem; /* 26px */
-  --leading-headline1-sm: 1.5rem; /* 24px */
-
-  /* Headline 2 */
-  --leading-headline2-lg: 1.625rem; /* 26px */
-  --leading-headline2-md: 1.5625rem; /* 25px */
-  --leading-headline2-sm: 1.4375rem; /* 23px */
-
-  /* Body 1 */
-  --leading-body1: 1.5rem; /* 24px */
-  --leading-body1-reading: 1.625rem; /* 26px */
-
-  /* Body 2 */
-  --leading-body2: 1.4375rem; /* 23px */
-  --leading-body2-reading: 1.5625rem; /* 25px */
-
-  /* Label 1 */
-  --leading-label1: 1.25rem; /* 20px */
-  --leading-label1-reading: 1.375rem; /* 22px */
-
-  /* Label 2 */
-  --leading-label2: 1.125rem; /* 18px */
-
-  /* Caption 1 */
-  --leading-caption1: 1rem; /* 16px */
-
-  /* Caption 2 */
-  --leading-caption2: 0.9375rem; /* 15px */
 }
