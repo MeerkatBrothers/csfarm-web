@@ -7,7 +7,7 @@ import { type UploadImageResponse } from '@/features/image/models/response/uploa
 const uploadImageRepository = async (
   body: UploadImageRequest,
 ): Promise<Result<UploadImageResponse>> => {
-  const endpoint = '/image/upload';
+  const endpoint = '/image/upload/temp';
 
   const formData = new FormData();
   formData.append('image', body.image);
