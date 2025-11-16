@@ -19,6 +19,10 @@ const QueryProvider = ({ children }: QueryProviderProps) => {
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient();
     queryClientRef.current.setDefaultOptions({
+      queries: {
+        staleTime: 1000 * 60 * 5,
+        gcTime: 1000 * 60 * 10,
+      },
       mutations: {
         onError: (error) => {
           if (error instanceof ResultError && error.statusCode === 401) {

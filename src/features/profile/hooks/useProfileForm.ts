@@ -1,23 +1,49 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import useUploadImage from '@/features/image/hooks/useUploadImage';
-
-import { ProfileForm } from '@/features/profile/models/fragments/profileForm';
+import { profileFormSchema, type ProfileForm } from '@/features/profile/models/profileForm';
 
 const useProfileForm = (initialProfileForm: ProfileForm) => {
-  const [profileForm, setProfileForm] = useState<ProfileForm>(initialProfileForm);
-
-  const setNickname = (nickname: string): void => setProfileForm({ ...profileForm, nickname });
-
-  const { mutate: uploadProfileImage, isPending: isUploadImagePending } = useUploadImage({
-    onSuccess: (profileImageUrl) => setProfileForm({ ...profileForm, profileImageUrl }),
-  });
+  const { register, handleSubmit, setValue, reset, formState, watch, control } =
+    useForm<ProfileForm>({
+      resolver: zodResolver(profileFormSchema),
+      defaultValues: initialProfileForm,
+    });
 
   useEffect(() => {
-    setProfileForm(initialProfileForm);
-  }, [initialProfileForm.nickname, initialProfileForm.profileImageUrl]);
+    reset(initialProfileForm);
+  }, [initialProfileForm, reset]);
 
-  return { profileForm, isUploadImagePending, setNickname, uploadProfileImage };
+  const setNickname = (nickname: string): void => {
+    setValue('nickname', nickname, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  };
+
+  const { mutate: uploadProfileImage, isPending: isUploadImagePending } = useUploadImage({
+    onSuccess: (profileImageUrl: string) => {
+      setValue('profileImageUrl', profileImageUrl, {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
+    },
+  });
+
+  return {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    watch,
+    control,
+    formState,
+    setNickname,
+    uploadProfileImage,
+    isUploadImagePending,
+  };
 };
 
 export default useProfileForm;

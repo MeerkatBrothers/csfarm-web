@@ -1,33 +1,23 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
+import { createBffHandler } from '@/lib/bff/handler';
 import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
 import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
 
-import updateProfileSource from '@/features/profile/datasources/updateProfileSource';
-import {
-  UpdateProfileReqDto,
-  updateProfileReqDtoSchema,
-} from '@/features/profile/dtos/request/updateProfileReqDto';
+import updateProfileDatasource from '@/features/profile/datasources/updateProfileDatasource';
+import { type UpdateProfileRequest } from '@/features/profile/models/request/updateProfileRequest';
 
-export const PATCH = async (request: Request): Promise<NextResponse<Result<null>>> => {
-  try {
-    const requestBody: unknown = await request.json();
-    const validatedRequestBody: UpdateProfileReqDto = validateOrThrow(
-      updateProfileReqDtoSchema,
-      requestBody,
-    );
+const updateProfileHandler = async (request: NextRequest): Promise<null> => {
+  const requestBody = (await request.json()) as UpdateProfileRequest;
 
-    const storedAccessToken: string | null = await getAccessTokenFromCookie();
-    if (!storedAccessToken) {
-      throw new UnauthorizedError();
-    }
-
-    await updateProfileSource(validatedRequestBody, storedAccessToken);
-
-    return NextResponse.json(success(null));
-  } catch (e) {
-    return NextResponse.json(failed(e));
+  const storedAccessToken = await getAccessTokenFromCookie();
+  if (!storedAccessToken) {
+    throw new UnauthorizedError();
   }
+
+  await updateProfileDatasource(requestBody, storedAccessToken);
+
+  return null;
 };
+
+export const PATCH = createBffHandler(updateProfileHandler);
