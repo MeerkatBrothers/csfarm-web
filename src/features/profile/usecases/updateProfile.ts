@@ -1,28 +1,18 @@
-import { Result } from '@/lib/types/result';
 import { validateOrThrow } from '@/lib/utils/zod';
 import ResultError from '@/lib/errors/resultError';
 
-import updateProfileRepo from '@/features/profile/repositories/updateProfileRepo';
-import { mapProfileFormToDto } from '@/features/profile/mappers/fragments/profileFormMapper';
-import { ProfileForm } from '@/features/profile/models/fragments/profileForm';
-import {
-  UpdateProfileReqDto,
-  updateProfileReqDtoSchema,
-} from '@/features/profile/dtos/request/updateProfileReqDto';
-import { ProfileFormDto } from '@/features/profile/dtos/fragments/profileFormDto';
+import updateProfileRepository from '@/features/profile/repositories/updateProfileRepository';
+import { type UpdateProfileRequest } from '@/features/profile/models/request/updateProfileRequest';
+import { profileFormSchema, type ProfileForm } from '@/features/profile/models/profileForm';
 
 const updateProfile = async (profileForm: ProfileForm): Promise<void> => {
-  const profileFormDto: ProfileFormDto = mapProfileFormToDto(profileForm);
+  const validatedProfileForm = validateOrThrow(profileFormSchema, profileForm);
 
-  const requestBody: UpdateProfileReqDto = { profile: profileFormDto };
-  const validatedRequestBody: UpdateProfileReqDto = validateOrThrow(
-    updateProfileReqDtoSchema,
-    requestBody,
-  );
+  const body: UpdateProfileRequest = { profile: validatedProfileForm };
 
-  const result: Result<null> = await updateProfileRepo(validatedRequestBody);
+  const result = await updateProfileRepository(body);
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 };
 

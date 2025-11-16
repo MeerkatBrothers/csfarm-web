@@ -1,23 +1,17 @@
-import { Result } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
 import ResultError from '@/lib/errors/resultError';
 
-import myProfileRepo from '@/features/profile/repositories/myProfileRepo';
-import { mapMyProfileResDtoToModel } from '@/features/profile/mappers/myProfileMapper';
-import { MyProfile, myProfileSchema } from '@/features/profile/models/myProfile';
-import { MyProfileResDto } from '@/features/profile/dtos/response/myProfileResDto';
+import myProfileRepository from '@/features/profile/repositories/myProfileRepository';
+import { type MyProfileResponse } from '@/features/profile/models/response/myProfileResponse';
 
-const getMyProfile = async (): Promise<MyProfile> => {
-  const result: Result<MyProfileResDto> = await myProfileRepo();
+const getMyProfile = async (): Promise<MyProfileResponse> => {
+  const result = await myProfileRepository();
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 
-  const myProfile: MyProfile = mapMyProfileResDtoToModel(result.data);
+  const myProfile = result.data;
 
-  const validatedMyProfile: MyProfile = validateOrThrow(myProfileSchema, myProfile);
-
-  return validatedMyProfile;
+  return myProfile;
 };
 
 export default getMyProfile;

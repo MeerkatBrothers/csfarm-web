@@ -1,22 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
 
+import ResultError from '@/lib/errors/resultError';
+
 import PROFILE_QUERY_KEYS from '@/features/profile/constants/queryKey';
 import getMyProfile from '@/features/profile/usecases/getMyProfile';
-import { MyProfile } from '@/features/profile/models/myProfile';
+import { type MyProfileResponse } from '@/features/profile/models/response/myProfileResponse';
 
 const useMyProfile = () => {
-  return useQuery<MyProfile | null>({
+  return useQuery<MyProfileResponse | null>({
     queryKey: PROFILE_QUERY_KEYS.MY,
     queryFn: async () => {
       try {
         return await getMyProfile();
-      } catch {
-        return null;
+      } catch (e) {
+        if (e instanceof ResultError && e.statusCode === 401) {
+          return null;
+        }
+
+        throw e;
       }
     },
-    staleTime: 1000 * 60 * 5,
-    gcTime: 1000 * 60 * 30,
-    retry: false,
   });
 };
 
