@@ -9,7 +9,7 @@ import uploadImageSource from '@/features/image/datasources/uploadImageSource';
 import {
   UploadImageResDto,
   uploadImageResDtoSchema,
-} from '@/features/image/dtos/response/uploadImageResDto';
+} from '@/features/image/models/response/uploadImageResDto';
 
 export const POST = async (request: Request): Promise<NextResponse<Result<UploadImageResDto>>> => {
   try {

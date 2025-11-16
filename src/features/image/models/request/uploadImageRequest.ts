@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { ACCEPTED_IMAGE_TYPES, MAX_IMAGE_SIZE } from '@/features/image/constants/constraint';
 
-export const uploadImageReqDtoSchema = z.object({
+export const uploadImageRequestSchema = z.object({
   image: z
     .instanceof(File, { message: '이미지 파일만 사용 가능해요.' })
     .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file.type), {
@@ -13,4 +13,4 @@ export const uploadImageReqDtoSchema = z.object({
     }),
 });
 
-export type UploadImageReqDto = z.infer<typeof uploadImageReqDtoSchema>;
+export type UploadImageRequest = z.infer<typeof uploadImageRequestSchema>;
