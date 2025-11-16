@@ -11,7 +11,7 @@ const uploadImageDatasource = async (
   const formData = new FormData();
   formData.append('image', image);
 
-  const result = await apiHttpClient<UploadImageResponse>({
+  const response = await apiHttpClient<UploadImageResponse>({
     method: 'POST',
     endpoint,
     options: {
@@ -20,7 +20,7 @@ const uploadImageDatasource = async (
     token: accessToken,
   });
 
-  return result;
+  return response;
 };
 
 export default uploadImageDatasource;
