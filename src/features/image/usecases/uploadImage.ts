@@ -1,27 +1,22 @@
-import { Result } from '@/lib/types/result';
 import { validateOrThrow } from '@/lib/utils/zod';
 import ResultError from '@/lib/errors/resultError';
 
-import uploadImageRepo from '@/features/image/repositories/uploadImageRepo';
+import uploadImageRepository from '@/features/image/repositories/uploadImageRepository';
 import {
-  UploadImageReqDto,
-  uploadImageReqDtoSchema,
-} from '@/features/image/dtos/request/uploadImageReqDto';
-import { UploadImageResDto } from '@/features/image/dtos/response/uploadImageResDto';
+  uploadImageRequestSchema,
+  type UploadImageRequest,
+} from '@/features/image/models/request/uploadImageRequest';
 
 const uploadImage = async (image: File): Promise<string> => {
-  const requestBody: UploadImageReqDto = { image };
-  const validatedRequestBody: UploadImageReqDto = validateOrThrow(
-    uploadImageReqDtoSchema,
-    requestBody,
-  );
+  const body: UploadImageRequest = { image };
+  const validatedBody = validateOrThrow(uploadImageRequestSchema, body);
 
-  const result: Result<UploadImageResDto> = await uploadImageRepo(validatedRequestBody);
+  const result = await uploadImageRepository(validatedBody);
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 
-  const imageUrl: string = result.data.imageUrl;
+  const imageUrl = result.data.imageUrl;
 
   return imageUrl;
 };
