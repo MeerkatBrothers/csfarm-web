@@ -5,13 +5,13 @@ import { type MyProfileResponse } from '@/features/profile/models/response/myPro
 const myProfileDatasource = async (accessToken: string): Promise<MyProfileResponse> => {
   const endpoint = '/profile/my';
 
-  const result = await apiHttpClient<MyProfileResponse>({
+  const response = await apiHttpClient<MyProfileResponse>({
     method: 'GET',
     endpoint,
     token: accessToken,
   });
 
-  return result;
+  return response;
 };
 
 export default myProfileDatasource;
