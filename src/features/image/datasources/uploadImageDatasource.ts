@@ -6,7 +6,7 @@ const uploadImageDatasource = async (
   image: File,
   accessToken: string,
 ): Promise<UploadImageResponse> => {
-  const endpoint = '/image/upload';
+  const endpoint = '/image/upload/temp';
 
   const formData = new FormData();
   formData.append('image', image);
