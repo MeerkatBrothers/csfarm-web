@@ -1,25 +1,26 @@
 import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { getAccessTokenFromCookie, deleteAccessTokenFromCookie } from '@/lib/cookie/accessToken';
-import { deleteRefreshTokenFromCookie } from '@/lib/cookie/refreshToken';
+import { createBffErrorResponse } from '@/lib/bff/response';
+import { deleteAccessTokenFromCookie } from '@/lib/cookie/accessToken';
+import { deleteRefreshTokenFromCookie, getRefreshTokenFromCookie } from '@/lib/cookie/refreshToken';
+import { success, type Result } from '@/lib/types/result';
 
-import signOutSource from '@/features/auth/datasources/signOutSource';
+import signOutDatasource from '@/features/auth/datasources/signOutDatasource';
 
 export const DELETE = async (): Promise<NextResponse<Result<null>>> => {
   try {
-    const storedAccessToken: string | null = await getAccessTokenFromCookie();
-    if (storedAccessToken) {
-      await signOutSource(storedAccessToken);
+    const storedRefreshToken = await getRefreshTokenFromCookie();
+    if (storedRefreshToken) {
+      await signOutDatasource(storedRefreshToken);
     }
 
-    const response: NextResponse<Result<null>> = NextResponse.json(success(null));
+    const response = NextResponse.json(success(null));
 
     deleteAccessTokenFromCookie(response);
     deleteRefreshTokenFromCookie(response);
 
     return response;
   } catch (e) {
-    return NextResponse.json(failed(e));
+    return createBffErrorResponse(e);
   }
 };

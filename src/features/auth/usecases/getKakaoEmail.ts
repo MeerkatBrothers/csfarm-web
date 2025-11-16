@@ -1,15 +1,14 @@
-import { Result } from '@/lib/types/result';
 import ResultError from '@/lib/errors/resultError';
 
-import kakaoEmailRepo from '@/features/auth/repositories/kakaoEmailRepo';
+import kakaoEmailRepository from '@/features/auth/repositories/kakaoEmailRepository';
 
 const getKakaoEmail = async (kakaoCode: string): Promise<string> => {
-  const result: Result<string> = await kakaoEmailRepo(kakaoCode);
+  const result = await kakaoEmailRepository(kakaoCode);
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 
-  const kakaoEmail: string = result.data;
+  const kakaoEmail = result.data;
 
   return kakaoEmail;
 };

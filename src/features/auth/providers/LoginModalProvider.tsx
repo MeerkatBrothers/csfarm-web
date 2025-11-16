@@ -10,7 +10,7 @@ interface LoginModalProviderProps {
 }
 
 export const LoginModalProvider = ({ children }: LoginModalProviderProps) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (isModalOpen) {

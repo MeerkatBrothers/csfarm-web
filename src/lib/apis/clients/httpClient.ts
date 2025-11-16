@@ -1,38 +1,21 @@
 import { type HttpClientOptions } from '@/lib/apis/interfaces/httpClientOptions';
-import { normalizeEndpoint } from '@/lib/utils/url';
 import HttpErrorFactory from '@/lib/errors/http/httpErrorFactory';
 import HttpError from '@/lib/errors/http/httpError';
 import InternalServerError from '@/lib/errors/http/internalServerError';
 
-interface ApiHttpClientOptions extends HttpClientOptions {
-  token?: string;
-}
-
-const apiHttpClient = async <T = unknown>({
+const httpClient = async <T = unknown>({
   method,
   endpoint,
   options = {},
   errorMessages,
-  token,
-}: ApiHttpClientOptions): Promise<T> => {
-  const normalizedEndpoint = normalizeEndpoint(endpoint);
-  const url = `${process.env.API_SERVER_URL}/${normalizedEndpoint}`;
-
-  const headers = new Headers(options.headers as HeadersInit);
-
-  if (token) {
-    headers.set('Authorization', `Bearer ${token}`);
-  }
-
+}: HttpClientOptions): Promise<T> => {
   const requestOptions: RequestInit = {
     ...options,
     method,
-    headers,
-    cache: options.cache ?? 'no-store',
   };
 
   try {
-    const response = await fetch(url, requestOptions);
+    const response = await fetch(endpoint, requestOptions);
     if (!response.ok) {
       const statusCode = response.status;
       const errorMessage = errorMessages?.[statusCode];
@@ -53,4 +36,4 @@ const apiHttpClient = async <T = unknown>({
   }
 };
 
-export default apiHttpClient;
+export default httpClient;

@@ -6,7 +6,7 @@ interface UseWithdrawParams {
   onSuccess?: () => void;
 }
 
-const useWithdraw = ({ onSuccess }: UseWithdrawParams) => {
+const useWithdraw = ({ onSuccess }: UseWithdrawParams = {}) => {
   const queryClient = useQueryClient();
 
   return useMutation({

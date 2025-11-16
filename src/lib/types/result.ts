@@ -4,7 +4,7 @@ import HttpError from '@/lib/errors/http/httpError';
 
 export interface Success<T> {
   ok: true;
-  data: T | null;
+  data: T;
 }
 
 export interface Failed {
@@ -15,13 +15,13 @@ export interface Failed {
 
 export type Result<T> = Success<T> | Failed;
 
-export const success = <T>(data: T | null): Success<T> => {
+export const success = <T>(data: T): Success<T> => {
   return { ok: true, data };
 };
 
 export const failed = (error: unknown): Failed => {
   if (error instanceof ZodError) {
-    const message: string = error.errors[0]?.message ?? '데이터가 유효하지 않아요.';
+    const message = error.errors[0]?.message ?? '데이터가 유효하지 않아요.';
 
     return {
       ok: false,

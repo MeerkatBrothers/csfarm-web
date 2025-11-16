@@ -1,12 +1,11 @@
-import { Result } from '@/lib/types/result';
 import ResultError from '@/lib/errors/resultError';
 
-import reissueTokenRepo from '@/features/auth/repositories/reissueTokenRepo';
+import reissueTokenRepository from '@/features/auth/repositories/reissueTokenRepository';
 
 const reissueToken = async (): Promise<void> => {
-  const result: Result<null> = await reissueTokenRepo();
+  const result = await reissueTokenRepository();
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 };
 

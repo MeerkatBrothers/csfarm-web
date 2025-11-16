@@ -6,7 +6,7 @@ interface UseSignOutParams {
   onSuccess?: () => void;
 }
 
-const useSignOut = ({ onSuccess }: UseSignOutParams) => {
+const useSignOut = ({ onSuccess }: UseSignOutParams = {}) => {
   const queryClient = useQueryClient();
 
   return useMutation({
