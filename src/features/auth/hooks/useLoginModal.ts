@@ -2,13 +2,10 @@ import { useContext } from 'react';
 
 import ProviderMissingError from '@/lib/errors/providerMissingError';
 
-import {
-  LoginModalContext,
-  LoginModalContextValue,
-} from '@/features/auth/contexts/LoginModalContext';
+import { LoginModalContext } from '@/features/auth/contexts/LoginModalContext';
 
 const useLoginModal = () => {
-  const context: LoginModalContextValue | undefined = useContext(LoginModalContext);
+  const context = useContext(LoginModalContext);
   if (!context) {
     throw new ProviderMissingError('useLoginModal');
   }

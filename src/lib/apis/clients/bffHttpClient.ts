@@ -3,18 +3,20 @@ import { type HttpClientOptions } from '@/lib/apis/interfaces/httpClientOptions'
 import { normalizeEndpoint } from '@/lib/utils/url';
 
 const bffHttpClient = async <T = unknown>({
+  method,
   endpoint,
   options = {},
 }: HttpClientOptions): Promise<Result<T>> => {
   const normalizedEndpoint = normalizeEndpoint(endpoint);
   const url = `/api/${normalizedEndpoint}`;
 
-  try {
-    const requestOptions: RequestInit = {
-      ...options,
-      cache: options.cache ?? 'no-store',
-    };
+  const requestOptions: RequestInit = {
+    ...options,
+    method,
+    cache: options.cache ?? 'no-store',
+  };
 
+  try {
     const response = await fetch(url, requestOptions);
     const data = (await response.json()) as Result<T>;
 

@@ -2,11 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 
 import ResultError from '@/lib/errors/resultError';
 
-import { LOGIN_PLATFORM } from '@/features/auth/enums/loginPlatform';
+import { LoginPlatform } from '@/features/auth/enums/loginPlatform';
 import useSignIn from '@/features/auth/hooks/useSignIn';
 import useSignUp from '@/features/auth/hooks/useSignUp';
 import getKakaoEmail from '@/features/auth/usecases/getKakaoEmail';
-import { CredentialForm } from '@/features/auth/models/fragments/credentialForm';
+import { type CredentialForm } from '@/features/auth/models/credentialForm';
 
 interface UseKakaoSignInParams {
   onSuccess?: () => void;
@@ -33,7 +33,7 @@ const useKakaoSignIn = ({ onSuccess, onError }: UseKakaoSignInParams) => {
   return useMutation({
     mutationFn: async (kakaoCode: string) => await getKakaoEmail(kakaoCode),
     onSuccess: (identifier) => {
-      const credentialForm: CredentialForm = { identifier, loginPlatform: LOGIN_PLATFORM.KAKAO };
+      const credentialForm: CredentialForm = { identifier, loginPlatform: LoginPlatform.KAKAO };
 
       signIn(credentialForm);
     },

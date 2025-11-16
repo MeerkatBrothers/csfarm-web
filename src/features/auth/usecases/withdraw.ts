@@ -1,12 +1,11 @@
-import { Result } from '@/lib/types/result';
 import ResultError from '@/lib/errors/resultError';
 
-import withdrawRepo from '@/features/auth/repositories/withdrawRepo';
+import withdrawRepository from '@/features/auth/repositories/withdrawRepository';
 
 const withdraw = async (): Promise<void> => {
-  const result: Result<null> = await withdrawRepo();
+  const result = await withdrawRepository();
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 };
 

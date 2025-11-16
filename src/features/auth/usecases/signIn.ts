@@ -1,22 +1,17 @@
-import { Result } from '@/lib/types/result';
 import { validateOrThrow } from '@/lib/utils/zod';
 import ResultError from '@/lib/errors/resultError';
 
-import signInRepo from '@/features/auth/repositories/signInRepo';
-import { mapCredentialFormToDto } from '@/features/auth/mappers/fragments/credentialFormMapper';
-import { CredentialForm } from '@/features/auth/models/fragments/credentialForm';
-import { SignInReqDto, signInReqDtoSchema } from '@/features/auth/dtos/request/signInReqDto';
-import { CredentialFormDto } from '@/features/auth/dtos/fragments/credentialFormDto';
+import signInRepository from '@/features/auth/repositories/signInRepository';
+import { type SignInRequest } from '@/features/auth/models/request/signInRequest';
+import { credentialFormSchema, type CredentialForm } from '@/features/auth/models/credentialForm';
 
 const signIn = async (credentialForm: CredentialForm): Promise<void> => {
-  const credentialFormDto: CredentialFormDto = mapCredentialFormToDto(credentialForm);
+  const validatedCredentialForm = validateOrThrow(credentialFormSchema, credentialForm);
+  const body: SignInRequest = { credential: validatedCredentialForm };
 
-  const requestBody: SignInReqDto = { credential: credentialFormDto };
-  const validatedRequestBody: SignInReqDto = validateOrThrow(signInReqDtoSchema, requestBody);
-
-  const result: Result<null> = await signInRepo(validatedRequestBody);
+  const result = await signInRepository(body);
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 };
 

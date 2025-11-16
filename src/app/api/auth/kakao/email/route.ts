@@ -1,47 +1,26 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
 import { parseQueryParam } from '@/lib/utils/parser/api';
-import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
+import { createBffHandler } from '@/lib/bff/handler';
+import BadRequestError from '@/lib/errors/http/badRequestError';
 
-import kakaoTokenSource from '@/features/auth/datasources/kakaoTokenSource';
-import kakaoAccountSource from '@/features/auth/datasources/kakaoAccountSource';
-import {
-  KakaoTokenResDto,
-  kakaoTokenResDtoSchema,
-} from '@/features/auth/dtos/response/kakaoTokenResDto';
-import {
-  KakaoAccountResDto,
-  kakaoAccountResDtoSchema,
-} from '@/features/auth/dtos/response/kakaoAccountResDto';
+import kakaoTokenDatasource from '@/features/auth/datasources/kakaoTokenDatasource';
+import kakaoAccountDatasource from '@/features/auth/datasources/kakaoAccountDatasource';
 
-export const GET = async (request: Request): Promise<NextResponse<Result<string>>> => {
-  try {
-    const url: URL = new URL(request.url);
-    const kakaoCode: string | null = parseQueryParam(url, 'code');
-    if (!kakaoCode) {
-      throw new UnauthorizedError();
-    }
-
-    const kakaoTokenApiResponse: KakaoTokenResDto = await kakaoTokenSource(kakaoCode);
-
-    const validatedKakaoTokenData: KakaoTokenResDto = validateOrThrow(
-      kakaoTokenResDtoSchema,
-      kakaoTokenApiResponse,
-    );
-    const kakaoToken: string = validatedKakaoTokenData.access_token;
-
-    const kakaoAccountApiResponse: KakaoAccountResDto = await kakaoAccountSource(kakaoToken);
-
-    const validatedData: KakaoAccountResDto = validateOrThrow(
-      kakaoAccountResDtoSchema,
-      kakaoAccountApiResponse,
-    );
-    const kakaoEmail: string = validatedData.kakao_account.email;
-
-    return NextResponse.json(success(kakaoEmail));
-  } catch (e) {
-    return NextResponse.json(failed(e));
+const kakaoEmailHandler = async (request: NextRequest): Promise<string> => {
+  const url = new URL(request.url);
+  const kakaoCode = parseQueryParam(url, 'code');
+  if (!kakaoCode) {
+    throw new BadRequestError();
   }
+
+  const kakaoTokenResponse = await kakaoTokenDatasource(kakaoCode);
+  const kakaoToken = kakaoTokenResponse.access_token;
+
+  const kakaoAccountResponse = await kakaoAccountDatasource(kakaoToken);
+  const kakaoEmail = kakaoAccountResponse.kakao_account.email;
+
+  return kakaoEmail;
 };
+
+export const GET = createBffHandler(kakaoEmailHandler);

@@ -1,12 +1,11 @@
-import { Result } from '@/lib/types/result';
 import ResultError from '@/lib/errors/resultError';
 
-import signOutRepo from '@/features/auth/repositories/signOutRepo';
+import signOutRepository from '@/features/auth/repositories/signOutRepository';
 
 const signOut = async (): Promise<void> => {
-  const result: Result<null> = await signOutRepo();
+  const result = await signOutRepository();
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 };
 

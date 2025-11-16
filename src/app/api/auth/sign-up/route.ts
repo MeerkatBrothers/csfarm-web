@@ -1,33 +1,29 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
+import { createBffErrorResponse } from '@/lib/bff/response';
 import { setAccessTokenToCookie } from '@/lib/cookie/accessToken';
 import { setRefreshTokenToCookie } from '@/lib/cookie/refreshToken';
+import { success, type Result } from '@/lib/types/result';
 
-import signUpSource from '@/features/auth/datasources/signUpSource';
-import { SignUpReqDto, signUpReqDtoSchema } from '@/features/auth/dtos/request/signUpReqDto';
-import { SignUpResDto, signUpResDtoSchema } from '@/features/auth/dtos/response/signUpResDto';
+import signUpDatasource from '@/features/auth/datasources/signUpDatasource';
+import { type SignUpRequest } from '@/features/auth/models/request/signUpRequest';
 
-export const POST = async (request: Request): Promise<NextResponse<Result<null>>> => {
+export const POST = async (request: NextRequest): Promise<NextResponse<Result<null>>> => {
   try {
-    const requestBody: unknown = await request.json();
-    const validatedRequestBody: SignUpReqDto = validateOrThrow(signUpReqDtoSchema, requestBody);
+    const requestBody = (await request.json()) as SignUpRequest;
 
-    const apiResponse: ApiResponse<SignUpResDto> = await signUpSource(validatedRequestBody);
+    const signUpResponse = await signUpDatasource(requestBody);
 
-    const data: SignUpResDto = apiResponse.data;
-    const validatedData: SignUpResDto = validateOrThrow(signUpResDtoSchema, data);
-    const { accessToken, refreshToken } = validatedData.token;
+    const token = signUpResponse.token;
+    const { accessToken, refreshToken } = token;
 
-    const response: NextResponse<Result<null>> = NextResponse.json(success(null));
+    const response = NextResponse.json(success(null));
 
     setAccessTokenToCookie(response, accessToken);
     setRefreshTokenToCookie(response, refreshToken);
 
     return response;
   } catch (e) {
-    return NextResponse.json(failed(e));
+    return createBffErrorResponse(e);
   }
 };

@@ -1,39 +1,32 @@
 import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
+import { createBffErrorResponse } from '@/lib/bff/response';
 import { setAccessTokenToCookie } from '@/lib/cookie/accessToken';
 import { setRefreshTokenToCookie, getRefreshTokenFromCookie } from '@/lib/cookie/refreshToken';
 import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
+import { success, type Result } from '@/lib/types/result';
 
-import reissueTokenSource from '@/features/auth/datasources/reissueTokenSource';
-import {
-  ReissueTokenResDto,
-  reissueTokenResDtoSchema,
-} from '@/features/auth/dtos/response/reissueTokenResDto';
+import reissueTokenDatasource from '@/features/auth/datasources/reissueTokenDatasource';
 
 export const POST = async (): Promise<NextResponse<Result<null>>> => {
   try {
-    const storedRefreshToken: string | null = await getRefreshTokenFromCookie();
+    const storedRefreshToken = await getRefreshTokenFromCookie();
     if (!storedRefreshToken) {
       throw new UnauthorizedError();
     }
 
-    const apiResponse: ApiResponse<ReissueTokenResDto> =
-      await reissueTokenSource(storedRefreshToken);
+    const reissueTokenResponse = await reissueTokenDatasource(storedRefreshToken);
 
-    const data: ReissueTokenResDto = apiResponse.data;
-    const validatedData: ReissueTokenResDto = validateOrThrow(reissueTokenResDtoSchema, data);
-    const { accessToken, refreshToken } = validatedData.token;
+    const token = reissueTokenResponse.token;
+    const { accessToken, refreshToken } = token;
 
-    const response: NextResponse<Result<null>> = NextResponse.json(success(null));
+    const response = NextResponse.json(success(null));
 
     setAccessTokenToCookie(response, accessToken);
     setRefreshTokenToCookie(response, refreshToken);
 
     return response;
   } catch (e) {
-    return NextResponse.json(failed(e));
+    return createBffErrorResponse(e);
   }
 };

@@ -1,9 +1,9 @@
 'use client';
 
+import MemberMenuButton from '@/features/member/components/MemberMenuButton';
+
 import useIsLogin from '@/features/auth/hooks/useIsLogin';
 import useLoginModal from '@/features/auth/hooks/useLoginModal';
-
-import MemberMenuButton from '@/features/member/components/MemberMenuButton';
 
 import TertiaryButton from '@/components/atoms/button/TertiaryButton';
 import DotLoader from '@/components/atoms/DotLoader';
