@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import useStoredInsight from '@/features/insight/hooks/useStoredInsight';
@@ -16,9 +16,29 @@ const StoredInsightSection = () => {
 
   const [weekOffset, setWeekOffset] = useState<number>(0);
 
-  const { data: storedInsight, isLoading, isError, error } = useStoredInsight();
+  const {
+    data: storedInsight,
+    isLoading,
+    isError,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useStoredInsight();
 
-  if (isLoading) {
+  const targetPage = weekOffset + 1;
+  const loadedPages = storedInsight?.pages.length ?? 0;
+
+  useEffect(() => {
+    if (targetPage > loadedPages && hasNextPage && !isFetchingNextPage) {
+      void fetchNextPage();
+    }
+  }, [targetPage, loadedPages, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const selectedPage = storedInsight?.pages?.[weekOffset];
+  const insightPreviews = selectedPage?.data.insights ?? [];
+
+  if (isLoading || (!selectedPage && isFetchingNextPage)) {
     return <StoredInsightSectionSkeleton />;
   }
 
@@ -44,7 +64,7 @@ const StoredInsightSection = () => {
       </div>
 
       <InsightPreviewList
-        insightPreviews={storedInsight.get(weekOffset) ?? []}
+        insightPreviews={insightPreviews}
         onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
       />
     </div>

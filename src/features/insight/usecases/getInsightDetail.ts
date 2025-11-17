@@ -1,23 +1,17 @@
-import { Result } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
 import ResultError from '@/lib/errors/resultError';
 
-import insightDetailRepo from '@/features/insight/repositories/insightDetailRepo';
-import { mapInsightDetailDtoToModel } from '@/features/insight/mappers/insightDetailMapper';
-import { InsightDetail, insightDetailSchema } from '@/features/insight/models/insightDetail';
-import { InsightDetailResDto } from '@/features/insight/dtos/response/insightDetailResDto';
+import insightDetailRepository from '@/features/insight/repositories/insightDetailRepository';
+import { type InsightDetailResponse } from '@/features/insight/models/response/insightDetailResponse';
 
-const getInsightDetail = async (insightId: number): Promise<InsightDetail> => {
-  const result: Result<InsightDetailResDto> = await insightDetailRepo(insightId);
+const getInsightDetail = async (insightId: string): Promise<InsightDetailResponse> => {
+  const result = await insightDetailRepository(insightId);
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 
-  const insightDetail: InsightDetail = mapInsightDetailDtoToModel(result.data);
+  const insightDetail = result.data;
 
-  const validatedInsightDetail: InsightDetail = validateOrThrow(insightDetailSchema, insightDetail);
-
-  return validatedInsightDetail;
+  return insightDetail;
 };
 
 export default getInsightDetail;

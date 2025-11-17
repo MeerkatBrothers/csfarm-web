@@ -1,16 +1,19 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
+
+import { type Paginated } from '@/lib/models/paginated';
 
 import INSIGHT_QUERY_KEYS from '@/features/insight/constants/queryKey';
-import getStoredInsight from '@/features/insight/usecases/getStoredInsight';
-import { InsightPreview } from '@/features/insight/models/fragments/insightPreview';
+import getStoredInsights from '@/features/insight/usecases/getStoredInsights';
+import { type StoredInsightResponse } from '@/features/insight/models/response/storedInsightResponse';
 
 const useStoredInsight = () => {
-  return useQuery<Map<number, InsightPreview[]>>({
-    queryKey: INSIGHT_QUERY_KEYS.STORED(),
-    queryFn: getStoredInsight,
-    staleTime: 1000 * 60 * 30,
-    gcTime: 1000 * 60 * 60,
-    retry: false,
+  return useInfiniteQuery<Paginated<StoredInsightResponse>>({
+    queryKey: INSIGHT_QUERY_KEYS.STORED,
+    queryFn: ({ pageParam = 1 }) => getStoredInsights(pageParam as number, 10),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage.hasNext ? lastPage.page + 1 : undefined;
+    },
   });
 };
 

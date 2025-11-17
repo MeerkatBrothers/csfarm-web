@@ -1,24 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
+import { createBffHandler } from '@/lib/bff/handler';
 
-import todayInsightSource from '@/features/insight/datasources/todayInsightSource';
-import {
-  TodayInsightResDto,
-  todayInsightResDtoSchema,
-} from '@/features/insight/dtos/response/todayInsightResDto';
+import todayInsightDatasource from '@/features/insight/datasources/todayInsightDatasource';
 
-export const GET = async (): Promise<NextResponse<Result<TodayInsightResDto>>> => {
-  try {
-    const apiResponse: ApiResponse<TodayInsightResDto> = await todayInsightSource();
+const todayInsightHandler = async (_: NextRequest) => {
+  const todayInsight = await todayInsightDatasource();
 
-    const data: TodayInsightResDto = apiResponse.data;
-    const validatedData: TodayInsightResDto = validateOrThrow(todayInsightResDtoSchema, data);
-
-    return NextResponse.json(success(validatedData));
-  } catch (e) {
-    return NextResponse.json(failed(e));
-  }
+  return todayInsight;
 };
+
+export const GET = createBffHandler(todayInsightHandler);
