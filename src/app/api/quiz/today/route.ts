@@ -1,31 +1,21 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
+import { createBffHandler } from '@/lib/bff/handler';
 import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
 import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
 
-import todayQuizSource from '@/features/quiz/datasources/todayQuizSource';
-import {
-  TodayQuizResDto,
-  todayQuizResDtoSchema,
-} from '@/features/quiz/dtos/response/todayQuizResDto';
+import todayQuizDatasource from '@/features/quiz/datasources/todayQuizSource';
+import { type TodayQuizResponse } from '@/features/quiz/models/response/todayQuizResponse';
 
-export const GET = async (): Promise<NextResponse<Result<TodayQuizResDto>>> => {
-  try {
-    const storedAccessToken: string | null = await getAccessTokenFromCookie();
-    if (!storedAccessToken) {
-      throw new UnauthorizedError();
-    }
-
-    const apiResponse: ApiResponse<TodayQuizResDto> = await todayQuizSource(storedAccessToken);
-
-    const data: TodayQuizResDto = apiResponse.data;
-    const validatedData: TodayQuizResDto = validateOrThrow(todayQuizResDtoSchema, data);
-
-    return NextResponse.json(success(validatedData));
-  } catch (e) {
-    return NextResponse.json(failed(e));
+const todayQuizHandler = async (_: NextRequest): Promise<TodayQuizResponse> => {
+  const storedAccessToken = await getAccessTokenFromCookie();
+  if (!storedAccessToken) {
+    throw new UnauthorizedError();
   }
+
+  const todayQuiz = await todayQuizDatasource(storedAccessToken);
+
+  return todayQuiz;
 };
+
+export const GET = createBffHandler(todayQuizHandler);

@@ -1,23 +1,17 @@
-import { Result } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
 import ResultError from '@/lib/errors/resultError';
 
-import todayQuizRepo from '@/features/quiz/repositories/todayQuizRepo';
-import { mapTodayQuizDtoToModel } from '@/features/quiz/mappers/todayQuizMapper';
-import { TodayQuiz, todayQuizSchema } from '@/features/quiz/models/todayQuiz';
-import { TodayQuizResDto } from '@/features/quiz/dtos/response/todayQuizResDto';
+import todayQuizRepository from '@/features/quiz/repositories/todayQuizRepository';
+import { type TodayQuizResponse } from '@/features/quiz/models/response/todayQuizResponse';
 
-const getTodayQuiz = async (): Promise<TodayQuiz> => {
-  const result: Result<TodayQuizResDto> = await todayQuizRepo();
+const getTodayQuiz = async (): Promise<TodayQuizResponse> => {
+  const result = await todayQuizRepository();
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 
-  const todayQuiz: TodayQuiz = mapTodayQuizDtoToModel(result.data);
+  const todayQuiz = result.data;
 
-  const validatedTodayQuiz: TodayQuiz = validateOrThrow(todayQuizSchema, todayQuiz);
-
-  return validatedTodayQuiz;
+  return todayQuiz;
 };
 
 export default getTodayQuiz;

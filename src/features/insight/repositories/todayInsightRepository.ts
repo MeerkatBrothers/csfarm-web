@@ -3,7 +3,7 @@ import { type Result } from '@/lib/types/result';
 
 import { type TodayInsightResponse } from '@/features/insight/models/response/todayInsightResponse';
 
-const todayInsightRepo = async (): Promise<Result<TodayInsightResponse>> => {
+const todayInsightRepository = async (): Promise<Result<TodayInsightResponse>> => {
   const endpoint = '/insight/today';
 
   const result = await bffHttpClient<TodayInsightResponse>({
@@ -14,4 +14,4 @@ const todayInsightRepo = async (): Promise<Result<TodayInsightResponse>> => {
   return result;
 };
 
-export default todayInsightRepo;
+export default todayInsightRepository;
