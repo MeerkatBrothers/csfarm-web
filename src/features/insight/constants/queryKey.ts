@@ -1,11 +1,9 @@
-import { formatDateToYMD } from "@/lib/utils/formatter/date";
+import { formatDateToYMD } from '@/lib/utils/formatter/date';
 
 const INSIGHT_QUERY_KEYS = {
-  TODAY: (): string[] => ["insight", "today", formatDateToYMD(new Date())],
-  STATUS: (insightId: number): string[] => ["insight", "status", insightId.toString()],
-  STORED: (): string[] => ["insight", "stored", formatDateToYMD(new Date())],
-  DETAIL: (insightId: number): string[] => ["insight", "detail", insightId.toString()],
-  HARVESTED: ["insight", "harvested"],
+  TODAY: (): string[] => ['insight', 'today', formatDateToYMD(new Date())],
+  STORED: ['insight', 'stored'],
+  DETAIL: (insightId: string): string[] => ['insight', 'detail', insightId],
 };
 
 export default INSIGHT_QUERY_KEYS;

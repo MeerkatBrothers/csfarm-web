@@ -1,0 +1,5 @@
+import { type Insight } from '@/features/insight/models/insight';
+
+export interface InsightDetailResponse {
+  insight: Insight;
+}

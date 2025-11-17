@@ -2,7 +2,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 import InvalidFormError from '@/lib/errors/invalidFormError';
 
-import INSIGHT_QUERY_KEYS from '@/features/insight/constants/queryKey';
+import INSIGHT_QUERY_KEYS from '@/features/harvest/constants/queryKey';
 
 import PROGRESS_QUERY_KEYS from '@/features/progress/constants/queryKey';
 
