@@ -1,2 +1,2 @@
-export const INVALID_QUIZ_CHOICE_ERROR: string = "타작에 실패했어요. 다른 선택지를 한 번 더 살펴보는 건 어떨까요?";
-export const ALREADY_THRESHED_QUIZ_ERROR: string = "이미 타작한 타작물이에요.";
+export const TODAY_QUIZ_NOT_FOUND_ERROR = '오늘의 퀴즈를 찾을 수 없어요.';
+export const QUIZ_NOT_FOUND_ERROR = '퀴즈를 찾을 수 없어요.';

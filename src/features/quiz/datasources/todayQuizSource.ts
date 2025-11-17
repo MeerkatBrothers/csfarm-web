@@ -1,25 +1,21 @@
-import { buildApiServerUrl } from '@/lib/utils/url';
-import externalFetcher from '@/lib/apis/fetchers/externalFetcher';
-import ApiResponse from '@/lib/models/apiResponse';
+import apiHttpClient from '@/lib/apis/clients/apiHttpClient';
 
-import { TodayQuizResDto } from '@/features/quiz/dtos/response/todayQuizResDto';
+import { TODAY_QUIZ_NOT_FOUND_ERROR } from '@/features/quiz/constants/errorMessage';
+import { type TodayQuizResponse } from '@/features/quiz/models/response/todayQuizResponse';
 
-const todayQuizSource = async (accessToken: string): Promise<ApiResponse<TodayQuizResDto>> => {
-  const endpoint: string = 'quiz/today';
+const todayQuizDatasource = async (accessToken: string): Promise<TodayQuizResponse> => {
+  const endpoint = '/quiz/today';
 
-  const apiResponse: ApiResponse<TodayQuizResDto> = await externalFetcher<
-    ApiResponse<TodayQuizResDto>
-  >({
-    url: buildApiServerUrl(endpoint),
-    options: {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+  const response = await apiHttpClient<TodayQuizResponse>({
+    method: 'GET',
+    endpoint,
+    errorMessages: {
+      404: TODAY_QUIZ_NOT_FOUND_ERROR,
     },
+    token: accessToken,
   });
 
-  return apiResponse;
+  return response;
 };
 
-export default todayQuizSource;
+export default todayQuizDatasource;

@@ -2,15 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 
 import QUIZ_QUERY_KEYS from '@/features/quiz/constants/queryKey';
 import getTodayQuiz from '@/features/quiz/usecases/getTodayQuiz';
-import { TodayQuiz } from '@/features/quiz/models/todayQuiz';
+import { type TodayQuizResponse } from '@/features/quiz/models/response/todayQuizResponse';
 
 const useTodayQuiz = () => {
-  return useQuery<TodayQuiz>({
+  return useQuery<TodayQuizResponse>({
     queryKey: QUIZ_QUERY_KEYS.TODAY(),
     queryFn: getTodayQuiz,
-    staleTime: 1000 * 60 * 30,
-    gcTime: 1000 * 60 * 60,
-    retry: false,
   });
 };
 
