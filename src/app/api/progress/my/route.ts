@@ -1,31 +1,21 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
+import { createBffHandler } from '@/lib/bff/handler';
 import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
 import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
 
-import myProgressSource from '@/features/progress/datasources/myProgressSource';
-import {
-  MyProgressResDto,
-  myProgressResDtoSchema,
-} from '@/features/progress/dtos/request/myProgressResDto';
+import myProgressDatasource from '@/features/progress/datasources/myProgressDatasource';
+import { type MyProgressResponse } from '@/features/progress/models/response/myProgressResponse';
 
-export const GET = async (): Promise<NextResponse<Result<MyProgressResDto>>> => {
-  try {
-    const storedAccessToken: string | null = await getAccessTokenFromCookie();
-    if (!storedAccessToken) {
-      throw new UnauthorizedError();
-    }
-
-    const apiResponse: ApiResponse<MyProgressResDto> = await myProgressSource(storedAccessToken);
-
-    const data: MyProgressResDto = apiResponse.data;
-    const validatedData: MyProgressResDto = validateOrThrow(myProgressResDtoSchema, data);
-
-    return NextResponse.json(success(validatedData));
-  } catch (e) {
-    return NextResponse.json(failed(e));
+const myProgressHandler = async (_: NextRequest): Promise<MyProgressResponse> => {
+  const storedAccessToken = await getAccessTokenFromCookie();
+  if (!storedAccessToken) {
+    throw new UnauthorizedError();
   }
+
+  const myPrgressResponse = await myProgressDatasource(storedAccessToken);
+
+  return myPrgressResponse;
 };
+
+export const GET = createBffHandler(myProgressHandler);

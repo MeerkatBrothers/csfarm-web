@@ -1,26 +1,19 @@
-import { Result } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
 import { formatDateToYMD } from '@/lib/utils/formatter/date';
 import ResultError from '@/lib/errors/resultError';
 
-import myProgressRepo from '@/features/progress/repositories/myProgressRepo';
-import { mapMyProgressResDtoToModel } from '@/features/progress/mappers/myProgressMapper';
-import { MyProgress, myProgressSchema } from '@/features/progress/models/myProgress';
-import { Progress } from '@/features/progress/models/fragments/progress';
-import { MyProgressResDto } from '@/features/progress/dtos/request/myProgressResDto';
+import myProgressRepository from '@/features/progress/repositories/myProgressRepository';
+import { type Progress } from '@/features/progress/models/progress';
 
 const getMyProgress = async (): Promise<Map<string, Progress>> => {
-  const result: Result<MyProgressResDto> = await myProgressRepo();
+  const result = await myProgressRepository();
   if (!result.ok) {
-    throw new ResultError(result.message, result.statusCode);
+    throw new ResultError(result.statusCode, result.message);
   }
 
-  const myProgress: MyProgress = mapMyProgressResDtoToModel(result.data);
+  const myProgress = result.data;
 
-  const validatedMyProgress: MyProgress = validateOrThrow(myProgressSchema, myProgress);
-
-  const myProgressMap: Map<string, Progress> = new Map<string, Progress>();
-  for (const progress of validatedMyProgress.progresses) {
+  const myProgressMap = new Map<string, Progress>();
+  for (const progress of myProgress.progresses) {
     myProgressMap.set(formatDateToYMD(progress.date), progress);
   }
 
