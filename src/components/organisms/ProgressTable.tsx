@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { getAllDatesOfYear } from '@/lib/utils/date';
 import { formatDateToYMD } from '@/lib/utils/formatter/date';
 
-import { Progress } from '@/features/progress/models/fragments/progress';
+import { type Progress } from '@/features/progress/models/progress';
 
 import ProgressCell from '@/components/atoms/ProgressCell';
 

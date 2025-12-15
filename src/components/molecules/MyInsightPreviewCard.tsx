@@ -2,21 +2,21 @@ import Seed from '@/../public/svgs/seed.svg';
 
 import { formatDateToYMD } from '@/lib/utils/formatter/date';
 
-import { MyInsightPreview } from '@/features/insight/models/fragments/myInsightPreview';
+import { type HarvestedInsight } from '@/features/harvest/models/harvestedInsight';
 
 import Heading1 from '@/components/atoms/typography/Heading1';
 import Label1 from '@/components/atoms/typography/Label1';
 
 interface MyInsightPreviewCardProps {
-  myInsightPreview: MyInsightPreview;
-  onClick: (insightId: number) => void;
+  myInsightPreview: HarvestedInsight;
+  onClick: (insightId: string) => void;
 }
 
 const MyInsightPreviewCard = ({ myInsightPreview, onClick }: MyInsightPreviewCardProps) => {
   return (
     <button
       className="flex flex-col items-start gap-1 text-start"
-      onClick={() => onClick(myInsightPreview.insightId)}
+      onClick={() => onClick(myInsightPreview.id)}
     >
       <div className="flex gap-1">
         <Heading1 text={myInsightPreview.subject} />

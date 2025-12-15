@@ -1,4 +1,4 @@
-import { Profile } from '@/features/profile/models/fragments/profile';
+import { type Profile } from '@/features/profile/models/profile';
 
 import Heading1 from '@/components/atoms/typography/Heading1';
 import ProfileImage from '@/components/atoms/ProfileImage';

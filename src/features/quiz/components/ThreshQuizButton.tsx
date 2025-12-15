@@ -2,22 +2,22 @@
 
 import useAuthAction from '@/features/auth/hooks/useAuthAction';
 
-import useQuizStatus from '@/features/quiz/hooks/useQuizStatus';
-import useThreshQuiz from '@/features/quiz/hooks/useThreshQuiz';
+import useThreshStatus from '@/features/thresh/hooks/useThreshStatus';
+import useThresh from '@/features/thresh/hooks/useThresh';
 
 import PrimaryButton from '@/components/atoms/button/PrimaryButton';
 import DotLoader from '@/components/atoms/DotLoader';
 import RewardIncreaseLabel from '@/components/atoms/RewardIncreaseLabel';
 
 interface ThreshQuizButtonProps {
-  quizId: number;
-  choiceId: number | null;
+  quizId: string;
+  choiceId: string | null;
 }
 
 const ThreshQuizButton = ({ quizId, choiceId }: ThreshQuizButtonProps) => {
-  const { data: quizStatus, isLoading } = useQuizStatus(quizId);
+  const { data: quizStatus, isLoading } = useThreshStatus(quizId);
 
-  const { mutate: threshQuiz, isPending } = useThreshQuiz({
+  const { mutate: threshQuiz, isPending } = useThresh({
     onSuccess: () => alert('오늘의 퀴즈를 타작했어요!'),
   });
 

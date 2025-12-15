@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { ICON_SIZE } from '@/lib/constants/ui';
 
-import { SubInsight } from '@/features/insight/models/fragments/subInsight';
+import { type SubInsight } from '@/features/insight/models/subInsight';
 
 import Body1 from '@/components/atoms/typography/Body1';
 

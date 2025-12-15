@@ -1,11 +1,11 @@
-import { QuizChoice } from '@/features/quiz/models/fragments/quizChoice';
+import { type QuizChoice } from '@/features/quiz/models/quizChoice';
 
 import QuizChoiceCard from '@/components/molecules/QuizChoiceCard';
 
 interface QuizChoiceListProps {
   quizChoices: QuizChoice[];
-  choiceId: number | null;
-  onChoice: (choiceId: number) => void;
+  choiceId: string | null;
+  onChoice: (choiceId: string) => void;
 }
 
 const QuizChoiceList = ({ quizChoices, choiceId, onChoice }: QuizChoiceListProps) => {

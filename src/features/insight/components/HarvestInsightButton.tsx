@@ -2,20 +2,20 @@
 
 import useAuthAction from '@/features/auth/hooks/useAuthAction';
 
-import useInsightStatus from '@/features/insight/hooks/useInsightStatus';
-import useHarvestInsight from '@/features/insight/hooks/useHarvestInsight';
+import useHarvestStatus from '@/features/harvest/hooks/useHarvestStatus';
+import useHarvest from '@/features/harvest/hooks/useHarvest';
 
 import PrimaryButton from '@/components/atoms/button/PrimaryButton';
 import DotLoader from '@/components/atoms/DotLoader';
 
 interface HarvestInsightButtonProps {
-  insightId: number;
+  insightId: string;
 }
 
 const HarvestInsightButton = ({ insightId }: HarvestInsightButtonProps) => {
-  const { data: insightStatus, isLoading } = useInsightStatus(insightId);
+  const { data: insightStatus, isLoading } = useHarvestStatus(insightId);
 
-  const { mutate: harvestInsight, isPending } = useHarvestInsight({
+  const { mutate: harvestInsight, isPending } = useHarvest({
     onSuccess: () => alert('오늘의 지식을 수확했어요!'),
   });
 

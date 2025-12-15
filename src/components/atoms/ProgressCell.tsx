@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import { formatDateToYMD } from '@/lib/utils/formatter/date';
 
-import { Progress } from '@/features/progress/models/fragments/progress';
+import { type Progress } from '@/features/progress/models/progress';
 
 interface ProgressCellProps {
   date: Date;

@@ -1,19 +1,19 @@
-import { Quiz } from '@/features/quiz/models/fragments/quiz';
+import { type Quiz } from '@/features/quiz/models/quiz';
 
 import Heading1 from '@/components/atoms/typography/Heading1';
 import QuizChoiceList from '@/components/organisms/QuizChoiceList';
 
 interface QuizSectionProps {
   quiz: Quiz;
-  choiceId: number | null;
-  onChoice: (choiceId: number) => void;
+  choiceId: string | null;
+  onChoice: (choiceId: string) => void;
 }
 
 const QuizSection = ({ quiz, choiceId, onChoice }: QuizSectionProps) => {
   return (
     <div className="flex flex-col gap-8">
       <div className="rounded-lg bg-gray-100 px-4 py-5">
-        <Heading1 text={quiz.content} />
+        <Heading1 text={quiz.question} />
       </div>
 
       <QuizChoiceList quizChoices={quiz.choices} choiceId={choiceId} onChoice={onChoice} />

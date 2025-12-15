@@ -2,9 +2,7 @@
 
 import { useParams } from 'next/navigation';
 
-import { stringToNumber } from '@/lib/utils/transformer/number';
 import { formatDateToYMD } from '@/lib/utils/formatter/date';
-import InvalidParamError from '@/lib/errors/invalidParamError';
 
 import useInsightDetail from '@/features/insight/hooks/useInsightDetail';
 import InsightDetailSectionSkeleton from '@/features/insight/components/skeleton/InsightDetailSectionSkeleton';
@@ -15,10 +13,7 @@ import InsightSection from '@/components/organisms/InsightSection';
 
 const InsightDetailSection = () => {
   const params: { insightId: string } = useParams<{ insightId: string }>();
-  const insightId: number | null = stringToNumber(params.insightId);
-  if (!insightId) {
-    throw new InvalidParamError();
-  }
+  const insightId = params.insightId;
 
   const { data: insightDetail, isLoading, isError, error } = useInsightDetail(insightId);
 

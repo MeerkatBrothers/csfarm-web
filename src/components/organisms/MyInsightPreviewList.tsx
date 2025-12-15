@@ -1,10 +1,10 @@
-import { MyInsightPreview } from '@/features/insight/models/fragments/myInsightPreview';
+import { type HarvestedInsight } from '@/features/harvest/models/harvestedInsight';
 
 import MyInsightPreviewCard from '@/components/molecules/MyInsightPreviewCard';
 
 interface MyInsightPreviewProps {
-  myInsightPreviews: MyInsightPreview[];
-  onClick: (insightId: number) => void;
+  myInsightPreviews: HarvestedInsight[];
+  onClick: (insightId: string) => void;
 }
 
 const MyInsightPreviewList = ({ myInsightPreviews, onClick }: MyInsightPreviewProps) => {

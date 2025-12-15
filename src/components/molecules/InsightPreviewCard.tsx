@@ -1,13 +1,13 @@
 import { formatDateToYMD } from '@/lib/utils/formatter/date';
 
-import { InsightPreview } from '@/features/insight/models/fragments/insightPreview';
+import { type InsightPreview } from '@/features/insight/models/insightPreview';
 
 import Heading1 from '@/components/atoms/typography/Heading1';
 import Label1 from '@/components/atoms/typography/Label1';
 
 interface InsightPreviewCardProps {
   insightPreview: InsightPreview;
-  onClick: (insightId: number) => void;
+  onClick: (insightId: string) => void;
 }
 
 const InsightPreviewCard = ({ insightPreview, onClick }: InsightPreviewCardProps) => {

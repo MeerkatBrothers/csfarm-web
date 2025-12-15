@@ -10,7 +10,7 @@ import Title3 from '@/components/atoms/typography/Title3';
 import QuizSection from '@/components/organisms/QuizSection';
 
 const TodayQuizSection = () => {
-  const [choiceId, setChoiceId] = useState<number | null>(null);
+  const [choiceId, setChoiceId] = useState<string | null>(null);
 
   const { data: todayQuiz, isLoading, isError, error } = useTodayQuiz();
 

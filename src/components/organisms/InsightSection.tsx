@@ -1,4 +1,4 @@
-import { Insight } from '@/features/insight/models/fragments/insight';
+import { type Insight } from '@/features/insight/models/insight';
 
 import Heading1 from '@/components/atoms/typography/Heading1';
 import Body1 from '@/components/atoms/typography/Body1';

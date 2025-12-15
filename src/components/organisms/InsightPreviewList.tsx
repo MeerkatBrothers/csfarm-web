@@ -1,10 +1,10 @@
-import { InsightPreview } from '@/features/insight/models/fragments/insightPreview';
+import { type InsightPreview } from '@/features/insight/models/insightPreview';
 
 import InsightPreviewCard from '@/components/molecules/InsightPreviewCard';
 
 interface InsightPreviewProps {
   insightPreviews: InsightPreview[];
-  onClick: (insightId: number) => void;
+  onClick: (insightId: string) => void;
 }
 
 const InsightPreviewList = ({ insightPreviews, onClick }: InsightPreviewProps) => {

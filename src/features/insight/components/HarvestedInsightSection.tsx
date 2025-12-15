@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useInView } from 'react-intersection-observer';
 
-import useHarvestedInsight from '@/features/insight/hooks/useHarvestedInsight';
+import useHarvestedInsights from '@/features/harvest/hooks/useHarvestedInsights';
+
 import HarvestedInsightSectionSkeleton from '@/features/insight/components/skeleton/HarvestedInsightSectionSkeleton';
 
 import Heading1 from '@/components/atoms/typography/Heading1';
@@ -24,7 +25,7 @@ const HarvestedInsightSection = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useHarvestedInsight();
+  } = useHarvestedInsights();
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
@@ -49,7 +50,7 @@ const HarvestedInsightSection = () => {
       <Heading1 text="나의 수확물 목록 🌾" />
 
       <MyInsightPreviewList
-        myInsightPreviews={harvestedInsight.pages.flat() ?? []}
+        myInsightPreviews={harvestedInsight.pages.map((v) => v.data.insights).flat() ?? []}
         onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
       />
 
