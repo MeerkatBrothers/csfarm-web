@@ -20,9 +20,7 @@ const useUpdateProfile = ({ onSuccess, onError }: UseModifyProfileParams = {}) =
       const validatedForm = validateOrThrow(profileFormSchema, profileForm);
 
       const result = await updateProfile(validatedForm);
-      if (!result.ok) {
-        throw new ResultError(result.statusCode, result.code);
-      }
+      if (!result.ok) throw new ResultError(result.statusCode, result.code);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: PROFILE_QUERY_KEYS.MY });

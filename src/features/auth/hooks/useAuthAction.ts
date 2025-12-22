@@ -8,15 +8,12 @@ interface UseActionParams {
 const useAuthAction = ({ action }: UseActionParams) => {
   const { isLogin, isLoading } = useIsLogin();
 
-  const { openLoginModal } = useLoginModal();
+  const { open } = useLoginModal();
 
   const authAction = (): void => {
-    if (isLoading) {
-      return;
-    }
-
+    if (isLoading) return;
     if (!isLogin) {
-      openLoginModal();
+      open();
 
       return;
     }

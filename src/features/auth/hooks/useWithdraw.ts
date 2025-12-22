@@ -1,21 +1,28 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import withdraw from '@/features/auth/usecases/withdraw';
+import ResultError from '@/shared/errors/client/result-error';
+
+import withdraw from '@/features/auth/api/bff/withdraw';
 
 interface UseWithdrawParams {
   onSuccess?: () => void;
+  onError?: (error: Error) => void;
 }
 
-const useWithdraw = ({ onSuccess }: UseWithdrawParams) => {
+const useWithdraw = ({ onSuccess, onError }: UseWithdrawParams = {}) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: withdraw,
+    mutationFn: async () => {
+      const result = await withdraw();
+      if (!result.ok) throw new ResultError(result.statusCode, result.code);
+    },
     onSuccess: () => {
       queryClient.clear();
 
       onSuccess?.();
     },
+    onError,
   });
 };
 

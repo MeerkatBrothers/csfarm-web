@@ -5,7 +5,7 @@ import useMyProfile from '@/features/profile/hooks/useMyProfile';
 const useIsLogin = () => {
   const { data: myProfile, isLoading } = useMyProfile();
 
-  const isLogin: boolean = useMemo(() => !!myProfile, [myProfile]);
+  const isLogin = useMemo(() => !!myProfile, [myProfile]);
 
   return { isLogin, isLoading };
 };

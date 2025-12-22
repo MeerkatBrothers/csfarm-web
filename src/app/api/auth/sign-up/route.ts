@@ -1,33 +1,30 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
-import { setAccessTokenToCookie } from '@/lib/cookie/accessToken';
-import { setRefreshTokenToCookie } from '@/lib/cookie/refreshToken';
+import { validateOrThrow } from '@/shared/utils/zod';
+import { setAccessTokenToCookie } from '@/shared/cookie/access-token';
+import { setRefreshTokenToCookie } from '@/shared/cookie/refresh-token';
+import { success, failed, type Result } from '@/shared/types/result';
 
-import signUpSource from '@/features/auth/datasources/signUpSource';
-import { SignUpReqDto, signUpReqDtoSchema } from '@/features/auth/dtos/request/signUpReqDto';
-import { SignUpResDto, signUpResDtoSchema } from '@/features/auth/dtos/response/signUpResDto';
+import fetchSignUp from '@/features/auth/api/server/fetch-sign-up';
+import { credentialFormSchema, type CredentialForm } from '@/features/auth/models/credential.form';
 
-export const POST = async (request: Request): Promise<NextResponse<Result<null>>> => {
+export const POST = async (request: NextRequest): Promise<NextResponse<Result<null>>> => {
   try {
-    const requestBody: unknown = await request.json();
-    const validatedRequestBody: SignUpReqDto = validateOrThrow(signUpReqDtoSchema, requestBody);
+    const requestBody = (await request.json()) as CredentialForm;
+    const validatedBody = validateOrThrow(credentialFormSchema, requestBody);
 
-    const apiResponse: ApiResponse<SignUpResDto> = await signUpSource(validatedRequestBody);
+    const certification = await fetchSignUp(validatedBody);
+    const { accessToken, refreshToken } = certification.token;
 
-    const data: SignUpResDto = apiResponse.data;
-    const validatedData: SignUpResDto = validateOrThrow(signUpResDtoSchema, data);
-    const { accessToken, refreshToken } = validatedData.token;
-
-    const response: NextResponse<Result<null>> = NextResponse.json(success(null));
+    const response = NextResponse.json(success(null), { status: 200 });
 
     setAccessTokenToCookie(response, accessToken);
     setRefreshTokenToCookie(response, refreshToken);
 
     return response;
   } catch (e) {
-    return NextResponse.json(failed(e));
+    const result = failed(e);
+
+    return NextResponse.json(result, { status: result.statusCode });
   }
 };

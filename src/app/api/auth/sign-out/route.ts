@@ -1,25 +1,28 @@
 import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { getAccessTokenFromCookie, deleteAccessTokenFromCookie } from '@/lib/cookie/accessToken';
-import { deleteRefreshTokenFromCookie } from '@/lib/cookie/refreshToken';
+import { deleteAccessTokenFromCookie } from '@/shared/cookie/access-token';
+import {
+  getRefreshTokenFromCookie,
+  deleteRefreshTokenFromCookie,
+} from '@/shared/cookie/refresh-token';
+import { success, failed, type Result } from '@/shared/types/result';
 
-import signOutSource from '@/features/auth/datasources/signOutSource';
+import fetchSignOut from '@/features/auth/api/server/fetch-sign-out';
 
 export const DELETE = async (): Promise<NextResponse<Result<null>>> => {
   try {
-    const storedAccessToken: string | null = await getAccessTokenFromCookie();
-    if (storedAccessToken) {
-      await signOutSource(storedAccessToken);
-    }
+    const storedRefreshToken = await getRefreshTokenFromCookie();
+    if (storedRefreshToken) await fetchSignOut(storedRefreshToken);
 
-    const response: NextResponse<Result<null>> = NextResponse.json(success(null));
+    const response = NextResponse.json(success(null), { status: 200 });
 
     deleteAccessTokenFromCookie(response);
     deleteRefreshTokenFromCookie(response);
 
     return response;
   } catch (e) {
-    return NextResponse.json(failed(e));
+    const result = failed(e);
+
+    return NextResponse.json(result, { status: result.statusCode });
   }
 };

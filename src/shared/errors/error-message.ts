@@ -1,6 +1,8 @@
 import { ClientErrorCode } from '@/shared/errors/client-error-code';
 import { ApiErrorCode } from '@/shared/errors/api-error-code';
 
+import { AuthErrorCode } from '@/features/auth/errors/auth-error-code';
+
 import { MAX_NICKNAME_LENGHT, MIN_NICKNAME_LENGHT } from '@/features/profile/constants/constraint';
 import { ProfileErrorCode } from '@/features/profile/errors/profile-error-code';
 
@@ -11,6 +13,17 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ClientErrorCode.API_REQUEST_FAILED]: '요청에 실패했어요. 잠시 후 다시 시도해 주세요.',
   [ClientErrorCode.INVALID_PARAM]: '요청 경로가 올바르지 않아요. 다시 한번 확인해 주세요.',
   [ClientErrorCode.INVALID_FORM]: '입력 값이 올바르지 않아요. 다시 한번 확인해 주세요.',
+  [ClientErrorCode.TOKEN_NOT_FOUND]: '인증 정보가 존재하지 않아요. 다시 로그인해 주세요.',
+
+  // Auth Error
+  [AuthErrorCode.KAKAO_LOGIN_ERROR]:
+    '카카오 로그인 중 오류가 발생했어요. 잠시 후 다시 시도해 주세요.',
+  [AuthErrorCode.KAKAO_USER_NOT_FOUND]:
+    '카카오 사용자 정보를 불러오는데 실패했어요. 잠시 후 다시 시도해 주세요.',
+  [AuthErrorCode.MEMBER_NOT_FOUND]: '존재하지 않는 사용자에요.',
+  [AuthErrorCode.MEMBER_CONFLICT]: '이미 가입된 사용자에요. 다른 방법으로 로그인해 주세요.',
+  [AuthErrorCode.INVALID_IDENTIFIER]: '회원 정보를 가져오지 못했어요. 다시 시도해 주세요.',
+  [AuthErrorCode.INVALID_LOGIN_PLATFORM]: '올바르지 않은 로그인 채널이에요. 다시 시도해 주세요.',
 
   // Profile Error
   [ProfileErrorCode.NICKNAME_FORM_EMPTY]: '농부명을 입력해 주세요.',
@@ -28,7 +41,7 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ApiErrorCode.E40090003]: '이미지 경로가 잘못됐어요.',
 
   // 401 Error
-  [ApiErrorCode.E40101001]: '인증에 실패했어요. 다시 시도해 주세요.',
+  [ApiErrorCode.E40101001]: '인증에 실패했어요. 다시 로그인해 주세요.',
   [ApiErrorCode.E40101002]: '세션이 만료되었어요. 다시 로그인해 주세요.',
   [ApiErrorCode.E40101003]: '세션이 만료되었어요. 다시 로그인해 주세요.',
   [ApiErrorCode.E40101004]: '비정상적인 접근이에요. 다시 로그인해 주세요.',

@@ -11,9 +11,7 @@ const useMyProfile = () => {
     queryKey: PROFILE_QUERY_KEYS.MY,
     queryFn: async () => {
       const result = await getMyProfile();
-      if (!result.ok) {
-        throw new ResultError(result.statusCode, result.code);
-      }
+      if (!result.ok) throw new ResultError(result.statusCode, result.code);
 
       return result.data;
     },
