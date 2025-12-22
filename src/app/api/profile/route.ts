@@ -1,33 +1,22 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
-import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
+import { createBffHandler } from '@/shared/utils/bff';
+import { getAccessTokenFromCookie } from '@/shared/cookie/access-token';
+import { ApiErrorCode } from '@/shared/errors/api-error-code';
+import UnauthorizedError from '@/shared/errors/api/unauthorized-error';
 
-import updateProfileSource from '@/features/profile/datasources/updateProfileSource';
-import {
-  UpdateProfileReqDto,
-  updateProfileReqDtoSchema,
-} from '@/features/profile/dtos/request/updateProfileReqDto';
+import fetchUpdateProfile from '@/features/profile/apis/server/fetch-update-profile';
+import type { ProfileForm } from '@/features/profile/models/profile.form';
 
-export const PATCH = async (request: Request): Promise<NextResponse<Result<null>>> => {
-  try {
-    const requestBody: unknown = await request.json();
-    const validatedRequestBody: UpdateProfileReqDto = validateOrThrow(
-      updateProfileReqDtoSchema,
-      requestBody,
-    );
+const updateProfileHandler = async (request: NextRequest): Promise<null> => {
+  const requestBody = (await request.json()) as ProfileForm;
 
-    const storedAccessToken: string | null = await getAccessTokenFromCookie();
-    if (!storedAccessToken) {
-      throw new UnauthorizedError();
-    }
+  const storedAccessToken = await getAccessTokenFromCookie();
+  if (!storedAccessToken) throw new UnauthorizedError(ApiErrorCode.E40101001);
 
-    await updateProfileSource(validatedRequestBody, storedAccessToken);
+  await fetchUpdateProfile(requestBody, storedAccessToken);
 
-    return NextResponse.json(success(null));
-  } catch (e) {
-    return NextResponse.json(failed(e));
-  }
+  return null;
 };
+
+export const PATCH = createBffHandler(updateProfileHandler);

@@ -1,11 +1,13 @@
 'use client';
 
-import { useRef, ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, QueryCache, MutationCache } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
-import { alertError } from '@/lib/utils/ui';
-import ResultError from '@/lib/errors/resultError';
+import { toastError } from '@/shared/utils/ui';
+import { ERROR_MESSAGE } from '@/shared/errors/error-message';
+import ResultError from '@/shared/errors/client/result-error';
 
 interface QueryProviderProps {
   children: ReactNode;
@@ -14,29 +16,48 @@ interface QueryProviderProps {
 const QueryProvider = ({ children }: QueryProviderProps) => {
   const router = useRouter();
 
-  const queryClientRef = useRef<QueryClient | null>(null);
+  const [queryClient] = useState(() => {
+    let isHandling401 = false;
+    let qc: QueryClient;
 
-  if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient();
-    queryClientRef.current.setDefaultOptions({
-      mutations: {
-        onError: (error) => {
-          if (error instanceof ResultError && error.statusCode === 401) {
-            alert('인증이 만료되었어요. 다시 로그인 해주세요.');
+    const handleError = (error: Error): void => {
+      if (error instanceof ResultError && error.statusCode === 401) {
+        if (isHandling401) return;
+        isHandling401 = true;
 
-            queryClientRef.current?.clear();
-            router.replace('/');
+        qc.clear();
+        toast.error(ERROR_MESSAGE[error.code]);
+        router.replace('/');
 
-            return;
-          }
+        setTimeout(() => {
+          isHandling401 = false;
+        }, 500);
 
-          alertError(error);
+        return;
+      }
+
+      toastError(error);
+    };
+
+    qc = new QueryClient({
+      queryCache: new QueryCache({ onError: handleError }),
+      mutationCache: new MutationCache({ onError: handleError }),
+      defaultOptions: {
+        queries: {
+          staleTime: 1000 * 60 * 5,
+          gcTime: 1000 * 60 * 10,
+          retry: false,
+        },
+        mutations: {
+          retry: false,
         },
       },
     });
-  }
 
-  return <QueryClientProvider client={queryClientRef.current!}>{children}</QueryClientProvider>;
+    return qc;
+  });
+
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 };
 
 export default QueryProvider;
