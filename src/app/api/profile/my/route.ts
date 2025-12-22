@@ -1,31 +1,18 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
-import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
-import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
+import { createBffHandler } from '@/shared/utils/bff';
+import { getAccessTokenFromCookie } from '@/shared/cookie/access-token';
+import { ApiErrorCode } from '@/shared/errors/api-error-code';
+import UnauthorizedError from '@/shared/errors/api/unauthorized-error';
 
-import myProfileSource from '@/features/profile/datasources/myProfileSource';
-import {
-  MyProfileResDto,
-  myProfileResDtoSchema,
-} from '@/features/profile/dtos/response/myProfileResDto';
+import fetchMyProfile from '@/features/profile/apis/server/fetch-my-profile';
+import type { Profile } from '@/features/profile/models/profile';
 
-export const GET = async (): Promise<NextResponse<Result<MyProfileResDto>>> => {
-  try {
-    const storedAccessToken: string | null = await getAccessTokenFromCookie();
-    if (!storedAccessToken) {
-      throw new UnauthorizedError();
-    }
+const myProfileHandler = async (_: NextRequest): Promise<Profile> => {
+  const storedAccessToken = await getAccessTokenFromCookie();
+  if (!storedAccessToken) throw new UnauthorizedError(ApiErrorCode.E40101001);
 
-    const apiResponse: ApiResponse<MyProfileResDto> = await myProfileSource(storedAccessToken);
-
-    const data: MyProfileResDto = apiResponse.data;
-    const validatedData: MyProfileResDto = validateOrThrow(myProfileResDtoSchema, data);
-
-    return NextResponse.json(success(validatedData));
-  } catch (e) {
-    return NextResponse.json(failed(e));
-  }
+  return await fetchMyProfile(storedAccessToken);
 };
+
+export const GET = createBffHandler(myProfileHandler);

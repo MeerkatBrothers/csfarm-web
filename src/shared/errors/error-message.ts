@@ -1,5 +1,8 @@
-import { ApiErrorCode } from '@/shared/errors/api-error-code';
 import { ClientErrorCode } from '@/shared/errors/client-error-code';
+import { ApiErrorCode } from '@/shared/errors/api-error-code';
+
+import { MAX_NICKNAME_LENGHT, MIN_NICKNAME_LENGHT } from '@/features/profile/constants/constraint';
+import { ProfileErrorCode } from '@/features/profile/errors/profile-error-code';
 
 export const ERROR_MESSAGE: Record<string, string> = {
   // Client Error
@@ -8,6 +11,11 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ClientErrorCode.API_REQUEST_FAILED]: '요청에 실패했어요. 잠시 후 다시 시도해 주세요.',
   [ClientErrorCode.INVALID_PARAM]: '요청 경로가 올바르지 않아요. 다시 한번 확인해 주세요.',
   [ClientErrorCode.INVALID_FORM]: '입력 값이 올바르지 않아요. 다시 한번 확인해 주세요.',
+
+  // Profile Error
+  [ProfileErrorCode.NICKNAME_FORM_EMPTY]: '농부명을 입력해 주세요.',
+  [ProfileErrorCode.NICKNAME_FORM_TOO_SHORT]: `농부명은 ${MIN_NICKNAME_LENGHT}자 이상 입력해 주세요.`,
+  [ProfileErrorCode.NICKNAME_FORM_TOO_LONG]: `농부명은 ${MAX_NICKNAME_LENGHT}자 이하로 입력해 주세요.`,
 
   // 400 Error
   [ApiErrorCode.E40001001]: '잘못된 로그인 채널입니다.',
@@ -25,7 +33,7 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ApiErrorCode.E40101003]: '세션이 만료되었어요. 다시 로그인해 주세요.',
   [ApiErrorCode.E40101004]: '비정상적인 접근이에요. 다시 로그인해 주세요.',
   [ApiErrorCode.E40101005]: '비정상적인 접근이에요. 다시 로그인해 주세요.',
-  [ApiErrorCode.E40101006]: '인증에 실패했어요. 다시 시도해 주세요.',
+  [ApiErrorCode.E40101006]: '비정상적인 접근이에요. 다시 로그인해 주세요.',
 
   // 404 Error
   [ApiErrorCode.E40401001]: '계정이 존재하지 않아요. 계정을 생성해 주세요.',
