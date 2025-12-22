@@ -43,8 +43,13 @@ const apiFetcher = async <T = unknown>({
     }
 
     const body = await response.text();
+    if (!body) return null as T;
 
-    return body ? (JSON.parse(body) as T) : (null as T);
+    try {
+      return JSON.parse(body) as T;
+    } catch {
+      return body as unknown as T;
+    }
   } catch (e) {
     if (e instanceof ApiError) throw e;
 
