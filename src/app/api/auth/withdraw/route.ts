@@ -1,28 +1,32 @@
 import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { getAccessTokenFromCookie, deleteAccessTokenFromCookie } from '@/lib/cookie/accessToken';
-import { deleteRefreshTokenFromCookie } from '@/lib/cookie/refreshToken';
-import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
+import {
+  getAccessTokenFromCookie,
+  deleteAccessTokenFromCookie,
+} from '@/shared/cookie/access-token';
+import { deleteRefreshTokenFromCookie } from '@/shared/cookie/refresh-token';
+import { ClientErrorCode } from '@/shared/errors/client-error-code';
+import UnauthorizedError from '@/shared/errors/api/unauthorized-error';
+import { success, failed, type Result } from '@/shared/types/result';
 
-import withdrawSource from '@/features/auth/datasources/withdrawSource';
+import fetchWithdraw from '@/features/auth/api/server/fetch-withdraw';
 
 export const DELETE = async (): Promise<NextResponse<Result<null>>> => {
   try {
-    const storedAccessToken: string | null = await getAccessTokenFromCookie();
-    if (!storedAccessToken) {
-      throw new UnauthorizedError();
-    }
+    const storedAccessToken = await getAccessTokenFromCookie();
+    if (!storedAccessToken) throw new UnauthorizedError(ClientErrorCode.TOKEN_NOT_FOUND);
 
-    await withdrawSource(storedAccessToken);
+    await fetchWithdraw(storedAccessToken);
 
-    const response: NextResponse<Result<null>> = NextResponse.json(success(null));
+    const response = NextResponse.json(success(null), { status: 200 });
 
     deleteAccessTokenFromCookie(response);
     deleteRefreshTokenFromCookie(response);
 
     return response;
   } catch (e) {
-    return NextResponse.json(failed(e));
+    const result = failed(e);
+
+    return NextResponse.json(result, { status: result.statusCode });
   }
 };

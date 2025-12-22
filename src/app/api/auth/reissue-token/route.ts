@@ -1,39 +1,30 @@
 import { NextResponse } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
-import { setAccessTokenToCookie } from '@/lib/cookie/accessToken';
-import { setRefreshTokenToCookie, getRefreshTokenFromCookie } from '@/lib/cookie/refreshToken';
-import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
+import { setAccessTokenToCookie } from '@/shared/cookie/access-token';
+import { setRefreshTokenToCookie, getRefreshTokenFromCookie } from '@/shared/cookie/refresh-token';
+import { ClientErrorCode } from '@/shared/errors/client-error-code';
+import UnauthorizedError from '@/shared/errors/api/unauthorized-error';
+import { success, failed, type Result } from '@/shared/types/result';
 
-import reissueTokenSource from '@/features/auth/datasources/reissueTokenSource';
-import {
-  ReissueTokenResDto,
-  reissueTokenResDtoSchema,
-} from '@/features/auth/dtos/response/reissueTokenResDto';
+import fetchReissueToken from '@/features/auth/api/server/fetch-reissue-token';
 
 export const POST = async (): Promise<NextResponse<Result<null>>> => {
   try {
-    const storedRefreshToken: string | null = await getRefreshTokenFromCookie();
-    if (!storedRefreshToken) {
-      throw new UnauthorizedError();
-    }
+    const storedRefreshToken = await getRefreshTokenFromCookie();
+    if (!storedRefreshToken) throw new UnauthorizedError(ClientErrorCode.TOKEN_NOT_FOUND);
 
-    const apiResponse: ApiResponse<ReissueTokenResDto> =
-      await reissueTokenSource(storedRefreshToken);
+    const token = await fetchReissueToken(storedRefreshToken);
+    const { accessToken, refreshToken } = token;
 
-    const data: ReissueTokenResDto = apiResponse.data;
-    const validatedData: ReissueTokenResDto = validateOrThrow(reissueTokenResDtoSchema, data);
-    const { accessToken, refreshToken } = validatedData.token;
-
-    const response: NextResponse<Result<null>> = NextResponse.json(success(null));
+    const response = NextResponse.json(success(null), { status: 200 });
 
     setAccessTokenToCookie(response, accessToken);
     setRefreshTokenToCookie(response, refreshToken);
 
     return response;
   } catch (e) {
-    return NextResponse.json(failed(e));
+    const result = failed(e);
+
+    return NextResponse.json(result, { status: result.statusCode });
   }
 };

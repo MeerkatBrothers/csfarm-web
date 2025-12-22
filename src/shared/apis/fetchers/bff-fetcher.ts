@@ -2,7 +2,10 @@ import { normalizeEndpoint } from '@/shared/utils/url';
 import type { BaseFetcherOptions } from '@/shared/apis/interfaces/base-fetcher.options';
 import { ApiErrorCode } from '@/shared/errors/api-error-code';
 import ApiRequestError from '@/shared/errors/client/api-request-error';
+import ResultError from '@/shared/errors/client/result-error';
 import { failed, type Result } from '@/shared/types/result';
+
+import reissueToken from '@/features/auth/api/bff/reissue-token';
 
 let reissueTokenPromise: Promise<void> | null = null;
 
@@ -29,7 +32,8 @@ const bffFetcher = async <T = unknown>({
       if (!reissueTokenPromise) {
         reissueTokenPromise = (async () => {
           try {
-            // TODO: 토큰 재발급 함수 호출
+            const result = await reissueToken();
+            if (!result.ok) throw new ResultError(result.statusCode, result.code);
           } finally {
             reissueTokenPromise = null;
           }

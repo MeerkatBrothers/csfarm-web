@@ -6,7 +6,7 @@ import { ProfileErrorCode } from '@/features/profile/errors/profile-error-code';
 export const profileFormSchema = z.object({
   nickname: z
     .string()
-    .nonempty({ message: ProfileErrorCode.NICKNAME_FORM_EMPTY })
+    .nonempty({ error: ProfileErrorCode.NICKNAME_FORM_EMPTY })
     .max(MAX_NICKNAME_LENGHT, { error: ProfileErrorCode.NICKNAME_FORM_TOO_LONG })
     .min(MIN_NICKNAME_LENGHT, { error: ProfileErrorCode.NICKNAME_FORM_TOO_SHORT }),
   profileImageUrl: z.string().nullable(),

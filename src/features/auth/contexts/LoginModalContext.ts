@@ -1,7 +1,7 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 export interface LoginModalContextValue {
-  openLoginModal: () => void;
+  open: () => void;
 }
 
 export const LoginModalContext = createContext<LoginModalContextValue | undefined>(undefined);
