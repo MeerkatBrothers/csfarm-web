@@ -1,16 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 
-import INSIGHT_QUERY_KEYS from '@/features/insight/constants/queryKey';
-import getInsightDetail from '@/features/insight/usecases/getInsightDetail';
-import { InsightDetail } from '@/features/insight/models/insightDetail';
+import ResultError from '@/shared/errors/client/result-error';
 
-const useInsightDetail = (insightId: number) => {
-  return useQuery<InsightDetail>({
+import INSIGHT_QUERY_KEYS from '@/features/insight/constants/query-key';
+import getInsight from '@/features/insight/apis/bff/get-insight';
+import type { Insight } from '@/features/insight/models/insight';
+
+const useInsightDetail = (insightId: string) => {
+  return useQuery<Insight>({
     queryKey: INSIGHT_QUERY_KEYS.DETAIL(insightId),
-    queryFn: async () => await getInsightDetail(insightId),
-    staleTime: 1000 * 60 * 30,
-    gcTime: 1000 * 60 * 60,
-    retry: false,
+    queryFn: async () => {
+      const result = await getInsight(insightId);
+      if (!result.ok) throw new ResultError(result.statusCode, result.code);
+
+      return result.data;
+    },
   });
 };
 
