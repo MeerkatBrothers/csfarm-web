@@ -29,8 +29,15 @@ export const parseFormDataOrThrow = async (
   return value;
 };
 
-export const parseQueryParamOrThrow = (url: URL, key: string): string => {
+export const parseQueryParam = (url: URL, key: string): string | null => {
   const value = url.searchParams.get(key);
+  if (!value || value.trim() === '') return null;
+
+  return value;
+};
+
+export const parseQueryParamOrThrow = (url: URL, key: string): string => {
+  const value = parseQueryParam(url, key);
   if (!value || value.trim() === '') throw new BadRequestError(ApiErrorCode.E40000003);
 
   return value;

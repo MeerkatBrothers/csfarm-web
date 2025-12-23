@@ -1,7 +1,7 @@
-export const stringToNumber = (value: string | null): number | null => {
-  if (value === null) return null;
+export const stringToNumber = (value: string | null, fallback: number): number => {
+  if (value === null) return fallback;
 
   const parsed = Number(value);
 
-  return !isNaN(parsed) ? parsed : null;
+  return !isNaN(parsed) ? parsed : fallback;
 };

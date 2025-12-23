@@ -1,24 +1,19 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-import { Result, success, failed } from '@/lib/types/result';
-import { validateOrThrow } from '@/lib/utils/zod';
-import ApiResponse from '@/lib/models/apiResponse';
+import { createBffHandler } from '@/shared/utils/bff';
+import { parseQueryParam } from '@/shared/utils/parser/request';
+import { stringToNumber } from '@/shared/utils/transformer/number';
+import type { Paginated } from '@/shared/models/paginated';
 
-import storedInsightSource from '@/features/insight/datasources/storedInsightSource';
-import {
-  StoredInsightResDto,
-  storedInsightResDtoSchema,
-} from '@/features/insight/dtos/response/storedInsightResDto';
+import fetchStoredInsights from '@/features/insight/apis/server/fetch-stored-insights';
+import type { InsightPreview } from '@/features/insight/models/insight.preview';
 
-export const GET = async (): Promise<NextResponse<Result<StoredInsightResDto>>> => {
-  try {
-    const apiResponse: ApiResponse<StoredInsightResDto> = await storedInsightSource();
+const storedInsightsHandler = async (request: NextRequest): Promise<Paginated<InsightPreview>> => {
+  const url = new URL(request.url);
+  const page = stringToNumber(parseQueryParam(url, 'page'), 1);
+  const size = stringToNumber(parseQueryParam(url, 'size'), 10);
 
-    const data: StoredInsightResDto = apiResponse.data;
-    const validatedData: StoredInsightResDto = validateOrThrow(storedInsightResDtoSchema, data);
-
-    return NextResponse.json(success(validatedData));
-  } catch (e) {
-    return NextResponse.json(failed(e));
-  }
+  return await fetchStoredInsights(page, size);
 };
+
+export const GET = createBffHandler(storedInsightsHandler);
