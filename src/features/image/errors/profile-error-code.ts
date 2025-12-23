@@ -1,0 +1,4 @@
+export enum ImageErrorCode {
+  INVALID_IMAGE_TYPE = 'INVALID_IMAGE_TYPE',
+  IMAGE_SIZE_TOO_BIG = 'IMAGE_SIZE_TOO_BIG',
+}
