@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
+import { ApiErrorCode } from '@/shared/errors/api-error-code';
+import BadRequestError from '@/shared/errors/api/bad-request-error';
+
 const key = 'csfarm:access-token';
 
 export const getAccessTokenFromCookie = async (): Promise<string | null> => {
@@ -8,6 +11,13 @@ export const getAccessTokenFromCookie = async (): Promise<string | null> => {
   const token = cookieStore.get(key);
 
   return token?.value ?? null;
+};
+
+export const getAccessTokenFromCookieOrThrow = async (): Promise<string> => {
+  const accessToken = await getAccessTokenFromCookie();
+  if (!accessToken) throw new BadRequestError(ApiErrorCode.E40101001);
+
+  return accessToken;
 };
 
 export const setAccessTokenToCookie = (response: NextResponse, token: string): void => {

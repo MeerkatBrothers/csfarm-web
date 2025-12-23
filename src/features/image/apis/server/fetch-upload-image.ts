@@ -2,7 +2,7 @@ import apiFetcher from '@/shared/apis/fetchers/api-fetcher';
 
 import type { UploadedImage } from '@/features/image/models/uploaded-image';
 
-const fetchUploadImage = async (image: File): Promise<UploadedImage> => {
+const fetchUploadImage = async (image: File, accessToken: string): Promise<UploadedImage> => {
   const endpoint = '/image/upload/temp';
 
   const formData = new FormData();
@@ -14,6 +14,7 @@ const fetchUploadImage = async (image: File): Promise<UploadedImage> => {
     options: {
       body: formData,
     },
+    token: accessToken,
   });
 };
 

@@ -14,9 +14,7 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ClientErrorCode.UNKNOWN]: '알 수 없는 에러가 발생했어요.',
   [ClientErrorCode.INITIALIZE_FAILED]: '서비스 초기화에 실패했어요. 잠시 후 다시 시도해 주세요.',
   [ClientErrorCode.API_REQUEST_FAILED]: '요청에 실패했어요. 잠시 후 다시 시도해 주세요.',
-  [ClientErrorCode.INVALID_PARAM]: '요청 경로가 올바르지 않아요. 다시 한번 확인해 주세요.',
   [ClientErrorCode.INVALID_FORM]: '입력 값이 올바르지 않아요. 다시 한번 확인해 주세요.',
-  [ClientErrorCode.TOKEN_NOT_FOUND]: '인증 정보가 존재하지 않아요. 다시 로그인해 주세요.',
 
   // Image Error
   [ImageErrorCode.INVALID_IMAGE_TYPE]: '지원하지 않는 이미지 형식이에요.',
@@ -38,6 +36,10 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ProfileErrorCode.NICKNAME_FORM_TOO_LONG]: `농부명은 ${MAX_NICKNAME_LENGHT}자 이하로 입력해 주세요.`,
 
   // 400 Error
+  [ApiErrorCode.E40000001]: '요청 형식이 올바르지 않아요.',
+  [ApiErrorCode.E40000002]: '요청 형식이 올바르지 않아요.',
+  [ApiErrorCode.E40000003]: '요청 형식이 올바르지 않아요.',
+  [ApiErrorCode.E40000004]: '요청 형식이 올바르지 않아요.',
   [ApiErrorCode.E40001001]: '잘못된 로그인 채널입니다.',
   [ApiErrorCode.E40002001]: '닉네임을 입력해 주세요.',
   [ApiErrorCode.E40002002]: '닉네임이 너무 짧아요.',
