@@ -5,7 +5,7 @@ import { validateOrThrow } from '@/lib/utils/zod';
 import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
 import UnauthorizedError from '@/lib/errors/http/unauthorizedError';
 
-import threshQuizSource from '@/features/quiz/datasources/threshQuizSource';
+import threshQuizSource from '@/features/quiz/apis/datasources/threshQuizSource';
 import {
   ThreshQuizReqDto,
   threshQuizReqDtoSchema,
