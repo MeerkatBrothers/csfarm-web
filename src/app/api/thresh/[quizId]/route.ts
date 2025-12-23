@@ -5,13 +5,13 @@ import { getAccessTokenFromCookieOrThrow } from '@/shared/cookie/access-token';
 import fetchThresh from '@/features/thresh/apis/server/fetch-thresh';
 
 const threshHandler = async (request: Request, context: BffContext): Promise<null> => {
+  const storedAccessToken = await getAccessTokenFromCookieOrThrow();
+
   const params = context.params ?? {};
   const quizId = parsePathParamOrThrow(params, 'quizId');
 
   const url = new URL(request.url);
   const choiceId = parseQueryParamOrThrow(url, 'choiceId');
-
-  const storedAccessToken = await getAccessTokenFromCookieOrThrow();
 
   await fetchThresh(quizId, choiceId, storedAccessToken);
 

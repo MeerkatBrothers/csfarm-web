@@ -9,10 +9,10 @@ import fetchUpdateProfile from '@/features/profile/apis/server/fetch-update-prof
 import { profileFormSchema } from '@/features/profile/models/profile.form';
 
 const updateProfileHandler = async (request: NextRequest): Promise<null> => {
+  const storedAccessToken = await getAccessTokenFromCookieOrThrow();
+
   const requestBody = await parseJsonOrThrow(request);
   const validatedBody = validateOrThrow(profileFormSchema, requestBody);
-
-  const storedAccessToken = await getAccessTokenFromCookieOrThrow();
 
   await fetchUpdateProfile(validatedBody, storedAccessToken);
 

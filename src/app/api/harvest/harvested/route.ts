@@ -12,11 +12,11 @@ import type { HarvestedInsight } from '@/features/harvest/models/harvested-insig
 const harvestedInsightsHandler = async (
   request: NextRequest,
 ): Promise<Paginated<HarvestedInsight>> => {
+  const storedAccessToken = await getAccessTokenFromCookieOrThrow();
+
   const url = new URL(request.url);
   const page = stringToNumber(parseQueryParam(url, 'page'), 1);
   const size = stringToNumber(parseQueryParam(url, 'size'), 10);
-
-  const storedAccessToken = await getAccessTokenFromCookieOrThrow();
 
   return await fetchHarvestedInsights(page, size, storedAccessToken);
 };

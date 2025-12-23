@@ -6,10 +6,10 @@ import fetchHarvestStatus from '@/features/harvest/apis/server/fetch-harvest-sta
 import type { HarvestStatus } from '@/features/harvest/models/harvest-status';
 
 const harvestStatusHandler = async (_: Request, context: BffContext): Promise<HarvestStatus> => {
+  const storedAccessToken = await getAccessTokenFromCookieOrThrow();
+
   const params = context.params ?? {};
   const insightId = parsePathParamOrThrow(params, 'insightId');
-
-  const storedAccessToken = await getAccessTokenFromCookieOrThrow();
 
   return await fetchHarvestStatus(insightId, storedAccessToken);
 };
