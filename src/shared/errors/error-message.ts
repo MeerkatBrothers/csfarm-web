@@ -9,6 +9,8 @@ import { AuthErrorCode } from '@/features/auth/errors/auth-error-code';
 import { MAX_NICKNAME_LENGHT, MIN_NICKNAME_LENGHT } from '@/features/profile/constants/constraint';
 import { ProfileErrorCode } from '@/features/profile/errors/profile-error-code';
 
+import { ThreshErrorCode } from '@/features/thresh/errors/thresh-error-code';
+
 export const ERROR_MESSAGE: Record<string, string> = {
   // Client Error
   [ClientErrorCode.UNKNOWN]: '알 수 없는 에러가 발생했어요.',
@@ -34,6 +36,9 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ProfileErrorCode.NICKNAME_FORM_EMPTY]: '농부명을 입력해 주세요.',
   [ProfileErrorCode.NICKNAME_FORM_TOO_SHORT]: `농부명은 ${MIN_NICKNAME_LENGHT}자 이상 입력해 주세요.`,
   [ProfileErrorCode.NICKNAME_FORM_TOO_LONG]: `농부명은 ${MAX_NICKNAME_LENGHT}자 이하로 입력해 주세요.`,
+
+  // Thresh Error
+  [ThreshErrorCode.CHOICE_NOT_SELECTED]: '아직 정답을 선택하지 않았어요.',
 
   // 400 Error
   [ApiErrorCode.E40000001]: '요청 형식이 올바르지 않아요.',
