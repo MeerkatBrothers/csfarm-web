@@ -8,7 +8,7 @@ import ApiResponse from '@/lib/models/apiResponse';
 import { getAccessTokenFromCookie } from '@/lib/cookie/accessToken';
 import NotFoundError from '@/lib/errors/http/notFoundError';
 
-import quizStatusSource from '@/features/quiz/datasources/quizStatusSource';
+import quizStatusSource from '@/features/quiz/apis/datasources/quizStatusSource';
 import {
   QuizStatusResDto,
   quizStatusResDtoSchema,
