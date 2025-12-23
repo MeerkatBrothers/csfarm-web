@@ -5,7 +5,7 @@ import type { InsightPreview } from '@/features/insight/models/insight.preview';
 
 const fetchStoredInsights = async (
   page: number,
-  size: number = 10,
+  size: number,
 ): Promise<Paginated<InsightPreview>> => {
   const endpoint = `/insight/storage?page=${page}&size=${size}`;
 

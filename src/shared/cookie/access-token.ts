@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
 import { ApiErrorCode } from '@/shared/errors/api-error-code';
-import BadRequestError from '@/shared/errors/api/bad-request-error';
+import UnauthorizedError from '@/shared/errors/api/unauthorized-error';
 
 const key = 'csfarm:access-token';
 
@@ -15,7 +15,7 @@ export const getAccessTokenFromCookie = async (): Promise<string | null> => {
 
 export const getAccessTokenFromCookieOrThrow = async (): Promise<string> => {
   const accessToken = await getAccessTokenFromCookie();
-  if (!accessToken) throw new BadRequestError(ApiErrorCode.E40101001);
+  if (!accessToken) throw new UnauthorizedError(ApiErrorCode.E40101001);
 
   return accessToken;
 };

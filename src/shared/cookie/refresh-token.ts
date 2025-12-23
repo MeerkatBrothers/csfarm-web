@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
 import { ApiErrorCode } from '@/shared/errors/api-error-code';
-import BadRequestError from '@/shared/errors/api/bad-request-error';
+import UnauthorizedError from '@/shared/errors/api/unauthorized-error';
 
 const key = 'csfarm:refresh-token';
 
@@ -15,7 +15,7 @@ export const getRefreshTokenFromCookie = async (): Promise<string | null> => {
 
 export const getRefreshTokenFromCookieOrThrow = async (): Promise<string> => {
   const refreshToken = await getRefreshTokenFromCookie();
-  if (!refreshToken) throw new BadRequestError(ApiErrorCode.E40101001);
+  if (!refreshToken) throw new UnauthorizedError(ApiErrorCode.E40101001);
 
   return refreshToken;
 };
