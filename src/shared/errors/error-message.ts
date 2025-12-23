@@ -1,6 +1,9 @@
 import { ClientErrorCode } from '@/shared/errors/client-error-code';
 import { ApiErrorCode } from '@/shared/errors/api-error-code';
 
+import { MAX_IMAGE_SIZE } from '@/features/image/constants/constraint';
+import { ImageErrorCode } from '@/features/image/errors/profile-error-code';
+
 import { AuthErrorCode } from '@/features/auth/errors/auth-error-code';
 
 import { MAX_NICKNAME_LENGHT, MIN_NICKNAME_LENGHT } from '@/features/profile/constants/constraint';
@@ -14,6 +17,10 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ClientErrorCode.INVALID_PARAM]: '요청 경로가 올바르지 않아요. 다시 한번 확인해 주세요.',
   [ClientErrorCode.INVALID_FORM]: '입력 값이 올바르지 않아요. 다시 한번 확인해 주세요.',
   [ClientErrorCode.TOKEN_NOT_FOUND]: '인증 정보가 존재하지 않아요. 다시 로그인해 주세요.',
+
+  // Image Error
+  [ImageErrorCode.INVALID_IMAGE_TYPE]: '지원하지 않는 이미지 형식이에요.',
+  [ImageErrorCode.IMAGE_SIZE_TOO_BIG]: `이미지 용량은 최대 ${Math.round(MAX_IMAGE_SIZE / 1024 / 1024)}MB예요.`,
 
   // Auth Error
   [AuthErrorCode.KAKAO_LOGIN_ERROR]:
