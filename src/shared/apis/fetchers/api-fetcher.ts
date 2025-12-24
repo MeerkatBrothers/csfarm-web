@@ -5,7 +5,7 @@ import ApiError from '@/shared/errors/api/api-error';
 import ApiRequestError from '@/shared/errors/client/api-request-error';
 
 interface ApiFetcherOptions extends BaseFetcherOptions {
-  next?: NextFetchRequestConfig;
+  cache?: RequestCache;
   token?: string;
 }
 
@@ -13,7 +13,7 @@ const apiFetcher = async <T = unknown>({
   endpoint,
   method,
   options = {},
-  next,
+  cache = 'no-store',
   token,
 }: ApiFetcherOptions): Promise<T> => {
   const normalizedEndpoint = normalizeEndpoint(endpoint);
@@ -28,8 +28,7 @@ const apiFetcher = async <T = unknown>({
     ...options,
     headers,
     method,
-    cache: next?.revalidate ? undefined : 'no-store',
-    next,
+    cache,
   };
 
   try {
