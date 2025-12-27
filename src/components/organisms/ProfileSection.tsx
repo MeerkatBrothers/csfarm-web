@@ -1,7 +1,7 @@
-import { Profile } from '@/features/profile/models/fragments/profile';
+import type { Profile } from '@/features/profile/models/profile';
 
-import Heading1 from '@/components/atoms/typography/Heading1';
 import ProfileImage from '@/components/atoms/ProfileImage';
+import Heading from '@/components/atoms/typography/Heading';
 
 interface ProfileSectionProps {
   profile: Profile;
@@ -12,7 +12,7 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => {
     <div className="flex flex-col items-center gap-4">
       <ProfileImage imageUrl={profile.profileImageUrl} />
 
-      <Heading1 text={`${profile.nickname} 농부님 👨‍🌾`} />
+      <Heading text={`${profile.nickname} 농부님 👨‍🌾`} scale={1} />
     </div>
   );
 };

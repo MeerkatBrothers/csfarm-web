@@ -4,18 +4,18 @@ import { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { ICON_SIZE } from '@/lib/constants/ui';
+import { ICON_SIZE } from '@/shared/constants/ui';
 
-import { SubInsight } from '@/features/insight/models/fragments/subInsight';
+import type { SubInsight } from '@/features/insight/models/sub-insight';
 
-import Body1 from '@/components/atoms/typography/Body1';
+import Body from '@/components/atoms/typography/Body';
 
 interface SubInsightSectionProps {
   subInsight: SubInsight;
 }
 
 const SubInsightSection = ({ subInsight }: SubInsightSectionProps) => {
-  const [isDescriptionOpen, setIsDescriptionOpen] = useState<boolean>(false);
+  const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
   const toggleDescription = (): void => setIsDescriptionOpen(!isDescriptionOpen);
 
@@ -26,7 +26,7 @@ const SubInsightSection = ({ subInsight }: SubInsightSectionProps) => {
         onClick={toggleDescription}
       >
         <div className="flex-1 text-start">
-          <Body1 text={subInsight.subject} styles={{ weight: 'font-bold' }} />
+          <Body text={subInsight.subject} scale={1} styles={{ weight: 'font-bold' }} />
         </div>
 
         {isDescriptionOpen ? <FiChevronUp size={ICON_SIZE} /> : <FiChevronDown size={ICON_SIZE} />}
@@ -41,7 +41,7 @@ const SubInsightSection = ({ subInsight }: SubInsightSectionProps) => {
             transition={{ type: 'spring', duration: 0.4, bounce: 0 }}
           >
             <div className="mt-2">
-              <Body1 text={subInsight.description} reading />
+              <Body text={subInsight.description} scale={1} />
             </div>
           </motion.div>
         )}

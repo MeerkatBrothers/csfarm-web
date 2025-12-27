@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
-import { MdCameraAlt } from "react-icons/md";
+import { useRef } from 'react';
+import { MdCameraAlt } from 'react-icons/md';
 
-import { ICON_SIZE } from "@/lib/constants/ui";
+import { ICON_SIZE } from '@/shared/constants/ui';
 
-import ProfileImage from "@/components/atoms/ProfileImage";
-import HiddenImageUploader from "@/components/atoms/HiddenImageUploader";
+import ProfileImage from '@/components/atoms/ProfileImage';
+import HiddenImageUploader from '@/components/atoms/HiddenImageUploader';
 
 interface ProfileImageEditorProps {
   initialProfileImageUrl: string | null;
@@ -21,7 +21,7 @@ const ProfileImageEditor = ({ initialProfileImageUrl, onSelect }: ProfileImageEd
       <div className="relative">
         <ProfileImage imageUrl={initialProfileImageUrl} />
 
-        <div className="absolute bottom-0 right-0 p-1 rounded-full bg-white">
+        <div className="absolute right-0 bottom-0 rounded-full bg-white p-1">
           <MdCameraAlt size={ICON_SIZE} onClick={() => imageUploaderRef.current?.click()} />
         </div>
       </div>

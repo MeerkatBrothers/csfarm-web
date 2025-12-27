@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -11,8 +12,8 @@ const useProfileForm = (initialForm?: ProfileForm) => {
       mode: 'onChange',
       reValidateMode: 'onChange',
       defaultValues: {
-        nickname: initialForm?.nickname ?? '',
-        profileImageUrl: initialForm?.profileImageUrl ?? null,
+        nickname: '',
+        profileImageUrl: null,
       },
     });
 
@@ -20,12 +21,15 @@ const useProfileForm = (initialForm?: ProfileForm) => {
     onSuccess: (profileImageUrl) => setProfileImageUrl(profileImageUrl),
   });
 
-  const setNickname = (nickname: string): void => {
-    setValue('nickname', nickname, {
-      shouldValidate: true,
-      shouldDirty: true,
+  useEffect(() => {
+    if (!initialForm) return;
+    reset({
+      nickname: initialForm.nickname ?? '',
+      profileImageUrl: initialForm.profileImageUrl ?? null,
     });
-  };
+  }, [initialForm?.nickname, initialForm?.profileImageUrl, reset]);
+
+  const profileForm = watch();
 
   const setProfileImageUrl = (profileImageUrl: string): void => {
     setValue('profileImageUrl', profileImageUrl, {
@@ -37,14 +41,12 @@ const useProfileForm = (initialForm?: ProfileForm) => {
   return {
     control,
     formState,
-    register,
-    setValue,
-    handleSubmit,
-    reset,
-    watch,
-    setNickname,
-    uploadProfileImage,
+    profileForm,
     isUploadImagePending,
+    register,
+    uploadProfileImage,
+    reset,
+    handleSubmit,
   };
 };
 

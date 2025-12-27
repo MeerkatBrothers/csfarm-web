@@ -1,18 +1,27 @@
-"use client";
+'use client';
 
-import clsx from "clsx";
+import { cn } from '@/shared/utils/cn';
 
-import ButtonProps from "@/components/atoms/button/props/buttonProps";
-import Body1 from "@/components/atoms/typography/Body1";
+import type { ButtonProps } from '@/components/atoms/button/props/button.props';
+import Body from '@/components/atoms/typography/Body';
 
-const PrimaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
+const PrimaryButton = ({ label, type = 'button', disabled = false, onClick }: ButtonProps) => {
   return (
     <button
-      className={clsx("w-full h-12 rounded-lg bg-primary-500 disabled:bg-gray-100", "md:w-auto md:px-4")}
+      className={cn(
+        'bg-primary-500 h-12 w-full rounded-lg',
+        'disabled:bg-gray-100',
+        'md:w-auto md:px-4',
+      )}
+      type={type}
       disabled={disabled}
       onClick={onClick}
     >
-      <Body1 text={label} styles={{ color: disabled ? "text-gray-400" : "text-white", weight: "font-medium" }} />
+      <Body
+        text={label}
+        scale={1}
+        styles={{ weight: 'font-medium', color: disabled ? 'text-gray-400' : 'text-white' }}
+      />
     </button>
   );
 };

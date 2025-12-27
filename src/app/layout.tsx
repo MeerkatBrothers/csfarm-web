@@ -1,11 +1,13 @@
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import clsx from 'clsx';
 
 import '@/styles/global.css';
 
-import QueryProvider from '@/lib/providers/QueryProvider';
+import { cn } from '@/shared/utils/cn';
+
+import ToastProvider from '@/providers/ToastProvider';
+import QueryProvider from '@/providers/QueryProvider';
 
 import { LoginModalProvider } from '@/features/auth/providers/LoginModalProvider';
 
@@ -31,7 +33,8 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="ko">
-      <body className={clsx('min-h-screen antialiased', geistSans.variable, geistMono.variable)}>
+      <body className={cn('min-h-screen antialiased', geistSans.variable, geistMono.variable)}>
+        <ToastProvider />
         <QueryProvider>
           <LoginModalProvider>{children}</LoginModalProvider>
         </QueryProvider>

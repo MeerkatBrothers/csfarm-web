@@ -13,22 +13,20 @@ const NavAuthSection = () => {
 
   const { isLogin, isLoading } = useIsLogin();
 
-  const { openLoginModal } = useLoginModal();
+  const { open } = useLoginModal();
 
   const { mutate: signOut } = useSignOut({
     onSuccess: () => router.replace('/'),
   });
 
-  if (isLoading) {
-    return null;
-  }
+  if (isLoading) return null;
 
   return (
     <>
       {isLogin ? (
         <NavLinker label="로그아웃" isActive={false} onClick={signOut} />
       ) : (
-        <NavLinker label="로그인" isActive={false} onClick={openLoginModal} />
+        <NavLinker label="로그인" isActive={false} onClick={open} />
       )}
     </>
   );

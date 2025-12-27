@@ -1,29 +1,35 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import clsx from "clsx";
+import { ReactNode } from 'react';
+
+import { cn } from '@/shared/utils/cn';
 
 interface LoginButtonProps {
-  platform: string;
+  platformName: string;
   icon: ReactNode;
   backgroundColor: string;
   foregroundColor: string;
   onClick: () => void;
 }
 
-const LoginButton = ({ platform, icon, backgroundColor, foregroundColor, onClick }: LoginButtonProps) => {
+const LoginButton = ({
+  platformName,
+  icon,
+  backgroundColor,
+  foregroundColor,
+  onClick,
+}: LoginButtonProps) => {
   return (
     <button
-      className={clsx(
-        "flex w-full justify-center items-center gap-2 py-3 rounded-lg",
-        "text-body1 font-medium",
+      className={cn(
+        'text-body1 flex w-full items-center justify-center gap-2 rounded-lg py-3 font-medium',
         backgroundColor,
         foregroundColor,
       )}
       onClick={onClick}
     >
       {icon}
-      {platform}로 계속하기
+      {platformName}로 계속하기
     </button>
   );
 };

@@ -1,6 +1,6 @@
-import { ReactNode, Suspense } from "react";
+import { ReactNode, Suspense } from 'react';
 
-import DotLoader from "@/components/atoms/DotLoader";
+import DotLoader from '@/components/atoms/DotLoader';
 
 interface AuthLayoutProps {
   children: ReactNode;

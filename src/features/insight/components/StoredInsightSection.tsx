@@ -1,52 +1,48 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useInView } from 'react-intersection-observer';
 
-import useStoredInsight from '@/features/insight/hooks/useStoredInsight';
+import useStoredInsights from '@/features/insight/hooks/useStoredInsights';
 import StoredInsightSectionSkeleton from '@/features/insight/components/skeleton/StoredInsightSectionSkeleton';
 
-import ToggleChip from '@/components/atoms/chip/ToggleChip';
+import DotLoader from '@/components/atoms/DotLoader';
 import InsightPreviewList from '@/components/organisms/InsightPreviewList';
-
-const weekOptions: string[] = ['이번주', '1주전', '2주전', '3주전'];
 
 const StoredInsightSection = () => {
   const router = useRouter();
 
-  const [weekOffset, setWeekOffset] = useState<number>(0);
+  const { ref, inView } = useInView();
 
-  const { data: storedInsight, isLoading, isError, error } = useStoredInsight();
+  const {
+    data: storedInsight,
+    isLoading,
+    isError,
+    error,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useStoredInsights();
 
-  if (isLoading) {
-    return <StoredInsightSectionSkeleton />;
-  }
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  if (isError) {
-    throw error;
-  }
-
-  if (!storedInsight) {
-    return null;
-  }
+  if (isLoading) return <StoredInsightSectionSkeleton />;
+  if (isError) throw error;
+  if (!storedInsight) return null;
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex gap-2">
-        {weekOptions.map((weekOption, index) => (
-          <ToggleChip
-            key={index}
-            label={weekOption}
-            isActive={index === weekOffset}
-            onClick={() => setWeekOffset(index)}
-          />
-        ))}
-      </div>
-
       <InsightPreviewList
-        insightPreviews={storedInsight.get(weekOffset) ?? []}
+        insightPreviews={storedInsight.pages.flatMap((page) => page.data) ?? []}
         onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
       />
+
+      {hasNextPage && <div ref={ref}>{isFetchingNextPage && <DotLoader />}</div>}
     </div>
   );
 };

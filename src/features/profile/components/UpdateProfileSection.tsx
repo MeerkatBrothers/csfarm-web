@@ -1,7 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import clsx from 'clsx';
+import { toast } from 'react-toastify';
+
+import { cn } from '@/shared/utils/cn';
 
 import useWithdraw from '@/features/auth/hooks/useWithdraw';
 import useAuthAction from '@/features/auth/hooks/useAuthAction';
@@ -9,50 +11,56 @@ import useAuthAction from '@/features/auth/hooks/useAuthAction';
 import { MAX_NICKNAME_LENGHT } from '@/features/profile/constants/constraint';
 import useMyProfile from '@/features/profile/hooks/useMyProfile';
 import useProfileForm from '@/features/profile/hooks/useProfileForm';
-import UpdateProfileButton from '@/features/profile/components/UpdateProfileButton';
+import useUpdateProfile from '@/features/profile/hooks/useUpdateProfile';
 import ProfileImageEditor from '@/features/profile/components/ProfileImageEditor';
 import UpdateProfileSectionSkeleton from '@/features/profile/components/skeleton/UpdateProfileSectionSkeleton';
 
-import Caption1 from '@/components/atoms/typography/Caption1';
+import PrimaryButton from '@/components/atoms/button/PrimaryButton';
 import FormInput from '@/components/atoms/input/FormInput';
 import DotLoader from '@/components/atoms/DotLoader';
+import Caption from '@/components/atoms/typography/Caption';
 
 const UpdateProfileSection = () => {
   const router = useRouter();
 
   const { data: myProfile, isLoading, isError, error } = useMyProfile();
 
-  const { profileForm, isUploadImagePending, setNickname, uploadProfileImage } = useProfileForm({
-    nickname: myProfile?.profile.nickname ?? '',
-    profileImageUrl: myProfile?.profile.profileImageUrl ?? null,
+  const { profileForm, isUploadImagePending, register, uploadProfileImage, handleSubmit } =
+    useProfileForm({
+      nickname: myProfile?.nickname ?? '',
+      profileImageUrl: myProfile?.profileImageUrl ?? null,
+    });
+
+  const { mutate: updateProfile, isPending: isUpdateProfilePending } = useUpdateProfile({
+    onSuccess: () => {
+      toast.success('프로필이 변경되었어요.');
+
+      router.back();
+    },
   });
 
   const { mutate: withdraw } = useWithdraw({
-    onSuccess: () => router.replace('/'),
+    onSuccess: () => {
+      toast.success('탈퇴가 완료되었어요.');
+
+      router.replace('/');
+    },
+  });
+
+  const handleUpdateProfile = useAuthAction({
+    action: handleSubmit((form) => updateProfile(form)),
   });
 
   const handleWithdraw = useAuthAction({
     action: () => {
-      const confirm: boolean = window.confirm(
-        '회원 탈퇴 시 농장 정보가 사라집니다.\n정말 탈퇴하시겠어요?',
-      );
-      if (confirm) {
-        withdraw();
-      }
+      const confirm = window.confirm('회원 탈퇴 시 농장 정보가 사라집니다.\n정말 탈퇴하시겠어요?');
+      if (confirm) withdraw();
     },
   });
 
-  if (isLoading) {
-    return <UpdateProfileSectionSkeleton />;
-  }
-
-  if (isError) {
-    throw error;
-  }
-
-  if (!myProfile) {
-    return null;
-  }
+  if (isLoading) return <UpdateProfileSectionSkeleton />;
+  if (isError) throw error;
+  if (!myProfile) return null;
 
   return (
     <div className="flex flex-col gap-24">
@@ -68,18 +76,25 @@ const UpdateProfileSection = () => {
 
         <FormInput
           label="농부명"
-          value={profileForm.nickname}
           maxLength={MAX_NICKNAME_LENGHT}
           placeholder="농부명을 입력해주세요."
-          onChange={setNickname}
+          {...register('nickname')}
         />
       </div>
 
-      <div className={clsx('flex flex-col gap-6', 'md:w-fit md:self-end')}>
-        <UpdateProfileButton profileForm={profileForm} />
-
+      <div className={cn('flex flex-col gap-6', 'md:w-fit md:self-end')}>
+        {isUpdateProfilePending ? (
+          <DotLoader />
+        ) : (
+          <PrimaryButton
+            label="변경하기"
+            type="submit"
+            disabled={isUploadImagePending}
+            onClick={handleUpdateProfile}
+          />
+        )}
         <button onClick={handleWithdraw}>
-          <Caption1 text="회원탈퇴" styles={{ color: 'text-gray-400' }} />
+          <Caption text="회원탈퇴" scale={1} styles={{ color: 'text-gray-400' }} />
         </button>
       </div>
     </div>

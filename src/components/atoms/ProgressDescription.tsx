@@ -1,6 +1,6 @@
-import clsx from "clsx";
+import { cn } from '@/shared/utils/cn';
 
-import Caption1 from "@/components/atoms/typography/Caption1";
+import Caption from '@/components/atoms/typography/Caption';
 
 interface ProgressDescriptionProps {
   description: string;
@@ -10,9 +10,9 @@ interface ProgressDescriptionProps {
 const ProgressDescription = ({ description, color }: ProgressDescriptionProps) => {
   return (
     <div className="flex gap-1">
-      <div className={clsx("w-4 h-4", color)} />
+      <div className={cn('h-4 w-4', color)} />
 
-      <Caption1 text={description} />
+      <Caption text={description} scale={1} />
     </div>
   );
 };

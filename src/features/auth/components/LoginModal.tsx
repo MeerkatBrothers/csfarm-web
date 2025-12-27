@@ -1,14 +1,14 @@
 'use client';
 
-import clsx from 'clsx';
-
 import Kakao from '@/../public/svgs/kakao.svg';
+
+import { cn } from '@/shared/utils/cn';
 
 import { KAKAO_AUTH_URL } from '@/features/auth/constants/url';
 
-import Title3 from '@/components/atoms/typography/Title3';
-import Body1 from '@/components/atoms/typography/Body1';
 import LoginButton from '@/components/atoms/button/LoginButton';
+import Title from '@/components/atoms/typography/Title';
+import Body from '@/components/atoms/typography/Body';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -16,9 +16,7 @@ interface LoginModalProps {
 }
 
 const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
-  if (!isOpen) {
-    return null;
-  }
+  if (!isOpen) return null;
 
   return (
     <div
@@ -26,20 +24,21 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-xs"
     >
       <div
-        className={clsx('flex w-xs flex-col gap-10 rounded-2xl bg-white p-6 shadow-lg', 'md:w-sm')}
+        className={cn('flex w-xs flex-col gap-10 rounded-2xl bg-white p-6 shadow-lg', 'md:w-sm')}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col gap-4 text-center">
-          <Title3 text="로그인" />
+          <Title text="로그인" scale={3} />
 
-          <Body1
+          <Body
             text="로그인하여 더 많은 기능을 이용해 보세요."
+            scale={1}
             styles={{ color: 'text-gray-400' }}
           />
         </div>
 
         <LoginButton
-          platform="카카오"
+          platformName="카카오"
           icon={<Kakao width={20} />}
           backgroundColor="bg-kakao-primary"
           foregroundColor="text-black"

@@ -1,9 +1,10 @@
-import { ReactNode } from "react";
-import clsx from "clsx";
+import { ReactNode } from 'react';
 
-import Header from "@/components/organisms/layout/Header";
-import Main from "@/components/organisms/layout/Main";
-import Footer from "@/components/organisms/layout/Footer";
+import { cn } from '@/shared/utils/cn';
+
+import Header from '@/components/organisms/layout/Header';
+import Main from '@/components/organisms/layout/Main';
+import Footer from '@/components/organisms/layout/Footer';
 
 interface ServiceLayoutProps {
   children: ReactNode;
@@ -11,8 +12,8 @@ interface ServiceLayoutProps {
 
 const ServiceLayout = ({ children }: Readonly<ServiceLayoutProps>) => {
   return (
-    <div className="flex flex-col h-full">
-      <header className={clsx("flex justify-center px-4 border-b border-gray-200", "md:px-6")}>
+    <div className="flex h-full flex-col">
+      <header className={cn('flex justify-center border-b border-gray-200 px-4', 'md:px-6')}>
         <Header />
       </header>
 
@@ -20,7 +21,7 @@ const ServiceLayout = ({ children }: Readonly<ServiceLayoutProps>) => {
         <Main>{children}</Main>
       </main>
 
-      <footer className="flex items-center justify-center h-40 bg-gray-100">
+      <footer className="flex h-40 items-center justify-center bg-gray-100">
         <Footer />
       </footer>
     </div>

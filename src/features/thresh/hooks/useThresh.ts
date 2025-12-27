@@ -5,7 +5,7 @@ import ResultError from '@/shared/errors/client/result-error';
 
 import HARVEST_QUERY_KEYS from '@/features/harvest/constants/query-key';
 
-import PROGRESS_QUERY_KEYS from '@/features/progress/constants/queryKey';
+import PROGRESS_QUERY_KEYS from '@/features/progress/constants/query-key';
 
 import THRESH_QUERY_KEYS from '@/features/thresh/constants/query-key';
 import { ThreshErrorCode } from '@/features/thresh/errors/thresh-error-code';

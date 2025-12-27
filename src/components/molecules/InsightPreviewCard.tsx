@@ -1,13 +1,13 @@
-import { formatDateToYMD } from '@/lib/utils/formatter/date';
+import { formatDateToYMD } from '@/shared/utils/formatter/date';
 
-import { InsightPreview } from '@/features/insight/models/fragments/insightPreview';
+import type { InsightPreview } from '@/features/insight/models/insight.preview';
 
-import Heading1 from '@/components/atoms/typography/Heading1';
-import Label1 from '@/components/atoms/typography/Label1';
+import Heading from '@/components/atoms/typography/Heading';
+import Label from '@/components/atoms/typography/Label';
 
 interface InsightPreviewCardProps {
   insightPreview: InsightPreview;
-  onClick: (insightId: number) => void;
+  onClick: (insightId: string) => void;
 }
 
 const InsightPreviewCard = ({ insightPreview, onClick }: InsightPreviewCardProps) => {
@@ -16,10 +16,11 @@ const InsightPreviewCard = ({ insightPreview, onClick }: InsightPreviewCardProps
       className="flex flex-col items-start gap-1 text-start"
       onClick={() => onClick(insightPreview.id)}
     >
-      <Heading1 text={insightPreview.subject} />
+      <Heading text={insightPreview.subject} scale={1} />
 
-      <Label1
+      <Label
         text={formatDateToYMD(insightPreview.publishedAt)}
+        scale={1}
         styles={{ color: 'text-gray-300' }}
       />
     </button>
