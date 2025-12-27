@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import useMyProfile from '@/features/profile/hooks/useMyProfile';
 
-const useIsLogin = () => {
+const useLoginStatus = () => {
   const { data: myProfile, isLoading } = useMyProfile();
 
   const isLogin = useMemo(() => !!myProfile, [myProfile]);
@@ -10,4 +10,4 @@ const useIsLogin = () => {
   return { isLogin, isLoading };
 };
 
-export default useIsLogin;
+export default useLoginStatus;

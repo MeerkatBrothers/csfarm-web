@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import useTodayQuiz from '@/features/quiz/hooks/useMyProfile';
+import useTodayQuiz from '@/features/quiz/hooks/useTodayQuiz';
 import TodayQuizSectionSkeleton from '@/features/quiz/components/skeleton/TodayQuizSectionSkeleton';
 import ThreshButton from '@/features/thresh/components/ThreshButton';
 

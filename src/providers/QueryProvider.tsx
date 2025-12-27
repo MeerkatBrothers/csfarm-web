@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 import { toastError } from '@/shared/utils/ui';
 import { ERROR_MESSAGE } from '@/shared/errors/error-message';
+import { ApiErrorCode } from '@/shared/errors/api-error-code';
 import ResultError from '@/shared/errors/client/result-error';
 
 interface QueryProviderProps {
@@ -22,6 +23,7 @@ const QueryProvider = ({ children }: QueryProviderProps) => {
 
     const handleError = (error: Error): void => {
       if (error instanceof ResultError && error.statusCode === 401) {
+        if (error.code === ApiErrorCode.E40100001) return;
         if (isHandling401) return;
         isHandling401 = true;
 

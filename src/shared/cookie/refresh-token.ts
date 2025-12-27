@@ -15,7 +15,7 @@ export const getRefreshTokenFromCookie = async (): Promise<string | null> => {
 
 export const getRefreshTokenFromCookieOrThrow = async (): Promise<string> => {
   const refreshToken = await getRefreshTokenFromCookie();
-  if (!refreshToken) throw new UnauthorizedError(ApiErrorCode.E40101001);
+  if (!refreshToken) throw new UnauthorizedError(ApiErrorCode.E40100001);
 
   return refreshToken;
 };

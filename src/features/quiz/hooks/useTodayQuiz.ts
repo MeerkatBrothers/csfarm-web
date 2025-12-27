@@ -8,7 +8,7 @@ import type { Quiz } from '@/features/quiz/models/quiz';
 
 const useTodayQuiz = () => {
   return useQuery<Quiz>({
-    queryKey: QUIZ_QUERY_KEYS.MY,
+    queryKey: QUIZ_QUERY_KEYS.TODAY,
     queryFn: async () => {
       const result = await getTodayQuiz();
       if (!result.ok) throw new ResultError(result.statusCode, result.code);

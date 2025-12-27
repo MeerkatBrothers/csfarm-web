@@ -1,6 +1,6 @@
 'use client';
 
-import useIsLogin from '@/features/auth/hooks/useIsLogin';
+import useLoginStatus from '@/features/auth/hooks/useLoginStatus';
 import useLoginModal from '@/features/auth/hooks/useLoginModal';
 
 import MemberMenuButton from '@/features/member/components/MemberMenuButton';
@@ -9,7 +9,7 @@ import TertiaryButton from '@/components/atoms/button/TertiaryButton';
 import DotLoader from '@/components/atoms/DotLoader';
 
 const AuthButton = () => {
-  const { isLogin, isLoading } = useIsLogin();
+  const { isLogin, isLoading } = useLoginStatus();
 
   const { open } = useLoginModal();
 

@@ -1,4 +1,4 @@
-import useIsLogin from '@/features/auth/hooks/useIsLogin';
+import useLoginStatus from '@/features/auth/hooks/useLoginStatus';
 import useLoginModal from '@/features/auth/hooks/useLoginModal';
 
 interface UseActionParams {
@@ -6,7 +6,7 @@ interface UseActionParams {
 }
 
 const useAuthAction = ({ action }: UseActionParams) => {
-  const { isLogin, isLoading } = useIsLogin();
+  const { isLogin, isLoading } = useLoginStatus();
 
   const { open } = useLoginModal();
 

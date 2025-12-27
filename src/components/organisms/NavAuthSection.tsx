@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import useIsLogin from '@/features/auth/hooks/useIsLogin';
+import useLoginStatus from '@/features/auth/hooks/useLoginStatus';
 import useLoginModal from '@/features/auth/hooks/useLoginModal';
 import useSignOut from '@/features/auth/hooks/useSignOut';
 
@@ -11,7 +11,7 @@ import NavLinker from '@/components/atoms/NavLinker';
 const NavAuthSection = () => {
   const router = useRouter();
 
-  const { isLogin, isLoading } = useIsLogin();
+  const { isLogin, isLoading } = useLoginStatus();
 
   const { open } = useLoginModal();
 

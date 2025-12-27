@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 
 import { cn } from '@/shared/utils/cn';
 
-import useIsLogin from '@/features/auth/hooks/useIsLogin';
+import useLoginStatus from '@/features/auth/hooks/useLoginStatus';
 import useAuthAction from '@/features/auth/hooks/useAuthAction';
 
 import NavLinker from '@/components/atoms/NavLinker';
@@ -17,7 +17,7 @@ const NavLinkerSection = ({ onLinkerClick }: NavLinkerSectionProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const { isLogin } = useIsLogin();
+  const { isLogin } = useLoginStatus();
 
   const navigateTo = (to: string): void => {
     onLinkerClick?.();

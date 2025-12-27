@@ -15,7 +15,7 @@ export const getAccessTokenFromCookie = async (): Promise<string | null> => {
 
 export const getAccessTokenFromCookieOrThrow = async (): Promise<string> => {
   const accessToken = await getAccessTokenFromCookie();
-  if (!accessToken) throw new UnauthorizedError(ApiErrorCode.E40101001);
+  if (!accessToken) throw new UnauthorizedError(ApiErrorCode.E40100001);
 
   return accessToken;
 };
