@@ -11,17 +11,12 @@ import DotLoader from '@/components/atoms/DotLoader';
 const AuthButton = () => {
   const { isLogin, isLoading } = useIsLogin();
 
-  const { openLoginModal } = useLoginModal();
+  const { open } = useLoginModal();
 
-  if (isLoading) {
-    return <DotLoader />;
-  }
+  if (isLoading) return <DotLoader />;
+  if (isLogin) return <MemberMenuButton />;
 
-  if (isLogin) {
-    return <MemberMenuButton />;
-  }
-
-  return <TertiaryButton label="로그인" onClick={openLoginModal} />;
+  return <TertiaryButton label="로그인" onClick={open} />;
 };
 
 export default AuthButton;

@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import Logo from "@/../public/svgs/logo.svg";
+import Logo from '@/../public/svgs/logo.svg';
 
 const ServiceLogo = () => {
   const router = useRouter();
 
   return (
-    <button onClick={() => router.replace("/")}>
+    <button onClick={() => router.replace('/')}>
       <Logo width={80} />
     </button>
   );

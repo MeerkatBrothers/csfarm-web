@@ -1,7 +1,8 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import clsx from 'clsx';
+
+import { cn } from '@/shared/utils/cn';
 
 import useIsLogin from '@/features/auth/hooks/useIsLogin';
 import useAuthAction from '@/features/auth/hooks/useAuthAction';
@@ -14,8 +15,7 @@ interface NavLinkerSectionProps {
 
 const NavLinkerSection = ({ onLinkerClick }: NavLinkerSectionProps) => {
   const router = useRouter();
-
-  const pathname: string = usePathname();
+  const pathname = usePathname();
 
   const { isLogin } = useIsLogin();
 
@@ -30,7 +30,7 @@ const NavLinkerSection = ({ onLinkerClick }: NavLinkerSectionProps) => {
   });
 
   return (
-    <div className={clsx('flex flex-col items-center gap-8', 'md:flex-row')}>
+    <div className={cn('flex flex-col items-center gap-8', 'md:flex-row')}>
       <NavLinker
         label="오늘의 수확"
         isActive={pathname === '/insight/today'}

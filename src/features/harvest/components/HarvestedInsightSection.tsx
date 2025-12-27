@@ -4,12 +4,12 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useInView } from 'react-intersection-observer';
 
-import useHarvestedInsight from '@/features/insight/hooks/useHarvestedInsight';
-import HarvestedInsightSectionSkeleton from '@/features/insight/components/skeleton/HarvestedInsightSectionSkeleton';
+import useHarvestedInsights from '@/features/harvest/hooks/useHarvestedInsights';
+import HarvestedInsightSectionSkeleton from '@/features/harvest/components/skeleton/HarvestedInsightSectionSkeleton';
 
-import Heading1 from '@/components/atoms/typography/Heading1';
 import DotLoader from '@/components/atoms/DotLoader';
-import MyInsightPreviewList from '@/components/organisms/MyInsightPreviewList';
+import Heading from '@/components/atoms/typography/Heading';
+import HarvestedInsightList from '@/components/organisms/HarvestedInsightList';
 
 const HarvestedInsightSection = () => {
   const router = useRouter();
@@ -21,10 +21,10 @@ const HarvestedInsightSection = () => {
     isLoading,
     isError,
     error,
-    fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useHarvestedInsight();
+    fetchNextPage,
+  } = useHarvestedInsights();
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
@@ -32,24 +32,16 @@ const HarvestedInsightSection = () => {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  if (isLoading) {
-    return <HarvestedInsightSectionSkeleton />;
-  }
-
-  if (isError) {
-    throw error;
-  }
-
-  if (!harvestedInsight) {
-    return null;
-  }
+  if (isLoading) return <HarvestedInsightSectionSkeleton />;
+  if (isError) throw error;
+  if (!harvestedInsight) return null;
 
   return (
     <div className="flex flex-col gap-6">
-      <Heading1 text="나의 수확물 목록 🌾" />
+      <Heading text="나의 수확물 목록 🌾" scale={1} />
 
-      <MyInsightPreviewList
-        myInsightPreviews={harvestedInsight.pages.flat() ?? []}
+      <HarvestedInsightList
+        harvestedInsights={harvestedInsight.pages.flatMap((page) => page.data) ?? []}
         onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
       />
 

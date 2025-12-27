@@ -1,4 +1,4 @@
-import SkeletonItem from "@/components/atoms/SkeletonItem";
+import SkeletonItem from '@/components/atoms/SkeletonItem';
 
 const MyProgressTableSkeleton = () => {
   return (

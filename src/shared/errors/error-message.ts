@@ -19,6 +19,7 @@ export const ERROR_MESSAGE: Record<string, string> = {
   [ClientErrorCode.INVALID_FORM]: '입력 값이 올바르지 않아요. 다시 한번 확인해 주세요.',
 
   // Image Error
+  [ImageErrorCode.INAGE_NOT_SELECTED]: '이미지를 선택 해 주세요.',
   [ImageErrorCode.INVALID_IMAGE_TYPE]: '지원하지 않는 이미지 형식이에요.',
   [ImageErrorCode.IMAGE_SIZE_TOO_BIG]: `이미지 용량은 최대 ${Math.round(MAX_IMAGE_SIZE / 1024 / 1024)}MB예요.`,
 

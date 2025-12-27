@@ -33,7 +33,7 @@ const useSignIn = ({ onSuccess, onError }: UseSignInParams = {}) => {
       onSuccess?.();
     },
     onError: (error, credentialForm) => {
-      if (error instanceof ResultError && error.statusCode === 404) {
+      if (error instanceof ResultError && error.statusCode === 401) {
         signUp(credentialForm);
       } else {
         onError?.(error);

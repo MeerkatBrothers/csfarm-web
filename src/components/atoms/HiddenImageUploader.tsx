@@ -1,28 +1,37 @@
-"use client";
+'use client';
 
-import { forwardRef } from "react";
+import { forwardRef } from 'react';
 
-import InvalidFormError from "@/lib/errors/invalidFormError";
+import { ImageErrorCode } from '@/features/image/errors/profile-error-code';
+import InvalidFormError from '@/shared/errors/client/invalid-form-error';
 
 interface HiddenImageUploaderProps {
   onSelectImage: (image: File) => void;
 }
 
-const HiddenImageUploader = forwardRef<HTMLInputElement, HiddenImageUploaderProps>(({ onSelectImage }, ref) => {
-  const handleSelectImage = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const image: File | undefined = event.target.files?.[0];
-    if (!image) {
-      throw new InvalidFormError("이미지를 선택 해 주세요.");
-    }
+const HiddenImageUploader = forwardRef<HTMLInputElement, HiddenImageUploaderProps>(
+  ({ onSelectImage }, ref) => {
+    const handleSelectImage = (event: React.ChangeEvent<HTMLInputElement>): void => {
+      const image = event.target.files?.[0];
+      if (!image) throw new InvalidFormError(ImageErrorCode.INAGE_NOT_SELECTED);
 
-    onSelectImage(image);
+      onSelectImage(image);
 
-    event.target.value = "";
-  };
+      event.target.value = '';
+    };
 
-  return <input ref={ref} type="file" accept="image/*" className="hidden" onChange={handleSelectImage} />;
-});
+    return (
+      <input
+        ref={ref}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleSelectImage}
+      />
+    );
+  },
+);
 
-HiddenImageUploader.displayName = "HiddenImageUploader";
+HiddenImageUploader.displayName = 'HiddenImageUploader';
 
 export default HiddenImageUploader;

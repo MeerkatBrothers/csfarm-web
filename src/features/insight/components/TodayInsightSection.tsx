@@ -1,37 +1,24 @@
-'use client';
+import type { Insight } from '@/features/insight/models/insight';
+import HarvestButton from '@/features/harvest/components/HarvestButton';
 
-import useTodayInsight from '@/features/insight/hooks/useTodayInsight';
-import HarvestInsightButton from '@/features/insight/components/HarvestInsightButton';
-import TodayInsightSectionSkeleton from '@/features/insight/components/skeleton/TodayInsightSectionSkeleton';
-
-import Title3 from '@/components/atoms/typography/Title3';
+import Title from '@/components/atoms/typography/Title';
 import InsightSection from '@/components/organisms/InsightSection';
 
-const TodayInsightSection = () => {
-  const { data: todayInsight, isLoading, isError, error } = useTodayInsight();
+interface TodayInsightSectionProps {
+  insight: Insight;
+}
 
-  if (isLoading) {
-    return <TodayInsightSectionSkeleton />;
-  }
-
-  if (isError) {
-    throw error;
-  }
-
-  if (!todayInsight) {
-    return null;
-  }
-
+const TodayInsightSection = ({ insight }: TodayInsightSectionProps) => {
   return (
     <div className="flex flex-col gap-24">
       <div className="flex flex-col gap-2">
-        <Title3 text="오늘의 수확물 🌾" />
+        <Title text="오늘의 수확물 🌾" scale={3} />
 
-        <InsightSection insight={todayInsight.insight} />
+        <InsightSection insight={insight} />
       </div>
 
       <div className="md:self-end">
-        <HarvestInsightButton insightId={todayInsight.insight.id} />
+        <HarvestButton insightId={insight.id} />
       </div>
     </div>
   );

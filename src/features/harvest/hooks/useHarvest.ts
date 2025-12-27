@@ -2,7 +2,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 import ResultError from '@/shared/errors/client/result-error';
 
-import PROGRESS_QUERY_KEYS from '@/features/progress/constants/queryKey';
+import PROGRESS_QUERY_KEYS from '@/features/progress/constants/query-key';
 
 import HARVEST_QUERY_KEYS from '@/features/harvest/constants/query-key';
 import harvest from '@/features/harvest/apis/bff/harvest';

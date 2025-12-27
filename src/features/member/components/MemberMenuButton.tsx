@@ -3,36 +3,31 @@
 import { useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 
-import { ICON_SIZE } from '@/lib/constants/ui';
+import { ICON_SIZE } from '@/shared/constants/ui';
 
 import useMyProfile from '@/features/profile/hooks/useMyProfile';
 import MemberMenuCard from '@/features/member/components/MemberMenuCard';
 
-import Body2 from '@/components/atoms/typography/Body2';
 import ProfileImage from '@/components/atoms/ProfileImage';
 import DotLoader from '@/components/atoms/DotLoader';
+import Body from '@/components/atoms/typography/Body';
 
 const MemberMenuButton = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { data: myProfile, isLoading } = useMyProfile();
 
   const toggleMenu = (): void => setIsMenuOpen(!isMenuOpen);
 
-  if (isLoading) {
-    return <DotLoader />;
-  }
-
-  if (!myProfile) {
-    return null;
-  }
+  if (isLoading) return <DotLoader />;
+  if (!myProfile) return null;
 
   return (
     <div className="relative">
       <button className="flex items-center gap-2" onClick={toggleMenu}>
-        <ProfileImage imageUrl={myProfile.profile.profileImageUrl} size={36} />
+        <ProfileImage imageUrl={myProfile.profileImageUrl} size={36} />
 
-        <Body2 text={`${myProfile.profile.nickname} 님`} styles={{ weight: 'font-bold' }} />
+        <Body text={`${myProfile.nickname} 님`} scale={1} styles={{ weight: 'font-bold' }} />
 
         <FiChevronDown size={ICON_SIZE} />
       </button>

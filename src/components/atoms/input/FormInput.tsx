@@ -1,31 +1,32 @@
-"use client";
+'use client';
 
-import clsx from "clsx";
+import { forwardRef, InputHTMLAttributes } from 'react';
 
-import Label1 from "@/components/atoms/typography/Label1";
+import { cn } from '@/shared/utils/cn';
 
-interface FormInputProps {
+import Label from '@/components/atoms/typography/Label';
+
+interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  value?: string;
-  maxLength?: number;
-  placeholder?: string;
-  onChange: (value: string) => void;
 }
 
-const FormInput = ({ label, value, maxLength, placeholder, onChange }: FormInputProps) => {
+const FormInput = forwardRef<HTMLInputElement, FormInputProps>(({ label, ...rest }, ref) => {
   return (
-    <div className="flex flex-col w-full gap-1.5">
-      {label && <Label1 text={label} />}
+    <div className="flex w-full flex-col gap-1.5">
+      {label && <Label text={label} scale={1} />}
 
       <input
-        className={clsx("rounded-lg px-3 py-4 bg-gray-100", "text-body1 font-normal text-black placeholder:text-gray-400")}
-        value={value}
-        maxLength={maxLength}
-        placeholder={placeholder}
-        onChange={(e) => onChange?.(e.target.value)}
+        ref={ref}
+        {...rest}
+        className={cn(
+          'text-body1 rounded-lg bg-gray-100 px-3 py-4 font-normal text-black',
+          'placeholder:text-gray-400',
+        )}
       />
     </div>
   );
-};
+});
+
+FormInput.displayName = 'FormInput';
 
 export default FormInput;

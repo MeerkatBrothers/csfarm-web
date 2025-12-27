@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import clsx from "clsx";
+import { cn } from '@/shared/utils/cn';
 
 interface NavLinkerProps {
   label: string;
@@ -11,7 +11,12 @@ interface NavLinkerProps {
 const NavLinker = ({ label, isActive, onClick }: NavLinkerProps) => {
   return (
     <button
-      className={clsx("text-body1 font-medium hover:text-black", "md:text-label1", isActive ? "text-black" : "text-gray-400")}
+      className={cn(
+        'text-body1 font-medium',
+        'hover:text-black',
+        'md:text-label1',
+        isActive ? 'text-black' : 'text-gray-400',
+      )}
       onClick={onClick}
     >
       {label}

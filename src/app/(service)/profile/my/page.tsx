@@ -2,9 +2,9 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import MyProfileSection from '@/features/profile/components/MyProfileSection';
 
-import MyProgressTable from '@/features/progress/components/MyProgressTable';
+import HarvestedInsightSection from '@/features/harvest/components/HarvestedInsightSection';
 
-import HarvestedInsightSection from '@/features/insight/components/HarvestedInsightSection';
+import MyProgressTable from '@/features/progress/components/MyProgressTable';
 
 import ErrorFallback from '@/components/organisms/ErrorFallback';
 

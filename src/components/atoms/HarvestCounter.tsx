@@ -1,6 +1,6 @@
-import Seed from "@/../public/svgs/seed.svg";
+import Seed from '@/../public/svgs/seed.svg';
 
-import Caption2 from "@/components/atoms/typography/Caption2";
+import Caption from '@/components/atoms/typography/Caption';
 
 interface HarvestCounterProps {
   harvestCount: number;
@@ -11,7 +11,7 @@ const HarvestCounter = ({ harvestCount }: HarvestCounterProps) => {
     <div className="flex items-center">
       <Seed width={18} />
 
-      <Caption2 text={` X ${harvestCount}`} />
+      <Caption text={` X ${harvestCount}`} scale={2} />
     </div>
   );
 };

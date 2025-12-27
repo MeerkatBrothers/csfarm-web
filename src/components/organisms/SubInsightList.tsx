@@ -1,4 +1,4 @@
-import { SubInsight } from '@/features/insight/models/fragments/subInsight';
+import type { SubInsight } from '@/features/insight/models/sub-insight';
 
 import SubInsightSection from '@/components/organisms/SubInsightSection';
 

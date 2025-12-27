@@ -1,19 +1,18 @@
-import { ErrorBoundary } from 'react-error-boundary';
-
+import fetchTodayInsight from '@/features/insight/apis/server/fetch-today-insight';
 import TodayInsightWelcomeMessage from '@/features/insight/components/TodayInsightWelcomeMessage';
 import TodayInsightSection from '@/features/insight/components/TodayInsightSection';
 
-import ErrorFallback from '@/components/organisms/ErrorFallback';
+export const revalidate = 600;
 
-const TodayInsightPage = () => {
+const TodayInsightPage = async () => {
+  const todayInsight = await fetchTodayInsight(revalidate);
+
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div className="flex flex-col gap-10">
-        <TodayInsightWelcomeMessage />
+    <div className="flex flex-col gap-10">
+      <TodayInsightWelcomeMessage />
 
-        <TodayInsightSection />
-      </div>
-    </ErrorBoundary>
+      <TodayInsightSection insight={todayInsight} />
+    </div>
   );
 };
 
