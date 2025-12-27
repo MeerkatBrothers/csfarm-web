@@ -22,10 +22,9 @@ const useProfileForm = (initialForm?: ProfileForm) => {
   });
 
   useEffect(() => {
-    if (!initialForm) return;
     reset({
-      nickname: initialForm.nickname ?? '',
-      profileImageUrl: initialForm.profileImageUrl ?? null,
+      nickname: initialForm?.nickname ?? '',
+      profileImageUrl: initialForm?.profileImageUrl ?? null,
     });
   }, [initialForm?.nickname, initialForm?.profileImageUrl, reset]);
 

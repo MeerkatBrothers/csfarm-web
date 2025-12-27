@@ -1,4 +1,4 @@
-import Seed from '@/../public/svgs/seed.svg';
+import Seed from '@/assets/svgs/seed.svg';
 
 import { formatDateToYMD } from '@/shared/utils/formatter/date';
 

@@ -1,12 +1,18 @@
-import { createBffHandler, type BffContext } from '@/shared/utils/bff';
-import { parsePathParamOrThrow } from '@/shared/utils/parser/request';
+import { createBffHandler } from '@/shared/utils/bff';
 
 import fetchInsight from '@/features/insight/apis/server/fetch-insight';
 import type { Insight } from '@/features/insight/models/insight';
 
-const insightDetailHandler = async (_: Request, context: BffContext): Promise<Insight> => {
-  const params = context.params ?? {};
-  const insightId = parsePathParamOrThrow(params, 'insightId');
+interface InsightDetailContext {
+  params: Promise<{ insightId: string }>;
+}
+
+const insightDetailHandler = async (
+  _: Request,
+  context: InsightDetailContext,
+): Promise<Insight> => {
+  const params = await context.params;
+  const insightId = params.insightId;
 
   return await fetchInsight(insightId);
 };

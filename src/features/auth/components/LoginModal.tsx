@@ -1,6 +1,6 @@
 'use client';
 
-import Kakao from '@/../public/svgs/kakao.svg';
+import Kakao from '@/assets/svgs/kakao.svg';
 
 import { cn } from '@/shared/utils/cn';
 

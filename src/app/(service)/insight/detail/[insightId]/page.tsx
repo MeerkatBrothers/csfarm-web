@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import InsightDetailSection from '@/features/insight/components/InsightDetailSection';
@@ -6,12 +5,11 @@ import InsightDetailSection from '@/features/insight/components/InsightDetailSec
 import ErrorFallback from '@/components/organisms/ErrorFallback';
 
 interface InsightDetailPageProps {
-  params: { insightId?: string };
+  params: Promise<{ insightId: string }>;
 }
 
-const InsightDetailPage = ({ params }: InsightDetailPageProps) => {
-  const insightId = params.insightId;
-  if (!insightId) notFound();
+const InsightDetailPage = async ({ params }: InsightDetailPageProps) => {
+  const insightId = (await params).insightId;
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>

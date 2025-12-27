@@ -2,11 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { success, failed } from '@/shared/types/result';
 
-type BffHandler<T> = (request: NextRequest, context: BffContext) => Promise<T>;
-
-export type BffContext = {
-  params?: Record<string, string | undefined>;
-};
+type BffHandler<T, C> = (request: NextRequest, context: C) => Promise<T>;
 
 export const createBffErrorResponse = (e: unknown) => {
   const result = failed(e);
@@ -14,8 +10,8 @@ export const createBffErrorResponse = (e: unknown) => {
   return NextResponse.json(result, { status: result.statusCode });
 };
 
-export const createBffHandler = <T>(handler: BffHandler<T>) => {
-  return async (request: NextRequest, context: BffContext = {}) => {
+export const createBffHandler = <T, C>(handler: BffHandler<T, C>) => {
+  return async (request: NextRequest, context: C) => {
     try {
       const data = await handler(request, context);
       const result = success(data);

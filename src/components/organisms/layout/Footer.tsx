@@ -1,4 +1,4 @@
-import Logo from '@/../public/svgs/logo.svg';
+import Logo from '@/assets/svgs/logo.svg';
 
 import { PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL } from '@/shared/constants/policy';
 import { cn } from '@/shared/utils/cn';

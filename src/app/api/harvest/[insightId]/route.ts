@@ -1,14 +1,17 @@
-import { createBffHandler, type BffContext } from '@/shared/utils/bff';
-import { parsePathParamOrThrow } from '@/shared/utils/parser/request';
+import { createBffHandler } from '@/shared/utils/bff';
 import { getAccessTokenFromCookieOrThrow } from '@/shared/cookie/access-token';
 
 import fetchHarvest from '@/features/harvest/apis/server/fetch-harvest';
 
-const harvestHandler = async (_: Request, context: BffContext): Promise<null> => {
+interface HarvestContext {
+  params: Promise<{ insightId: string }>;
+}
+
+const harvestHandler = async (_: Request, context: HarvestContext): Promise<null> => {
   const storedAccessToken = await getAccessTokenFromCookieOrThrow();
 
-  const params = context.params ?? {};
-  const insightId = parsePathParamOrThrow(params, 'insightId');
+  const params = await context.params;
+  const insightId = params.insightId;
 
   await fetchHarvest(insightId, storedAccessToken);
 

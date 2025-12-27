@@ -42,23 +42,3 @@ export const parseQueryParamOrThrow = (url: URL, key: string): string => {
 
   return value;
 };
-
-export const parsePathParam = (
-  params: Record<string, string | undefined>,
-  key: string,
-): string | null => {
-  const value = params[key];
-  if (!value || value.trim() === '') return null;
-
-  return value;
-};
-
-export const parsePathParamOrThrow = (
-  params: Record<string, string | undefined>,
-  key: string,
-): string => {
-  const value = parsePathParam(params, key);
-  if (!value) throw new BadRequestError(ApiErrorCode.E40000004);
-
-  return value;
-};

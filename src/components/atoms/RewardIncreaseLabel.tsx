@@ -1,4 +1,4 @@
-import Seed from '@/../public/svgs/seed.svg';
+import Seed from '@/assets/svgs/seed.svg';
 
 import Caption from '@/components/atoms/typography/Caption';
 

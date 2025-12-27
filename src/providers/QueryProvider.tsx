@@ -19,7 +19,6 @@ const QueryProvider = ({ children }: QueryProviderProps) => {
 
   const [queryClient] = useState(() => {
     let isHandling401 = false;
-    let qc: QueryClient;
 
     const handleError = (error: Error): void => {
       if (error instanceof ResultError && error.statusCode === 401) {
@@ -41,7 +40,7 @@ const QueryProvider = ({ children }: QueryProviderProps) => {
       toastError(error);
     };
 
-    qc = new QueryClient({
+    const qc = new QueryClient({
       queryCache: new QueryCache({ onError: handleError }),
       mutationCache: new MutationCache({ onError: handleError }),
       defaultOptions: {

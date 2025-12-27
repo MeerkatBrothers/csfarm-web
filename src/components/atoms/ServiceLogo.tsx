@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import Logo from '@/../public/svgs/logo.svg';
+import Logo from '@/assets/svgs/logo.svg';
 
 const ServiceLogo = () => {
   const router = useRouter();
