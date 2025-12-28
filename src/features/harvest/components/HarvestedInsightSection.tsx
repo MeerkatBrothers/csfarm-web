@@ -8,7 +8,7 @@ import useHarvestedInsights from '@/features/harvest/hooks/useHarvestedInsights'
 import HarvestedInsightSectionSkeleton from '@/features/harvest/components/skeleton/HarvestedInsightSectionSkeleton';
 
 import DotLoader from '@/components/atoms/DotLoader';
-import Headline from '@/components/atoms/typography/Headline';
+import Heading from '@/components/atoms/typography/Heading';
 import HarvestedInsightCard from '@/components/organisms/HarvestedInsightCard';
 
 const HarvestedInsightSection = () => {
@@ -40,7 +40,7 @@ const HarvestedInsightSection = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Headline text="나의 수확물 목록 🌾" scale={1} />
+      <Heading text="나의 수확물 목록 🌾" scale={1} />
 
       <div className="flex flex-col gap-4">
         {flatHarvestInsights.map((harvestInsight) => {

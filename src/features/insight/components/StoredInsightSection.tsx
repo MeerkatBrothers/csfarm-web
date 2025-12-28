@@ -8,6 +8,7 @@ import useStoredInsights from '@/features/insight/hooks/useStoredInsights';
 import StoredInsightSectionSkeleton from '@/features/insight/components/skeleton/StoredInsightSectionSkeleton';
 
 import DotLoader from '@/components/atoms/DotLoader';
+import Heading from '@/components/atoms/typography/Heading';
 import InsightPreviewCard from '@/components/organisms/InsightPreviewCard';
 
 const StoredInsightSection = () => {
@@ -38,19 +39,23 @@ const StoredInsightSection = () => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-4">
-        {flatStoredInsights.map((insightPreview) => {
-          const { id, subject, publishedAt } = insightPreview;
+        <Heading text="그동안의 수확물들을 확인해보세요." scale={1} />
 
-          return (
-            <InsightPreviewCard
-              key={`insight-preview-${id}`}
-              id={id}
-              subject={subject}
-              publishedAt={publishedAt}
-              onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
-            />
-          );
-        })}
+        <div className="flex flex-col gap-4">
+          {flatStoredInsights.map((insightPreview) => {
+            const { id, subject, publishedAt } = insightPreview;
+
+            return (
+              <InsightPreviewCard
+                key={`insight-preview-${id}`}
+                id={id}
+                subject={subject}
+                publishedAt={publishedAt}
+                onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
+              />
+            );
+          })}
+        </div>
       </div>
 
       {hasNextPage && <div ref={ref}>{isFetchingNextPage && <DotLoader />}</div>}

@@ -6,6 +6,7 @@ import useTodayQuiz from '@/features/quiz/hooks/useTodayQuiz';
 import ThreshButton from '@/features/thresh/components/ThreshButton';
 import TodayQuizSectionSkeleton from '@/features/quiz/components/skeleton/TodayQuizSectionSkeleton';
 
+import Heading from '@/components/atoms/typography/Heading';
 import QuizCard from '@/components/organisms/QuizCard';
 import QuizChoiceCard from '@/components/organisms/QuizChoiceCard';
 
@@ -24,23 +25,27 @@ const TodayQuizSection = () => {
 
   return (
     <div className="flex flex-col gap-24">
-      <div className="flex flex-col gap-12">
-        <QuizCard question={question} />
+      <div className="flex flex-col gap-4">
+        <Heading text="오늘의 타작물이에요. 한번 도전해 볼까요?" scale={1} />
 
-        <div className="flex flex-col gap-4">
-          {choices.map((choice) => {
-            const { id, option } = choice;
+        <div className="flex flex-col gap-12">
+          <QuizCard question={question} />
 
-            return (
-              <QuizChoiceCard
-                key={`quiz-choice-${id}`}
-                id={id}
-                option={option}
-                isChoiced={id === choiceId}
-                onChoice={handleChoice}
-              />
-            );
-          })}
+          <div className="flex flex-col gap-4">
+            {choices.map((choice) => {
+              const { id, option } = choice;
+
+              return (
+                <QuizChoiceCard
+                  key={`quiz-choice-${id}`}
+                  id={id}
+                  option={option}
+                  isChoiced={id === choiceId}
+                  onChoice={handleChoice}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
 

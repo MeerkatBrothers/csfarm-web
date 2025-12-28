@@ -15,9 +15,9 @@ const InsightPreviewCard = ({ id, subject, publishedAt, onClick }: InsightPrevie
   return (
     <button
       className={cn(
-        'flex items-center justify-between gap-8 overflow-hidden rounded-lg bg-gray-100 px-8 py-6',
-        'md:px-9',
-        'lg:px-10',
+        'flex items-center justify-between gap-8 overflow-hidden rounded-lg bg-gray-100 px-6 py-6',
+        'md:px-7',
+        'lg:px-8',
       )}
       onClick={() => onClick(id)}
     >

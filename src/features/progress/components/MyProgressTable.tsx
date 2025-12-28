@@ -6,6 +6,7 @@ import MyProgressTableSkeleton from '@/features/progress/components/skeleton/MyP
 import ProgressHint from '@/components/atoms/ProgressHint';
 import Headline from '@/components/atoms/typography/Headline';
 import ProgressTable from '@/components/organisms/ProgressTable';
+import { cn } from '@/shared/utils/cn';
 
 interface MyProgressTableProps {
   year?: number;
@@ -19,7 +20,9 @@ const MyProgressTable = ({ year = 2025 }: MyProgressTableProps) => {
   if (!myProgress) return null;
 
   return (
-    <div className="flex flex-col gap-4 rounded-lg bg-gray-100 px-8 py-6">
+    <div
+      className={cn('flex flex-col gap-4 rounded-lg bg-gray-100 p-8 py-6', 'md:px-7', 'lg:px-8')}
+    >
       <Headline text={`${year}년 활동 현황`} scale={1} />
 
       <div className="overflow-x-scroll">

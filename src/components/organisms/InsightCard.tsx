@@ -21,7 +21,7 @@ const InsightCard = ({ subject, description, publishedAt }: InsightSectionProps)
   };
 
   return (
-    <div className={cn('flex flex-col gap-2 rounded-lg bg-gray-100 p-8', 'md:p-9', 'lg:p-10')}>
+    <div className={cn('flex flex-col gap-2 rounded-lg bg-gray-100 p-6', 'md:p-7', 'lg:p-8')}>
       <Headline text={getDateLabel()} scale={1} styles={{ color: 'text-primary-500' }} />
 
       <div className="flex flex-col gap-6">

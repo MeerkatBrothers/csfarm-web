@@ -3,7 +3,7 @@
 import { cn } from '@/shared/utils/cn';
 
 import type { ButtonProps } from '@/components/atoms/button/props/button.props';
-import Body from '@/components/atoms/typography/Body';
+import Label from '@/components/atoms/typography/Label';
 
 const SecondaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
   return (
@@ -16,7 +16,7 @@ const SecondaryButton = ({ label, disabled = false, onClick }: ButtonProps) => {
       disabled={disabled}
       onClick={onClick}
     >
-      <Body
+      <Label
         text={label}
         scale={1}
         styles={{ weight: 'font-medium', color: disabled ? 'text-gray-400' : 'text-black' }}

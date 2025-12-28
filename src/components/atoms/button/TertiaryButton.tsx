@@ -4,7 +4,7 @@ import { cn } from '@/shared/utils/cn';
 
 import type { ButtonProps } from '@/components/atoms/button/props/button.props';
 import type { ButtonStyleOptions } from '@/components/atoms/button/options/button-style.options';
-import Body from '@/components/atoms/typography/Body';
+import Label from '@/components/atoms/typography/Label';
 
 interface TertiaryButtonProps extends ButtonProps {
   styles?: ButtonStyleOptions;
@@ -17,7 +17,7 @@ const TertiaryButton = ({ label, styles, disabled = false, onClick }: TertiaryBu
       disabled={disabled}
       onClick={onClick}
     >
-      <Body
+      <Label
         text={label}
         scale={1}
         styles={{

@@ -2,6 +2,7 @@ import type { Insight } from '@/features/insight/models/insight';
 
 import HarvestButton from '@/features/harvest/components/HarvestButton';
 
+import TodayInsightGreeting from '@/features/insight/components/TodayInsightGreeting';
 import InsightCard from '@/components/organisms/InsightCard';
 import SubInsightCard from '@/components/organisms/SubInsightCard';
 
@@ -14,21 +15,25 @@ const TodayInsightSection = ({ insight }: TodayInsightSectionProps) => {
 
   return (
     <div className="flex flex-col gap-24">
-      <div className="flex flex-col gap-12">
-        <InsightCard subject={subject} description={description} publishedAt={publishedAt} />
+      <div className="flex flex-col gap-4">
+        <TodayInsightGreeting />
 
-        <div className="flex flex-col gap-4">
-          {subInsights.map((subInsight) => {
-            const { id, subject, description } = subInsight;
+        <div className="flex flex-col gap-12">
+          <InsightCard subject={subject} description={description} publishedAt={publishedAt} />
 
-            return (
-              <SubInsightCard
-                key={`today-sub-insight-${id}`}
-                subject={subject}
-                description={description}
-              />
-            );
-          })}
+          <div className="flex flex-col gap-4">
+            {subInsights.map((subInsight) => {
+              const { id, subject, description } = subInsight;
+
+              return (
+                <SubInsightCard
+                  key={`today-sub-insight-${id}`}
+                  subject={subject}
+                  description={description}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
 

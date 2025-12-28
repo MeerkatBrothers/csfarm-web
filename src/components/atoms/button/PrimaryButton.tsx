@@ -3,7 +3,7 @@
 import { cn } from '@/shared/utils/cn';
 
 import type { ButtonProps } from '@/components/atoms/button/props/button.props';
-import Body from '@/components/atoms/typography/Body';
+import Label from '@/components/atoms/typography/Label';
 
 const PrimaryButton = ({ label, type = 'button', disabled = false, onClick }: ButtonProps) => {
   return (
@@ -17,7 +17,7 @@ const PrimaryButton = ({ label, type = 'button', disabled = false, onClick }: Bu
       disabled={disabled}
       onClick={onClick}
     >
-      <Body
+      <Label
         text={label}
         scale={1}
         styles={{ weight: 'font-medium', color: disabled ? 'text-gray-400' : 'text-white' }}
