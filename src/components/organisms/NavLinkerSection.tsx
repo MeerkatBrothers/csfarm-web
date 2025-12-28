@@ -25,9 +25,7 @@ const NavLinkerSection = ({ onLinkerClick }: NavLinkerSectionProps) => {
     router.push(to);
   };
 
-  const toTodayQuiz = useAuthAction({
-    action: () => navigateTo('/quiz/today'),
-  });
+  const toTodayQuiz = useAuthAction({ action: () => navigateTo('/quiz/today') });
 
   return (
     <div className={cn('flex flex-col items-center gap-8', 'md:flex-row')}>

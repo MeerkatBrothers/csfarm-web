@@ -24,10 +24,10 @@ const MemberMenuButton = () => {
 
   return (
     <div className="relative">
-      <button className="flex items-center gap-2" onClick={toggleMenu}>
-        <ProfileImage imageUrl={myProfile.profileImageUrl} size={36} />
+      <button className="flex items-center gap-1" onClick={toggleMenu}>
+        <ProfileImage imageUrl={myProfile.profileImageUrl} size={28} />
 
-        <Body text={`${myProfile.nickname} 님`} scale={1} styles={{ weight: 'font-bold' }} />
+        <Body text={`${myProfile.nickname}님`} scale={2} styles={{ weight: 'font-bold' }} />
 
         <FiChevronDown size={ICON_SIZE} />
       </button>

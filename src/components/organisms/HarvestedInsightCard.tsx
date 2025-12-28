@@ -3,7 +3,7 @@ import Seed from '@/assets/svgs/seed.svg';
 import { cn } from '@/shared/utils/cn';
 import { formatDateToYMD } from '@/shared/utils/formatter/date';
 
-import Headline from '@/components/atoms/typography/Headline';
+import Body from '@/components/atoms/typography/Body';
 import Label from '@/components/atoms/typography/Label';
 
 interface HarvestedInsightCardProps {
@@ -31,7 +31,7 @@ const HarvestedInsightCard = ({
       onClick={() => onClick(id)}
     >
       <div className="flex gap-1">
-        <Headline text={subject} scale={1} truncate />
+        <Body text={subject} scale={1} truncate styles={{ weight: 'font-bold' }} />
 
         {isThreshed && <Seed width={24} />}
       </div>

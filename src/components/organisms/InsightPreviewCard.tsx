@@ -1,7 +1,7 @@
 import { cn } from '@/shared/utils/cn';
 import { formatDateToYMD } from '@/shared/utils/formatter/date';
 
-import Headline from '@/components/atoms/typography/Headline';
+import Body from '@/components/atoms/typography/Body';
 import Label from '@/components/atoms/typography/Label';
 
 interface InsightPreviewCardProps {
@@ -22,7 +22,7 @@ const InsightPreviewCard = ({ id, subject, publishedAt, onClick }: InsightPrevie
       onClick={() => onClick(id)}
     >
       <div className="min-w-0 flex-1 text-start">
-        <Headline text={subject} scale={1} truncate />
+        <Body text={subject} scale={1} truncate styles={{ weight: 'font-bold' }} />
       </div>
 
       <Label text={formatDateToYMD(publishedAt)} scale={1} styles={{ color: 'text-gray-400' }} />
