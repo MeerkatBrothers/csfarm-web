@@ -11,12 +11,13 @@ const SIZE: Record<HeadingProps['scale'], string> = {
   2: 'text-heading2-sm md:text-heading2-md lg:text-heading2-lg',
 };
 
-const Heading = ({ text, scale, styles }: HeadingProps) => {
+const Heading = ({ text, scale, truncate = false, styles }: HeadingProps) => {
   return (
     <p
       className={cn(
         'leading-snug',
         SIZE[scale],
+        truncate && 'truncate',
         styles?.color ?? 'text-black',
         styles?.weight ?? 'font-bold',
       )}

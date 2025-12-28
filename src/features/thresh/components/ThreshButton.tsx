@@ -33,7 +33,7 @@ const ThreshButton = ({ quizId, choiceId }: ThreshButtonProps) => {
 
       <PrimaryButton
         label={threshStatus?.isThreshed ? '이미 타작했어요!' : '타작하기'}
-        disabled={threshStatus?.isThreshed}
+        disabled={threshStatus?.isThreshed || !choiceId}
         onClick={handleThresh}
       />
     </div>

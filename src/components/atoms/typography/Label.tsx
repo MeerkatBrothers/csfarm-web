@@ -11,12 +11,13 @@ const SIZE: Record<LabelProps['scale'], string> = {
   2: 'text-label2',
 };
 
-const Label = ({ text, scale, styles }: LabelProps) => {
+const Label = ({ text, scale, truncate = false, styles }: LabelProps) => {
   return (
     <p
       className={cn(
         'leading-normal',
         SIZE[scale],
+        truncate && 'truncate',
         styles?.color ?? 'text-black',
         styles?.weight ?? 'font-bold',
       )}

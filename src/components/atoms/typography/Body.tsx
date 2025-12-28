@@ -11,12 +11,13 @@ const SIZE: Record<BodyProps['scale'], string> = {
   2: 'text-body2',
 };
 
-const Body = ({ text, scale, styles }: BodyProps) => {
+const Body = ({ text, scale, truncate = false, styles }: BodyProps) => {
   return (
     <p
       className={cn(
         'leading-relaxed',
         SIZE[scale],
+        truncate && 'truncate',
         styles?.color ?? 'text-black',
         styles?.weight ?? 'font-normal',
       )}

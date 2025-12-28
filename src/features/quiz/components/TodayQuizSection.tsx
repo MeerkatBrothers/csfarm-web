@@ -3,31 +3,49 @@
 import { useState } from 'react';
 
 import useTodayQuiz from '@/features/quiz/hooks/useTodayQuiz';
-import TodayQuizSectionSkeleton from '@/features/quiz/components/skeleton/TodayQuizSectionSkeleton';
 import ThreshButton from '@/features/thresh/components/ThreshButton';
+import TodayQuizSectionSkeleton from '@/features/quiz/components/skeleton/TodayQuizSectionSkeleton';
 
-import Title from '@/components/atoms/typography/Title';
-import QuizSection from '@/components/organisms/QuizSection';
+import QuizCard from '@/components/organisms/QuizCard';
+import QuizChoiceCard from '@/components/organisms/QuizChoiceCard';
 
 const TodayQuizSection = () => {
   const [choiceId, setChoiceId] = useState<string | null>(null);
 
   const { data: todayQuiz, isLoading, isError, error } = useTodayQuiz();
 
+  const handleChoice = (choiceId: string): void => setChoiceId(choiceId);
+
   if (isLoading) return <TodayQuizSectionSkeleton />;
   if (isError) throw error;
   if (!todayQuiz) return null;
 
+  const { id, question, choices } = todayQuiz;
+
   return (
     <div className="flex flex-col gap-24">
-      <div className="flex flex-col gap-2">
-        <Title text="오늘의 타작물 🚜" scale={3} />
+      <div className="flex flex-col gap-12">
+        <QuizCard question={question} />
 
-        <QuizSection quiz={todayQuiz} choiceId={choiceId} onChoice={setChoiceId} />
+        <div className="flex flex-col gap-4">
+          {choices.map((choice) => {
+            const { id, option } = choice;
+
+            return (
+              <QuizChoiceCard
+                key={`quiz-choice-${id}`}
+                id={id}
+                option={option}
+                isChoiced={id === choiceId}
+                onChoice={handleChoice}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <div className="md:self-end">
-        <ThreshButton quizId={todayQuiz.id} choiceId={choiceId} />
+        <ThreshButton quizId={id} choiceId={choiceId} />
       </div>
     </div>
   );

@@ -11,12 +11,13 @@ const SIZE: Record<HeadlineProps['scale'], string> = {
   2: 'text-headline2-sm md:text-headline2-md lg:text-headline2-lg',
 };
 
-const Headline = ({ text, scale, styles }: HeadlineProps) => {
+const Headline = ({ text, scale, truncate = false, styles }: HeadlineProps) => {
   return (
     <p
       className={cn(
         'leading-normal',
         SIZE[scale],
+        truncate && 'truncate',
         styles?.color ?? 'text-black',
         styles?.weight ?? 'font-bold',
       )}

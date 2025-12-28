@@ -2,5 +2,6 @@ import type { TypographyStyleOptions } from '@/components/atoms/typography/optio
 
 export interface TypographyProps {
   text: string;
+  truncate?: boolean;
   styles?: TypographyStyleOptions;
 }

@@ -12,7 +12,7 @@ interface ServiceLayoutProps {
 
 const ServiceLayout = ({ children }: Readonly<ServiceLayoutProps>) => {
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex min-h-screen flex-col">
       <header className={cn('flex justify-center border-b border-gray-200 px-4', 'md:px-6')}>
         <Header />
       </header>

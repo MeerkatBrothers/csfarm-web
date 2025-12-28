@@ -1,24 +1,39 @@
 import type { Insight } from '@/features/insight/models/insight';
+
 import HarvestButton from '@/features/harvest/components/HarvestButton';
 
-import Title from '@/components/atoms/typography/Title';
-import InsightSection from '@/components/organisms/InsightSection';
+import InsightCard from '@/components/organisms/InsightCard';
+import SubInsightCard from '@/components/organisms/SubInsightCard';
 
 interface TodayInsightSectionProps {
   insight: Insight;
 }
 
 const TodayInsightSection = ({ insight }: TodayInsightSectionProps) => {
+  const { id, subject, description, publishedAt, subInsights } = insight;
+
   return (
     <div className="flex flex-col gap-24">
-      <div className="flex flex-col gap-2">
-        <Title text="오늘의 수확물 🌾" scale={3} />
+      <div className="flex flex-col gap-12">
+        <InsightCard subject={subject} description={description} publishedAt={publishedAt} />
 
-        <InsightSection insight={insight} />
+        <div className="flex flex-col gap-4">
+          {subInsights.map((subInsight) => {
+            const { id, subject, description } = subInsight;
+
+            return (
+              <SubInsightCard
+                key={`today-sub-insight-${id}`}
+                subject={subject}
+                description={description}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <div className="md:self-end">
-        <HarvestButton insightId={insight.id} />
+        <HarvestButton insightId={id} />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import useStoredInsights from '@/features/insight/hooks/useStoredInsights';
 import StoredInsightSectionSkeleton from '@/features/insight/components/skeleton/StoredInsightSectionSkeleton';
 
 import DotLoader from '@/components/atoms/DotLoader';
-import InsightPreviewList from '@/components/organisms/InsightPreviewList';
+import InsightPreviewCard from '@/components/organisms/InsightPreviewCard';
 
 const StoredInsightSection = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const StoredInsightSection = () => {
   const { ref, inView } = useInView();
 
   const {
-    data: storedInsight,
+    data: storedInsights,
     isLoading,
     isError,
     error,
@@ -26,21 +26,32 @@ const StoredInsightSection = () => {
   } = useStoredInsights();
 
   useEffect(() => {
-    if (inView && hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
+    if (inView && hasNextPage && !isFetchingNextPage) fetchNextPage();
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   if (isLoading) return <StoredInsightSectionSkeleton />;
   if (isError) throw error;
-  if (!storedInsight) return null;
+  if (!storedInsights) return null;
+
+  const flatStoredInsights = storedInsights.pages.flatMap((page) => page.data) ?? [];
 
   return (
     <div className="flex flex-col gap-6">
-      <InsightPreviewList
-        insightPreviews={storedInsight.pages.flatMap((page) => page.data) ?? []}
-        onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
-      />
+      <div className="flex flex-col gap-4">
+        {flatStoredInsights.map((insightPreview, index) => {
+          const { id, subject, publishedAt } = insightPreview;
+
+          return (
+            <InsightPreviewCard
+              key={index}
+              id={id}
+              subject={subject}
+              publishedAt={publishedAt}
+              onClick={(insightId) => router.push(`/insight/detail/${insightId}`)}
+            />
+          );
+        })}
+      </div>
 
       {hasNextPage && <div ref={ref}>{isFetchingNextPage && <DotLoader />}</div>}
     </div>

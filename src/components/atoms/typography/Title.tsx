@@ -12,12 +12,13 @@ const SIZE: Record<TitleProps['scale'], string> = {
   3: 'text-title3-sm md:text-title3-md lg:text-title3-lg',
 };
 
-const Title = ({ text, scale, styles }: TitleProps) => {
+const Title = ({ text, scale, truncate = false, styles }: TitleProps) => {
   return (
     <p
       className={cn(
         'leading-tight',
         SIZE[scale],
+        truncate && 'truncate',
         styles?.color ?? 'text-black',
         styles?.weight ?? 'font-bold',
       )}

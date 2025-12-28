@@ -5,28 +5,31 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { ICON_SIZE } from '@/shared/constants/ui';
-
-import type { SubInsight } from '@/features/insight/models/sub-insight';
+import { cn } from '@/shared/utils/cn';
 
 import Body from '@/components/atoms/typography/Body';
 
-interface SubInsightSectionProps {
-  subInsight: SubInsight;
+interface SubInsightCardProps {
+  subject: string;
+  description: string;
 }
 
-const SubInsightSection = ({ subInsight }: SubInsightSectionProps) => {
+const SubInsightCard = ({ subject, description }: SubInsightCardProps) => {
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
   const toggleDescription = (): void => setIsDescriptionOpen(!isDescriptionOpen);
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-lg bg-gray-100 px-4 py-5">
-      <button
-        className="flex w-full items-center justify-between gap-4"
-        onClick={toggleDescription}
-      >
-        <div className="flex-1 text-start">
-          <Body text={subInsight.subject} scale={1} styles={{ weight: 'font-bold' }} />
+    <div
+      className={cn(
+        'flex flex-col overflow-hidden rounded-lg bg-gray-100 px-8 py-6',
+        'md:px-9',
+        'lg:px-10',
+      )}
+    >
+      <button className="flex items-center justify-between gap-4" onClick={toggleDescription}>
+        <div className="min-w-0 flex-1 text-start">
+          <Body text={subject} scale={1} styles={{ weight: 'font-bold' }} />
         </div>
 
         {isDescriptionOpen ? <FiChevronUp size={ICON_SIZE} /> : <FiChevronDown size={ICON_SIZE} />}
@@ -40,8 +43,8 @@ const SubInsightSection = ({ subInsight }: SubInsightSectionProps) => {
             animate={{ height: 'auto', opacity: 1 }}
             transition={{ type: 'spring', duration: 0.4, bounce: 0 }}
           >
-            <div className="mt-2">
-              <Body text={subInsight.description} scale={1} />
+            <div className="mt-4">
+              <Body text={description} scale={1} />
             </div>
           </motion.div>
         )}
@@ -50,4 +53,4 @@ const SubInsightSection = ({ subInsight }: SubInsightSectionProps) => {
   );
 };
 
-export default SubInsightSection;
+export default SubInsightCard;

@@ -11,12 +11,13 @@ const SIZE: Record<DisplayProps['scale'], string> = {
   2: 'text-display2-sm md:text-display2-md lg:text-display2-lg',
 };
 
-const Display = ({ text, scale, styles }: DisplayProps) => {
+const Display = ({ text, scale, truncate = false, styles }: DisplayProps) => {
   return (
     <p
       className={cn(
         'leading-tight',
         SIZE[scale],
+        truncate && 'truncate',
         styles?.color ?? 'text-black',
         styles?.weight ?? 'font-bold',
       )}
