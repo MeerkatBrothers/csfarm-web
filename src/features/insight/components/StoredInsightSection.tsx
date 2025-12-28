@@ -38,12 +38,12 @@ const StoredInsightSection = () => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-4">
-        {flatStoredInsights.map((insightPreview, index) => {
+        {flatStoredInsights.map((insightPreview) => {
           const { id, subject, publishedAt } = insightPreview;
 
           return (
             <InsightPreviewCard
-              key={index}
+              key={`insight-preview-${id}`}
               id={id}
               subject={subject}
               publishedAt={publishedAt}

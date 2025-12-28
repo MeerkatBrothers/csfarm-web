@@ -5,7 +5,7 @@ interface ProfileImageProps {
   size?: number;
 }
 
-const ProfileImage = ({ imageUrl, size = 120 }: ProfileImageProps) => {
+const ProfileImage = ({ imageUrl, size = 60 }: ProfileImageProps) => {
   return (
     <Image
       className="border-service-gray-light rounded-full border object-cover"

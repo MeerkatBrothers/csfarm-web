@@ -19,7 +19,7 @@ const ProfileImageEditor = ({ initialProfileImageUrl, onSelect }: ProfileImageEd
   return (
     <div>
       <div className="relative">
-        <ProfileImage imageUrl={initialProfileImageUrl} />
+        <ProfileImage imageUrl={initialProfileImageUrl} size={120} />
 
         <div className="absolute right-0 bottom-0 rounded-full bg-white p-1">
           <MdCameraAlt size={ICON_SIZE} onClick={() => imageUploaderRef.current?.click()} />

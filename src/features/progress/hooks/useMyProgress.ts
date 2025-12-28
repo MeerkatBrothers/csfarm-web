@@ -7,7 +7,7 @@ import PROGRESS_QUERY_KEYS from '@/features/progress/constants/query-key';
 import getMyProgress from '@/features/progress/apis/bff/get-my-progress';
 import type { Progress } from '@/features/progress/models/progress';
 
-const useMyProgress = (year: number = 2025) => {
+const useMyProgress = (year: number) => {
   return useQuery<Record<string, Progress>>({
     queryKey: [...PROGRESS_QUERY_KEYS.MY, year],
     queryFn: async () => {

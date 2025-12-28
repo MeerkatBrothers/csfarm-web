@@ -89,7 +89,7 @@ const UpdateProfileSection = () => {
           <PrimaryButton
             label="변경하기"
             type="submit"
-            disabled={isUploadImagePending}
+            disabled={profileForm.nickname.length === 0 || isUploadImagePending}
             onClick={handleUpdateProfile}
           />
         )}

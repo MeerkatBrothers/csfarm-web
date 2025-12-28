@@ -28,11 +28,15 @@ const ProgressTable = ({ progresses, year = 2025 }: ProgressTableProps) => {
     <table className="min-w-max border-separate border-spacing-1">
       <tbody>
         {dateRow.map((row, rowIdx) => (
-          <tr key={rowIdx}>
+          <tr key={`progress-row-${rowIdx}`}>
             {row.map((date, colIdx) => {
               const progress = date ? progresses[formatDateToYMD(date)] : undefined;
 
-              return date && <ProgressCell key={colIdx} date={date} progress={progress} />;
+              return (
+                date && (
+                  <ProgressCell key={`progress-col-${colIdx}`} date={date} progress={progress} />
+                )
+              );
             })}
           </tr>
         ))}

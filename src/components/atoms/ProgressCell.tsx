@@ -13,9 +13,9 @@ const ProgressCell = ({ date, progress }: ProgressCellProps) => {
     ? 'bg-primary-500'
     : progress?.isHarvested
       ? 'bg-secondary-500'
-      : 'bg-gray-100';
+      : 'bg-gray-200';
 
-  return <td className={cn('h-4 w-4', color)} title={formatDateToYMD(date)}></td>;
+  return <td className={cn('h-3 w-3', color)} title={formatDateToYMD(date)}></td>;
 };
 
 export default ProgressCell;
