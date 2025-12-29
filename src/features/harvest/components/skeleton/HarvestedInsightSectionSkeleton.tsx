@@ -1,12 +1,12 @@
 import SkeletonItem from '@/components/atoms/SkeletonItem';
-import InsightPreviewListSkeleton from '@/components/organisms/skeleton/InsightPreviewListSkeleton';
+import InsightPreviewCardSkeleton from '@/components/organisms/skeleton/InsightPreviewCardSkeleton';
 
 const HarvestedInsightSectionSkeleton = () => {
   return (
     <div className="flex flex-col gap-6">
-      <SkeletonItem styles="w-72 h-9" />
+      <SkeletonItem className="h-9 w-72" />
 
-      <InsightPreviewListSkeleton />
+      <InsightPreviewCardSkeleton />
     </div>
   );
 };

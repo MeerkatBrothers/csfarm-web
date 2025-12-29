@@ -5,3 +5,7 @@ button {
     cursor: not-allowed;
   }
 }
+
+input:focus {
+  outline: none;
+}

@@ -1,12 +1,13 @@
 'use client';
 
+import { cn } from '@/shared/utils/cn';
+
 import useMyProgress from '@/features/progress/hooks/useMyProgress';
 import MyProgressTableSkeleton from '@/features/progress/components/skeleton/MyProgressTableSkeleton';
 
 import ProgressHint from '@/components/atoms/ProgressHint';
 import Headline from '@/components/atoms/typography/Headline';
 import ProgressTable from '@/components/organisms/ProgressTable';
-import { cn } from '@/shared/utils/cn';
 
 interface MyProgressTableProps {
   year?: number;

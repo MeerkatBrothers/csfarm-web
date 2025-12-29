@@ -11,7 +11,7 @@ import ErrorFallback from '@/components/organisms/ErrorFallback';
 const MyProfilePage = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-12">
         <MyProfileSection />
 
         <MyProgressTable />

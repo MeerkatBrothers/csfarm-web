@@ -1,14 +1,17 @@
-import { cn } from '@/shared/utils/cn';
-
-import SkeletonItem from '@/components/atoms/SkeletonItem';
-import QuizSectionSkeleton from '@/components/organisms/skeleton/QuizSectionSkeleton';
+import GreetingSkeleton from '@/components/atoms/skeleton/GreetingSkeleton';
+import QuizCardSkeleton from '@/components/organisms/skeleton/QuizCardSkeleton';
+import QuizChoiceCardSkeleton from '@/components/organisms/skeleton/QuizChoiceCardSkeleton';
 
 const TodayQuizSectionSkeleton = () => {
   return (
-    <div className="flex flex-col gap-2">
-      <SkeletonItem styles={cn('w-full max-w-xs h-7', 'md:h-8', 'lg:h-9')} />
+    <div className="flex flex-col gap-4">
+      <GreetingSkeleton />
 
-      <QuizSectionSkeleton />
+      <div className="flex flex-col gap-12">
+        <QuizCardSkeleton />
+
+        <QuizChoiceCardSkeleton />
+      </div>
     </div>
   );
 };

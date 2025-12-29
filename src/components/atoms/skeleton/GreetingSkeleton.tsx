@@ -3,7 +3,7 @@ import { cn } from '@/shared/utils/cn';
 import SkeletonItem from '@/components/atoms/SkeletonItem';
 
 const GreetingSkeleton = () => {
-  return <SkeletonItem styles={cn('w-full max-w-3xl h-8', 'md:h-9', 'lg:h-10')} />;
+  return <SkeletonItem className={cn('h-6 w-full max-w-xl', 'md:h-7', 'lg:h-8')} />;
 };
 
 export default GreetingSkeleton;

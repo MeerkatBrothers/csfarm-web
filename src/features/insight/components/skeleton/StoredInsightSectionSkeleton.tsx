@@ -1,12 +1,12 @@
-import SkeletonItem from '@/components/atoms/SkeletonItem';
-import InsightPreviewListSkeleton from '@/components/organisms/skeleton/InsightPreviewListSkeleton';
+import GreetingSkeleton from '@/components/atoms/skeleton/GreetingSkeleton';
+import InsightPreviewCardSkeleton from '@/components/organisms/skeleton/InsightPreviewCardSkeleton';
 
 const StoredInsightSectionSkeleton = () => {
   return (
-    <div className="flex flex-col gap-6">
-      <SkeletonItem styles="w-72 h-9" />
+    <div className="flex flex-col gap-4">
+      <GreetingSkeleton />
 
-      <InsightPreviewListSkeleton />
+      <InsightPreviewCardSkeleton />
     </div>
   );
 };

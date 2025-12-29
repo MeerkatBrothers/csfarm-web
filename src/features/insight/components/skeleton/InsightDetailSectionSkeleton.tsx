@@ -1,18 +1,12 @@
-import { cn } from '@/shared/utils/cn';
-
-import SkeletonItem from '@/components/atoms/SkeletonItem';
-import InsightSectionSkeleton from '@/components/organisms/skeleton/InsightSectionSkeleton';
+import InsightCardSkeleton from '@/components/organisms/skeleton/InsightCardSkeleton';
+import SubInsightCardSkeleton from '@/components/organisms/skeleton/SubInsightCardSkeleton';
 
 const InsightDetailSectionSkeleton = () => {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-end justify-between">
-        <SkeletonItem styles={cn('w-30 h-7', 'md:w-36 md:h-8', 'lg:w-40 lg:h-9')} />
+    <div className="flex flex-col gap-12">
+      <InsightCardSkeleton />
 
-        <SkeletonItem styles="w-24 h-4" />
-      </div>
-
-      <InsightSectionSkeleton />
+      <SubInsightCardSkeleton />
     </div>
   );
 };

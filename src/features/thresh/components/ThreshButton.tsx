@@ -9,7 +9,6 @@ import useThresh from '@/features/thresh/hooks/useThresh';
 
 import PrimaryButton from '@/components/atoms/button/PrimaryButton';
 import DotLoader from '@/components/atoms/DotLoader';
-import RewardIncreaseLabel from '@/components/atoms/RewardIncreaseLabel';
 
 interface ThreshButtonProps {
   quizId: string;
@@ -28,15 +27,11 @@ const ThreshButton = ({ quizId, choiceId }: ThreshButtonProps) => {
   if (isLoading || isPending) return <DotLoader />;
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      {!threshStatus?.isThreshed && <RewardIncreaseLabel />}
-
-      <PrimaryButton
-        label={threshStatus?.isThreshed ? '이미 타작했어요!' : '타작하기'}
-        disabled={threshStatus?.isThreshed || !choiceId}
-        onClick={handleThresh}
-      />
-    </div>
+    <PrimaryButton
+      label={threshStatus?.isThreshed ? '이미 타작했어요!' : '타작하기'}
+      disabled={threshStatus?.isThreshed || !choiceId}
+      onClick={handleThresh}
+    />
   );
 };
 
