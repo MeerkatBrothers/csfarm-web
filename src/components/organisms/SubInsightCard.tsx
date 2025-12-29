@@ -44,7 +44,7 @@ const SubInsightCard = ({ subject, description }: SubInsightCardProps) => {
             transition={{ type: 'spring', duration: 0.4, bounce: 0 }}
           >
             <div className="mt-4">
-              <Body text={description} scale={1} />
+              <Body text={description} scale={1} preLine />
             </div>
           </motion.div>
         )}

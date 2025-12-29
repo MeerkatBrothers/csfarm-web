@@ -27,7 +27,7 @@ const InsightCard = ({ subject, description, publishedAt }: InsightSectionProps)
       <div className="flex flex-col gap-6">
         <Heading text={subject} scale={1} />
 
-        <Body text={description} scale={1} />
+        <Body text={description} scale={1} preLine />
       </div>
     </div>
   );
